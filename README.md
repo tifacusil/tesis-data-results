@@ -288,12 +288,3 @@ In Windows `cmd`, replace `\` with `^`. In PowerShell, use the backtick.
 
 Output files: `tabla7_tabla8.csv`, `tabla9.csv`, `valores_por_corrida.csv` and `figura{2,3,4,5}_*.png`.
 
-## 8. Still to document
-
-- [ ] **Export script for `data.zip`.** `RESUMEN.md` defines the metrics but does not record the script or the exact PromQL queries for per-service memory and CPU, queues and drops. It is not in `load-tests/` or `chaos/`, and it does not appear in the project chats either:
-  - `chaos/lib/capture.sh` only runs instant queries for the snapshots.
-  - `chaos/lib/sampler.sh` writes CSVs with different columns (`epoch`, `breaker_state`, `calls_*`…), not `fps`, `node_cpu_pct`, `mem_mib_*`, `q_*` or `pod_restarts`.
-
-  If it cannot be recovered, there are two options:
-  1. **Rebuild it, if Prometheus still holds the data.** Retention is 30 days. Unless it was extended, A's data from 17 and 18/09 expired on 17 and 18/10, and B's data from 23/09 expires on 23/10. Write a new script from the definitions in section 4 and accept it only if it reproduces the archived CSVs. That documents a verified method, not an assumed one.
-  2. **Declare it an archived derived dataset.** If the data no longer exists, the CSVs become the primary source. Document who exported them and when, the definitions in `RESUMEN.md`, and the hashes in section 4.
