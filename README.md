@@ -1,5 +1,7 @@
 # How the metrics were obtained — September 2026 campaign
 
+*[Español](README.md) · English*
+
 This document describes how we obtained the raw data that `generar_resultados.py` uses to regenerate Figures 2 to 5 and Tables 7, 8 and 9.
 
 ## 1. Environments
@@ -165,15 +167,37 @@ sum(rate(data_receiving_frames_total[1m]))
 | `B-12h-0923-timeseries.csv` | 23/09 12:35 → 24/09 00:30 | 1 min | 716 |
 | `B-12h-0923-saturation.csv` | 23/09 12:35 → 24/09 00:30 | 5 min | 144 |
 
-Metrics documented in `RESUMEN.md`:
+Queries that generate each column, verified against the archived data (see *Query verification*). `<label>` is `service` on A and `app` on B:
 
-| Column | Definition |
-|---|---|
-| `node_cpu_pct` | `100 * (1 - idle)` from node_exporter |
-| `node_mem_used_mib` | `MemTotal - MemAvailable`, in MiB |
-| `mem_mib_<service>` | B: RSS summed over replicas. A: RSS for the Python/.NET services and `jvm_memory_used` for the Java services |
-| `q_ew_evaluate`, `q_dead_letter` | RabbitMQ queues `early_warning.evaluate` and `sensors.dead_letter` (B only) |
-| `dr_dropped_5m`, `ew_dropped_5m`, `dm_dlq_5m` | `data_receiving_messages_dropped_total`, `ew_messages_dropped_total` and `dm_messages_dlq_total` |
+| Column | PromQL query | CSV |
+|---|---|---|
+| `fps` | `sum(rate(data_receiving_frames_total[1m]))` | All |
+| `node_cpu_pct` | `100 * (1 - avg(rate(node_cpu_seconds_total{mode="idle"}[1m])))` | `*-timeseries` |
+| `node_mem_used_mib` | `(sum(node_memory_MemTotal_bytes) - sum(node_memory_MemAvailable_bytes)) / 1048576` | `*-timeseries` |
+| `mem_mib_<svc>` | `sum(process_resident_memory_bytes{<label>="<svc>"}) / 1048576`. On A, for data-management, project-management and user-management: `sum(jvm_memory_used_bytes{service="<svc>"}) / 1048576` | `*-timeseries` |
+| `cpu_pct_<svc>` | `100 * sum(rate(process_cpu_seconds_total{<label>="<svc>"}[1m]))` | `*-timeseries` |
+| `q_ew_evaluate` | `sum(rabbitmq_queue_messages{queue="early_warning.evaluate"})` | `B-12h-saturation` |
+| `q_dm_persist` | `sum(rabbitmq_queue_messages{queue="data_management.persist"})` | `B-12h-saturation` |
+| `q_dead_letter` | `sum(rabbitmq_queue_messages_ready{queue="sensors.dead_letter"})` | `B-12h-saturation` |
+| `ew_consumed_fps` | `sum(rate(ew_messages_consumed_total[5m]))` | `B-12h-saturation` |
+| `ew_publish_in_fps` | `sum(rate(rabbitmq_queue_messages_published_total{queue="early_warning.evaluate"}[5m]))` | `B-12h-saturation` |
+| `ew_dropped_5m` | `sum(increase(ew_messages_dropped_total[5m]))` | `B-12h-saturation` |
+| `dr_dropped_5m` | `sum(increase(data_receiving_messages_dropped_total[5m]))` | `*-12h-saturation` |
+| `dm_dlq_5m` | `sum(increase(dm_messages_dlq_total[5m]))` | `B-12h-saturation` |
+| `redis_buffer_pending` | `sum(data_receiving_redis_buffer_pending)` | `B-12h-saturation` |
+| `pod_restarts` | `sum(kube_pod_container_status_restarts_total{namespace="landslide"})` | `B-12h-saturation` |
+| `rabbit_up` | `max(rabbitmq_up)` | `B-12h-saturation` |
+| `dr_published_fps` | `sum(rate(data_receiving_messages_published_total[5m]))` | `A-12h-saturation` |
+| `ew_processed_fps` | `sum(rate(ew_messages_processed_total[5m]))` | `A-12h-saturation` |
+
+Each CSV comes from `/api/v1/query_range`, with `start` and `end` equal to its first and last row. The step is 60 s for the `*-timeseries` files and 300 s for the `*-saturation` files.
+
+How to read these columns:
+
+- **Queues:** `q_ew_evaluate` and `q_dm_persist` count all messages, ready plus unacknowledged. The ready-only variant does not reproduce the data. `q_dead_letter` is 0 for the whole run, so the two variants cannot be told apart there.
+- **`redis_buffer_pending`:** this is the **sum over replicas**, since the per-replica maximum does not reproduce the data. Table 10, by contrast, uses the per-replica maximum, which comes from a different export. They are different definitions and must not be mixed.
+- **`pod_restarts`:** this is the cumulative counter, which is why it starts at 3314. It is not a per-window increment.
+- **Ties:** for `mem_mib_` of project-management and user-management (B), of early-warning (A), and for `node_mem_used_mib`, `sum`, `max` and `avg` give the same result. There is only one series: one replica, the only instance scraped on A (`:8092`), or a single node_exporter.
 
 Limitations stated in `RESUMEN.md` itself:
 
@@ -203,6 +227,19 @@ A team member gathered the files and zipped them by hand, without a script. Acco
 ```bash
 sha256sum *.csv resources-summary.json RESUMEN.md
 ```
+
+### Query verification
+
+On 20/10/2026, `reconstruir_data_zip.py` confirmed that the queries in the table above generate the same data as the archived CSVs. The script takes each column, tries several candidate queries at the same timestamps as the CSV, and accepts one only if it matches at least 99 % of the rows, within the rounding used when the file was written. All **70 columns** match on **100 % of the rows**: 42 for B and 28 for A. To repeat it, from the folder holding the CSVs:
+
+```bash
+python reconstruir_data_zip.py --prom http://178.105.104.95:31083 --sistema B \
+  --csv B-ladder-0923-timeseries.csv B-12h-0923-timeseries.csv B-12h-0923-saturation.csv --salida reconstruccion-B
+python reconstruir_data_zip.py --prom http://204.168.203.32:9090 --sistema A \
+  --csv A-ladder-0917-timeseries.csv A-12h-0918-timeseries.csv A-12h-0918-saturation.csv --salida reconstruccion-A
+```
+
+Each `reconstruccion-*/<csv>.consultas.md` records the chosen query, the match and any tied queries. This shows that the queries reproduce the data, not that the team member typed exactly these strings. For reproducibility, that is what matters.
 
 ## 5. Extracting the 1 frame/s level
 
@@ -288,3 +325,11 @@ In Windows `cmd`, replace `\` with `^`. In PowerShell, use the backtick.
 
 Output files: `tabla7_tabla8.csv`, `tabla9.csv`, `valores_por_corrida.csv` and `figura{2,3,4,5}_*.png`.
 
+## 8. Documentation status
+
+- [x] **Queries behind `data.zip`.** Identified and verified against the archived data (section 4).
+- [x] **Raw TSDB backup of B.** `prometheus-B-20261020.tar.gz` was created on 20/10/2026 on `go-tesis` with:
+  ```bash
+  sudo kubectl -n landslide exec prometheus-6489f5b487-8wx8n -- tar czf - -C /prometheus . > prometheus-B-20261020.tar.gz
+  ```
+  It is stored in the team's shared Google Drive folder. SHA-256: `898a017a30e597dcb368e1e326c1b6ed113e433254844c82081c26131848dbdb`. It was kept because B's Prometheus keeps 30 days and has no persistent volume: from 23/10, the raw September data survives only in this backup. A keeps 1 year.
