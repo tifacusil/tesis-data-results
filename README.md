@@ -1,7 +1,5 @@
 # How the metrics were obtained — September 2026 campaign
 
-*[Español](README.md) · English*
-
 This document describes how we obtained the raw data that `generar_resultados.py` uses to regenerate Figures 2 to 5 and Tables 7, 8 and 9.
 
 ## 1. Environments
