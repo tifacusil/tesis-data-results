@@ -126,7 +126,7 @@ its own `--defaults-file` [srv]:
 | unit | port | mysqlx | datadir | database / user | source |
 |---|---|---|---|---|---|
 | `mysql.service` (package) | 3306, `bind-address = 0.0.0.0` | 33060 (127.0.0.1) | default | used by `mysqld_exporter` (user `exporter`) | [srv] |
-| `mysql-data-mgmt.service` | 3307 | 33061 | `/var/lib/mysql-data-mgmt` | `data_management_db` / [NV] | [srv] cnf + data-management unit |
+| `mysql-data-mgmt.service` | 3307 | 33061 | `/var/lib/mysql-data-mgmt` | `data_management_db` / `landslide` | [srv] cnf + data-management unit + `application.yml` in the jar |
 | `mysql-early-warning.service` | **3308** | 33062 | `/var/lib/mysql-early-warning` | `early_warning_db` / `landslide` | [srv] cnf + early-warning `.env` |
 | `mysql-project-mgmt.service` | 3309 | 33063 | `/var/lib/mysql-project-mgmt` | `project_management_db` / `landslide` | [srv] cnf + project-management unit |
 | `mysql-user-management.service` | 3310 | 33064 | `/var/lib/mysql-user-management` | `user_management` / `landslide` | [srv] cnf + user-management `.env` |
@@ -173,8 +173,10 @@ requirepass <REDIS_PASSWORD>
 enabled (UI on `15672`) [srv `/etc/rabbitmq/enabled_plugins`, `ss`]. There
 is no `/etc/rabbitmq/rabbitmq.conf` [srv]. data-receiving publishes to the
 `sensors.raw` exchange as user `data-receiver` [srv unit].
+ data-management consumes as
+user `subscriber` [srv `application.yml` in the jar].
 
-A's users, queues and bindings: [NV] (needs `sudo rabbitmqctl`). To survey
+The full set of A's users, queues and bindings: [NV] (needs `sudo rabbitmqctl`). To survey
 them: `sudo rabbitmqctl list_users`, `list_exchanges`, `list_queues name
 arguments`, `list_bindings`. B's topology (infra
 `k8s/base/infra/rabbitmq/config/definitions.json`) uses **different user
@@ -224,7 +226,9 @@ passwords were replaced with placeholders.
 > project-management units carry passwords in `Environment=` lines (readable
 > by any user through `systemctl cat`). When rebuilding, move them to an
 > `EnvironmentFile=` with mode `0640 root:<user>`, as data-receiving already
-> does.
+> does. data-management's `CONSUL_HTTP_TOKEN` is Consul's **bootstrap token**
+> (policy `global-management`) [srv]: give each service its own token with
+> only the `service:write` it needs.
 
 | service | unit | instances → ports | user | source |
 |---|---|---|---|---|
@@ -336,8 +340,8 @@ MemoryMax=400M
 WantedBy=multi-user.target
 ```
 
-Live drop-in at `data-management@8082.service.d/override.conf` [srv]
-(whether instance 8086 has the same one is [NV]):
+Live drop-in, identical for `@8082` and `@8086`
+(`data-management@<port>.service.d/override.conf`) [srv]:
 
 ```ini
 [Service]
@@ -581,9 +585,10 @@ each service must register under them, with these ports:
 | `data-analysis` | 8090, 8091 | `data_analysis` (`least_conn`) | `127.0.0.1:8090`, `:8091` |
 | `data-receiving` | **health** 8081/8087/8089 | `data_receiving` (stream, `least_conn`, port = registered − 3081) | `127.0.0.1:5000` |
 
-Names: [srv] live templates. That the services actually register under those
-names: [NV] (the catalog returns `{}` without a token because of the ACL).
-Check with `curl -s -H "X-Consul-Token: <token>" http://127.0.0.1:8500/v1/catalog/services`.
+Names: [srv] live templates and the Consul catalog, which lists exactly these
+six (data-receiving tagged `instance:data-receiving-01…03`). Registered ports:
+[inf] from the rendered upstreams. Without a token the catalog returns `{}`
+because of the ACL.
 
 > The fallbacks have **fewer instances** than the real system (a single one
 > for data-management, early-warning and data-receiving). If consul-template
@@ -671,8 +676,10 @@ WantedBy=multi-user.target
   - `mysqld_exporter` points at `localhost:3306` (`mysql.service`), **not**
     at any of the four service databases (3307–3310) [srv];
   - `redis_exporter` runs with `-redis.addr redis://localhost:6379` and no
-    password in its unit [srv], against a Redis that requires `requirepass`:
-    whether its metrics are valid is [NV] (check `redis_up`).
+    password in its unit, against a Redis that requires `requirepass`, so it
+    reports `redis_up 0` and **A has no Redis metrics** [srv]. To fix it on a
+    rebuild, set `REDIS_PASSWORD=<REDIS_PASSWORD>` in the exporter's
+    environment.
 
 Exporters (units [srv], all `User=concurso`, binaries from the §3.1 tarballs):
 
@@ -803,7 +810,9 @@ images:
   # … one entry per table row
 ```
 
-If GHCR no longer has those digests, rebuild from the `go-*` repos (§2); the
+On 2026-10-20 GHCR served all six digests (HTTP 200 on the manifest, with the
+cluster's `ghcr` pull secret) [srv]. If it stops serving one, rebuild from the
+`go-*` repos (§2); the
 deployed code then differs from what was measured — record that.
 
 Infrastructure: the versions (RabbitMQ `3.12.1-management-alpine`, Redis
@@ -873,7 +882,8 @@ una campaña").
 
 | component | A [srv] | B [srv] | same? |
 |---|---|---|---|
-| RabbitMQ | 3.12.1 (Erlang 25.3.2.8) | 3.12.1 (`-management-alpine`) | version yes; B's Erlang [NV] |
+| RabbitMQ | 3.12.1 | 3.12.1 (`-management-alpine`) | yes |
+| Erlang/OTP | OTP 25, erts-13.2.2.5 (`erlang-base 25.3.2.8`) | OTP 25, erts-13.2.2.2 | major yes, patch **no** |
 | Redis | 7.0.15 | 7.0.15 | yes |
 | MySQL | 8.0.46 (Ubuntu) | 8.0.46 (official image) | yes |
 | Prometheus | 3.5.4 | 3.5.4 | yes (retention: 365d vs 30d) |
@@ -904,18 +914,12 @@ una campaña").
 |---|---|---|
 | 1 | Server type CX23 (both) | Hetzner console |
 | 2 | Live `consul-template.hcl`: second `template` block and where the token goes | `sudo cat /etc/consul-template/consul-template.hcl` |
-| 3 | That the services register in Consul under the §3.7 names | `curl -H "X-Consul-Token: …" :8500/v1/catalog/services` |
-| 4 | Consul ACL policies and tokens | `consul acl policy list` / `token list` with a management token |
-| 5 | `/etc/data-receiving/0{1,2,3}.env` (inferred ports, `DLXPATH`) | `sudo cat` |
-| 6 | `/etc/data-analysis-service/{a,b}.env` (inferred ports) | `sudo cat` |
-| 7 | data-receiving's `consul-deregister.sh` | `cat /opt/data-receiving/consul-deregister.sh` |
-| 8 | Full `redis.conf` (maxmemory, persistence) | `sudo grep -v '^#' /etc/redis/redis.conf` |
-| 9 | A's RabbitMQ topology (users, queues, DLX) | `sudo rabbitmqctl list_users / list_queues name arguments / list_bindings` |
-| 10 | data-management's MySQL user | `sudo systemctl show data-management@8082 -p Environment` (or `application.yml`) |
-| 11 | project-management's Spring Boot version | `sudo unzip -p …/project-management.jar META-INF/MANIFEST.MF` |
-| 12 | Drop-in for `data-management@8086` | `systemctl cat data-management@8086` |
-| 13 | Processes on `127.0.0.1:8080` and `127.0.0.1:6060` | `sudo ss -ltnp` |
-| 14 | Whether A's `redis_exporter` exports valid metrics without a password | `curl -s :9121/metrics \| grep '^redis_up'` |
-| 15 | How A's MySQL datadirs and users were initialized | no source; rebuild following §3.2 |
-| 16 | That GHCR still serves the §4.3 digests | `docker pull ghcr.io/tifacusil/<img>@sha256:…` |
-| 17 | Erlang/OTP of B's RabbitMQ image | `kubectl -n landslide exec rabbitmq-0 -- rabbitmqctl status \| grep -i erlang` |
+| 3 | Consul ACL policies and per-service tokens | `consul acl policy list` / `token list` with a management token |
+| 4 | `/etc/data-receiving/0{1,2,3}.env` (inferred ports, `DLXPATH`) | `sudo cat` |
+| 5 | `/etc/data-analysis-service/{a,b}.env` (inferred ports) | `sudo cat` |
+| 6 | data-receiving's `consul-deregister.sh` | `sudo cat /opt/data-receiving/consul-deregister.sh` |
+| 7 | Full `redis.conf` (maxmemory, persistence) | `sudo grep -v '^#' /etc/redis/redis.conf` |
+| 8 | A's RabbitMQ topology (users, queues, DLX) | `sudo rabbitmqctl list_users / list_queues name arguments / list_bindings` |
+| 9 | project-management's Spring Boot version | `sudo unzip -p …/project-management.jar META-INF/MANIFEST.MF` |
+| 10 | Processes on `127.0.0.1:8080` and `127.0.0.1:6060` | `sudo ss -ltnp` |
+| 11 | How A's MySQL datadirs and users were initialized | no source; rebuild following §3.2 |
