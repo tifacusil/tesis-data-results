@@ -13,7 +13,7 @@ The systems' code lives in their own repos (A without a prefix, B with the
 
 | document | what it covers |
 |---|---|
-| [`docs/setup-guide.md`](docs/setup-guide.md) | Deploying System A and System B from scratch, as surveyed on the live servers: versions, ports, systemd units, nginx + consul-template, k3s, image digests, and what could not be verified. |
+| [`docs/setup-guide.md`](docs/setup-guide.md) | Deploying System A and System B from scratch, as surveyed on the live servers: versions, ports, systemd units, MySQL/Redis/RabbitMQ/Consul setup, nginx + consul-template, k3s, image digests and A ↔ B version parity. |
 | [`docs/metrics-methodology.md`](docs/metrics-methodology.md) | How the metrics were obtained in the September 2026 campaign: environments, load tests and chaos, the `data.zip` export and its queries, the 1 frame/s level, windows and aggregation, and how to run `generar_resultados.py`. |
 
 ## Contents

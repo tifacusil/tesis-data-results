@@ -24,7 +24,6 @@ has passwordless sudo). Source tags:
 - **[srv]** read on the live server (`systemctl cat`, `dpkg -l`, `--version`, `kubectl get`, `ss -ltn`, config files).
 - **[repo]** read in a repository.
 - **[inf]** inferred from [srv]/[repo] facts.
-- **[NV]** not verified (§7).
 
 ---
 
@@ -50,10 +49,11 @@ has passwordless sudo). Source tags:
 | public IP | `204.168.203.32` | `178.105.104.95` | [srv] |
 | SSH user | `concurso` | `gotesis` | — |
 | Hetzner zone | `hel1-dc2` (Helsinki) | `fsn1-dc8` (Falkenstein) | [srv] metadata `169.254.169.254/hetzner/v1/metadata` |
-| type | CX23 | CX23 | [NV] the metadata does not expose the type; check the Hetzner console |
+| type | CX23 (2 vCPU, 4 GB RAM, 40 GB disk) | CX23 (2 vCPU, 4 GB RAM, 40 GB disk) | Hetzner plan, given by the account owner |
 | OS | Ubuntu 24.04.4 LTS, kernel 6.8.0-134-generic | Ubuntu 24.04.4 LTS, kernel 6.8.0-134-generic | [srv] |
 | vCPU | 2 | 2 | [srv] `nproc` |
-| RAM | 3,911,572 kB (3.7 GiB) | 3.7 GiB | [srv] `/proc/meminfo`, `free -h` |
+| RAM | 3,911,572 kB (4.0 GB, 3.7 GiB) | 3,911,572 kB (4.0 GB, 3.7 GiB) | [srv] `/proc/meminfo` |
+| disk | `sda`, 40,961,572,864 B (40.96 GB) | `sda`, 40,961,572,864 B (40.96 GB) | [srv] `lsblk` |
 
 > A's host also runs processes **unrelated to the thesis** that compete for
 > its 2 vCPU / 3.7 GiB: a PM2 bot (`pm2-concurso.service`, app `discord-bot`)
@@ -274,9 +274,51 @@ acl {
 ```
 
 (`dns_config`, `performance` and `log_level` omitted.) With `default_policy = "deny"`, every service needs a token to
-register and consul-template needs one to read the catalog (§3.7). Creating
-the tokens after `consul acl bootstrap` is [NV] (the ACL setup is not
-readable without a token).
+register and consul-template needs one to read the catalog (§3.7).
+
+ACL setup [srv `/v1/acl/policies`, `/v1/acl/tokens`]. After `consul acl
+bootstrap` (which creates the bootstrap token), A has these custom policies:
+
+```hcl
+# consul-template-read — "read-only for consul-template nginx render"
+node_prefix "" { policy = "read" }
+service_prefix "" { policy = "read" }
+agent_prefix "" { policy = "read" }
+
+# data-management-register
+node "consul-server-01" { policy = "write" }
+service "data-management-service" { policy = "write" }
+service "data-mgmt-01" { policy = "write" }
+
+# data-receiving-deregister — "ExecStopPost catalog/agent deregister for data-receiving instances"
+node "consul-server-01" { policy = "write" }
+service_prefix "data-receiving" { policy = "write" }
+```
+
+| token (description) | policy | used by |
+|---|---|---|
+| Bootstrap Token (Global Management) | `global-management` | data-management's unit (`CONSUL_HTTP_TOKEN`) [srv] |
+| consul-template nginx | `consul-template-read` | `consul-template.hcl` [inf: only token with that policy] |
+| data-management agent registration+check | `data-management-register` | none found: the unit uses the bootstrap token instead |
+| data-receiving ExecStopPost deregister | `data-receiving-deregister` | `RECEIVER__CONSUL__DEREG_TOKEN` [inf] |
+| Anonymous Token | none | unauthenticated requests |
+
+No other token exists, so data-receiving (registration), data-analysis,
+early-warning, user-management and project-management register with one of
+these [inf]; the only ones that allow registering those services are the
+bootstrap token and, for data-receiving, the deregister token.
+
+Rebuild sketch (`consul acl` commands, run with the bootstrap token in
+`CONSUL_HTTP_TOKEN`):
+
+```bash
+consul acl bootstrap
+consul acl policy create -name consul-template-read -rules @consul-template-read.hcl
+consul acl token create -description "consul-template nginx" -policy-name consul-template-read
+# one policy + token per service, e.g.:
+consul acl policy create -name data-management-register -rules @data-management-register.hcl
+consul acl token create -description "data-management agent registration+check" -policy-name data-management-register
+```
 
 ### 3.6 Microservices
 
@@ -289,8 +331,9 @@ passwords were replaced with placeholders.
 > by any user through `systemctl cat`). When rebuilding, move them to an
 > `EnvironmentFile=` with mode `0640 root:<user>`, as data-receiving already
 > does. data-management's `CONSUL_HTTP_TOKEN` is Consul's **bootstrap token**
-> (policy `global-management`) [srv]: give each service its own token with
-> only the `service:write` it needs.
+> (policy `global-management`) [srv], although a scoped
+> `data-management-register` token exists (§3.5): give each service its own
+> token with only the `service` write it needs.
 
 | service | unit | instances → ports | user | source |
 |---|---|---|---|---|
@@ -692,10 +735,20 @@ each service must register under them, with these ports:
 | `data-analysis` | 8090, 8091 | `data_analysis` (`least_conn`) | `127.0.0.1:8090`, `:8091` |
 | `data-receiving` | **health** 8081/8087/8089 | `data_receiving` (stream, `least_conn`, port = registered − 3081) | `127.0.0.1:5000` |
 
-Names: [srv] live templates and the Consul catalog, which lists exactly these
-six (data-receiving tagged `instance:data-receiving-01…03`). Registered ports:
-[srv] the services' env files and the rendered upstreams. Without a token the
-catalog returns `{}` because of the ACL.
+Registered instances, all with passing checks [srv `/v1/health/service/<name>`]:
+
+| service ID | address:port |
+|---|---|
+| `data-analysis-a`, `data-analysis-b` | `127.0.0.1:8090`, `127.0.0.1:8091` |
+| `data-management-service-127.0.0.1-8082`, `-8086` | `127.0.0.1:8082`, `127.0.0.1:8086` |
+| `data-receiving-data-receiving-01…03` | *(empty)*`:8081/8087/8089` |
+| `early-warning-service-127.0.0.1-8088`, `-8092` | `127.0.0.1:8088`, `127.0.0.1:8092` |
+| `project-management-service-8084` | `204.168.203.32:8084` |
+| `user-management-01` | *(empty)*`:8085` |
+
+An empty address makes `{{ .Address }}` fall back to the node address,
+`204.168.203.32`, which is why those upstreams render with the public IP.
+Without a token the catalog returns `{}` because of the ACL.
 
 > The fallbacks have **fewer instances** than the real system (a single one
 > for data-management, early-warning and data-receiving). If consul-template
@@ -1012,12 +1065,3 @@ una campaña").
    3308, user `landslide`, database `early_warning_db`) and `REDIS_PASSWORD`.
 3. Chaos: infra [`chaos/README.md`](https://github.com/tifacusil/go-tesis-infra/blob/main/chaos/README.md).
 4. Extract the metrics: [`metrics-methodology.md`](metrics-methodology.md).
-
----
-
-## 7. Not verified
-
-| # | what | how to check |
-|---|---|---|
-| 1 | Server type CX23 (both) | Hetzner console |
-| 2 | Consul ACL policies and per-service tokens | `consul acl policy list` / `token list` with a management token |
