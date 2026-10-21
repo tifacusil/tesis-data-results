@@ -57,9 +57,11 @@ has passwordless sudo). Source tags:
 
 > A's host also runs processes **unrelated to the thesis** that compete for
 > its 2 vCPU / 3.7 GiB: a PM2 bot (`pm2-concurso.service`, app `discord-bot`)
-> [srv]. Docker is installed, but its 2 containers are stopped and not part
-> of the system [srv]. A from-scratch deployment should not install them; if
-> the measurement is repeated, stop the bot or document it.
+> and CrowdSec (`crowdsec.service`, listening on 127.0.0.1:8080/6060, plus
+> `crowdsec-firewall-bouncer.service`) [srv]. Docker is installed, but its 2
+> containers are stopped and not part of the system [srv]. A from-scratch
+> deployment should not install the bot or Docker; if the measurement is
+> repeated, stop the bot or document it.
 
 ---
 
@@ -93,7 +95,7 @@ through consul-template.
 | .NET | runtime 8.0.28, `net8.0` | **bundled** in the self-contained binary; no `dotnet` on the host | [srv] `DataReceiving.runtimeconfig.json`, `.deps.json` |
 | Python | 3.12.3 (`python3.12`, `python3.12-venv`) | apt (Ubuntu) | [srv] |
 | nginx | 1.24.0 (`nginx 1.24.0-2ubuntu7.18`, `libnginx-mod-stream 1.24.0-2ubuntu7.18`) | apt (Ubuntu) | [srv] |
-| Consul | v1.22.7 | package (`/usr/bin/consul`, unit in `/usr/lib/systemd/system/`) — [inf] HashiCorp apt repo | [srv] |
+| Consul | v1.22.7 (`consul 1.22.7-1`) | apt, HashiCorp repo `https://apt.releases.hashicorp.com noble main` | [srv] |
 | consul-template | v0.37.0 | binary in `/usr/local/bin` | [srv] |
 | RabbitMQ | 3.12.1 (`rabbitmq-server 3.12.1-1ubuntu1.7`), Erlang `erlang-base 1:25.3.2.8+dfsg-1ubuntu4.8` | apt (Ubuntu) | [srv] |
 | Redis | 7.0.15 (`redis-server 5:7.0.15-1ubuntu0.24.04.5`) | apt (Ubuntu) | [srv] |
@@ -107,6 +109,14 @@ through consul-template.
 sudo apt update
 sudo apt install openjdk-17-jre-headless python3.12-venv \
   nginx libnginx-mod-stream rabbitmq-server redis-server mysql-server
+
+# HashiCorp repo. Pin: its candidate is already 2.0.3-1, a different major version.
+wget -O- https://apt.releases.hashicorp.com/gpg \
+  | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [arch=amd64 signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com noble main" \
+  | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install consul=1.22.7-1
+sudo apt-mark hold consul
 ```
 
 > Ubuntu does not keep old versions in its archive: `apt install
@@ -116,7 +126,7 @@ sudo apt install openjdk-17-jre-headless python3.12-venv \
 
 **Spring Boot** versions inside the jars [srv] `MANIFEST.MF`:
 data-management 3.5.14, user-management 3.2.12, both `Build-Jdk-Spec: 17`.
-project-management: [NV] (the jar is not readable by user `concurso`).
+project-management 3.5.14, `Build-Jdk-Spec: 17`.
 
 ### 3.2 MySQL — five instances
 
@@ -148,40 +158,92 @@ Restart=on-failure
 WantedBy=multi-user.target
 ```
 
-Initializing each datadir: [NV] the server shows the result, not how it was
-created. The standard way is
-`sudo -u mysql mysqld --defaults-file=/etc/mysql/mysql-<x>.cnf --initialize`
-before the first start, then creating the database and user. The Java apps
-create their own schema at startup; for table reference see infra
-`k8s/base/infra/mysql-*/initdb/` (those are B's).
+Each datadir was initialized before the first start with [srv shell history]:
+
+```bash
+sudo mysqld --initialize-insecure --datadir=/var/lib/mysql-<x> \
+  --log-error=/var/log/mysql/mysql-<x>.err --user=mysql
+```
+
+Then, on each instance, one database and one user [srv `mysql.user`,
+`SHOW GRANTS`]:
+
+```sql
+CREATE DATABASE <db>;
+CREATE USER 'landslide'@'%' IDENTIFIED BY '<MYSQL_PASSWORD_<SERVICE>>';
+GRANT ALL PRIVILEGES ON <db>.* TO 'landslide'@'%';
+```
+
+> `--initialize-insecure` leaves `root@localhost` with an **empty password**,
+> and all four live instances still have it [srv]. Set one right after
+> initializing (`ALTER USER 'root'@'localhost' IDENTIFIED BY '<MYSQL_ROOT_PASSWORD>';`).
+
+The Java apps create their own schema at startup; for table reference see
+infra `k8s/base/infra/mysql-*/initdb/` (those are B's).
 
 ### 3.3 Redis
 
 The package's `redis-server.service`, listening on `0.0.0.0:6379` [srv]. It
 requires a password (`requirepass`): without it `reset-state.sh` fails with
-`NOAUTH` [repo infra `load-tests/.env.example`]. The rest of
-`/etc/redis/redis.conf` (maxmemory, persistence) is [NV] (not readable
-without sudo).
+`NOAUTH` [repo infra `load-tests/.env.example`]. Active directives of
+`/etc/redis/redis.conf` [srv]:
 
 ```
+bind 0.0.0.0
+port 6379
+protected-mode yes
+appendonly yes
+appendfilename "appendonly.aof"
+appendfsync everysec
+auto-aof-rewrite-percentage 100
+auto-aof-rewrite-min-size 64mb
+save 900 1
+save 300 10
+save 60 10000
+maxmemory 256mb
+maxmemory-policy allkeys-lru
+timeout 300
+tcp-keepalive 60
+maxclients 1000
+loglevel notice
+logfile /var/log/redis/redis-server.log
+dir /var/lib/redis
+daemonize yes
+supervised systemd
 requirepass <REDIS_PASSWORD>
 ```
+
+The memory, eviction, persistence and connection settings match B's Redis
+arguments in infra `k8s/base/infra/redis/statefulset.yaml`.
 
 ### 3.4 RabbitMQ
 
 `rabbitmq-server.service`, AMQP on `5672`, `rabbitmq_management` plugin
 enabled (UI on `15672`) [srv `/etc/rabbitmq/enabled_plugins`, `ss`]. There
-is no `/etc/rabbitmq/rabbitmq.conf` [srv]. data-receiving publishes to the
-`sensors.raw` exchange as user `data-receiver` [srv unit].
- data-management consumes as
-user `subscriber` [srv `application.yml` in the jar].
+is no `/etc/rabbitmq/rabbitmq.conf` [srv]. Topology, vhost `/` [srv
+`rabbitmqctl list_*`]:
 
-The full set of A's users, queues and bindings: [NV] (needs `sudo rabbitmqctl`). To survey
-them: `sudo rabbitmqctl list_users`, `list_exchanges`, `list_queues name
-arguments`, `list_bindings`. B's topology (infra
-`k8s/base/infra/rabbitmq/config/definitions.json`) uses **different user
-names** (`data_receiving` with an underscore), so it cannot be assumed to
-match.
+| user | tags | configure | write | read | used by |
+|---|---|---|---|---|---|
+| `admin` | administrator | `.*` | `.*` | `.*` | — |
+| `data-receiver` | management | — | `^(sensors\.raw\|sensors\.dlx)$` | `^(sensors\.raw\|sensors\.dlx)$` | data-receiving [srv unit] |
+| `subscriber` | management | `.*` | `.*` | `.*` | data-management [srv jar `application.yml`], early-warning [repo `config.py` default] |
+
+| exchange | type |
+|---|---|
+| `sensors.raw` | topic, durable |
+| `sensors.dlx` | topic, durable |
+
+| queue | arguments | bound to |
+|---|---|---|
+| `data_management.persist` | `x-dead-letter-exchange=sensors.dlx`, `x-dead-letter-routing-key=dead.data_management`, `x-max-length=1000000`, `x-message-ttl=86400000` | `sensors.raw`, key `sensors.#` |
+| `early_warning.evaluate` | `x-dead-letter-exchange=sensors.dlx`, `x-dead-letter-routing-key=dead.early_warning`, `x-max-length=1000000`, `x-message-ttl=86400000` | `sensors.raw`, key `sensors.#` |
+| `sensors.dead_letter` | — | `sensors.dlx`, key `#` |
+
+All three queues are durable. B's topology (infra
+`k8s/base/infra/rabbitmq/config/definitions.json`) uses different users
+(`data_receiving`, `data_management`, `early_warning`, `dlq_inspector`) with
+narrower permissions.
 
 ### 3.5 Consul
 
@@ -232,9 +294,9 @@ passwords were replaced with placeholders.
 
 | service | unit | instances → ports | user | source |
 |---|---|---|---|---|
-| data-receiving | `data-receiving@.service` | `01`/`02`/`03` → TCP **5000/5006/5008**, HTTP health+metrics **8081/8087/8089** | `data-receiving` | [inf] per-instance env unreadable; ports from `ss`, the rendered stream config (§3.7) and `prometheus-system-a.yml` |
+| data-receiving | `data-receiving@.service` | `01`/`02`/`03` → TCP **5000/5006/5008**, HTTP health+metrics **8081/8087/8089** | `data-receiving` | [srv] |
 | data-management | `data-management@.service` | `8082`, `8086` (instance name = port) | `data-management` | [srv] |
-| data-analysis | `data-analysis@.service` | `a`, `b` → **8090/8091** on 127.0.0.1 | `data-analysis` | [inf] env unreadable; ports from the nginx upstream and `ss` |
+| data-analysis | `data-analysis@.service` | `a`, `b` → **8090/8091** on 127.0.0.1 | `data-analysis` | [srv] |
 | early-warning | `early-warning-service.service` + `early-warning-service@8092.service` | **8088** (`FLASK_PORT` in `.env`) and **8092** (`/etc/early-warning-service/8092.env`) | root (the unit sets no `User=`) | [srv] |
 | user-management | `user-management.service` | **8085** (`SERVER_PORT`) | `concurso` | [srv] |
 | project-management | `project-management-service@.service` | `8084` | `projectmgmt` | [srv] |
@@ -287,29 +349,46 @@ NoNewPrivileges=true
 WantedBy=multi-user.target
 ```
 
-`/etc/data-receiving/<NN>.env` — values [inf] from the nginx template's rule
-(TCP port = Consul port − 3081):
+`/etc/data-receiving/<NN>.env` [srv]. The TCP port is the health port − 3081,
+the rule the nginx stream template relies on (§3.7):
 
-```
-# 01.env               # 02.env               # 03.env
-RECEIVER__PORT=5000    RECEIVER__PORT=5006    RECEIVER__PORT=5008
-RECEIVER__CONSUL__HEALTHPORT=8081  (8087)     (8089)
-RECEIVER__CONSUL__INSTANCEID=<instance-id>
-RECEIVER__DLXPATH=/var/log/data-receiving/dlx-<NN>   # [NV] exact path
-```
+| file | `RECEIVER__PORT` | `RECEIVER__CONSUL__HEALTHPORT` | `RECEIVER__CONSUL__INSTANCEID` | `RECEIVER__DLXPATH` |
+|---|---|---|---|---|
+| `01.env` | 5000 | 8081 | `data-receiving-01` | `/var/log/data-receiving/dlx-01` |
+| `02.env` | 5006 | 8087 | `data-receiving-02` | `/var/log/data-receiving/dlx-02` |
+| `03.env` | 5008 | 8089 | `data-receiving-03` | `/var/log/data-receiving/dlx-03` |
 
-`/etc/data-receiving/secrets` (the format that `deploy/install.sh` in the
-`data-receiving-module-csharp` repo writes):
+`/etc/data-receiving/secrets` (keys from `deploy/install.sh` in the
+`data-receiving-module-csharp` repo, plus the one `consul-deregister.sh`
+reads [srv]):
 
 ```
 RECEIVER__RABBITMQ__PASSWORD=<RABBITMQ_PASSWORD_DATA_RECEIVER>
 RECEIVER__REDIS__CONNECTIONSTRING=204.168.203.32:6379,password=<REDIS_PASSWORD>
 RECEIVER__CONSUL__TOKEN=<CONSUL_TOKEN_DATA_RECEIVING>
+RECEIVER__CONSUL__DEREG_TOKEN=<CONSUL_TOKEN_DATA_RECEIVING_DEREGISTER>
+```
+
+`/opt/data-receiving/consul-deregister.sh` (`ExecStopPost`) [srv]:
+
+```sh
+#!/bin/sh
+# Deregister this data-receiving instance from Consul on stop.
+# Clears the catalog ghost that a graceful stop would otherwise leave behind.
+# $1 = systemd instance name (01/02/03)
+ID="data-receiving-data-receiving-${1}"
+TOK="${RECEIVER__CONSUL__DEREG_TOKEN}"
+curl -s -X PUT -H "X-Consul-Token: ${TOK}" \
+  -d "{\"Node\":\"consul-server-01\",\"ServiceID\":\"${ID}\"}" \
+  http://127.0.0.1:8500/v1/catalog/deregister >/dev/null 2>&1
+curl -s -X PUT -H "X-Consul-Token: ${TOK}" \
+  "http://127.0.0.1:8500/v1/agent/service/deregister/${ID}" >/dev/null 2>&1
+exit 0
 ```
 
 Build: `dotnet publish` self-contained for `linux-x64` and `net8.0`, and
 copy the output to `/opt/data-receiving/` together with
-`consul-deregister.sh` (present on the server, contents [NV]). The repo's
+`consul-deregister.sh` (mode `0755`). The repo's
 `deploy/install.sh` installs a **non-templated** single-instance unit: use
 it for the user, directories and secrets, but replace the unit with the one
 above.
@@ -453,9 +532,29 @@ SyslogIdentifier=data-analysis-service-%i
 WantedBy=multi-user.target
 ```
 
-`/etc/data-analysis-service/{a,b}.env`: the keys in
-`data-analysis-service/deploy/.env.example`, with `ANALYSIS__HOST=127.0.0.1`
-and `ANALYSIS__PORT=8090` / `8091` [inf]. Install with
+`/etc/data-analysis-service/a.env` [srv]; `b.env` differs only in
+`ANALYSIS__PORT=8091` and `ANALYSIS__INSTANCE_ID=data-analysis-b`:
+
+```
+ANALYSIS__HOST=127.0.0.1
+ANALYSIS__PORT=8090
+ANALYSIS__ENV=prod
+ANALYSIS__VERSION=1.0.0
+ANALYSIS__INSTANCE_ID=data-analysis-a
+ANALYSIS__ROUTE_PREFIX=
+ANALYSIS__PUBLIC_URL_PREFIX=/data-analysis
+
+ANALYSIS__REDIS__HOST=204.168.203.32
+ANALYSIS__REDIS__PORT=6379
+ANALYSIS__REDIS__PASSWORD=<REDIS_PASSWORD>
+
+ANALYSIS__CONSUL__HOST=204.168.203.32
+ANALYSIS__CONSUL__PORT=8500
+ANALYSIS__CONSUL__TOKEN=<CONSUL_TOKEN_DATA_ANALYSIS>
+ANALYSIS__CONSUL__HEALTH_PORT=9090
+```
+
+Install with
 `python3.12 -m venv /opt/data-analysis-service/venv && venv/bin/pip install -r requirements.txt`.
 
 > The repo's unit (`data-analysis-service/deploy/data-analysis.service`)
@@ -504,19 +603,28 @@ REPORT_PUSH_ENABLED=false
 ```
 
 ```
-# /opt/early-warning-service/.env   (non-secret keys surveyed [srv])
+# /opt/early-warning-service/.env   (all keys [srv]; secrets as placeholders)
+RABBITMQ_PASS=<RABBITMQ_PASSWORD_SUBSCRIBER>
+REDIS_PASS=<REDIS_PASSWORD>
+FIREBASE_PROJECT_ID=<FIREBASE_PROJECT_ID>
+FIREBASE_PRIVATE_KEY_ID=<FIREBASE_PRIVATE_KEY_ID>
+FIREBASE_PRIVATE_KEY=<FIREBASE_PRIVATE_KEY>
+FIREBASE_CLIENT_EMAIL=<FIREBASE_CLIENT_EMAIL>
+FIREBASE_CLIENT_ID=<FIREBASE_CLIENT_ID>
+FIREBASE_CLIENT_X509_CERT_URL=<FIREBASE_CLIENT_X509_CERT_URL>
+REPORT_SCHEDULER_ENABLED=true
+REPORT_PUSH_ENABLED=true
 FLASK_PORT=8088
 MYSQL_HOST=204.168.203.32
 MYSQL_PORT=3308
 MYSQL_USER=landslide
+MYSQL_PASS=<MYSQL_PASSWORD_EARLY_WARNING>
 MYSQL_DB=early_warning_db
-MYSQL_PASSWORD=<MYSQL_PASSWORD_EARLY_WARNING>
+CONSUL_TOKEN=<CONSUL_TOKEN_EARLY_WARNING>
+CONSUL_SERVICE_ADDRESS=127.0.0.1
 USER_MANAGEMENT_URL=http://204.168.203.32
 USER_MANAGEMENT_TOKEN=<USER_MANAGEMENT_TOKEN>
-REPORT_SCHEDULER_ENABLED=true
-REPORT_PUSH_ENABLED=true
-FIREBASE_PRIVATE_KEY=<FIREBASE_PRIVATE_KEY>
-# + remaining keys: see early-warning-service/README.md; full list [NV]
+# RabbitMQ user/host/port come from config.py defaults: subscriber @ 204.168.203.32:5672
 ```
 
 > Neither unit sets `User=`, so both run as **root**. When rebuilding, give
@@ -533,9 +641,8 @@ from the Consul catalog:
 | sensor TCP ingestion | `:5100` | `/etc/nginx/stream.d/data-receiving.conf` | [`config/system-a/nginx/templates/data-receiving.ctmpl`](../config/system-a/nginx/templates/data-receiving.ctmpl) |
 
 The files in [`config/system-a/nginx/`](../config/system-a/nginx/) are
-**copies from the server** taken on 2026-10-20, except
-`consul-template.hcl`, which is **reconstructed** (the live one is 0600
-root).
+**copies from the server** taken on 2026-10-20, with the Consul token in
+`consul-template.hcl` replaced by a placeholder.
 
 > The template in the `project-management-service` repo
 > (`deploy/consul-template/`) is **out of date** compared with the server's:
@@ -587,8 +694,8 @@ each service must register under them, with these ports:
 
 Names: [srv] live templates and the Consul catalog, which lists exactly these
 six (data-receiving tagged `instance:data-receiving-01…03`). Registered ports:
-[inf] from the rendered upstreams. Without a token the catalog returns `{}`
-because of the ACL.
+[srv] the services' env files and the rendered upstreams. Without a token the
+catalog returns `{}` because of the ACL.
 
 > The fallbacks have **fewer instances** than the real system (a single one
 > for data-management, early-warning and data-receiving). If consul-template
@@ -711,7 +818,7 @@ redis_exporter     ExecStart=…/redis_exporter -redis.addr redis://localhost:63
 | 6379 | 0.0.0.0 | Redis |
 | 8300–8302, 8500, 8503, 8600 | * | Consul |
 | 9090, 9100, 9104, 9121 | * | Prometheus and exporters |
-| 127.0.0.1:8080, 127.0.0.1:6060 | 127.0.0.1 | [NV] unknown process (needs `sudo ss -ltnp`) |
+| 8080, 6060 | 127.0.0.1 | CrowdSec (not part of the system, §1) |
 
 ---
 
@@ -913,13 +1020,4 @@ una campaña").
 | # | what | how to check |
 |---|---|---|
 | 1 | Server type CX23 (both) | Hetzner console |
-| 2 | Live `consul-template.hcl`: second `template` block and where the token goes | `sudo cat /etc/consul-template/consul-template.hcl` |
-| 3 | Consul ACL policies and per-service tokens | `consul acl policy list` / `token list` with a management token |
-| 4 | `/etc/data-receiving/0{1,2,3}.env` (inferred ports, `DLXPATH`) | `sudo cat` |
-| 5 | `/etc/data-analysis-service/{a,b}.env` (inferred ports) | `sudo cat` |
-| 6 | data-receiving's `consul-deregister.sh` | `sudo cat /opt/data-receiving/consul-deregister.sh` |
-| 7 | Full `redis.conf` (maxmemory, persistence) | `sudo grep -v '^#' /etc/redis/redis.conf` |
-| 8 | A's RabbitMQ topology (users, queues, DLX) | `sudo rabbitmqctl list_users / list_queues name arguments / list_bindings` |
-| 9 | project-management's Spring Boot version | `sudo unzip -p …/project-management.jar META-INF/MANIFEST.MF` |
-| 10 | Processes on `127.0.0.1:8080` and `127.0.0.1:6060` | `sudo ss -ltnp` |
-| 11 | How A's MySQL datadirs and users were initialized | no source; rebuild following §3.2 |
+| 2 | Consul ACL policies and per-service tokens | `consul acl policy list` / `token list` with a management token |
