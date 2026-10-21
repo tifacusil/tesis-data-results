@@ -5,9 +5,8 @@ the servers, not as the latest code in each repo describes them. Where the
 server and a repo disagree, the server wins (it is what was measured) and the
 difference is noted.
 
-The manifests, scripts and runbooks live in
-[`tifacusil/go-tesis-infra`](https://github.com/tifacusil/go-tesis-infra)
-(called *infra* below). This guide links to them instead of repeating them:
+*infra* = [`tifacusil/go-tesis-infra`](https://github.com/tifacusil/go-tesis-infra),
+which holds the manifests, scripts and runbooks.
 
 | for… | see |
 |---|---|
@@ -20,12 +19,12 @@ The manifests, scripts and runbooks live in
 | how the metrics were then extracted | [`metrics-methodology.md`](metrics-methodology.md) |
 
 **Survey:** 2026-10-20, read-only, as each server's non-root user (neither
-has passwordless sudo). Every fact carries its source:
+has passwordless sudo). Source tags:
 
 - **[srv]** read on the live server (`systemctl cat`, `dpkg -l`, `--version`, `kubectl get`, `ss -ltn`, config files).
-- **[repo]** read in a repository (path given).
-- **[inf]** inferred from [srv]/[repo] facts; the reasoning is given next to it.
-- **[NV]** not verified: unreadable without sudo, or no source. Full list in §7.
+- **[repo]** read in a repository.
+- **[inf]** inferred from [srv]/[repo] facts.
+- **[NV]** not verified (§7).
 
 ---
 
@@ -33,14 +32,13 @@ has passwordless sudo). Every fact carries its source:
 
 - **Repos:** System A's code lives in the repos **without** a prefix
   (`data-management-service`, `data-receiving-module-csharp`, …); System B's
-  in the repos **with** the `go-` prefix. Note that the *image name* does not
-  follow that rule (§2), and `go-data-analysis` is Python, not Go.
-- **Secrets:** no password or token appears in this guide; they are written
-  as `<PLACEHOLDER>`. The variables the test scripts read are documented in
-  infra [`load-tests/.env.example`](https://github.com/tifacusil/go-tesis-infra/blob/main/load-tests/.env.example);
-  the cluster's in infra [`k8s/bootstrap/secrets.example.env`](https://github.com/tifacusil/go-tesis-infra/blob/main/k8s/bootstrap/secrets.example.env).
-- **Paths:** `config/…` paths are relative to this repo; commands that copy
-  them assume a clone of this repo on the target server.
+  in the repos **with** the `go-` prefix. The *image name* does not follow
+  that rule (§2), and `go-data-analysis` is Python, not Go.
+- **Secrets:** written as `<PLACEHOLDER>`. Test-script variables: infra
+  [`load-tests/.env.example`](https://github.com/tifacusil/go-tesis-infra/blob/main/load-tests/.env.example);
+  cluster secrets: infra [`k8s/bootstrap/secrets.example.env`](https://github.com/tifacusil/go-tesis-infra/blob/main/k8s/bootstrap/secrets.example.env).
+- **Paths:** `config/…` is relative to this repo; commands that copy from it
+  assume a clone of this repo on the target server.
 
 ---
 
@@ -211,8 +209,7 @@ acl {
 }
 ```
 
-(`dns_config`, `performance` and `log_level` are left out; they are in the
-live file.) With `default_policy = "deny"`, every service needs a token to
+(`dns_config`, `performance` and `log_level` omitted.) With `default_policy = "deny"`, every service needs a token to
 register and consul-template needs one to read the catalog (§3.7). Creating
 the tokens after `consul acl bootstrap` is [NV] (the ACL setup is not
 readable without a token).
@@ -519,7 +516,7 @@ FIREBASE_PRIVATE_KEY=<FIREBASE_PRIVATE_KEY>
 ```
 
 > Neither unit sets `User=`, so both run as **root**. When rebuilding, give
-> them their own user; it does not change the measurement.
+> them their own user.
 
 ### 3.7 nginx + consul-template (HTTP gateway :80 and TCP :5100)
 
@@ -534,8 +531,7 @@ from the Consul catalog:
 The files in [`config/system-a/nginx/`](../config/system-a/nginx/) are
 **copies from the server** taken on 2026-10-20, except
 `consul-template.hcl`, which is **reconstructed** (the live one is 0600
-root). The templates are byte-for-byte copies, original comments included
-(some in Spanish).
+root).
 
 > The template in the `project-management-service` repo
 > (`deploy/consul-template/`) is **out of date** compared with the server's:
@@ -543,8 +539,7 @@ root). The templates are byte-for-byte copies, original comments included
 > `data-analysis-service`), health on `/actuator/health` instead of
 > `/health`, no `least_conn` on data-analysis, no regex route for
 > readings/latest, and no stream template. Use the ones in
-> `config/system-a/nginx/templates/`. That folder's README is still useful
-> for the procedure (dry run, rollback).
+> `config/system-a/nginx/templates/`. Its README's rollback steps still apply.
 
 **Step 1 — nginx with the stream module** [srv versions §3.1]
 
@@ -843,8 +838,7 @@ project-management 1/1; StatefulSets mysql ×4, rabbitmq and redis 1/1;
 
 > **NodePort 31083 is not in the repo.** Infra
 > `k8s/base/infra/observability/prometheus.yaml` declares `type: NodePort`
-> with no `nodePort:`, so Kubernetes picked it at random (the same goes for
-> the TCP LoadBalancer's `31194`, which nothing uses from outside). On a new
+> with no `nodePort:`, so Kubernetes picked it at random. On a new
 > cluster Prometheus will land on another port in 30000–32767; look it up
 > with `kubectl -n landslide get svc prometheus` and update whatever points
 > at 31083 (Grafana datasource, SSH tunnels, `metrics-methodology.md` §1).
@@ -888,9 +882,6 @@ una campaña").
 | node_exporter | 1.11.1 | v1.9.1 | **no** |
 | RabbitMQ exporter | — | 1.0.0-RC22 | A has none |
 
-This fills the gap that infra `runbook-fases.md` leaves open ("Las versiones
-del Sistema A no están registradas en este repo").
-
 ---
 
 ## 6. After deploying
@@ -908,9 +899,6 @@ del Sistema A no están registradas en este repo").
 ---
 
 ## 7. Not verified
-
-Each item says what it takes to close it. All are reads, but they need
-`sudo` (or a Consul token) on `concurso`.
 
 | # | what | how to check |
 |---|---|---|
