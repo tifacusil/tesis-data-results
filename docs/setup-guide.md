@@ -1049,7 +1049,7 @@ una campaña").
 | Prometheus | 3.5.4 | 3.5.4 | yes (retention: 365d vs 30d) |
 | mysqld_exporter | 0.19.0 | 0.19.0 | yes (A watches 3306; B watches the 4 databases) |
 | redis_exporter | v1.86.0 | v1.86.0 | yes |
-| node_exporter | 1.11.1 | v1.9.1 | **no** |
+| node_exporter | 1.11.1 | v1.9.1 | no; does not affect the node CPU/memory series, which are kernel counters (`node_cpu_seconds_total`, `node_memory_MemTotal_bytes`, `node_memory_MemAvailable_bytes`) read the same way by both |
 | RabbitMQ exporter | — | 1.0.0-RC22 | A has none |
 
 ---
