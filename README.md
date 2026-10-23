@@ -23,7 +23,7 @@ The systems' code lives in their own repos (A without a prefix, B with the
 | [`generar_resultados.py`](generar_resultados.py) | Regenerates Figures 2–5 and Tables 7–9 from the raw inputs. Usage: [methodology §7](docs/metrics-methodology.md#7-running-the-script). |
 | [`reconstruir_data_zip.py`](reconstruir_data_zip.py) | Finds and verifies the PromQL queries that produced each `data.zip` CSV column. See [methodology §4](docs/metrics-methodology.md#4-the-datazip-export). |
 | [`reconstruccion-A/`](reconstruccion-A/), [`reconstruccion-B/`](reconstruccion-B/) | Output of `reconstruir_data_zip.py`: the reconstructed CSVs and, per CSV, a `.consultas.md` with the query chosen for each column and its match. |
-| [`tabla10-fila3/`](tabla10-fila3/) | Raw Prometheus samples from B, with `SHA256SUMS`, that verify Table 10's row 3 (delay towards data-analysis). See [methodology, *Table 10 verification*](docs/metrics-methodology.md#table-10-verification). |
+| [`tabla10/`](tabla10/) | Raw Prometheus samples from B, with `SHA256SUMS`, that verify the three rows of Table 10 (broker kill, pause, delay towards data-analysis). See [methodology, *Table 10 verification*](docs/metrics-methodology.md#table-10-verification). |
 | [`config/system-a/nginx/`](config/system-a/nginx/) | System A's nginx and consul-template configuration, copied from the server. Used by [setup guide §3.7](docs/setup-guide.md#37-nginx--consul-template-http-gateway-80-and-tcp-5100). |
 
 The raw inputs (`data.zip`, the Artillery reports, the Prometheus TSDB

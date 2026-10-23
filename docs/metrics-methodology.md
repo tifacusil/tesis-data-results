@@ -150,36 +150,52 @@ The `results/A` and `results/B` folders were archived as `A - SPETIEMBRE 5 RUNS`
 
 ### Table 10 verification
 
-Table 10 (Item 7) is not produced by `generar_resultados.py`. For each chaos event on B it gives the maximum Redis buffer per replica, the maxima of the `early_warning.evaluate` and `data_management.persist` queues, and the minimum reception rate. All three rows are verified value by value:
+Table 10 (Item 7) is not produced by `generar_resultados.py`. For each chaos event on B it gives the maximum Redis buffer per replica, the maxima of the `early_warning.evaluate` and `data_management.persist` queues, the minimum reception rate, and the messages lost. All three rows were verified value by value on 22/10/2026, the day before B's Prometheus dropped the September data (section 8). The raw files are in [`tabla10/`](../tabla10/), with their `SHA256SUMS`.
 
-- **Row 1 (broker kill) and row 2 (pause).** Verified before the third.
-- **Row 3 (delay towards data-analysis): 95, 44, 8 and 88,4.** Verified on 22/10/2026, the day before B's Prometheus dropped the September data (section 8). The raw files are in [`tabla10-fila3/`](../tabla10-fila3/), with their `SHA256SUMS`.
+They were extracted on `go-tesis` with the instant API over a range selector. That returns every raw scrape (15 s), unlike the 5 min steps of `B-12h-0923-saturation.csv`. Each row's window is 20 min either side of its injection (pre snapshots in the table above):
 
-Row 3 was extracted on `go-tesis` with the instant API over a range selector. That returns every raw scrape (15 s), unlike the 5 min steps of `B-12h-0923-saturation.csv`. The window is 22:12–22:52 UTC: 20 min either side of the injection at 22:32 (`netem-delay-ew-da` pre snapshot, 1790202738).
+| Row | Event | Injection (UTC) | Window (UTC) | Files cover |
+|---|---|---|---|---|
+| 1 | `kill-rabbitmq` | 14:32 | 14:12–14:52 | 14:00–15:10 |
+| 2 | `pause-data-management 90` | 18:32 | 18:12–18:52 | 18:00–19:10 |
+| 3 | `netem-delay-ew-da 8000 180` | 22:32 | 22:12–22:52 | 22:00–23:20 |
 
 ```bash
-P=http://localhost:31083; T=2026-09-23T23:20:00Z
-mkdir -p tabla10-fila3 && cd tabla10-fila3
-for m in data_receiving_redis_buffer_pending rabbitmq_queue_messages rabbitmq_queue_messages_ready; do
-  curl -sG "$P/api/v1/query" --data-urlencode "query=${m}[80m]" --data-urlencode "time=$T" > "B-0923-2200-${m}.json"; done
-curl -sG "$P/api/v1/query_range" --data-urlencode 'query=sum(rate(data_receiving_frames_total[1m]))' \
-  --data-urlencode start=2026-09-23T22:00:00Z --data-urlencode end=2026-09-23T23:20:00Z --data-urlencode step=15s > B-0923-2200-recepcion.json
+P=http://localhost:31083
+mkdir -p tabla10 && cd tabla10
+# row, end (T), range, start of reception
+for spec in "1 2026-09-23T15:10:00Z 70m 2026-09-23T14:00:00Z" \
+            "2 2026-09-23T19:10:00Z 70m 2026-09-23T18:00:00Z" \
+            "3 2026-09-23T23:20:00Z 80m 2026-09-23T22:00:00Z"; do
+  set -- $spec; r=$1; T=$2; R=$3; S=$4
+  for m in data_receiving_redis_buffer_pending rabbitmq_queue_messages rabbitmq_queue_messages_ready \
+           data_receiving_messages_dropped_total ew_messages_dropped_total dm_messages_dlq_total; do
+    curl -sG "$P/api/v1/query" --data-urlencode "query=${m}[$R]" --data-urlencode "time=$T" > "B-fila$r-$m.json"; done
+  curl -sG "$P/api/v1/query_range" --data-urlencode 'query=sum(rate(data_receiving_frames_total[1m]))' \
+    --data-urlencode start=$S --data-urlencode end=$T --data-urlencode step=15s > "B-fila$r-recepcion.json"
+done
 sha256sum *.json > SHA256SUMS
-# Extremes in the 22:12–22:52 window (expected: 95 / 44 / 8 / 88,4)
-W='select(.[0]>=1790201520 and .[0]<=1790203920)'
-jq "[.data.result[]|[.values[]|$W|.[1]|tonumber]|max]|max" B-0923-2200-data_receiving_redis_buffer_pending.json
-jq "[.data.result[]|select(.metric.queue|test(\"early_warning.evaluate|data_management.persist\"))|{q:.metric.queue,max:([.values[]|$W|.[1]|tonumber]|max)}]" B-0923-2200-rabbitmq_queue_messages.json
-jq "[.data.result[0].values[]|$W|.[1]|tonumber]|min" B-0923-2200-recepcion.json
 ```
 
-| Value | Source | Result | When (UTC) |
-|---|---|---|---|
-| 95 | `data_receiving_redis_buffer_pending`, max per replica | 95 on `10.42.0.92`. The other two replicas peak at 86 | 22:37:00 |
-| 44 | `rabbitmq_queue_messages{queue="early_warning.evaluate"}` | 44 | 22:38:21 |
-| 8 | `rabbitmq_queue_messages{queue="data_management.persist"}` | 8 | 22:36:36 |
-| 88,4 | `sum(rate(data_receiving_frames_total[1m]))`, minimum | 88.366 | 22:37:00 |
+The extremes inside each window, for example for row 3 (22:12–22:52):
 
-The queue values are ready plus unacknowledged, as in `data.zip` (section 4). `rabbitmq_queue_messages_ready` peaks at only 4 and 0, so it does not reproduce the table. It is kept in the folder to show this.
+```bash
+W='select(.[0]>=1790201520 and .[0]<=1790203920)'
+jq "[.data.result[]|[.values[]|$W|.[1]|tonumber]|max]|max" B-fila3-data_receiving_redis_buffer_pending.json
+jq "[.data.result[]|select(.metric.queue|test(\"early_warning.evaluate|data_management.persist\"))|{q:.metric.queue,max:([.values[]|$W|.[1]|tonumber]|max)}]" B-fila3-rabbitmq_queue_messages.json
+jq "[.data.result[0].values[]|$W|.[1]|tonumber]|min" B-fila3-recepcion.json
+```
+
+| Row | Redis buffer, max per replica | `early_warning.evaluate`, max | `data_management.persist`, max | Reception, min (frames/s) | Lost |
+|---|---|---|---|---|---|
+| 1 | 3752 (`10.42.0.90`, 14:34:05) | 759 (14:33:36) | 1046 (14:33:36) | 69.387 (14:34:00) | 0 |
+| 2 | 49 (`10.42.0.91`, 18:32:41) | 13 (18:21:51) | 56 (18:32:51) | 96.089 (18:32:30) | 0 |
+| 3 | 95 (`10.42.0.92`, 22:37:00) | 44 (22:38:21) | 8 (22:36:36) | 88.366 (22:37:00) | 0 |
+
+- **Redis buffer:** the other replicas peak at 3743 and 3750 (row 1), 13 and 14 (row 2), and 86 and 86 (row 3).
+- **Queues:** ready plus unacknowledged, as in `data.zip` (section 4). `rabbitmq_queue_messages_ready` gives lower peaks (946 and 719 in row 1, 0 and 0 in row 2, 4 and 0 in row 3), so it does not reproduce the table. It is kept in the folder to show this.
+- **Row 2, `early_warning.evaluate`:** the window peak of 13 comes 10 min before the pause. From the injection onwards the peak is 11 (18:41:21).
+- **Lost:** `data_receiving_messages_dropped_total`, `ew_messages_dropped_total` and `dm_messages_dlq_total` are 0 on every instance over each file's whole span.
 
 ## 4. The `data.zip` export
 
@@ -359,7 +375,7 @@ Output files: `tabla7_tabla8.csv`, `tabla9.csv`, `valores_por_corrida.csv` and `
 ## 8. Documentation status
 
 - [x] **Queries behind `data.zip`.** Identified and verified against the archived data (section 4).
-- [x] **Table 10.** All three rows verified value by value. The evidence for row 3 is in `tabla10-fila3/` (section 3).
+- [x] **Table 10.** All three rows verified value by value. The raw samples are in `tabla10/` (section 3).
 - [x] **Raw TSDB backup of B.** `prometheus-B-20261020.tar.gz` was created on 20/10/2026 on `go-tesis` with:
   ```bash
   sudo kubectl -n landslide exec prometheus-6489f5b487-8wx8n -- tar czf - -C /prometheus . > prometheus-B-20261020.tar.gz
