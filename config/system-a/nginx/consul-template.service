@@ -1,0 +1,17 @@
+# /etc/systemd/system/consul-template.service — copied from the server (2026-10-20)
+[Unit]
+Description=consul-template (regenera la config de Nginx desde Consul)
+After=network-online.target consul.service nginx.service
+Wants=network-online.target
+
+[Service]
+# Necesita poder ejecutar `nginx -t` y `nginx -s reload`, por eso root.
+User=root
+ExecStart=/usr/local/bin/consul-template -config=/etc/consul-template/consul-template.hcl
+ExecReload=/bin/kill -HUP $MAINPID
+KillSignal=SIGINT
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

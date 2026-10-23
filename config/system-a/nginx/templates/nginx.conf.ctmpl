@@ -1,0 +1,147 @@
+{{/*
+  Plantilla consul-template para el reverse-proxy Nginx.
+  Renderiza /etc/nginx/sites-enabled/default a partir de los servicios
+  registrados en Consul. Cada upstream tiene un FALLBACK estático: si Consul
+  no reporta instancias sanas del servicio, se usa el server por defecto para
+  evitar generar un `upstream {}` vacío (que rompería `nginx -t`).
+
+  Ajusta los nombres de servicio (primer arg de `service`) a como cada
+  microservicio se registra en Consul (spring.application.name).
+*/}}
+
+upstream user_management {
+{{- range service "user-management|passing" }}
+    server {{ .Address }}:{{ .Port }} max_fails=3 fail_timeout=10s;
+{{- else }}
+    server 127.0.0.1:8085 max_fails=3 fail_timeout=10s;
+{{- end }}
+}
+
+upstream project_management {
+{{- range service "project-management-service|passing" }}
+    server {{ .Address }}:{{ .Port }} max_fails=3 fail_timeout=10s;
+{{- else }}
+    server 127.0.0.1:8084 max_fails=3 fail_timeout=10s;
+{{- end }}
+}
+
+upstream data_management {
+{{- range service "data-management-service|passing" }}
+    server {{ .Address }}:{{ .Port }} max_fails=3 fail_timeout=10s;
+{{- else }}
+    server 127.0.0.1:8082 max_fails=3 fail_timeout=10s;
+{{- end }}
+}
+
+upstream early_warning {
+{{- range service "early-warning-service|passing" }}
+    server {{ .Address }}:{{ .Port }} max_fails=3 fail_timeout=10s;
+{{- else }}
+    server 127.0.0.1:8088 max_fails=3 fail_timeout=10s;
+{{- end }}
+}
+
+upstream data_analysis {
+    least_conn;
+{{- range service "data-analysis|passing" }}
+    server {{ .Address }}:{{ .Port }};
+{{- else }}
+    server 127.0.0.1:8090;
+    server 127.0.0.1:8091;
+{{- end }}
+}
+
+server {
+    listen 80;
+
+    location /api/v1/auth {
+        proxy_pass http://user_management;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        add_header X-Upstream $upstream_addr always;
+    }
+
+    location /api/v1/users {
+        proxy_pass http://user_management;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        add_header X-Upstream $upstream_addr always;
+    }
+
+    location /api/v1/devices {
+        proxy_pass http://user_management;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        add_header X-Upstream $upstream_addr always;
+    }
+
+    # data-management owns readings/latest under /api/v1/projects/{id}; regex beats the plain /api/v1/projects prefix
+    location ~ ^/api/v1/projects/[^/]+/(readings|latest)(/|$) {
+        proxy_pass http://data_management;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        add_header X-Upstream $upstream_addr always;
+    }
+
+    location /api/v1/projects {
+        proxy_pass http://project_management;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        add_header X-Upstream $upstream_addr always;
+    }
+
+    location /api/v1/sensors {
+        proxy_pass http://data_management;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        add_header X-Upstream $upstream_addr always;
+    }
+
+    location /api/v1/readings {
+        proxy_pass http://data_management;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        add_header X-Upstream $upstream_addr always;
+    }
+
+    location /api/v1/alerts {
+        rewrite ^/api/v1/alerts(.*) /alerts$1 break;
+        proxy_pass http://early_warning;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        add_header X-Upstream $upstream_addr always;
+    }
+
+    location /v3/api-docs {
+        proxy_pass http://user_management;
+        proxy_set_header Host $host;
+    }
+
+    location /health/user-management {
+        proxy_pass http://user_management/health;
+        proxy_set_header Host $host;
+    }
+
+    location /health/project-management {
+        proxy_pass http://project_management/health;
+        proxy_set_header Host $host;
+    }
+
+    location /health/data-management {
+        proxy_pass http://data_management/health;
+        proxy_set_header Host $host;
+    }
+
+    location /health/early-warning {
+        proxy_pass http://early_warning/health;
+        proxy_set_header Host $host;
+    }
+
+    location /data-analysis/ {
+        add_header X-Upstream $upstream_addr always;
+        proxy_pass http://data_analysis/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+}
