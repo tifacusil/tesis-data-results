@@ -24,7 +24,7 @@ Each system has its own Prometheus. Queries run **on each system's own server**,
 | `--sat-b` | `B-12h-0923-saturation.csv` | Prometheus export (`data.zip`, section 4) | Broker queues and early-warning consumption over 12 h (Figure 5) |
 | `--serie-b` | `B-12h-0923-timeseries.csv` | Prometheus export (`data.zip`, section 4) | Ingest rate over 12 h (Figure 5) |
 
-`data.zip` also contains `A-12h-0918-{timeseries,saturation}.csv`, `resources-summary.json` and `RESUMEN.md`. The script does not use them, but the idle values and the maxima in Table 10 come from them.
+`data.zip` also contains `A-12h-0918-{timeseries,saturation}.csv`, `resources-summary.json` and `RESUMEN.md`. The script does not use them, but the idle values in Table 10 come from them. Its maxima during each event do not; see *Table 10 verification* in section 3.
 
 ### Expected CSV columns
 
@@ -148,6 +148,39 @@ Each injection saves two snapshots to `chaos/results/`: `<scenario>-pre-<epoch>.
 
 The `results/A` and `results/B` folders were archived as `A - SPETIEMBRE 5 RUNS` and `B - SEPTIEMBRE 5 RUNS V2`. These are the paths passed to `--escalera-a` and `--escalera-b`. `node load-tests/aggregate-results.js <SYSTEM>` gives a quick per-system summary, but the article's figures come from `generar_resultados.py`.
 
+### Table 10 verification
+
+Table 10 (Item 7) is not produced by `generar_resultados.py`. For each chaos event on B it gives the maximum Redis buffer per replica, the maxima of the `early_warning.evaluate` and `data_management.persist` queues, and the minimum reception rate. All three rows are verified value by value:
+
+- **Row 1 (broker kill) and row 2 (pause).** Verified before the third.
+- **Row 3 (delay towards data-analysis): 95, 44, 8 and 88,4.** Verified on 22/10/2026, the day before B's Prometheus dropped the September data (section 8). The raw files are in [`tabla10-fila3/`](../tabla10-fila3/), with their `SHA256SUMS`.
+
+Row 3 was extracted on `go-tesis` with the instant API over a range selector. That returns every raw scrape (15 s), unlike the 5 min steps of `B-12h-0923-saturation.csv`. The window is 22:12–22:52 UTC: 20 min either side of the injection at 22:32 (`netem-delay-ew-da` pre snapshot, 1790202738).
+
+```bash
+P=http://localhost:31083; T=2026-09-23T23:20:00Z
+mkdir -p tabla10-fila3 && cd tabla10-fila3
+for m in data_receiving_redis_buffer_pending rabbitmq_queue_messages rabbitmq_queue_messages_ready; do
+  curl -sG "$P/api/v1/query" --data-urlencode "query=${m}[80m]" --data-urlencode "time=$T" > "B-0923-2200-${m}.json"; done
+curl -sG "$P/api/v1/query_range" --data-urlencode 'query=sum(rate(data_receiving_frames_total[1m]))' \
+  --data-urlencode start=2026-09-23T22:00:00Z --data-urlencode end=2026-09-23T23:20:00Z --data-urlencode step=15s > B-0923-2200-recepcion.json
+sha256sum *.json > SHA256SUMS
+# Extremes in the 22:12–22:52 window (expected: 95 / 44 / 8 / 88,4)
+W='select(.[0]>=1790201520 and .[0]<=1790203920)'
+jq "[.data.result[]|[.values[]|$W|.[1]|tonumber]|max]|max" B-0923-2200-data_receiving_redis_buffer_pending.json
+jq "[.data.result[]|select(.metric.queue|test(\"early_warning.evaluate|data_management.persist\"))|{q:.metric.queue,max:([.values[]|$W|.[1]|tonumber]|max)}]" B-0923-2200-rabbitmq_queue_messages.json
+jq "[.data.result[0].values[]|$W|.[1]|tonumber]|min" B-0923-2200-recepcion.json
+```
+
+| Value | Source | Result | When (UTC) |
+|---|---|---|---|
+| 95 | `data_receiving_redis_buffer_pending`, max per replica | 95 on `10.42.0.92`. The other two replicas peak at 86 | 22:37:00 |
+| 44 | `rabbitmq_queue_messages{queue="early_warning.evaluate"}` | 44 | 22:38:21 |
+| 8 | `rabbitmq_queue_messages{queue="data_management.persist"}` | 8 | 22:36:36 |
+| 88,4 | `sum(rate(data_receiving_frames_total[1m]))`, minimum | 88.366 | 22:37:00 |
+
+The queue values are ready plus unacknowledged, as in `data.zip` (section 4). `rabbitmq_queue_messages_ready` peaks at only 4 and 0, so it does not reproduce the table. It is kept in the folder to show this.
+
 ## 4. The `data.zip` export
 
 `data.zip` holds no Artillery output. It holds Prometheus series exported over the windows of both phases: the `*-ladder-*` files cover Phase 1 and the `*-12h-*` files cover Phase 2, chaos included (section 3). According to its `RESUMEN.md`, the CSVs were exported from each system's Prometheus: `localhost:9090` on A and NodePort `31083` on B. The windows were detected with:
@@ -193,7 +226,7 @@ Each CSV comes from `/api/v1/query_range`, with `start` and `end` equal to its f
 How to read these columns:
 
 - **Queues:** `q_ew_evaluate` and `q_dm_persist` count all messages, ready plus unacknowledged. The ready-only variant does not reproduce the data. `q_dead_letter` is 0 for the whole run, so the two variants cannot be told apart there.
-- **`redis_buffer_pending`:** this is the **sum over replicas**, since the per-replica maximum does not reproduce the data. Table 10, by contrast, uses the per-replica maximum, which comes from a different export. They are different definitions and must not be mixed.
+- **`redis_buffer_pending`:** this is the **sum over replicas**, since the per-replica maximum does not reproduce the data. Table 10, by contrast, uses the per-replica maximum, which comes from a different export (section 3, *Table 10 verification*). They are different definitions and must not be mixed.
 - **`pod_restarts`:** this is the cumulative counter, which is why it starts at 3314. It is not a per-window increment.
 - **Ties:** for `mem_mib_` of project-management and user-management (B), of early-warning (A), and for `node_mem_used_mib`, `sum`, `max` and `avg` give the same result. There is only one series: one replica, the only instance scraped on A (`:8092`), or a single node_exporter.
 
@@ -326,6 +359,7 @@ Output files: `tabla7_tabla8.csv`, `tabla9.csv`, `valores_por_corrida.csv` and `
 ## 8. Documentation status
 
 - [x] **Queries behind `data.zip`.** Identified and verified against the archived data (section 4).
+- [x] **Table 10.** All three rows verified value by value. The evidence for row 3 is in `tabla10-fila3/` (section 3).
 - [x] **Raw TSDB backup of B.** `prometheus-B-20261020.tar.gz` was created on 20/10/2026 on `go-tesis` with:
   ```bash
   sudo kubectl -n landslide exec prometheus-6489f5b487-8wx8n -- tar czf - -C /prometheus . > prometheus-B-20261020.tar.gz
