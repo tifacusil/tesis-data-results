@@ -10,7 +10,7 @@ This document describes how we obtained the raw data that `generar_resultados.py
 | Deployment | systemd services | k3s, namespace `landslide` |
 | Prometheus | `http://localhost:9090` | `http://localhost:31083` (NodePort) |
 | Ladder | 17/09/2026 | 23/09/2026 |
-| 12 h run | 18/09/2026, 05:17:31–17:20:32 UTC | 23/09/2026, from 12:30:00 UTC |
+| 12 h run | 18/09/2026, 05:17:31–17:20:32 UTC | 23/09/2026 12:31:20 – 24/09/2026 00:34:21 UTC |
 
 Each system has its own Prometheus. Queries run **on each system's own server**, and the two instances are never mixed.
 
@@ -181,7 +181,9 @@ Expected output: `42 JSON checked, 42 USABLE, 0 partial or unusable.`
 | Ladder, first and last run (UTC) | 17/09 15:14:08 (`vu-001-r1`) – 18:47:45 (`vu-100-r5`) | 23/09 05:23:18 (`vu-001-r1`) – 08:59:23 (`vu-100-r5`) |
 | `sustained-12h.json` | 4339 windows, 18/09 05:17:31–17:20:32 | 4339 windows, 23/09 12:31:20 – 24/09 00:34:21 |
 
-A's 12 h times match section 1. B's first metric comes at 12:31:20, 80 s after the run was started at 12:30:00 (section 1).
+These are the 12 h times in section 1. Both runs last 43,381 s: the 180 s ramp plus 43,200 s sustained. Each chaos injection (pre snapshots above) comes 48–60 s after its nominal t + 2, 6 or 10 h.
+
+`generar_resultados.py` takes B's start from `--inicio-12h-b`, which defaults to `2026-09-23T12:30:00`, 80 s before the first request. It only sets the zero of Figure 5's time axis, so the figure is shifted by 0.02 h.
 
 ### Table 10 verification
 
