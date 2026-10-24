@@ -33,6 +33,10 @@ Each system has its own Prometheus. Queries run **on each system's own server**,
 
 Services: `data-receiving`, `data-management`, `early-warning`, `data-analysis`, `project-management` and `user-management`.
 
+### What is in this repo
+
+`data/` holds the Artillery reports (`A - SPETIEMBRE 5 RUNS/`, `B - SEPTIEMBRE 5 RUNS V2/`) and `B-12h-0923-{saturation,timeseries}.csv`. It also holds the inputs of `chaos_evidence_b.py` (section 3). The ladder CSVs and the `nivel1/` files are not in this repo: get them from `data.zip` (section 4) and the queries in section 5.
+
 ## 3. Load tests (Artillery) and chaos
 
 The scripts live in `load-tests/`. Ingestion is over TCP with binary DTU frames, not HTTP. That is why the scenarios use the custom engine `artillery-engine-dtu-tcp`, which hands frame building and sending to `dtu-emulator` (Python).
@@ -146,7 +150,38 @@ Each injection saves two snapshots to `chaos/results/`: `<scenario>-pre-<epoch>.
 
 ### Results
 
-The `results/A` and `results/B` folders were archived as `A - SPETIEMBRE 5 RUNS` and `B - SEPTIEMBRE 5 RUNS V2`. These are the paths passed to `--escalera-a` and `--escalera-b`. `node load-tests/aggregate-results.js <SYSTEM>` gives a quick per-system summary, but the article's figures come from `generar_resultados.py`.
+The `results/A` and `results/B` folders were archived in this repo as `data/A - SPETIEMBRE 5 RUNS` and `data/B - SEPTIEMBRE 5 RUNS V2`. These are the paths passed to `--escalera-a` and `--escalera-b`. `node load-tests/aggregate-results.js <SYSTEM>` gives a quick per-system summary, but the article's figures come from `generar_resultados.py`.
+
+### Artillery report inventory (`recuperar_artillery.py`)
+
+[`recuperar_artillery.py`](../recuperar_artillery.py) checks that the archived Artillery reports are complete before anything else uses them. It reads only `data/A - SPETIEMBRE 5 RUNS/*.json` and `data/B - SEPTIEMBRE 5 RUNS V2/*.json`; the two folders are fixed in the script (`SYSTEMS`). For each report it:
+
+1. Counts the 10 s windows in `intermediate` and checks that `aggregate.summaries` exists.
+2. Rates the report `USABLE` (at least 40 windows and an aggregate), `PARTIAL` (aggregate, fewer windows) or `UNUSABLE` (no aggregate).
+3. Takes the start and end in UTC from `aggregate.firstMetricAt` / `lastMetricAt`, and the aggregate p95 of each metric.
+4. Copies each `USABLE` report to `<out>/reports/<A|B>_<name>.json` and checks the copy against the original's SHA-256.
+5. Writes `<out>/inventario-reportes.csv` (columns `System`, `Original`, `Copy`, `Status`, `Windows`, `StartUTC`, `EndUTC`, `MB`, `SHA256`, `Metrics`, `P95Aggregate`), sorted by `StartUTC`. This gives the order and time of every run.
+
+It only reads the originals. A second run overwrites nothing: it re-checks every copy and exits with an error if one differs from its original. It uses only the Python standard library, version 3.11 or later.
+
+From the root of this repo:
+
+```bash
+sha256sum -c SHA256SUMS.artillery     # the 42 reports are the ones used in the article
+python3 recuperar_artillery.py        # writes artillery-inventory/; --out to change it
+```
+
+On Windows, run `py` instead of `python3`. `sha256sum` comes with Git for Windows (Git Bash).
+
+Expected output: `42 JSON checked, 42 USABLE, 0 partial or unusable.`
+
+| | A | B |
+|---|---|---|
+| Ladder reports (4 levels × 5 runs) | 20, 60–62 windows each | 20, 61–62 windows each |
+| Ladder, first and last run (UTC) | 17/09 15:14:08 (`vu-001-r1`) – 18:47:45 (`vu-100-r5`) | 23/09 05:23:18 (`vu-001-r1`) – 08:59:23 (`vu-100-r5`) |
+| `sustained-12h.json` | 4339 windows, 18/09 05:17:31–17:20:32 | 4339 windows, 23/09 12:31:20 – 24/09 00:34:21 |
+
+A's 12 h times match section 1. B's first metric comes at 12:31:20, 80 s after the run was started at 12:30:00 (section 1).
 
 ### Table 10 verification
 
@@ -197,6 +232,96 @@ jq "[.data.result[0].values[]|$W|.[1]|tonumber]|min" B-fila3-recepcion.json
 - **Row 2, `early_warning.evaluate`:** the window peak of 13 comes 10 min before the pause. From the injection onwards the peak is 11 (18:41:21).
 - **Lost:** `data_receiving_messages_dropped_total`, `ew_messages_dropped_total` and `dm_messages_dlq_total` are 0 on every instance over each file's whole span.
 
+### Chaos event evidence (`chaos_evidence_b.py`)
+
+[`chaos_evidence_b.py`](../chaos_evidence_b.py) checks the claims the manuscript makes about *how* B behaved during its three chaos events, beyond the Table 10 values above. It has two subcommands:
+
+| Subcommand | Needs | What it does |
+|---|---|---|
+| `export` | Network access to B's Prometheus, within its 30-day retention | Downloads the series for each event window (10 min margin on each side, 15 s step) and for the whole 12 h run (5 min step), writes one CSV per query and a `manifiesto.json` with the query, window, step and SHA-256 of each file. Aborts if a query comes back empty instead of writing an empty CSV. |
+| `verify` | Only the frozen files below; no server access | Checks every CSV against the SHA-256 in the manifest, recomputes each claim and prints `[OK]` or `[FAIL]` with the numbers behind it. Exits with code 1 if any check fails. |
+
+`export` was run once, on 23/10/2026 at 02:46 UTC, the day B's Prometheus started dropping the September data. **It cannot be run again**: from then on, `verify` over the frozen export is the reproducible step. The script uses only the Python standard library, version 3.11 or later.
+
+The frozen export keeps the Spanish names it was written with (`manifiesto.json`, its keys `archivos`/`archivo`/`consulta`, and the file names below). Renaming them would change the files whose SHA-256 is recorded here, so the script reads them as they are.
+
+The event windows are fixed in the script (`EVENTS`). Each key is also the file-name prefix of its CSVs:
+
+| Key | Event | Window (UTC) | Source of the limits |
+|---|---|---|---|
+| `caida_broker` | Broker kill | 14:32:24–14:33:02 | Creation of `rabbitmq-0` (`.status.startTime`) and last data-receiving log line before its restart |
+| `pausa_dm` | data-management pause | 18:32:20–18:34:04 | Pre and post snapshots `1790188340` / `1790188444` |
+| `netem_da` | Delay towards data-analysis | 22:32:18–22:36:07 | Pre and post snapshots `1790202738` / `1790202967` |
+
+Per window, the suffixes are `buffer_por_pod` (Redis buffer per pod), `cpu_nodo_pct` (node CPU, %), `iowait_frac`, `reinicios` (container restarts) and `ready`. The two whole-run files are `corrida12h__buffer_sum` and `corrida12h__buffer_max`.
+
+#### Inputs
+
+| Argument | Path in `data/` | Source | SHA-256 |
+|---|---|---|---|
+| `--evidence` | `evidencia-b-0923/` | Output of `export` (17 CSVs) | `manifiesto.json`: `247f6ddeb3252ab995b5f42e1d75d62ba7c069b28c7ba93b22cf53051362b032`; each CSV is checked against it |
+| `--artillery` | `B - SEPTIEMBRE 5 RUNS V2/sustained-12h.json` | Artillery report of B's 12 h run | `57fc9df4aec189820abdda08fdfa98b8060aa1a7a92543bb3439d9b17e985f50` |
+| `--logs` | `data-receiving-logs-2026-09-23/*.log` | `kubectl logs --previous` of the three data-receiving pods, captured on 06/10/2026. They cover 04:49–14:33 UTC of 23/09, the container instance that ended with the broker kill. Kubernetes discards them at the pods' next restart, so this copy is the only one. | `69b4v`: `b6113fc834fe99f833d45cd628b513fafc03e244c0003c6ccfbe8c3607432b46`<br>`7rpf9`: `d9a2a871c447a7faab3d1c90d90aa5dd2124f1a3d078c85ac308f17642bc9110`<br>`8fgq2`: `f7d36846313e45b669b8a317637f67263fbdde7464c62e1a3f0e809d8b1bba21` |
+| `--series`, `--saturation` | `B-12h-0923-timeseries.csv`, `B-12h-0923-saturation.csv` | `data.zip` (section 4) | As in section 4 |
+| `--snapshots` | `B - SEPTIEMBRE 5 RUNS V2/chaos/` | Chaos snapshots (table above) | — |
+
+The logs were captured with:
+
+```bash
+for p in 69b4v 7rpf9 8fgq2; do
+  sudo k3s kubectl logs -n landslide data-receiving-d9f59874f-$p --previous > data-receiving-$p-previous.log
+done
+```
+
+#### Running it
+
+From the root of this repo:
+
+```bash
+python3 chaos_evidence_b.py verify \
+  --evidence data/evidencia-b-0923 \
+  --artillery "data/B - SEPTIEMBRE 5 RUNS V2/sustained-12h.json" \
+  --logs data/data-receiving-logs-2026-09-23 \
+  --series data/B-12h-0923-timeseries.csv \
+  --saturation data/B-12h-0923-saturation.csv \
+  --snapshots "data/B - SEPTIEMBRE 5 RUNS V2/chaos"
+```
+
+The export, for the record (it now returns no data):
+
+```bash
+python3 chaos_evidence_b.py export --prom http://localhost:31083 --out evidencia-b-0923
+```
+
+#### What it checks
+
+The expected output is 9 `[OK]` lines and `All checks passed.`
+
+| # | Claim | Evidence | Verified value |
+|---|---|---|---|
+| 1 | The generator's failures add up to the aggregate total | Artillery `intermediate` periods | 315 = 210 (period from 14:33:00) + 105 (from 14:33:10) |
+| 2 | No generator failure while the broker was down: data-receiving acknowledged from the Redis buffer | Artillery periods starting before 14:33:00 | 0 failures |
+| 3 | All failed publishes fall inside the broker outage | `rabbitmq publish failed; buffered in redis for retry` in the logs | 3740, 14:32:24–14:33:01 |
+| 4 | Every replica reports the same buffer peak, so the gauge is global, not per instance | `caida_broker__buffer_por_pod.csv` | 3743–3752 |
+| 5 | The real buffer peak matches the failed publishes (±2 %) | Checks 3 and 4 | 3752 vs. 3740 |
+| 6 | `sum()` over the replicas triples the buffer (the `redis_buffer_pending` column of `B-12h-0923-saturation.csv`) | `corrida12h__buffer_{sum,max}.csv` | 14:35: `sum` 11 223, `max` 3741, ratio 3.00 |
+| 7 | The liveness probe restarted data-management during the 90 s pause | `pausa_dm__reinicios.csv`, `pausa_dm__ready.csv` | One restart (18:33:50); `ready` 0 from 18:33:05 to 18:34:05 |
+| 8 | `consumed_dm` falls between the pause snapshots, because the restarted pod's counter reset | Pause snapshots | 5 034 103 → 2 891 907 |
+| 9 | Data-analysis CPU spikes when the netem delay is removed (> 5 × its baseline) | `B-12h-0923-timeseries.csv` | Baseline 0.80, max 10.67 in the following 5 min |
+
+It also prints, with no pass/fail threshold, the 105 publishes that were never acknowledged (the Redis write was cancelled at shutdown, 14:33:01–14:33:02; 315 / 105 = 3.00), and node CPU for each event: the mean and max over the 10 min before, during the window, and over the 5 min after.
+
+| Event | Before | During | After | iowait, max |
+|---|---|---|---|---|
+| `caida_broker` | 85.2 % (max 87.5) | 86.5 % (max 87.2) | 85.9 % (max 98.6) | 0.050 |
+| `pausa_dm` | 85.6 % (max 89.8) | 90.7 % (max 96.1) | 85.0 % (max 86.7) | 0.053 |
+| `netem_da` | 84.7 % (max 87.4) | 87.9 % (max 94.4) | 95.4 % (max 99.4) | 0.058 |
+
+Two points the checks settle for the manuscript:
+
+- **The `redis_buffer_pending` column of `B-12h-0923-saturation.csv` is three times the real backlog.** Each data-receiving replica runs `SCAN sensor_buffer:*` over the shared Redis and publishes the global count, so `sum()` over three replicas counts it three times. Use `max()`, or the per-replica values in Table 10, as above.
+- **The 90 s pause on B was in fact a restart.** The liveness probe (`httpGet /health`, `periodSeconds: 15`, `failureThreshold: 3`) killed the frozen container after about 45 s. A has no probe, so on A it remained a pause.
+
 ## 4. The `data.zip` export
 
 `data.zip` holds no Artillery output. It holds Prometheus series exported over the windows of both phases: the `*-ladder-*` files cover Phase 1 and the `*-12h-*` files cover Phase 2, chaos included (section 3). According to its `RESUMEN.md`, the CSVs were exported from each system's Prometheus: `localhost:9090` on A and NodePort `31083` on B. The windows were detected with:
@@ -231,7 +356,7 @@ Queries that generate each column, verified against the archived data (see *Quer
 | `ew_dropped_5m` | `sum(increase(ew_messages_dropped_total[5m]))` | `B-12h-saturation` |
 | `dr_dropped_5m` | `sum(increase(data_receiving_messages_dropped_total[5m]))` | `*-12h-saturation` |
 | `dm_dlq_5m` | `sum(increase(dm_messages_dlq_total[5m]))` | `B-12h-saturation` |
-| `redis_buffer_pending` | `sum(data_receiving_redis_buffer_pending)` | `B-12h-saturation` |
+| `redis_buffer_pending` | `sum(data_receiving_redis_buffer_pending)`. Three times the real backlog: every replica reports the global count (section 3, *Chaos event evidence*) | `B-12h-saturation` |
 | `pod_restarts` | `sum(kube_pod_container_status_restarts_total{namespace="landslide"})` | `B-12h-saturation` |
 | `rabbit_up` | `max(rabbitmq_up)` | `B-12h-saturation` |
 | `dr_published_fps` | `sum(rate(data_receiving_messages_published_total[5m]))` | `A-12h-saturation` |
@@ -358,15 +483,17 @@ The script derives the windows from the Artillery JSON files, with no extra inpu
 
 ```bash
 python3 generar_resultados.py \
-  --escalera-a "A - SPETIEMBRE 5 RUNS" \
-  --escalera-b "B - SEPTIEMBRE 5 RUNS V2" \
+  --escalera-a "data/A - SPETIEMBRE 5 RUNS" \
+  --escalera-b "data/B - SEPTIEMBRE 5 RUNS V2" \
   --prom-a A-ladder-0917-timeseries.csv \
   --prom-b B-ladder-0923-timeseries.csv \
   --nivel1-dir nivel1 \
-  --sat-b B-12h-0923-saturation.csv \
-  --serie-b B-12h-0923-timeseries.csv \
+  --sat-b data/B-12h-0923-saturation.csv \
+  --serie-b data/B-12h-0923-timeseries.csv \
   --salida salida
 ```
+
+`--prom-a`, `--prom-b` and `--nivel1-dir` point to files that are not in this repo (section 2).
 
 In Windows `cmd`, replace `\` with `^`. In PowerShell, use the backtick.
 
@@ -374,8 +501,10 @@ Output files: `tabla7_tabla8.csv`, `tabla9.csv`, `valores_por_corrida.csv` and `
 
 ## 8. Documentation status
 
+- [x] **Artillery reports.** All 42 inventoried and hashed in `SHA256SUMS.artillery` by `recuperar_artillery.py` (section 3).
 - [x] **Queries behind `data.zip`.** Identified and verified against the archived data (section 4).
 - [x] **Table 10.** All three rows verified value by value. The raw samples are in `tabla10/` (section 3).
+- [x] **Chaos event evidence.** Exported from B's Prometheus on 23/10/2026 and checked offline by `chaos_evidence_b.py` (section 3).
 - [x] **Raw TSDB backup of B.** `prometheus-B-20261020.tar.gz` was created on 20/10/2026 on `go-tesis` with:
   ```bash
   sudo kubectl -n landslide exec prometheus-6489f5b487-8wx8n -- tar czf - -C /prometheus . > prometheus-B-20261020.tar.gz

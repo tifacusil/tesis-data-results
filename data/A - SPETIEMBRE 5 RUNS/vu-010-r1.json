@@ -1,0 +1,4471 @@
+{
+  "aggregate": {
+    "period": 1789661850000,
+    "counters": {
+      "vusers.created_by_name.Ingest GNSS frame (TCP)": 6000,
+      "vusers.created": 6000,
+      "dtu_tcp.frames_acked": 6000,
+      "vusers.failed": 0,
+      "vusers.completed": 6000
+    },
+    "rates": {},
+    "firstCounterAt": 1789661259384,
+    "firstHistogramAt": 1789661260024,
+    "lastCounterAt": 1789661859150,
+    "lastHistogramAt": 1789661859150,
+    "firstMetricAt": 1789661259384,
+    "lastMetricAt": 1789661859150,
+    "summaries": {
+      "dtu_tcp.round_trip_ms": {
+        "min": 194.9,
+        "max": 211.1,
+        "count": 6000,
+        "mean": 197.2,
+        "p50": 198.4,
+        "median": 198.4,
+        "p75": 198.4,
+        "p90": 198.4,
+        "p95": 198.4,
+        "p99": 202.4,
+        "p999": 206.5
+      },
+      "vusers.session_length": {
+        "min": 195.5,
+        "max": 654.3,
+        "count": 6000,
+        "mean": 198.4,
+        "p50": 198.4,
+        "median": 198.4,
+        "p75": 198.4,
+        "p90": 198.4,
+        "p95": 198.4,
+        "p99": 202.4,
+        "p999": 645.6
+      }
+    },
+    "histograms": {
+      "dtu_tcp.round_trip_ms": {
+        "min": 194.9,
+        "max": 211.1,
+        "count": 6000,
+        "mean": 197.2,
+        "p50": 198.4,
+        "median": 198.4,
+        "p75": 198.4,
+        "p90": 198.4,
+        "p95": 198.4,
+        "p99": 202.4,
+        "p999": 206.5
+      },
+      "vusers.session_length": {
+        "min": 195.5,
+        "max": 654.3,
+        "count": 6000,
+        "mean": 198.4,
+        "p50": 198.4,
+        "median": 198.4,
+        "p75": 198.4,
+        "p90": 198.4,
+        "p95": 198.4,
+        "p99": 202.4,
+        "p999": 645.6
+      }
+    }
+  },
+  "intermediate": [
+    {
+      "period": "1789661250000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 10,
+        "vusers.created": 10
+      },
+      "rates": {},
+      "firstCounterAt": 1789661259384,
+      "lastCounterAt": 1789661259956,
+      "firstMetricAt": 1789661259384,
+      "lastMetricAt": 1789661259956,
+      "summaries": {},
+      "histograms": {}
+    },
+    {
+      "period": "1789661260000",
+      "counters": {
+        "dtu_tcp.frames_acked": 107,
+        "vusers.failed": 0,
+        "vusers.completed": 107,
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661260024,
+      "firstHistogramAt": 1789661260024,
+      "lastCounterAt": 1789661269963,
+      "lastHistogramAt": 1789661269963,
+      "firstMetricAt": 1789661260024,
+      "lastMetricAt": 1789661269963,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 201.7,
+          "count": 107,
+          "mean": 197.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.5,
+          "max": 654.3,
+          "count": 107,
+          "mean": 239.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 202.4,
+          "p95": 645.6,
+          "p99": 645.6,
+          "p999": 658.6
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 201.7,
+          "count": 107,
+          "mean": 197.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.5,
+          "max": 654.3,
+          "count": 107,
+          "mean": 239.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 202.4,
+          "p95": 645.6,
+          "p99": 645.6,
+          "p999": 658.6
+        }
+      }
+    },
+    {
+      "period": "1789661270000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661270026,
+      "firstHistogramAt": 1789661270026,
+      "lastCounterAt": 1789661279963,
+      "lastHistogramAt": 1789661279963,
+      "firstMetricAt": 1789661270026,
+      "lastMetricAt": 1789661279963,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 202.5,
+          "count": 100,
+          "mean": 197.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 203.1,
+          "count": 100,
+          "mean": 198,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 202.5,
+          "count": 100,
+          "mean": 197.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 203.1,
+          "count": 100,
+          "mean": 198,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661280000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661280026,
+      "firstHistogramAt": 1789661280026,
+      "lastCounterAt": 1789661289962,
+      "lastHistogramAt": 1789661289962,
+      "firstMetricAt": 1789661280026,
+      "lastMetricAt": 1789661289962,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.8,
+          "max": 203.6,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.4,
+          "max": 204.1,
+          "count": 100,
+          "mean": 198.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 202.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.8,
+          "max": 203.6,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.4,
+          "max": 204.1,
+          "count": 100,
+          "mean": 198.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 202.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661290000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661290024,
+      "firstHistogramAt": 1789661290024,
+      "lastCounterAt": 1789661299963,
+      "lastHistogramAt": 1789661299963,
+      "firstMetricAt": 1789661290024,
+      "lastMetricAt": 1789661299963,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 211.1,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 206.5,
+          "p999": 206.5
+        },
+        "vusers.session_length": {
+          "min": 196.1,
+          "max": 211.7,
+          "count": 100,
+          "mean": 198.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 206.5,
+          "p999": 206.5
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 211.1,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 206.5,
+          "p999": 206.5
+        },
+        "vusers.session_length": {
+          "min": 196.1,
+          "max": 211.7,
+          "count": 100,
+          "mean": 198.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 206.5,
+          "p999": 206.5
+        }
+      }
+    },
+    {
+      "period": "1789661300000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661300025,
+      "firstHistogramAt": 1789661300025,
+      "lastCounterAt": 1789661309962,
+      "lastHistogramAt": 1789661309962,
+      "firstMetricAt": 1789661300025,
+      "lastMetricAt": 1789661309962,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 202.2,
+          "count": 100,
+          "mean": 197.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 202.7,
+          "count": 100,
+          "mean": 198,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 202.2,
+          "count": 100,
+          "mean": 197.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 202.7,
+          "count": 100,
+          "mean": 198,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661310000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661310025,
+      "firstHistogramAt": 1789661310025,
+      "lastCounterAt": 1789661319966,
+      "lastHistogramAt": 1789661319966,
+      "firstMetricAt": 1789661310025,
+      "lastMetricAt": 1789661319966,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 202.2,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.9,
+          "max": 202.8,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 202.2,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.9,
+          "max": 202.8,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661320000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661320033,
+      "firstHistogramAt": 1789661320033,
+      "lastCounterAt": 1789661329967,
+      "lastHistogramAt": 1789661329967,
+      "firstMetricAt": 1789661320033,
+      "lastMetricAt": 1789661329967,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 200.5,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 201,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 200.5,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 201,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661330000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661330030,
+      "firstHistogramAt": 1789661330030,
+      "lastCounterAt": 1789661339966,
+      "lastHistogramAt": 1789661339966,
+      "firstMetricAt": 1789661330030,
+      "lastMetricAt": 1789661339966,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 203.9,
+          "count": 100,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 204.4,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 203.9,
+          "count": 100,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 204.4,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661340000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661340029,
+      "firstHistogramAt": 1789661340029,
+      "lastCounterAt": 1789661349964,
+      "lastHistogramAt": 1789661349964,
+      "firstMetricAt": 1789661340029,
+      "lastMetricAt": 1789661349964,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 204.4,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.7,
+          "max": 204.9,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 204.4,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.7,
+          "max": 204.9,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661350000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661350030,
+      "firstHistogramAt": 1789661350030,
+      "lastCounterAt": 1789661359968,
+      "lastHistogramAt": 1789661359968,
+      "firstMetricAt": 1789661350030,
+      "lastMetricAt": 1789661359968,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.6,
+          "max": 199.9,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 200.9,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.6,
+          "max": 199.9,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 200.9,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      }
+    },
+    {
+      "period": "1789661360000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661360030,
+      "firstHistogramAt": 1789661360030,
+      "lastCounterAt": 1789661369967,
+      "lastHistogramAt": 1789661369967,
+      "firstMetricAt": 1789661360030,
+      "lastMetricAt": 1789661369967,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 206.4,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 206.9,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 206.4,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 206.9,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661370000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661370029,
+      "firstHistogramAt": 1789661370029,
+      "lastCounterAt": 1789661379965,
+      "lastHistogramAt": 1789661379965,
+      "firstMetricAt": 1789661370029,
+      "lastMetricAt": 1789661379965,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 204.3,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 204.9,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 204.3,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 204.9,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661380000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661380030,
+      "firstHistogramAt": 1789661380030,
+      "lastCounterAt": 1789661389966,
+      "lastHistogramAt": 1789661389966,
+      "firstMetricAt": 1789661380030,
+      "lastMetricAt": 1789661389966,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 200.4,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.7,
+          "max": 200.9,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 200.4,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.7,
+          "max": 200.9,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661390000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661390031,
+      "firstHistogramAt": 1789661390031,
+      "lastCounterAt": 1789661399965,
+      "lastHistogramAt": 1789661399965,
+      "firstMetricAt": 1789661390031,
+      "lastMetricAt": 1789661399965,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.3,
+          "max": 204.4,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.9,
+          "max": 204.9,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.3,
+          "max": 204.4,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.9,
+          "max": 204.9,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661400000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661400029,
+      "firstHistogramAt": 1789661400029,
+      "lastCounterAt": 1789661409965,
+      "lastHistogramAt": 1789661409965,
+      "firstMetricAt": 1789661400029,
+      "lastMetricAt": 1789661409965,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.6,
+          "max": 208.3,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.1,
+          "max": 208.8,
+          "count": 100,
+          "mean": 198.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.6,
+          "max": 208.3,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.1,
+          "max": 208.8,
+          "count": 100,
+          "mean": 198.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661410000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661410030,
+      "firstHistogramAt": 1789661410030,
+      "lastCounterAt": 1789661419967,
+      "lastHistogramAt": 1789661419967,
+      "firstMetricAt": 1789661410030,
+      "lastMetricAt": 1789661419967,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 201.1,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 201.6,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 201.1,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 201.6,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661420000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661420030,
+      "firstHistogramAt": 1789661420030,
+      "lastCounterAt": 1789661429966,
+      "lastHistogramAt": 1789661429966,
+      "firstMetricAt": 1789661420030,
+      "lastMetricAt": 1789661429966,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 201.2,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 201.7,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 201.2,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 201.7,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661430000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661430030,
+      "firstHistogramAt": 1789661430030,
+      "lastCounterAt": 1789661439955,
+      "lastHistogramAt": 1789661439955,
+      "firstMetricAt": 1789661430030,
+      "lastMetricAt": 1789661439955,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 202.4,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.1,
+          "max": 202.8,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 202.4,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.1,
+          "max": 202.8,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661440000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661440019,
+      "firstHistogramAt": 1789661440019,
+      "lastCounterAt": 1789661449957,
+      "lastHistogramAt": 1789661449957,
+      "firstMetricAt": 1789661440019,
+      "lastMetricAt": 1789661449957,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 204.7,
+          "count": 100,
+          "mean": 197.3,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 205.3,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 206.5,
+          "p999": 206.5
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 204.7,
+          "count": 100,
+          "mean": 197.3,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 205.3,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 206.5,
+          "p999": 206.5
+        }
+      }
+    },
+    {
+      "period": "1789661450000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661450019,
+      "firstHistogramAt": 1789661450019,
+      "lastCounterAt": 1789661459956,
+      "lastHistogramAt": 1789661459956,
+      "firstMetricAt": 1789661450019,
+      "lastMetricAt": 1789661459956,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 202.7,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 203.3,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 202.7,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 203.3,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661460000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661460019,
+      "firstHistogramAt": 1789661460019,
+      "lastCounterAt": 1789661469956,
+      "lastHistogramAt": 1789661469956,
+      "firstMetricAt": 1789661460019,
+      "lastMetricAt": 1789661469956,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 201.8,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 202.3,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 201.8,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 202.3,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661470000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661470021,
+      "firstHistogramAt": 1789661470021,
+      "lastCounterAt": 1789661479957,
+      "lastHistogramAt": 1789661479957,
+      "firstMetricAt": 1789661470021,
+      "lastMetricAt": 1789661479957,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 199.2,
+          "count": 100,
+          "mean": 196.9,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.7,
+          "max": 199.8,
+          "count": 100,
+          "mean": 197.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 199.2,
+          "count": 100,
+          "mean": 196.9,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.7,
+          "max": 199.8,
+          "count": 100,
+          "mean": 197.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      }
+    },
+    {
+      "period": "1789661480000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661480020,
+      "firstHistogramAt": 1789661480020,
+      "lastCounterAt": 1789661489958,
+      "lastHistogramAt": 1789661489958,
+      "firstMetricAt": 1789661480020,
+      "lastMetricAt": 1789661489958,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.3,
+          "max": 205.7,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.8,
+          "max": 206.2,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.3,
+          "max": 205.7,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.8,
+          "max": 206.2,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      }
+    },
+    {
+      "period": "1789661490000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661490020,
+      "firstHistogramAt": 1789661490020,
+      "lastCounterAt": 1789661499965,
+      "lastHistogramAt": 1789661499965,
+      "firstMetricAt": 1789661490020,
+      "lastMetricAt": 1789661499965,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 204.3,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.1,
+          "max": 204.8,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 206.5,
+          "p999": 206.5
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 204.3,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.1,
+          "max": 204.8,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 206.5,
+          "p999": 206.5
+        }
+      }
+    },
+    {
+      "period": "1789661500000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661500030,
+      "firstHistogramAt": 1789661500030,
+      "lastCounterAt": 1789661509966,
+      "lastHistogramAt": 1789661509966,
+      "firstMetricAt": 1789661500030,
+      "lastMetricAt": 1789661509966,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 204.3,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 204.8,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 204.3,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 204.8,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661510000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661510030,
+      "firstHistogramAt": 1789661510030,
+      "lastCounterAt": 1789661519966,
+      "lastHistogramAt": 1789661519966,
+      "firstMetricAt": 1789661510030,
+      "lastMetricAt": 1789661519966,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195,
+          "max": 201.2,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.6,
+          "max": 201.8,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195,
+          "max": 201.2,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.6,
+          "max": 201.8,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661520000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661520032,
+      "firstHistogramAt": 1789661520032,
+      "lastCounterAt": 1789661529965,
+      "lastHistogramAt": 1789661529965,
+      "firstMetricAt": 1789661520032,
+      "lastMetricAt": 1789661529965,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 199.7,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 200.3,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 199.7,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 200.3,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      }
+    },
+    {
+      "period": "1789661530000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661530029,
+      "firstHistogramAt": 1789661530029,
+      "lastCounterAt": 1789661539969,
+      "lastHistogramAt": 1789661539969,
+      "firstMetricAt": 1789661530029,
+      "lastMetricAt": 1789661539969,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 200.2,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 196.1,
+          "max": 200.8,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 200.2,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 196.1,
+          "max": 200.8,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661540000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661540030,
+      "firstHistogramAt": 1789661540030,
+      "lastCounterAt": 1789661549965,
+      "lastHistogramAt": 1789661549965,
+      "firstMetricAt": 1789661540030,
+      "lastMetricAt": 1789661549965,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.9,
+          "max": 203.9,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.3,
+          "max": 204.4,
+          "count": 100,
+          "mean": 198.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 202.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.9,
+          "max": 203.9,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.3,
+          "max": 204.4,
+          "count": 100,
+          "mean": 198.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 202.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661550000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661550037,
+      "firstHistogramAt": 1789661550037,
+      "lastCounterAt": 1789661559965,
+      "lastHistogramAt": 1789661559965,
+      "firstMetricAt": 1789661550037,
+      "lastMetricAt": 1789661559965,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 204.4,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.7,
+          "max": 204.9,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 204.4,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.7,
+          "max": 204.9,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661560000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661560027,
+      "firstHistogramAt": 1789661560027,
+      "lastCounterAt": 1789661569965,
+      "lastHistogramAt": 1789661569965,
+      "firstMetricAt": 1789661560027,
+      "lastMetricAt": 1789661569965,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 202.9,
+          "count": 100,
+          "mean": 196.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.6,
+          "max": 203.4,
+          "count": 100,
+          "mean": 197.3,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 202.9,
+          "count": 100,
+          "mean": 196.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.6,
+          "max": 203.4,
+          "count": 100,
+          "mean": 197.3,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661570000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661570028,
+      "firstHistogramAt": 1789661570028,
+      "lastCounterAt": 1789661579965,
+      "lastHistogramAt": 1789661579965,
+      "firstMetricAt": 1789661570028,
+      "lastMetricAt": 1789661579965,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195,
+          "max": 203,
+          "count": 100,
+          "mean": 196.9,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.5,
+          "max": 203.5,
+          "count": 100,
+          "mean": 197.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195,
+          "max": 203,
+          "count": 100,
+          "mean": 196.9,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.5,
+          "max": 203.5,
+          "count": 100,
+          "mean": 197.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661580000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661580029,
+      "firstHistogramAt": 1789661580029,
+      "lastCounterAt": 1789661589965,
+      "lastHistogramAt": 1789661589965,
+      "firstMetricAt": 1789661580029,
+      "lastMetricAt": 1789661589965,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.3,
+          "max": 200.8,
+          "count": 100,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.8,
+          "max": 201.4,
+          "count": 100,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.3,
+          "max": 200.8,
+          "count": 100,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.8,
+          "max": 201.4,
+          "count": 100,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      }
+    },
+    {
+      "period": "1789661590000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661590030,
+      "firstHistogramAt": 1789661590030,
+      "lastCounterAt": 1789661599964,
+      "lastHistogramAt": 1789661599964,
+      "firstMetricAt": 1789661590030,
+      "lastMetricAt": 1789661599964,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 201.9,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 202.4,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 201.9,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 202.4,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661600000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661600028,
+      "firstHistogramAt": 1789661600028,
+      "lastCounterAt": 1789661609966,
+      "lastHistogramAt": 1789661609966,
+      "firstMetricAt": 1789661600028,
+      "lastMetricAt": 1789661609966,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.1,
+          "max": 199.7,
+          "count": 100,
+          "mean": 196.9,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.6,
+          "max": 200.2,
+          "count": 100,
+          "mean": 197.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.1,
+          "max": 199.7,
+          "count": 100,
+          "mean": 196.9,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.6,
+          "max": 200.2,
+          "count": 100,
+          "mean": 197.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      }
+    },
+    {
+      "period": "1789661610000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661610030,
+      "firstHistogramAt": 1789661610030,
+      "lastCounterAt": 1789661619961,
+      "lastHistogramAt": 1789661619961,
+      "firstMetricAt": 1789661610030,
+      "lastMetricAt": 1789661619961,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 199.6,
+          "count": 100,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.7,
+          "max": 200.1,
+          "count": 100,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 199.6,
+          "count": 100,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.7,
+          "max": 200.1,
+          "count": 100,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      }
+    },
+    {
+      "period": "1789661620000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661620025,
+      "firstHistogramAt": 1789661620025,
+      "lastCounterAt": 1789661629962,
+      "lastHistogramAt": 1789661629962,
+      "firstMetricAt": 1789661620025,
+      "lastMetricAt": 1789661629962,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 194.9,
+          "max": 203.7,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.5,
+          "max": 204.2,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 194.9,
+          "max": 203.7,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.5,
+          "max": 204.2,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661630000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661630026,
+      "firstHistogramAt": 1789661630026,
+      "lastCounterAt": 1789661639962,
+      "lastHistogramAt": 1789661639962,
+      "firstMetricAt": 1789661630026,
+      "lastMetricAt": 1789661639962,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.3,
+          "max": 199.7,
+          "count": 100,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.9,
+          "max": 200.1,
+          "count": 100,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.3,
+          "max": 199.7,
+          "count": 100,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.9,
+          "max": 200.1,
+          "count": 100,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      }
+    },
+    {
+      "period": "1789661640000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661640026,
+      "firstHistogramAt": 1789661640026,
+      "lastCounterAt": 1789661649960,
+      "lastHistogramAt": 1789661649960,
+      "firstMetricAt": 1789661640026,
+      "lastMetricAt": 1789661649960,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 201.8,
+          "count": 100,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 202.4,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 201.8,
+          "count": 100,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 202.4,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661650000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661650025,
+      "firstHistogramAt": 1789661650025,
+      "lastCounterAt": 1789661659961,
+      "lastHistogramAt": 1789661659961,
+      "firstMetricAt": 1789661650025,
+      "lastMetricAt": 1789661659961,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 210.3,
+          "count": 100,
+          "mean": 197.3,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 210.8,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 206.5,
+          "p999": 206.5
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 210.3,
+          "count": 100,
+          "mean": 197.3,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 210.8,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 206.5,
+          "p999": 206.5
+        }
+      }
+    },
+    {
+      "period": "1789661660000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661660025,
+      "firstHistogramAt": 1789661660025,
+      "lastCounterAt": 1789661669962,
+      "lastHistogramAt": 1789661669962,
+      "firstMetricAt": 1789661660025,
+      "lastMetricAt": 1789661669962,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.1,
+          "max": 202.6,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.7,
+          "max": 203.2,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.1,
+          "max": 202.6,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.7,
+          "max": 203.2,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661670000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661670025,
+      "firstHistogramAt": 1789661670025,
+      "lastCounterAt": 1789661679966,
+      "lastHistogramAt": 1789661679966,
+      "firstMetricAt": 1789661670025,
+      "lastMetricAt": 1789661679966,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 203.4,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 203.9,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 202.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.7,
+          "max": 203.4,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196.2,
+          "max": 203.9,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 202.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661680000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661680030,
+      "firstHistogramAt": 1789661680030,
+      "lastCounterAt": 1789661689967,
+      "lastHistogramAt": 1789661689967,
+      "firstMetricAt": 1789661680030,
+      "lastMetricAt": 1789661689967,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.6,
+          "max": 204.8,
+          "count": 100,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 205.3,
+          "count": 100,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.6,
+          "max": 204.8,
+          "count": 100,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 205.3,
+          "count": 100,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661690000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661690032,
+      "firstHistogramAt": 1789661690032,
+      "lastCounterAt": 1789661699966,
+      "lastHistogramAt": 1789661699966,
+      "firstMetricAt": 1789661690032,
+      "lastMetricAt": 1789661699966,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.3,
+          "max": 208.6,
+          "count": 100,
+          "mean": 197.3,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.9,
+          "max": 209,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.3,
+          "max": 208.6,
+          "count": 100,
+          "mean": 197.3,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.9,
+          "max": 209,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661700000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661700029,
+      "firstHistogramAt": 1789661700029,
+      "lastCounterAt": 1789661709966,
+      "lastHistogramAt": 1789661709966,
+      "firstMetricAt": 1789661700029,
+      "lastMetricAt": 1789661709966,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.6,
+          "max": 209.5,
+          "count": 100,
+          "mean": 197.3,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 196.1,
+          "max": 210.1,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.6,
+          "max": 209.5,
+          "count": 100,
+          "mean": 197.3,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 196.1,
+          "max": 210.1,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661710000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661710028,
+      "firstHistogramAt": 1789661710028,
+      "lastCounterAt": 1789661719966,
+      "lastHistogramAt": 1789661719966,
+      "firstMetricAt": 1789661710028,
+      "lastMetricAt": 1789661719966,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.1,
+          "max": 204.7,
+          "count": 100,
+          "mean": 197.3,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.6,
+          "max": 205.2,
+          "count": 100,
+          "mean": 197.9,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.1,
+          "max": 204.7,
+          "count": 100,
+          "mean": 197.3,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.6,
+          "max": 205.2,
+          "count": 100,
+          "mean": 197.9,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661720000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661720030,
+      "firstHistogramAt": 1789661720030,
+      "lastCounterAt": 1789661729966,
+      "lastHistogramAt": 1789661729966,
+      "firstMetricAt": 1789661720030,
+      "lastMetricAt": 1789661729966,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 201.6,
+          "count": 100,
+          "mean": 197.3,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.7,
+          "max": 202,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 201.6,
+          "count": 100,
+          "mean": 197.3,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.7,
+          "max": 202,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661730000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661730030,
+      "firstHistogramAt": 1789661730030,
+      "lastCounterAt": 1789661739965,
+      "lastHistogramAt": 1789661739965,
+      "firstMetricAt": 1789661730030,
+      "lastMetricAt": 1789661739965,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.3,
+          "max": 203.6,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.8,
+          "max": 204.1,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.3,
+          "max": 203.6,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.8,
+          "max": 204.1,
+          "count": 100,
+          "mean": 197.7,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661740000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661740027,
+      "firstHistogramAt": 1789661740027,
+      "lastCounterAt": 1789661749964,
+      "lastHistogramAt": 1789661749964,
+      "firstMetricAt": 1789661740027,
+      "lastMetricAt": 1789661749964,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.1,
+          "max": 201.1,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.8,
+          "max": 201.7,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.1,
+          "max": 201.1,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.8,
+          "max": 201.7,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661750000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661750027,
+      "firstHistogramAt": 1789661750027,
+      "lastCounterAt": 1789661759964,
+      "lastHistogramAt": 1789661759964,
+      "firstMetricAt": 1789661750027,
+      "lastMetricAt": 1789661759964,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.3,
+          "max": 200.4,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.8,
+          "max": 200.9,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.3,
+          "max": 200.4,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.8,
+          "max": 200.9,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      }
+    },
+    {
+      "period": "1789661760000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661760028,
+      "firstHistogramAt": 1789661760028,
+      "lastCounterAt": 1789661769965,
+      "lastHistogramAt": 1789661769965,
+      "firstMetricAt": 1789661760028,
+      "lastMetricAt": 1789661769965,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 200.5,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.7,
+          "max": 201.1,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 200.5,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.7,
+          "max": 201.1,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661770000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661770029,
+      "firstHistogramAt": 1789661770029,
+      "lastCounterAt": 1789661779964,
+      "lastHistogramAt": 1789661779964,
+      "firstMetricAt": 1789661770029,
+      "lastMetricAt": 1789661779964,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.3,
+          "max": 208,
+          "count": 100,
+          "mean": 197.3,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.8,
+          "max": 208.5,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 206.5,
+          "p999": 206.5
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.3,
+          "max": 208,
+          "count": 100,
+          "mean": 197.3,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.8,
+          "max": 208.5,
+          "count": 100,
+          "mean": 197.8,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 206.5,
+          "p999": 206.5
+        }
+      }
+    },
+    {
+      "period": "1789661780000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661780027,
+      "firstHistogramAt": 1789661780027,
+      "lastCounterAt": 1789661789964,
+      "lastHistogramAt": 1789661789964,
+      "firstMetricAt": 1789661780027,
+      "lastMetricAt": 1789661789964,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 199.9,
+          "count": 100,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.8,
+          "max": 200.4,
+          "count": 100,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 199.9,
+          "count": 100,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.8,
+          "max": 200.4,
+          "count": 100,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      }
+    },
+    {
+      "period": "1789661790000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661790027,
+      "firstHistogramAt": 1789661790027,
+      "lastCounterAt": 1789661799963,
+      "lastHistogramAt": 1789661799963,
+      "firstMetricAt": 1789661790027,
+      "lastMetricAt": 1789661799963,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 203,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.9,
+          "max": 203.4,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 203,
+          "count": 100,
+          "mean": 197.2,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.9,
+          "max": 203.4,
+          "count": 100,
+          "mean": 197.6,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661800000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661800025,
+      "firstHistogramAt": 1789661800025,
+      "lastCounterAt": 1789661809962,
+      "lastHistogramAt": 1789661809962,
+      "firstMetricAt": 1789661800025,
+      "lastMetricAt": 1789661809962,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 201.7,
+          "count": 100,
+          "mean": 196.9,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.6,
+          "max": 202.2,
+          "count": 100,
+          "mean": 197.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.2,
+          "max": 201.7,
+          "count": 100,
+          "mean": 196.9,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.6,
+          "max": 202.2,
+          "count": 100,
+          "mean": 197.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661810000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661810026,
+      "firstHistogramAt": 1789661810026,
+      "lastCounterAt": 1789661819962,
+      "lastHistogramAt": 1789661819962,
+      "firstMetricAt": 1789661810026,
+      "lastMetricAt": 1789661819962,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 201.2,
+          "count": 100,
+          "mean": 196.9,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.9,
+          "max": 201.7,
+          "count": 100,
+          "mean": 197.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 201.2,
+          "count": 100,
+          "mean": 196.9,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 195.9,
+          "max": 201.7,
+          "count": 100,
+          "mean": 197.4,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      }
+    },
+    {
+      "period": "1789661820000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661820025,
+      "firstHistogramAt": 1789661820025,
+      "lastCounterAt": 1789661829964,
+      "lastHistogramAt": 1789661829964,
+      "firstMetricAt": 1789661820025,
+      "lastMetricAt": 1789661829964,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 204.9,
+          "count": 100,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.8,
+          "max": 205.4,
+          "count": 100,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.4,
+          "max": 204.9,
+          "count": 100,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.8,
+          "max": 205.4,
+          "count": 100,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661830000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661830027,
+      "firstHistogramAt": 1789661830027,
+      "lastCounterAt": 1789661839964,
+      "lastHistogramAt": 1789661839964,
+      "firstMetricAt": 1789661830027,
+      "lastMetricAt": 1789661839964,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 199.3,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 199.8,
+          "count": 100,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 199.3,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        },
+        "vusers.session_length": {
+          "min": 196,
+          "max": 199.8,
+          "count": 100,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 198.4,
+          "p999": 198.4
+        }
+      }
+    },
+    {
+      "period": "1789661840000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 100,
+        "vusers.created": 100,
+        "dtu_tcp.frames_acked": 100,
+        "vusers.failed": 0,
+        "vusers.completed": 100
+      },
+      "rates": {},
+      "firstCounterAt": 1789661840026,
+      "firstHistogramAt": 1789661840026,
+      "lastCounterAt": 1789661849962,
+      "lastHistogramAt": 1789661849962,
+      "firstMetricAt": 1789661840026,
+      "lastMetricAt": 1789661849962,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 201.5,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.9,
+          "max": 201.9,
+          "count": 100,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.5,
+          "max": 201.5,
+          "count": 100,
+          "mean": 197.1,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.9,
+          "max": 201.9,
+          "count": 100,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    },
+    {
+      "period": "1789661850000",
+      "counters": {
+        "vusers.created_by_name.Ingest GNSS frame (TCP)": 90,
+        "vusers.created": 90,
+        "dtu_tcp.frames_acked": 93,
+        "vusers.failed": 0,
+        "vusers.completed": 93
+      },
+      "rates": {},
+      "firstCounterAt": 1789661850026,
+      "firstHistogramAt": 1789661850026,
+      "lastCounterAt": 1789661859150,
+      "lastHistogramAt": 1789661859150,
+      "firstMetricAt": 1789661850026,
+      "lastMetricAt": 1789661859150,
+      "summaries": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.1,
+          "max": 207.4,
+          "count": 93,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.5,
+          "max": 207.9,
+          "count": 93,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      },
+      "histograms": {
+        "dtu_tcp.round_trip_ms": {
+          "min": 195.1,
+          "max": 207.4,
+          "count": 93,
+          "mean": 197,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        },
+        "vusers.session_length": {
+          "min": 195.5,
+          "max": 207.9,
+          "count": 93,
+          "mean": 197.5,
+          "p50": 198.4,
+          "median": 198.4,
+          "p75": 198.4,
+          "p90": 198.4,
+          "p95": 198.4,
+          "p99": 202.4,
+          "p999": 202.4
+        }
+      }
+    }
+  ]
+}

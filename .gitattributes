@@ -1,0 +1,4 @@
+# Evidence is hashed byte for byte (SHA256SUMS.artillery, manifiesto.json, the methodology):
+# never convert line endings.
+data/** -text
+SHA256SUMS.artillery -text

@@ -1,0 +1,59 @@
+=== AP7 — retry acotado -> dead letter (Sistema B) ===
+    event_id:   ap7-1790738776   (sensor_id del evento)
+    message_id: ap7-1790738776-b   (el que debe terminar en la DLQ)
+    Reintentos: CONSUMER_MAX_RETRIES=3
+    Evidencia:  /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738776*
+    Consumo EW: 0.08888888888888888 msg/s -> en reposo: no
+    AVISO: con carga de fondo el delta de sensors.dead_letter es solo informativo.
+
+--- 1. Trigger de fallo sobre early_warning.alerts (solo sensor_id=ap7-1790738776) ---
+command terminated with exit code 1
+    Autoverificado: INSERT IGNORE sobre el sensor falla con el SIGNAL inyectado.
+--- 2. Cola sonda ap7.probe.1790738776 enlazada a sensors.dlx ---
+    OK.
+    sensors.dead_letter antes: 2 mensajes
+
+--- 3. Inyección del evento ---
+    Publicado a las 2026-09-30T03:26:53Z.
+--- 4. Esperando dead_lettered para ap7-1790738776-b (máx 90s) ---
+--- 5. Ventana de silencio (15s): no debe haber más reintentos ---
+
+=== Línea de tiempo del mensaje ap7-1790738776-b ===
+  2026-09-30T03:26:53.644612+00:00 early-warning-55859f5589-chqw5 push_delivered
+  2026-09-30T03:26:53.648588+00:00 early-warning-55859f5589-chqw5 db_record_failed  Error 1644 (45000): AP7: fallo de persistencia inyectado
+  2026-09-30T03:26:53.649517+00:00 early-warning-55859f5589-chqw5 requeue 1 Error 1644 (45000): AP7: fallo de persistencia inyectado
+  2026-09-30T03:26:53.828601+00:00 early-warning-55859f5589-cgprm push_delivered
+  2026-09-30T03:26:53.833949+00:00 early-warning-55859f5589-cgprm db_record_failed  Error 1644 (45000): AP7: fallo de persistencia inyectado
+  2026-09-30T03:26:53.834952+00:00 early-warning-55859f5589-cgprm requeue 2 Error 1644 (45000): AP7: fallo de persistencia inyectado
+  2026-09-30T03:26:54.016008+00:00 early-warning-55859f5589-chqw5 push_delivered
+  2026-09-30T03:26:54.019779+00:00 early-warning-55859f5589-chqw5 db_record_failed  Error 1644 (45000): AP7: fallo de persistencia inyectado
+  2026-09-30T03:26:54.021092+00:00 early-warning-55859f5589-chqw5 requeue 3 Error 1644 (45000): AP7: fallo de persistencia inyectado
+  2026-09-30T03:26:54.187037+00:00 early-warning-55859f5589-cgprm push_delivered
+  2026-09-30T03:26:54.188557+00:00 early-warning-55859f5589-cgprm db_record_failed  Error 1644 (45000): AP7: fallo de persistencia inyectado
+  2026-09-30T03:26:54.188780+00:00 early-warning-55859f5589-cgprm dead_lettered 4 Error 1644 (45000): AP7: fallo de persistencia inyectado
+
+=== Resultado AP7 ===
+  PASS  requeue (cantidad)                             esperado=3                        observado=3
+  PASS  requeue (attempt)                              esperado=1,2,3                    observado=1,2,3
+  PASS  dead_lettered (cantidad)                       esperado=1                        observado=1
+  PASS  dead_lettered (attempts)                       esperado=4                        observado=4
+  PASS  mensaje en sensors.dlx (sonda)                 esperado=1                        observado=1
+  PASS  x-death queue                                  esperado=early_warning.evaluate   observado=early_warning.evaluate
+  PASS  x-death reason                                 esperado=rejected                 observado=rejected
+  PASS  requeue tras dead_lettered                     esperado=0                        observado=0
+  PASS  filas del sensor en alerts                     esperado=0                        observado=0
+  PASS  sensors.dead_letter (delta)                    esperado=1                        observado=1
+
+Observaciones (no son criterio de AP7, pero son evidencia del mecanismo):
+  Intervalo entre intentos (ms):   185,186,169   (CLAUDE.md §4 pide backoff 1s/5s/30s)
+  Efectos laterales push_* por el mensaje: 4 en 4 intentos fallidos
+    (la alerta se publica y se resuelve el push ANTES del INSERT; cada reintento los repite)
+  Réplicas que atendieron intentos: early-warning-55859f5589-cgprm,early-warning-55859f5589-chqw5
+  Otros mensajes derivados a la DLX durante la prueba: 0
+
+Veredicto AP7: CUMPLE
+Evidencia: /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738776.log, /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738776-ew.log, /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738776-summary.env
+
+--- Limpieza: trigger y cola sonda ---
+    Trigger ap7_block_1790738776 eliminado.
+    Cola sonda ap7.probe.1790738776 eliminada (expira sola a los 30 min si esto falló).

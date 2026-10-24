@@ -1,0 +1,159 @@
+{
+  "prometheus": "http://178.105.104.95:31083",
+  "exportado": "2026-10-23T02:46:14Z",
+  "archivos": [
+    {
+      "archivo": "caida_broker__buffer_por_pod.csv",
+      "consulta": "data_receiving_redis_buffer_pending",
+      "inicio": "2026-09-23T14:22:24Z",
+      "fin": "2026-09-23T14:43:02Z",
+      "paso_s": 15,
+      "series": 3,
+      "sha256": "e5b46ad43c01c8a32944f3d42a4474ac5b8d28d60f9c68073a5935d9b7f90cfe"
+    },
+    {
+      "archivo": "caida_broker__cpu_nodo_pct.csv",
+      "consulta": "100*(1-avg(rate(node_cpu_seconds_total{mode=\"idle\"}[1m])))",
+      "inicio": "2026-09-23T14:22:24Z",
+      "fin": "2026-09-23T14:43:02Z",
+      "paso_s": 15,
+      "series": 1,
+      "sha256": "c0108413a8cbbfa28440d957185248bc2456a0060cb94a0b31352e45b31682c2"
+    },
+    {
+      "archivo": "caida_broker__iowait_frac.csv",
+      "consulta": "avg(rate(node_cpu_seconds_total{mode=\"iowait\"}[1m]))",
+      "inicio": "2026-09-23T14:22:24Z",
+      "fin": "2026-09-23T14:43:02Z",
+      "paso_s": 15,
+      "series": 1,
+      "sha256": "8b8cff63d0a92d5f048c9694de75fdaba7ba89137458c312fb4d9246d7a5180a"
+    },
+    {
+      "archivo": "caida_broker__reinicios.csv",
+      "consulta": "kube_pod_container_status_restarts_total{namespace=\"landslide\"}",
+      "inicio": "2026-09-23T14:22:24Z",
+      "fin": "2026-09-23T14:43:02Z",
+      "paso_s": 15,
+      "series": 27,
+      "sha256": "e5806ac31995cceb35ad1bc5cae4041fe1b6b32cb4165ed37b8bc18cd3e7548d"
+    },
+    {
+      "archivo": "caida_broker__ready.csv",
+      "consulta": "kube_pod_container_status_ready{namespace=\"landslide\"}",
+      "inicio": "2026-09-23T14:22:24Z",
+      "fin": "2026-09-23T14:43:02Z",
+      "paso_s": 15,
+      "series": 27,
+      "sha256": "1cd28d9a817181273f5f19657456bbc300360d39d53594a102264eac38de3cf9"
+    },
+    {
+      "archivo": "pausa_dm__buffer_por_pod.csv",
+      "consulta": "data_receiving_redis_buffer_pending",
+      "inicio": "2026-09-23T18:22:20Z",
+      "fin": "2026-09-23T18:44:04Z",
+      "paso_s": 15,
+      "series": 3,
+      "sha256": "9534452e6c3ca2e65a8af88d2d5f44f62b3ee1750dcee0a94f7ac2ad4565fbad"
+    },
+    {
+      "archivo": "pausa_dm__cpu_nodo_pct.csv",
+      "consulta": "100*(1-avg(rate(node_cpu_seconds_total{mode=\"idle\"}[1m])))",
+      "inicio": "2026-09-23T18:22:20Z",
+      "fin": "2026-09-23T18:44:04Z",
+      "paso_s": 15,
+      "series": 1,
+      "sha256": "168aa6b434271e681a760abf10f344ae722d74638770573fee80ee346c773b26"
+    },
+    {
+      "archivo": "pausa_dm__iowait_frac.csv",
+      "consulta": "avg(rate(node_cpu_seconds_total{mode=\"iowait\"}[1m]))",
+      "inicio": "2026-09-23T18:22:20Z",
+      "fin": "2026-09-23T18:44:04Z",
+      "paso_s": 15,
+      "series": 1,
+      "sha256": "2371e8426d523d622da44b4cf7a4050a0acccd2142f37aa6518836e77063306a"
+    },
+    {
+      "archivo": "pausa_dm__reinicios.csv",
+      "consulta": "kube_pod_container_status_restarts_total{namespace=\"landslide\"}",
+      "inicio": "2026-09-23T18:22:20Z",
+      "fin": "2026-09-23T18:44:04Z",
+      "paso_s": 15,
+      "series": 26,
+      "sha256": "fae5b8f85531ff3c1c539cd2a9b734ee2af525aa6609b08d605755f9d97109eb"
+    },
+    {
+      "archivo": "pausa_dm__ready.csv",
+      "consulta": "kube_pod_container_status_ready{namespace=\"landslide\"}",
+      "inicio": "2026-09-23T18:22:20Z",
+      "fin": "2026-09-23T18:44:04Z",
+      "paso_s": 15,
+      "series": 26,
+      "sha256": "b2889ded424aff963a4155a6fc59e2e2e526b6748e7322412f5fcadf59152390"
+    },
+    {
+      "archivo": "netem_da__buffer_por_pod.csv",
+      "consulta": "data_receiving_redis_buffer_pending",
+      "inicio": "2026-09-23T22:22:18Z",
+      "fin": "2026-09-23T22:46:07Z",
+      "paso_s": 15,
+      "series": 3,
+      "sha256": "7b505132007f0839aa2b799e990416acba67928657c0a5d42313e46dede2c0ab"
+    },
+    {
+      "archivo": "netem_da__cpu_nodo_pct.csv",
+      "consulta": "100*(1-avg(rate(node_cpu_seconds_total{mode=\"idle\"}[1m])))",
+      "inicio": "2026-09-23T22:22:18Z",
+      "fin": "2026-09-23T22:46:07Z",
+      "paso_s": 15,
+      "series": 1,
+      "sha256": "79982900333ec3add82c1ac564f514e170d9813a1990ebcd63c1957f2511a6e9"
+    },
+    {
+      "archivo": "netem_da__iowait_frac.csv",
+      "consulta": "avg(rate(node_cpu_seconds_total{mode=\"iowait\"}[1m]))",
+      "inicio": "2026-09-23T22:22:18Z",
+      "fin": "2026-09-23T22:46:07Z",
+      "paso_s": 15,
+      "series": 1,
+      "sha256": "1995653ecadb15cdc3f4d2b476889b2df1bc3105fa134f9c00a680d67a15569b"
+    },
+    {
+      "archivo": "netem_da__reinicios.csv",
+      "consulta": "kube_pod_container_status_restarts_total{namespace=\"landslide\"}",
+      "inicio": "2026-09-23T22:22:18Z",
+      "fin": "2026-09-23T22:46:07Z",
+      "paso_s": 15,
+      "series": 26,
+      "sha256": "838e6269c563f626f18992a5a6d371dcbe3f1707507a65c46f9247a2336939b7"
+    },
+    {
+      "archivo": "netem_da__ready.csv",
+      "consulta": "kube_pod_container_status_ready{namespace=\"landslide\"}",
+      "inicio": "2026-09-23T22:22:18Z",
+      "fin": "2026-09-23T22:46:07Z",
+      "paso_s": 15,
+      "series": 26,
+      "sha256": "9d227c1a90b848fa160138041e22af15138d701d59911ec22dd78d949b3ed277"
+    },
+    {
+      "archivo": "corrida12h__buffer_sum.csv",
+      "consulta": "sum(data_receiving_redis_buffer_pending)",
+      "inicio": "2026-09-23T12:35:00Z",
+      "fin": "2026-09-24T00:35:00Z",
+      "paso_s": 300,
+      "series": 1,
+      "sha256": "4f01b29348f1fc961034645bb4fcea406940c5d40886deefcbd4396e8a9d9616"
+    },
+    {
+      "archivo": "corrida12h__buffer_max.csv",
+      "consulta": "max(data_receiving_redis_buffer_pending)",
+      "inicio": "2026-09-23T12:35:00Z",
+      "fin": "2026-09-24T00:35:00Z",
+      "paso_s": 300,
+      "series": 1,
+      "sha256": "1efc995762691078b70d3889208dabfea00419dd48efa9fbeb44004470ea3f46"
+    }
+  ]
+}

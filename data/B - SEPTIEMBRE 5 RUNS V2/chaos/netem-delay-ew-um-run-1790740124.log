@@ -1,0 +1,109 @@
+    (log de la corrida -> /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-run-1790740124.log)
+=== Escenario: netem delay 9000ms en user-management (Sistema B / k3s) ===
+    Servidor:      gotesis@178.105.104.95 (namespace landslide)
+    Delay:         9000ms  (timeout por llamada: 5000ms => cada intento corta)
+    Duración:      240s   (muestreo cada 5s)
+    Umbral:        5 fallos consecutivos para abrir
+    Scope:         grpc — solo el puerto 9090 (respuestas a EW). Las probes de
+                   kubelet no se tocan: user-management sigue vivo y el breaker abre por
+                   LATENCIA, con el peer respondiendo lento.
+    Driver:        alertas GNSS via AMQP (project=shangtan, 5 sensores/ronda)
+    Target:        pid=999117 pod_ip=10.42.0.98
+
+--- Arrancando driver de alertas y verificando que EW este alertando ---
+    Driver: 2026-09-30T03:49:45Z ronda=9 publicados=90 enrutados=90 errores=0
+    Alertas emitidas en 45s de verificacion: 35
+    Latencia de despacho sana (media 2m, pre-fallo): 0.17812935562857174s
+
+--- Snapshot pre-fallo + arranque del muestreo continuo ---
+timestamp=1790740187
+system=B
+published=3607761
+consumed_ew=1382
+consumed_dm=1390
+dropped=3
+redis_buffer_pending=0
+    Muestreo continuo -> /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-samples-1790740192.csv
+
+--- Inyectando latencia (tc netem delay 9000ms, scope=grpc) en 1 pod(s) ---
+    Delay aplicado. Verificando qdisc:
+      pid=999117: qdisc prio 1: root refcnt 3 bands 4 priomap 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+--- Ventana de fallo (240s). El muestreo corre en paralelo ---
+  t+8s: breaker=0  timeouts=28  ok=231
+  t+16s: breaker=0  timeouts=28  ok=236
+  t+23s: breaker=0  timeouts=28  ok=236
+  t+31s: breaker=0  timeouts=28  ok=236
+  t+39s: breaker=0  timeouts=29  ok=236
+  t+46s: breaker=0  timeouts=30  ok=236
+  t+54s: breaker=0  timeouts=30  ok=236
+  t+62s: breaker=0  timeouts=32  ok=236
+  t+69s: breaker=0  timeouts=32  ok=236
+  t+77s: breaker=0  timeouts=34  ok=236
+  t+85s: breaker=0  timeouts=34  ok=236
+  t+92s: breaker=0  timeouts=34  ok=236
+  t+100s: breaker=0  timeouts=34  ok=236
+  t+108s: breaker=0  timeouts=36  ok=236
+  t+115s: breaker=0  timeouts=36  ok=236
+  t+123s: breaker=1  timeouts=38  ok=236
+  -> circuito ABIERTO a los 123s
+  t+131s: breaker=1  timeouts=38  ok=236
+  t+138s: breaker=1  timeouts=38  ok=236
+  t+146s: breaker=1  timeouts=38  ok=236
+  t+154s: breaker=1  timeouts=38  ok=236
+  t+162s: breaker=1  timeouts=38  ok=236
+  t+169s: breaker=1  timeouts=38  ok=236
+  t+177s: breaker=1  timeouts=38  ok=236
+  t+184s: breaker=1  timeouts=40  ok=236
+  t+192s: breaker=1  timeouts=40  ok=236
+  t+200s: breaker=1  timeouts=40  ok=236
+  t+207s: breaker=1  timeouts=40  ok=236
+  t+215s: breaker=1  timeouts=40  ok=236
+  t+223s: breaker=1  timeouts=40  ok=236
+  t+230s: breaker=1  timeouts=42  ok=236
+  t+238s: breaker=1  timeouts=42  ok=236
+
+--- Quitando la latencia (fin de la ventana de fallo) ---
+    Verificado: no quedó netem en ningún netns de user-management.
+--- Esperando a que el circuito cierre (tiempo de recuperacion) ---
+    Driver: fin rondas=63 publicados=630 enrutados=630 errores=0
+
+--- Snapshot post-recuperacion ---
+timestamp=1790740468
+system=B
+published=3607761
+consumed_ew=1938
+consumed_dm=1918
+dropped=3
+redis_buffer_pending=0
+
+=== Resumen (sistema-B) ===
+Delay inyectado:              9000ms (timeout 5000ms, umbral 5 fallos)
+Alertas en verificacion:      35 (precondicion: >= 5)
+Circuito abierto a los:       123s
+Tiempo de recuperacion:       0
+Llamadas salientes a user-management (acumulado):
+  ok=240  timeout=42  circuit_open=547  error=0
+Latencia de despacho (umbral cruzado -> alerta registrada):
+  sana, pre-fallo (media 2m):        0.17812935562857174s
+  degradada, breaker cerrado:        2.368s
+  degradada, breaker abierto:        0.892s
+  degradada, todo el fallo:          1.632s  (181 alertas sin push)
+  p95 maximo en la ventana (1m):     29.5s
+Continuidad operativa:        verificada (104 alertas registradas con el breaker abierto)
+Serie temporal completa:      /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-samples-1790740192.csv
+Snapshots:                    /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-pre-1790740187.snapshot / /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-post-1790740468.snapshot
+Resumen por corrida:          /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-summary-1790740193.env
+
+=== Linea de tiempo (sistema-B) ===
+Snapshot pre-fallo:         2026-09-29 22:49:47 HPS  (UTC 03:49:47)
+Delay inyectado:            2026-09-29 22:49:53 HPS  (UTC 03:49:53)
+Circuito abierto:           2026-09-29 22:51:56 HPS  (UTC 03:51:56)  [t+123s]
+Delay retirado:             2026-09-29 22:53:56 HPS  (UTC 03:53:56)
+Snapshot post-recuperacion: 2026-09-29 22:54:28 HPS  (UTC 03:54:28)
+
+Rango para Grafana/Prometheus (UTC, con 60s de margen a cada lado):
+  from=2026-09-30T03:48:47Z  to=2026-09-30T03:55:28Z
+
+--- Limpieza: parando driver y muestreo, quitando netem ---
+    Verificado: no quedó netem en ningún netns de user-management.

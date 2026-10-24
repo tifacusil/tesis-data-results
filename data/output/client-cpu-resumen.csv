@@ -1,0 +1,9 @@
+sistema,nivel,corridas,cpu_percent_mediana,cpu_percent_min_corrida,cpu_percent_max_corrida,node_percent_mediana,node_percent_min_corrida,node_percent_max_corrida,python_percent_mediana,python_percent_min_corrida,python_percent_max_corrida
+A,1,5,14.0,12.0,14.0,0.0,0.0,0.0,0.0,0.0,0.0
+B,1,5,18.0,17.0,21.0,0.0,0.0,0.0,0.0,0.0,0.0
+A,10,5,12.0,11.0,12.0,19.0,16.5,22.0,0.0,0.0,0.0
+B,10,5,11.0,10.0,12.0,17.0,14.0,23.0,0.0,0.0,0.0
+A,50,5,10.0,9.5,11.0,78.5,77.0,94.5,0.0,0.0,0.0
+B,50,5,11.0,10.0,11.0,82.0,77.0,93.0,0.0,0.0,0.0
+A,100,5,14.0,13.0,14.0,170.5,167.0,186.0,0.0,0.0,0.0
+B,100,5,13.0,11.5,14.0,166.0,165.0,175.0,0.0,0.0,5.0

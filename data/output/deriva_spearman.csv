@@ -1,0 +1,9 @@
+tramas_s,sistema,rho,p
+1,A,-0.58,0.31
+1,B,-0.71,0.18
+10,A,constante,
+10,B,constante,
+50,A,0.29,0.64
+50,B,-0.29,0.64
+100,A,constante,
+100,B,-0.87,0.06
