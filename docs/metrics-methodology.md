@@ -49,18 +49,18 @@ The scripts live in `load-tests/`. Ingestion is over TCP with binary DTU frames,
 
 ### Version of `go-tesis-infra`
 
-The repo has no tag for the campaign. The git reflog on the client machine records which commit was checked out during each system's runs:
+The git reflog on the client machine records which commit was checked out during each system's runs. On 25/10/2026, each commit was tagged in `go-tesis-infra` (annotated tags, on GitHub):
 
-| Runs | Commit | Checked out |
+| Runs | Tag and commit | Checked out |
 |---|---|---|
-| A: ladder (17/09) and 12 h (18/09) | `3ea91e6` (`main`) | From 16/09 22:51 −05:00 (`git pull`) until 22/09 |
-| B: ladder (23/09) and 12 h (23–24/09) | `c6732b0` (branch `fix/redis-rabbitmq-paridad-a`). Same tree as `4b44acd`, the merge of PR #6 into `main` | From 23/09 00:05 −05:00 (05:05 UTC, 18 min before B's first run) until 29/09 |
+| A: ladder (17/09) and 12 h (18/09) | `campaign-2026-09-A`: `3ea91e6` (`main`) | From 16/09 22:51 −05:00 (`git pull`) until 22/09 |
+| B: ladder (23/09) and 12 h (23–24/09) | `campaign-2026-09-B`: `c6732b0` (branch `fix/redis-rabbitmq-paridad-a`). Same tree as `4b44acd`, the merge of PR #6 into `main` | From 23/09 00:05 −05:00 (05:05 UTC, 18 min before B's first run) until 29/09 |
 
 ```bash
 git -C go-tesis-infra reflog --date=iso    # the entries for 16/09, 22/09–23/09 and 29/09
 ```
 
-`load-tests/` and `chaos/` are identical in the two commits, so both systems ran the same load and chaos scripts. The commits differ only in `k8s/`, which deploys B: Redis and RabbitMQ aligned with A after the OOM of 19/09 (`c19c00a`), the early-warning deployment, and `k8s/bootstrap/mysql-exporter-user.sh` (`c6732b0`). The reflog does not record uncommitted changes in the working tree. To get the tooling as it ran, check out `3ea91e6` (A) or `c6732b0` (B).
+`load-tests/` and `chaos/` are identical in the two commits, so both systems ran the same load and chaos scripts. The commits differ only in `k8s/`, which deploys B: Redis and RabbitMQ aligned with A after the OOM of 19/09 (`c19c00a`), the early-warning deployment, and `k8s/bootstrap/mysql-exporter-user.sh` (`c6732b0`). The reflog does not record uncommitted changes in the working tree. To get the tooling as it ran, run `git checkout campaign-2026-09-A` (A) or `git checkout campaign-2026-09-B` (B).
 
 ### Client machine requirements
 
@@ -633,7 +633,7 @@ python3 test_generar_resultados.py
 - [x] **Client CPU.** Sampler identified (`load-tests/lib/client-cpu.sh`), and `client_cpu.py` reproduces `data/output/client-cpu-*.csv` from the archived ladder (section 3).
 - [x] **Figures 2–5 and Tables 7–9.** `generar_resultados.py` and all its inputs are in this repo. It reproduces `data/output/` (CSVs byte for byte, PNGs pixel for pixel), and `test_generar_resultados.py` checks it against the published values (section 7).
 - [x] **Queries behind `data.zip`.** Identified and verified against the archived data on 20/10/2026, and again against the TSDB backups on 25/10/2026 (section 4).
-- [x] **Version of `go-tesis-infra`.** `3ea91e6` for A, `c6732b0` for B, from the client machine's reflog (section 3).
+- [x] **Version of `go-tesis-infra`.** Tags `campaign-2026-09-A` (`3ea91e6`) and `campaign-2026-09-B` (`c6732b0`), from the client machine's reflog (section 3).
 - [x] **Continuous check.** `.github/workflows/reproduce.yml` runs every check in the README on each push and pull request.
 - [x] **Table 10.** All three rows verified value by value. The raw samples are in `tabla10/` (section 3).
 - [x] **Chaos event evidence.** Exported from B's Prometheus on 23/10/2026 and checked offline by `chaos_evidence_b.py` (section 3).
