@@ -14,7 +14,7 @@ The systems' code lives in their own repos (A without a prefix, B with the
 | document | what it covers |
 |---|---|
 | [`docs/setup-guide.md`](docs/setup-guide.md) | Deploying System A and System B from scratch, as surveyed on the live servers: versions, ports, systemd units, MySQL/Redis/RabbitMQ/Consul setup, nginx + consul-template, k3s, image digests and A ↔ B version parity. |
-| [`docs/metrics-methodology.md`](docs/metrics-methodology.md) | How the metrics were obtained in the September 2026 campaign: environments, load tests and chaos, the `data.zip` export and its queries, the 1 frame/s level, windows and aggregation, how to run `generar_resultados.py`, and how to check B's chaos events with `chaos_evidence_b.py`. |
+| [`docs/metrics-methodology.md`](docs/metrics-methodology.md) | How the metrics were obtained in the September 2026 campaign: environments, load tests and chaos, the `data.zip` export and its queries, the 1 frame/s level, windows and aggregation, how to run `generar_resultados.py`, how to check B's chaos events with `chaos_evidence_b.py`, the `go-tesis-infra` commits that ran the campaign, and how to restore the Prometheus backups. |
 
 ## Contents
 
@@ -30,12 +30,12 @@ The systems' code lives in their own repos (A without a prefix, B with the
 | [`reconstruccion-A/`](reconstruccion-A/), [`reconstruccion-B/`](reconstruccion-B/) | Output of `reconstruir_data_zip.py`: the reconstructed CSVs and, per CSV, a `.consultas.md` with the query chosen for each column and its match. The reconstructed CSVs come from new queries and are not byte-identical to the `data.zip` originals: they are not script inputs. |
 | [`tabla10/`](tabla10/) | Raw Prometheus samples from B, with `SHA256SUMS`, that verify the three rows of Table 10 (broker kill, pause, delay towards data-analysis). See [methodology, *Table 10 verification*](docs/metrics-methodology.md#table-10-verification). |
 | [`config/system-a/nginx/`](config/system-a/nginx/) | System A's nginx and consul-template configuration, copied from the server. Used by [setup guide §3.7](docs/setup-guide.md#37-nginx--consul-template-http-gateway-80-and-tcp-5100). |
-| [`data/`](data/) | Raw inputs: the Artillery reports of both systems with their chaos snapshots (`A - SPETIEMBRE 5 RUNS/`, `B - SEPTIEMBRE 5 RUNS V2/`), the two ladder CSVs and B's two 12 h CSVs from `data.zip`, the 1 frame/s extractions (`nivel1/`), the frozen chaos-event export (`evidencia-b-0923/`) and the data-receiving logs. The methodology says where each one comes from and gives their SHA-256. `data/output/` holds the figures and tables written by `generar_resultados.py`. |
+| [`data/`](data/) | Raw inputs: the Artillery reports of both systems with their chaos snapshots (`A - SPETIEMBRE 5 RUNS/`, `B - SEPTIEMBRE 5 RUNS V2/`), `data.zip` (`data/data.zip`), the two ladder CSVs and B's two 12 h CSVs extracted from it, the 1 frame/s extractions (`nivel1/`), the frozen chaos-event export (`evidencia-b-0923/`) and the data-receiving logs. The methodology says where each one comes from and gives their SHA-256. `data/output/` holds the figures and tables written by `generar_resultados.py`. |
 
-Not in this repo: the rest of `data.zip` (A's 12 h CSVs, `resources-summary.json`
-and `RESUMEN.md`, which no script reads) and the Prometheus TSDB backup. Both are
-in the team's shared Google Drive folder. The methodology gives the SHA-256 of
-`data.zip`, its CSVs, the `nivel1/` files and the TSDB backup.
+Not in this repo: the Prometheus TSDB backups of A and B (14/10/2026, 858 MB; B also
+20/10/2026), because of their size. The methodology gives their SHA-256, and
+[§9](docs/metrics-methodology.md#9-restoring-the-prometheus-backups) explains how to restore them
+and repeat every Prometheus extraction from them.
 
 ## Quick check
 
@@ -61,7 +61,7 @@ Expected: 42 `OK` lines, then 21 more for `tabla10/`, `42 JSON checked, 42 USABL
 
 ## Full regeneration
 
-Figures 2–5 and Tables 7–9 need NumPy, SciPy and Matplotlib. The pinned versions in `requirements.txt` reproduce `data/output/` byte for byte, PNGs included (Python 3.13.15):
+Figures 2–5 and Tables 7–9 need NumPy, SciPy and Matplotlib. With Python 3.13.15 and the pinned versions in `requirements.txt`, a run reproduces `data/output/`. On Windows it is byte for byte. On Linux, the CSVs are byte for byte and the PNGs are pixel for pixel, because the PNG compression differs (methodology §7):
 
 ```bash
 python3 -m venv venv && . venv/bin/activate      # Windows: venv\Scripts\activate
@@ -71,4 +71,4 @@ python3 generar_resultados.py   --escalera-a "data/A - SPETIEMBRE 5 RUNS" --esca
 git diff --exit-code data/output
 ```
 
-Expected: `OK` from the test, then no diff in `data/output`. See [methodology §6–7](docs/metrics-methodology.md#6-windows-and-aggregation).
+Expected: `OK` from the test, then no diff in `data/output` (on Linux, only the PNG files show as changed). The [`reproduce`](.github/workflows/reproduce.yml) workflow runs this and the quick check on every push and pull request. See [methodology §6–7](docs/metrics-methodology.md#6-windows-and-aggregation).

@@ -1,0 +1,67 @@
+name: reproduce
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13.15"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - name: Input hashes
+        run: |
+          sha256sum -c --quiet SHA256SUMS.artillery
+          (cd tabla10 && sha256sum -c --quiet SHA256SUMS)
+          echo "f3a6c99304e81d976a81977034b3db319108c59d08e1ced3e2263d278b903fbd  data/data.zip" | sha256sum -c --quiet
+
+      - name: Artillery inventory
+        run: python recuperar_artillery.py --out "$RUNNER_TEMP/inventory"
+
+      - name: Chaos event evidence
+        run: |
+          python chaos_evidence_b.py verify \
+            --evidence data/evidencia-b-0923 \
+            --artillery "data/B - SEPTIEMBRE 5 RUNS V2/sustained-12h.json" \
+            --logs data/data-receiving-logs-2026-09-23 \
+            --series data/B-12h-0923-timeseries.csv \
+            --saturation data/B-12h-0923-saturation.csv \
+            --snapshots "data/B - SEPTIEMBRE 5 RUNS V2/chaos"
+
+      - name: Published values
+        run: python test_generar_resultados.py
+
+      - name: Regenerate data/output
+        run: |
+          python client_cpu.py --sistema A "data/A - SPETIEMBRE 5 RUNS" \
+            --sistema B "data/B - SEPTIEMBRE 5 RUNS V2" --out data/output
+          python generar_resultados.py \
+            --escalera-a "data/A - SPETIEMBRE 5 RUNS" --escalera-b "data/B - SEPTIEMBRE 5 RUNS V2" \
+            --prom-a data/A-ladder-0917-timeseries.csv --prom-b data/B-ladder-0923-timeseries.csv \
+            --nivel1-dir data/nivel1 \
+            --sat-b data/B-12h-0923-saturation.csv --serie-b data/B-12h-0923-timeseries.csv \
+            --salida data/output
+
+      # PNG compression differs between platforms, so the figures are compared pixel by pixel.
+      - name: Compare with the committed data/output
+        run: |
+          git diff --exit-code -- data/output ':(exclude)*.png'
+          python - <<'EOF'
+          import glob, io, subprocess
+          import numpy as np
+          from PIL import Image
+          for f in sorted(glob.glob("data/output/*.png")):
+              old = subprocess.run(["git", "show", f"HEAD:{f}"], capture_output=True, check=True).stdout
+              a = np.asarray(Image.open(io.BytesIO(old)).convert("RGB"))
+              b = np.asarray(Image.open(f).convert("RGB"))
+              assert a.shape == b.shape and (a == b).all(), f"{f}: pixels differ"
+              print(f"{f}: identical pixels")
+          EOF

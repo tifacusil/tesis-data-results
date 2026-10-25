@@ -41,11 +41,26 @@ Services: `data-receiving`, `data-management`, `early-warning`, `data-analysis`,
 - `A-ladder-0917-timeseries.csv`, `B-ladder-0923-timeseries.csv` and `B-12h-0923-{saturation,timeseries}.csv`, copied unchanged from `data.zip` (SHA-256 in section 4)
 - `nivel1/`, with the four 1 frame/s extractions (SHA-256 in section 5)
 
-It also holds the inputs of `chaos_evidence_b.py` (section 3). A's two 12 h CSVs, `resources-summary.json` and `RESUMEN.md` stay only in `data.zip`, because no script reads them.
+It also holds the inputs of `chaos_evidence_b.py` (section 3), and `data.zip` itself as [`data/data.zip`](../data/data.zip) (SHA-256 in section 4). A's two 12 h CSVs, `resources-summary.json` and `RESUMEN.md` are only inside the zip, because no script reads them.
 
 ## 3. Load tests (Artillery) and chaos
 
 The scripts live in `load-tests/`. Ingestion is over TCP with binary DTU frames, not HTTP. That is why the scenarios use the custom engine `artillery-engine-dtu-tcp`, which hands frame building and sending to `dtu-emulator` (Python).
+
+### Version of `go-tesis-infra`
+
+The repo has no tag for the campaign. The git reflog on the client machine records which commit was checked out during each system's runs:
+
+| Runs | Commit | Checked out |
+|---|---|---|
+| A: ladder (17/09) and 12 h (18/09) | `3ea91e6` (`main`) | From 16/09 22:51 −05:00 (`git pull`) until 22/09 |
+| B: ladder (23/09) and 12 h (23–24/09) | `c6732b0` (branch `fix/redis-rabbitmq-paridad-a`). Same tree as `4b44acd`, the merge of PR #6 into `main` | From 23/09 00:05 −05:00 (05:05 UTC, 18 min before B's first run) until 29/09 |
+
+```bash
+git -C go-tesis-infra reflog --date=iso    # the entries for 16/09, 22/09–23/09 and 29/09
+```
+
+`load-tests/` and `chaos/` are identical in the two commits, so both systems ran the same load and chaos scripts. The commits differ only in `k8s/`, which deploys B: Redis and RabbitMQ aligned with A after the OOM of 19/09 (`c19c00a`), the early-warning deployment, and `k8s/bootstrap/mysql-exporter-user.sh` (`c6732b0`). The reflog does not record uncommitted changes in the working tree. To get the tooling as it ran, check out `3ea91e6` (A) or `c6732b0` (B).
 
 ### Client machine requirements
 
@@ -276,6 +291,8 @@ done
 sha256sum *.json > SHA256SUMS
 ```
 
+On 25/10/2026, this loop was run again against the restored 14/10 backup (section 9), with `P=http://localhost:9091` and in an empty folder. All 21 files pass this `SHA256SUMS`.
+
 The extremes inside each window, for example for row 3 (22:12–22:52):
 
 ```bash
@@ -305,7 +322,7 @@ jq "[.data.result[0].values[]|$W|.[1]|tonumber]|min" B-fila3-recepcion.json
 | `export` | Network access to B's Prometheus, within its 30-day retention | Downloads the series for each event window (10 min margin on each side, 15 s step) and for the whole 12 h run (5 min step), writes one CSV per query and a `manifiesto.json` with the query, window, step and SHA-256 of each file. Aborts if a query comes back empty instead of writing an empty CSV. |
 | `verify` | Only the frozen files below; no server access | Checks every CSV against the SHA-256 in the manifest, recomputes each claim and prints `[OK]` or `[FAIL]` with the numbers behind it. Exits with code 1 if any check fails. |
 
-`export` was run once, on 23/10/2026 at 02:46 UTC, the day B's Prometheus started dropping the September data. **It cannot be run again**: from then on, `verify` over the frozen export is the reproducible step. The script uses only the Python standard library, version 3.11 or later.
+`export` was run on 23/10/2026 at 02:46 UTC, the day B's Prometheus started dropping the September data. The live server can no longer answer it, but the 14/10 TSDB backup can (section 9). On 25/10/2026, `export` against the restored backup wrote the same 17 CSVs, byte for byte, and the same file entries in `manifiesto.json`. Only the `prometheus` and `exportado` fields differ. `verify` over the frozen export remains the quick check, with no server. The script uses only the Python standard library, version 3.11 or later.
 
 The frozen export keeps the Spanish names it was written with (`manifiesto.json`, its keys `archivos`/`archivo`/`consulta`, and the file names below). Renaming them would change the files whose SHA-256 is recorded here, so the script reads them as they are.
 
@@ -351,7 +368,7 @@ python3 chaos_evidence_b.py verify \
   --snapshots "data/B - SEPTIEMBRE 5 RUNS V2/chaos"
 ```
 
-The export, for the record (it now returns no data):
+The export. Against the live server it now returns no data; against the restored backup, use `--prom http://localhost:9091` (section 9):
 
 ```bash
 python3 chaos_evidence_b.py export --prom http://localhost:31083 --out evidencia-b-0923
@@ -466,14 +483,20 @@ sha256sum *.csv resources-summary.json RESUMEN.md
 
 ### Query verification
 
-On 20/10/2026, `reconstruir_data_zip.py` confirmed that the queries in the table above generate the same data as the archived CSVs. The script takes each column, tries several candidate queries at the same timestamps as the CSV, and accepts one only if it matches at least 99 % of the rows, within the rounding used when the file was written. All **70 columns** match on **100 % of the rows**: 42 for B and 28 for A. To repeat it, from the folder holding the CSVs:
+On 20/10/2026, `reconstruir_data_zip.py` confirmed that the queries in the table above generate the same data as the archived CSVs. The script takes each column, tries several candidate queries at the same timestamps as the CSV, and accepts one only if it matches at least 99 % of the rows, within the rounding used when the file was written. All **70 columns** match on **100 % of the rows**: 42 for B and 28 for A.
+
+B's live Prometheus no longer holds September. On 25/10/2026 the check was repeated against the restored 14/10 backups of both systems (section 9). Again 70/70 columns matched, and the reconstructed CSVs are byte-identical to the ones in `reconstruccion-A/` and `reconstruccion-B/`. The `.consultas.md` reports differ only in the Prometheus URL line. To repeat it, with both backups restored, from the root of this repo:
 
 ```bash
-python reconstruir_data_zip.py --prom http://178.105.104.95:31083 --sistema B \
-  --csv B-ladder-0923-timeseries.csv B-12h-0923-timeseries.csv B-12h-0923-saturation.csv --salida reconstruccion-B
-python reconstruir_data_zip.py --prom http://204.168.203.32:9090 --sistema A \
-  --csv A-ladder-0917-timeseries.csv A-12h-0918-timeseries.csv A-12h-0918-saturation.csv --salida reconstruccion-A
+mkdir -p dz && unzip -o data/data.zip -d dz
+python reconstruir_data_zip.py --prom http://localhost:9091 --sistema B \
+  --csv dz/B-ladder-0923-timeseries.csv dz/B-12h-0923-timeseries.csv dz/B-12h-0923-saturation.csv --salida reconstruccion-B
+python reconstruir_data_zip.py --prom http://localhost:9092 --sistema A \
+  --csv dz/A-ladder-0917-timeseries.csv dz/A-12h-0918-timeseries.csv dz/A-12h-0918-saturation.csv --salida reconstruccion-A
+git diff --stat reconstruccion-A reconstruccion-B    # only the URL line of each .consultas.md
 ```
+
+The original run used `--prom http://178.105.104.95:31083` (B) and `http://204.168.203.32:9090` (A).
 
 Each `reconstruccion-*/<csv>.consultas.md` records the chosen query, the match and any tied queries. This shows that the queries reproduce the data, not that the team member typed exactly these strings. For reproducibility, that is what matters.
 
@@ -533,7 +556,7 @@ scp concurso@204.168.203.32:~/A_nivel1_*.json nivel1/
 scp gotesis@178.105.104.95:~/B_nivel1_*.json nivel1/
 ```
 
-The four files used in the article are archived in [`data/nivel1/`](../data/nivel1/). Each one has 54 samples, and each one starts at its system's `start`. B's Prometheus no longer holds this window (section 8), so for B these copies and the TSDB backup are the only sources.
+The four files used in the article are archived in [`data/nivel1/`](../data/nivel1/). Each one has 54 samples, and each one starts at its system's `start`. B's Prometheus no longer holds this window (section 8), so for B these copies and the TSDB backups (section 9) are the only sources.
 
 | File | SHA-256 |
 |---|---|
@@ -541,6 +564,8 @@ The four files used in the article are archived in [`data/nivel1/`](../data/nive
 | `A_nivel1_mem.json` | `4a629a272a6b68af1b2e3769cb6aec823c94b7059a8598c67efc5185436eefb1` |
 | `B_nivel1_cpu.json` | `b11b20b5bb187360e824c9b8dbad56277c06db301b17154f84bed305875db046` |
 | `B_nivel1_mem.json` | `d06842f3c080aaa2479debaa8739952f16792457d6f368abe600e3df7594862c` |
+
+On 25/10/2026, the four `curl` queries above, run against the restored 14/10 backups (section 9, ports 9092 for A and 9091 for B), returned files byte-identical to these.
 
 ## 6. Windows and aggregation
 
@@ -578,7 +603,7 @@ python3 -m venv venv && . venv/bin/activate      # Windows: venv\Scripts\activat
 pip install -r requirements.txt
 ```
 
-The committed `data/output/` was written with Python 3.13.15 and those versions. With them, a new run reproduces every file byte for byte, PNGs included, and `git diff` prints nothing. With other Matplotlib versions, the PNGs may differ in their bytes while the CSVs stay the same.
+The committed `data/output/` was written on Windows with Python 3.13.15 and those versions. There, a new run reproduces every file byte for byte, and `git diff` prints nothing. On Linux (`python:3.13.15-slim`), the CSVs are byte-identical and the PNGs are pixel-identical, but the PNG bytes differ, because the PNG compression differs between platforms. The CI workflow (`.github/workflows/reproduce.yml`) therefore compares the CSVs byte for byte and the PNGs pixel by pixel.
 
 In Windows `cmd`, replace `\` with `^`. In PowerShell, use the backtick.
 
@@ -606,12 +631,62 @@ python3 test_generar_resultados.py
 
 - [x] **Artillery reports.** All 42 inventoried and hashed in `SHA256SUMS.artillery` by `recuperar_artillery.py` (section 3).
 - [x] **Client CPU.** Sampler identified (`load-tests/lib/client-cpu.sh`), and `client_cpu.py` reproduces `data/output/client-cpu-*.csv` from the archived ladder (section 3).
-- [x] **Figures 2–5 and Tables 7–9.** `generar_resultados.py` and all its inputs are in this repo. It reproduces `data/output/` byte for byte, and `test_generar_resultados.py` checks it against the published values (section 7).
-- [x] **Queries behind `data.zip`.** Identified and verified against the archived data (section 4).
+- [x] **Figures 2–5 and Tables 7–9.** `generar_resultados.py` and all its inputs are in this repo. It reproduces `data/output/` (CSVs byte for byte, PNGs pixel for pixel), and `test_generar_resultados.py` checks it against the published values (section 7).
+- [x] **Queries behind `data.zip`.** Identified and verified against the archived data on 20/10/2026, and again against the TSDB backups on 25/10/2026 (section 4).
+- [x] **Version of `go-tesis-infra`.** `3ea91e6` for A, `c6732b0` for B, from the client machine's reflog (section 3).
+- [x] **Continuous check.** `.github/workflows/reproduce.yml` runs every check in the README on each push and pull request.
 - [x] **Table 10.** All three rows verified value by value. The raw samples are in `tabla10/` (section 3).
 - [x] **Chaos event evidence.** Exported from B's Prometheus on 23/10/2026 and checked offline by `chaos_evidence_b.py` (section 3).
 - [x] **Raw TSDB backup of B.** `prometheus-B-20261020.tar.gz` was created on 20/10/2026 on `go-tesis` with:
   ```bash
   sudo kubectl -n landslide exec prometheus-6489f5b487-8wx8n -- tar czf - -C /prometheus . > prometheus-B-20261020.tar.gz
   ```
-  It is stored in the team's shared Google Drive folder. SHA-256: `898a017a30e597dcb368e1e326c1b6ed113e433254844c82081c26131848dbdb`. It was kept because B's Prometheus keeps 30 days and has no persistent volume: from 23/10, the raw September data survives only in this backup. A keeps 1 year.
+  It is stored in the team's shared Google Drive folder. SHA-256: `898a017a30e597dcb368e1e326c1b6ed113e433254844c82081c26131848dbdb`. It was kept because B's Prometheus keeps 30 days and has no persistent volume: from 23/10, the raw September data survives only in this backup and in the 14/10 one below. A keeps 1 year.
+- [x] **TSDB backups of A and B, 14/10/2026.** Restored and checked on 25/10/2026 (section 9).
+
+## 9. Restoring the Prometheus backups
+
+B's Prometheus keeps 30 days, so from 23/10/2026 the live server no longer holds the September campaign. Every extraction in this document can still be repeated against a restored backup. This procedure was tested on the 14/10 backups.
+
+| File | SHA-256 | Covers (UTC) |
+|---|---|---|
+| `respaldo-prometheus-20261014.zip` (858 MB: the two archives below, their `SHA256SUMS.txt`, and the Table 10 exports of 13/10, superseded by `tabla10/`) | `a0ad114283c75ffe39a58ffa5a999065e632cdd8fc2ee21cbedde8b88afa2611` | |
+| `A-prometheus-tsdb-20261014.tar.gz` (unpacks to `prom-respaldo-20261014/`) | `157e6cf3636a804b59f06fb0443aaa4ba03538e405825aaa6da534ce8c808d66` | 13/09 00:00 – 14/10 00:00, 18 blocks |
+| `B-prometheus-tsdb-20261014.tar.gz` (unpacks to `prometheus/`) | `7425191c484406224e51d576e87df158cd4dca7b6dd535229b683012bc561877` | 15/09 16:47 – 14/10 00:00, 17 blocks |
+
+They are not in this repo, because of their size. `prometheus-B-20261020.tar.gz` (section 8) is a later backup of B. It should restore the same way, but it was not tested.
+
+Start one Prometheus per system, with Docker and the same version as the servers (`prom/prometheus:v3.5.4`, digest `sha256:a75c5a35bc21d7afe69551eefa3cb1e1fb1775fe759408007a66b54ec3de1f29`):
+
+```bash
+sha256sum -c SHA256SUMS.txt
+mkdir -p tsdb-A tsdb-B
+tar xzf A-prometheus-tsdb-20261014.tar.gz -C tsdb-A
+tar xzf B-prometheus-tsdb-20261014.tar.gz -C tsdb-B
+printf 'global:\n  scrape_interval: 15s\n' > empty.yml       # no scrape jobs: nothing new is written
+
+for spec in "b 9091 tsdb-B/prometheus" "a 9092 tsdb-A/prom-respaldo-20261014"; do
+  set -- $spec
+  docker run -d --name prom-$1 -p $2:9090 \
+    -v "$PWD/$3:/prometheus" -v "$PWD/empty.yml:/etc/prometheus/prometheus.yml:ro" \
+    prom/prometheus:v3.5.4 --config.file=/etc/prometheus/prometheus.yml \
+    --storage.tsdb.path=/prometheus --storage.tsdb.retention.time=100y
+done
+curl -s localhost:9091/-/ready; curl -s localhost:9092/-/ready
+```
+
+- **`--storage.tsdb.retention.time=100y` is required.** With the default retention of 15 days, Prometheus deletes the September blocks as soon as it starts.
+- **Work on an unpacked copy, never on the archive.** Prometheus compacts and rewrites the blocks it opens. Unpack again from the `.tar.gz` for each new restore.
+- In Git Bash on Windows, prefix `docker run` with `MSYS_NO_PATHCONV=1`, and pass the volume paths in Windows form.
+- Startup takes a few minutes, while Prometheus replays the WAL. `docker logs prom-b` lists one `Found healthy block` line per block.
+
+Then point each extraction at `http://localhost:9091` (B) or `http://localhost:9092` (A) instead of the server. Results on 25/10/2026:
+
+| Extraction | Section | Result against the backups |
+|---|---|---|
+| 1 frame/s level (`nivel1/`, 4 `curl` queries) | 5 | 4/4 files byte-identical |
+| `data.zip` queries (`reconstruir_data_zip.py`) | 4 | 70/70 columns, reconstructed CSVs byte-identical |
+| Chaos event export (`chaos_evidence_b.py export`) | 3 | 17/17 CSVs byte-identical |
+| Table 10 raw samples | 3 | 21/21 files pass `tabla10/SHA256SUMS` |
+
+Stop and remove the containers afterwards with `docker rm -f prom-a prom-b`.
