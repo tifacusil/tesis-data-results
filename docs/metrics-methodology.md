@@ -654,7 +654,7 @@ B's Prometheus keeps 30 days, so from 23/10/2026 the live server no longer holds
 | `A-prometheus-tsdb-20261014.tar.gz` (unpacks to `prom-respaldo-20261014/`) | `157e6cf3636a804b59f06fb0443aaa4ba03538e405825aaa6da534ce8c808d66` | 13/09 00:00 – 14/10 00:00, 18 blocks |
 | `B-prometheus-tsdb-20261014.tar.gz` (unpacks to `prometheus/`) | `7425191c484406224e51d576e87df158cd4dca7b6dd535229b683012bc561877` | 15/09 16:47 – 14/10 00:00, 17 blocks |
 
-They are not in this repo, because of their size. `prometheus-B-20261020.tar.gz` (section 8) is a later backup of B. It should restore the same way, but it was not tested.
+They are stored in the team's shared Google Drive folder, not in this repo, because of their size. `prometheus-B-20261020.tar.gz` (section 8) is a later backup of B. It should restore the same way, but it was not tested.
 
 Start one Prometheus per system, with Docker and the same version as the servers (`prom/prometheus:v3.5.4`, digest `sha256:a75c5a35bc21d7afe69551eefa3cb1e1fb1775fe759408007a66b54ec3de1f29`):
 

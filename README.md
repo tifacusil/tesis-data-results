@@ -33,7 +33,7 @@ The systems' code lives in their own repos (A without a prefix, B with the
 | [`data/`](data/) | Raw inputs: the Artillery reports of both systems with their chaos snapshots (`A - SPETIEMBRE 5 RUNS/`, `B - SEPTIEMBRE 5 RUNS V2/`), `data.zip` (`data/data.zip`), the two ladder CSVs and B's two 12 h CSVs extracted from it, the 1 frame/s extractions (`nivel1/`), the frozen chaos-event export (`evidencia-b-0923/`) and the data-receiving logs. The methodology says where each one comes from and gives their SHA-256. `data/output/` holds the figures and tables written by `generar_resultados.py`. |
 
 Not in this repo: the Prometheus TSDB backups of A and B (14/10/2026, 858 MB; B also
-20/10/2026), because of their size. The methodology gives their SHA-256, and
+20/10/2026), because of their size. They are in the team's shared Google Drive folder. The methodology gives their SHA-256, and
 [§9](docs/metrics-methodology.md#9-restoring-the-prometheus-backups) explains how to restore them
 and repeat every Prometheus extraction from them.
 
