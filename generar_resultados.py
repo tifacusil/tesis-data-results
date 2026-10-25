@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-generar_resultados.py — regenera las Figuras 2 a 5 y las cifras de las Tablas 7, 8 y 9
+generar_resultados.py: regenera las Figuras 2 a 5 y las cifras de las Tablas 7, 8 y 9
 de la campaña definitiva (septiembre de 2026) a partir de los datos crudos.
 
 Entradas (rutas configurables por argumento):
@@ -15,11 +15,16 @@ Entradas (rutas configurables por argumento):
 
 Método (declarado en 3.3 y 5.3 del manuscrito):
   - Ventana efectiva de cada corrida: periodos de 10 s 18 a 59 (descarta 3 min de calentamiento).
-  - Valor de corrida: mediana de las 42 mediciones de su ventana efectiva.
+  - Latencia por corrida (--estimando agregado, por defecto): p50/p95/p99 de aggregate.summaries,
+    el histograma de toda la corrida. El generador no expone percentiles sobre un subconjunto de
+    ventanas, así que la latencia no descarta el calentamiento.
+    Con --estimando ventanas: mediana de los percentiles de la ventana efectiva (Tabla 7 de la V3).
+  - Procesador, memoria y rendimiento: mediana sobre la ventana efectiva, con cualquier estimando.
   - Valor por nivel: mediana de las cinco corridas.
   - Contraste: Mann-Whitney exacto por permutación sobre las corridas (5 vs 5),
     Bonferroni sobre cuatro niveles; delta de Cliff sobre corridas;
-    IC 95 % de la diferencia de medianas por remuestreo jerárquico (corridas, luego mediciones).
+    IC 95 % de la diferencia de medianas por remuestreo de las corridas (agregado, 20 000 réplicas)
+    o jerárquico, corridas y luego mediciones (ventanas, como en la V3).
 
 Uso:
   python3 generar_resultados.py --escalera-a "A - SPETIEMBRE 5 RUNS" --escalera-b "B - SEPTIEMBRE 5 RUNS V2" \
@@ -30,12 +35,18 @@ import argparse, csv, glob, itertools, json, os, re, statistics as st
 from datetime import datetime, timezone
 
 import numpy as np
+from scipy.stats import spearmanr
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 NIVELES = [1, 10, 50, 100]
 CALENTAMIENTO, N_EFECTIVAS = 18, 42
+M = "dtu_tcp.round_trip_ms"
+CONTEO_AGREGADO = {1: 600, 10: 6000, 50: 30000, 100: 60000}
+VENTANA_EFECTIVA = {1: (420, 420), 10: (4193, 4200), 50: (20998, 21001), 100: (41990, 42001)}
+ESTIMANDO = "agregado"  # lo fija --estimando
+YLIM_FIG2 = (180, 270)
 SERVICIOS = ["data-receiving", "data-management", "early-warning",
              "data-analysis", "project-management", "user-management"]
 COLOR = {"A": "#3B5B8A", "B": "#E8694A"}
@@ -51,11 +62,24 @@ def cargar_escalera(carpeta):
         if not m:
             continue
         d = json.load(open(f, encoding="utf-8"))
-        periodos = sorted(d["intermediate"], key=lambda p: int(p["period"]))
+        todos = sorted(d["intermediate"], key=lambda p: int(p["period"]))
+        # Las ventanas sin mediciones se descartan antes de contar el calentamiento, o el recorte se desplaza
+        periodos = [p for p in todos if p["summaries"].get(M, {}).get("count", 0) > 0]
         ef = periodos[CALENTAMIENTO:CALENTAMIENTO + N_EFECTIVAS]
-        rtt = lambda k: [p["summaries"]["dtu_tcp.round_trip_ms"][k] for p in ef]
-        corridas[(int(m[1]), int(m[2]))] = {
+        rtt = lambda k: [p["summaries"][M][k] for p in ef]
+        agg = d["aggregate"]["summaries"][M]
+        n_ef = sum(p["summaries"][M]["count"] for p in ef)
+        nivel = int(m[1])
+        # El agregado es un percentil sobre todas las observaciones de la corrida (5.2 del brief)
+        assert agg["count"] == sum(p["summaries"].get(M, {}).get("count", 0) for p in periodos) \
+            == d["aggregate"]["counters"]["dtu_tcp.frames_acked"], f
+        assert agg["count"] == CONTEO_AGREGADO[nivel] and VENTANA_EFECTIVA[nivel][0] <= n_ef <= VENTANA_EFECTIVA[nivel][1], f
+        corridas[(nivel, int(m[2]))] = {
             "p50": rtt("p50"), "p95": rtt("p95"), "p99": rtt("p99"),
+            "agregado": {k: agg[k] for k in ("p50", "p95", "p99")}, "n_agregado": agg["count"], "n_efectivo": n_ef,
+            "inicio": int(todos[0]["period"]) // 1000,
+            # p95 de cada ventana (None si la ventana no tiene mediciones), para la contribución del calentamiento
+            "p95_ventanas": [p["summaries"].get(M, {}).get("p95") for p in periodos[:CALENTAMIENTO + N_EFECTIVAS]],
             "confirmadas": sum(p["counters"].get("dtu_tcp.frames_acked", 0) for p in ef),
             "fallos": sum(p["counters"].get("vusers.failed", 0) for p in ef),
             "n": len(ef),
@@ -64,8 +88,13 @@ def cargar_escalera(carpeta):
     return corridas
 
 
+def valor_corrida(c, k):
+    # "agregado": percentil del histograma de toda la corrida; "ventanas": mediana de los percentiles de la ventana efectiva
+    return c["agregado"][k] if ESTIMANDO == "agregado" else st.median(c[k])
+
+
 def valores_corrida(E, nivel, k):
-    return [st.median(E[(nivel, r)][k]) for r in sorted(r for (l, r) in E if l == nivel)]
+    return [valor_corrida(E[(nivel, r)], k) for r in sorted(r for (l, r) in E if l == nivel)]
 
 
 def p_permutacion(a, b):
@@ -98,6 +127,27 @@ def ic_jerarquico(EA, EB, nivel, k, B=10000, semilla=7):
             med[s] = np.median([np.median(rng.choice(arr[s][j], size=len(arr[s][j]))) for j in idx])
         dif[i] = med["B"] - med["A"]
     return np.percentile(dif, [2.5, 97.5])
+
+
+def ic_corridas(a, b, B=20000, semilla=7):
+    # Con el estimando agregado no hay segundo nivel: se remuestrean solo las corridas
+    rng = np.random.default_rng(semilla)
+    a, b = np.array(a), np.array(b)
+    dif = (np.median(rng.choice(b, (B, len(b))), axis=1) - np.median(rng.choice(a, (B, len(a))), axis=1))
+    return np.percentile(dif, [2.5, 97.5])
+
+
+def ic(EA, EB, nivel, k):
+    if ESTIMANDO == "agregado":
+        return ic_corridas(valores_corrida(EA, nivel, k), valores_corrida(EB, nivel, k))
+    return ic_jerarquico(EA, EB, nivel, k)
+
+
+def contraste(EA, EB, l, k):
+    ra, rb = valores_corrida(EA, l, k), valores_corrida(EB, l, k)
+    lo, hi = ic(EA, EB, l, k); p = p_permutacion(ra, rb)
+    return [round(st.median(rb) - st.median(ra), 1), round(lo, 1), round(hi, 1),
+            round(delta_cliff(rb, ra), 2), round(p, 4), p < 0.0125]
 
 
 # ---------------------------------------------------------------- recursos (Prometheus)
@@ -147,31 +197,35 @@ def figura2(EA, EB, salida):
 def _figura2(EA, EB, salida):
     fig, axs = plt.subplots(1, 3, figsize=(15, 4.6))
     x = np.arange(len(NIVELES))
-    for ax, k, titulo in zip(axs, ["p50", "p95", "p99"], ["Percentil 50", "Percentil 95", "Percentil 99"]):
+    graficados = [v for E in (EA, EB) for k in ("p50", "p95", "p99") for l in NIVELES for v in valores_corrida(E, l, k)]
+    assert YLIM_FIG2[0] <= min(graficados) and max(graficados) <= YLIM_FIG2[1], (min(graficados), max(graficados))
+    for ax, k, titulo in zip(axs, ["p50", "p95", "p99"], ["50th percentile", "95th percentile", "99th percentile"]):
         for s, E, off in (("A", EA, -0.08), ("B", EB, 0.08)):
             ax.plot(x, [st.median(valores_corrida(E, l, k)) for l in NIVELES], "-o",
-                    color=COLOR[s], lw=2.6, ms=8, label="Sistema " + s, zorder=3)
+                    color=COLOR[s], lw=2.6, ms=8, label="System " + s, zorder=3)
             for i, l in enumerate(NIVELES):
                 puntos_por_corrida(ax, x[i], valores_corrida(E, l, k), off, COLOR[s])
         ax.set_title(titulo); ax.set_xticks(x); ax.set_xticklabels(NIVELES)
-        ax.set_xlabel("tramas por segundo"); ax.set_ylim(180, 225)
+        ax.set_xlabel("frames per second"); ax.set_ylim(*YLIM_FIG2)
         ax.grid(axis="y", color="#e3e3e3"); ax.set_axisbelow(True)
-    axs[0].set_ylabel("Latencia (ms)"); axs[0].legend(frameon=False, loc="upper left")
+    axs[0].set_ylabel("Latency (ms)"); axs[0].legend(frameon=False, loc="upper left")
     fig.tight_layout(); fig.savefig(os.path.join(salida, "figura2_latencia.png"), dpi=300); plt.close(fig)
+    # Debe reemplazar word/media/image2.png sin alterar la maquetación (6,27 × 1,92 in)
+    assert plt.imread(os.path.join(salida, "figura2_latencia.png")).shape[:2] == (1380, 4500)
 
 
 def figura3(rec, salida):
     fig, axs = plt.subplots(1, 2, figsize=(13, 4.6))
     x = np.arange(len(NIVELES))
-    for ax, col, titulo, eje in ((axs[0], "node_cpu_pct", "Procesador del nodo", "Utilización (%)"),
-                                 (axs[1], "node_mem_used_mib", "Memoria ocupada del nodo", "MiB")):
+    for ax, col, titulo, eje in ((axs[0], "node_cpu_pct", "Node CPU", "Utilization (%)"),
+                                 (axs[1], "node_mem_used_mib", "Node memory used", "MiB")):
         for s, off in (("A", -0.08), ("B", 0.08)):
             ax.plot(x, [st.median(rec[s][l][col]) for l in NIVELES], "-o", color=COLOR[s],
-                    lw=2.6, ms=8, label="Sistema " + s, zorder=3)
+                    lw=2.6, ms=8, label="System " + s, zorder=3)
             for i, l in enumerate(NIVELES):
                 puntos_por_corrida(ax, x[i], rec[s][l][col], off, COLOR[s])
         ax.set_title(titulo); ax.set_xticks(x); ax.set_xticklabels(NIVELES)
-        ax.set_xlabel("tramas por segundo"); ax.set_ylabel(eje)
+        ax.set_xlabel("frames per second"); ax.set_ylabel(eje)
         ax.grid(axis="y", color="#e3e3e3"); ax.set_axisbelow(True)
     axs[0].set_ylim(0, 100); axs[1].set_ylim(2600, 3600); axs[0].legend(frameon=False, loc="upper left")
     fig.tight_layout(); fig.savefig(os.path.join(salida, "figura3_recursos.png"), dpi=300); plt.close(fig)
@@ -180,14 +234,16 @@ def figura3(rec, salida):
 def figura4(mem, salida):
     a = [mem["A"][s] for s in SERVICIOS]; b = [mem["B"][s] for s in SERVICIOS]
     fig, ax = plt.subplots(figsize=(12, 5)); y = np.arange(len(SERVICIOS)); h = 0.38
-    ax.barh(y - h / 2, a, h, color=COLOR["A"], label="Sistema A")
-    ax.barh(y + h / 2, b, h, color=COLOR["B"], label="Sistema B")
+    ax.barh(y - h / 2, a, h, color=COLOR["A"], label="System A")
+    ax.barh(y + h / 2, b, h, color=COLOR["B"], label="System B")
     for yi, (va, vb) in enumerate(zip(a, b)):
         ax.text(va + 4, yi - h / 2, f"{va:.0f}", va="center", fontsize=12)
         ax.text(vb + 4, yi + h / 2, f"{vb:.0f}", va="center", fontsize=12)
-    marca = {"data-management": " *", "project-management": " *", "user-management": " *", "early-warning": " †"}
+    # Notas en superíndice: a = memoria utilizada por la JVM en el Sistema A; b = una de dos instancias en el Sistema A
+    marca = {"data-management": r"$^{\mathrm{a}}$", "project-management": r"$^{\mathrm{a}}$",
+             "user-management": r"$^{\mathrm{a}}$", "early-warning": r"$^{\mathrm{b}}$"}
     ax.set_yticks(y); ax.set_yticklabels([s + marca.get(s, "") for s in SERVICIOS]); ax.invert_yaxis()
-    ax.set_xlabel("Memoria (MiB)"); ax.set_xlim(0, max(a + b) * 1.12)
+    ax.set_xlabel("Memory (MiB)"); ax.set_xlim(0, max(a + b) * 1.12)
     ax.grid(axis="x", color="#e3e3e3"); ax.set_axisbelow(True); ax.legend(frameon=False, loc="lower right")
     fig.tight_layout(); fig.savefig(os.path.join(salida, "figura4_memoria_servicio.png"), dpi=300); plt.close(fig)
 
@@ -199,19 +255,19 @@ def figura5(sat_csv, serie_csv, inicio_utc, salida):
     hr = lambda r: (datetime.fromisoformat(r["time"].replace("Z", "+00:00")).timestamp() - t0) / 3600
     fig, axs = plt.subplots(1, 2, figsize=(14, 4.8))
     ax = axs[0]
-    ax.plot([hr(r) for r in S], [float(r["q_ew_evaluate"]) for r in S], color=COLOR["B"], lw=1.8, label="cola de evaluación")
-    ax.plot([hr(r) for r in S], [float(r["q_dm_persist"]) for r in S], color=COLOR["A"], lw=1.8, label="cola de persistencia")
+    ax.plot([hr(r) for r in S], [float(r["q_ew_evaluate"]) for r in S], color=COLOR["B"], lw=1.8, label="evaluation queue")
+    ax.plot([hr(r) for r in S], [float(r["q_dm_persist"]) for r in S], color=COLOR["A"], lw=1.8, label="persistence queue")
     ax.plot([hr(r) for r in S], [float(r["q_dead_letter"]) for r in S], color="#888888", lw=1.8, ls="--", label="dead letter queue")
-    ax.set_ylim(-1, 30); ax.set_ylabel("mensajes en cola"); ax.set_title("Colas del broker")
+    ax.set_ylim(-1, 30); ax.set_ylabel("queued messages"); ax.set_title("Broker queues")
     ax2 = axs[1]
-    ax2.plot([hr(r) for r in T], [float(r["fps"]) for r in T], color="#9BBCD6", lw=1.4, label="recepción")
-    ax2.plot([hr(r) for r in S], [float(r["ew_consumed_fps"]) for r in S], color=COLOR["B"], lw=2, label="consumo de early-warning")
-    ax2.set_ylim(0, 150); ax2.set_ylabel("tramas por segundo"); ax2.set_title("Tasas por componente")
+    ax2.plot([hr(r) for r in T], [float(r["fps"]) for r in T], color="#9BBCD6", lw=1.4, label="reception")
+    ax2.plot([hr(r) for r in S], [float(r["ew_consumed_fps"]) for r in S], color=COLOR["B"], lw=2, label="early-warning consumption")
+    ax2.set_ylim(0, 150); ax2.set_ylabel("frames per second"); ax2.set_title("Rates by component")
     for a in axs:
-        for hh, et in ((2, "broker"), (6, "réplica"), (10, "retardo")):
+        for hh, et in ((2, "broker"), (6, "replica"), (10, "delay")):
             a.axvline(hh, color="#555555", ls=":", lw=1.2)
             a.text(hh + 0.1, a.get_ylim()[1] * 0.93, et, fontsize=11, color="#555555")
-        a.set_xlabel("horas de corrida"); a.set_xlim(0, 12.2)
+        a.set_xlabel("run time (hours)"); a.set_xlim(0, 12.2)
         a.grid(axis="y", color="#e3e3e3"); a.set_axisbelow(True)
         a.legend(frameon=False, loc="lower right" if a is ax2 else "center right", fontsize=11)
     fig.tight_layout(); fig.savefig(os.path.join(salida, "figura5_resistencia_B.png"), dpi=300); plt.close(fig)
@@ -226,11 +282,16 @@ def main():
     ap.add_argument("--sat-b", required=True); ap.add_argument("--serie-b", required=True)
     ap.add_argument("--inicio-12h-b", default="2026-09-23T12:30:00")
     ap.add_argument("--salida", default="salida")
+    ap.add_argument("--estimando", choices=["agregado", "ventanas"], default="agregado",
+                    help="latencia por corrida: percentil del agregado (defecto) o mediana de las ventanas 18-59 (V3)")
     a = ap.parse_args()
+    global ESTIMANDO
+    ESTIMANDO = a.estimando
     os.makedirs(a.salida, exist_ok=True)
 
     EA, EB = cargar_escalera(a.escalera_a), cargar_escalera(a.escalera_b)
     E = {"A": EA, "B": EB}
+    assert len(EA) == len(EB) == 20
 
     # Tabla 7 y Tabla 8
     with open(os.path.join(a.salida, "tabla7_tabla8.csv"), "w", newline="", encoding="utf-8") as f:
@@ -239,11 +300,62 @@ def main():
                     "dif_p95_B_menos_A", "ic95_inf", "ic95_sup", "delta_cliff", "p_exacto", "significativo_0.0125"])
         for l in NIVELES:
             med = {(s, k): st.median(valores_corrida(E[s], l, k)) for s in "AB" for k in ("p50", "p95", "p99")}
-            ra, rb = valores_corrida(EA, l, "p95"), valores_corrida(EB, l, "p95")
-            ic = ic_jerarquico(EA, EB, l, "p95"); p = p_permutacion(ra, rb)
             w.writerow([l, med[("A", "p50")], med[("B", "p50")], med[("A", "p95")], med[("B", "p95")],
-                        med[("A", "p99")], med[("B", "p99")], round(med[("B", "p95")] - med[("A", "p95")], 1),
-                        round(ic[0], 1), round(ic[1], 1), round(delta_cliff(rb, ra), 2), round(p, 4), p < 0.0125])
+                        med[("A", "p99")], med[("B", "p99")]] + contraste(EA, EB, l, "p95"))
+
+    # Contraste opcional del p99 a 100 tramas/s (sección 7 del brief)
+    with open(os.path.join(a.salida, "contraste_p99_100.csv"), "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["tramas_s", "dif_p99_B_menos_A", "ic95_inf", "ic95_sup", "delta_cliff", "p_exacto", "significativo_0.0125"])
+        w.writerow([100] + contraste(EA, EB, 100, "p99"))
+
+    # Latencia por corrida, en orden real de ejecución (3.4 del manuscrito)
+    orden = sorted(((c["inicio"], s, l, r) for s in "AB" for (l, r), c in E[s].items()))
+    iso = lambda t: datetime.fromtimestamp(t, timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
+    with open(os.path.join(a.salida, "latencia_por_corrida.csv"), "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["orden", "sistema", "tramas_s", "corrida", "inicio_utc", "p50_agregado", "p95_agregado",
+                    "p99_agregado", "p95_mediana_ventanas", "conteo_agregado", "conteo_ventana_efectiva"])
+        for i, (t, s, l, r) in enumerate(orden, 1):
+            c = E[s][(l, r)]
+            w.writerow([i, s, l, r, iso(t), c["agregado"]["p50"], c["agregado"]["p95"], c["agregado"]["p99"],
+                        st.median(c["p95"]), c["n_agregado"], c["n_efectivo"]])
+
+    # Deriva: Spearman entre orden de ejecución y valor de corrida, dentro de cada celda sistema × nivel
+    with open(os.path.join(a.salida, "deriva_spearman.csv"), "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["tramas_s", "sistema", "rho", "p"])
+        for l in NIVELES:
+            for s in "AB":
+                rs = sorted((r for (ll, r) in E[s] if ll == l), key=lambda r: E[s][(l, r)]["inicio"])
+                v = [valor_corrida(E[s][(l, r)], "p95") for r in rs]
+                if len(set(v)) == 1:
+                    w.writerow([l, s, "constante", ""])
+                else:
+                    rho, p = spearmanr(range(len(v)), v)
+                    w.writerow([l, s, round(rho, 2), round(p, 2)])
+
+    # Proporción de ventanas cuyo p95 supera el p95 agregado de su corrida
+    with open(os.path.join(a.salida, "calentamiento_cola.csv"), "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["tramas_s", "sistema", "pct_calentamiento", "pct_medicion"])
+        for l in NIVELES:
+            for s in "AB":
+                cs = [c for (ll, r), c in E[s].items() if ll == l]
+                pct = lambda tramo: round(100 * st.mean(v is not None and v > c["agregado"]["p95"]
+                                                        for c in cs for v in tramo(c["p95_ventanas"])), 1)
+                w.writerow([l, s, pct(lambda x: x[:CALENTAMIENTO]), pct(lambda x: x[CALENTAMIENTO:])])
+
+    # Corridas de resistencia de 12 h
+    with open(os.path.join(a.salida, "resistencia_12h.csv"), "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["sistema", "confirmadas", "fallos", "p95_agregado", "ventanas_p95_mayor_1s", "ventanas"])
+        for s, carpeta in (("A", a.escalera_a), ("B", a.escalera_b)):
+            d = json.load(open(os.path.join(carpeta, "sustained-12h.json"), encoding="utf-8"))
+            v = [p["summaries"].get(M, {}).get("p95") for p in d["intermediate"]]
+            assert d["aggregate"]["summaries"][M]["count"] == d["aggregate"]["counters"]["dtu_tcp.frames_acked"]
+            w.writerow([s, d["aggregate"]["counters"]["dtu_tcp.frames_acked"], d["aggregate"]["counters"].get("vusers.failed", 0),
+                        d["aggregate"]["summaries"][M]["p95"], sum(x is not None and x > 1000 for x in v), len(v)])
 
     # Valores por corrida (latencia y rendimiento)
     with open(os.path.join(a.salida, "valores_por_corrida.csv"), "w", newline="", encoding="utf-8") as f:
