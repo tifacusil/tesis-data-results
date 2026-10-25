@@ -23,6 +23,7 @@ The systems' code lives in their own repos (A without a prefix, B with the
 | [`generar_resultados.py`](generar_resultados.py) | Regenerates Figures 2–5 and Tables 7–9 from the raw inputs. Usage: [methodology §7](docs/metrics-methodology.md#7-running-the-script). |
 | [`chaos_evidence_b.py`](chaos_evidence_b.py) | Checks, offline and from frozen files, what B did during its three chaos events on 23/09/2026: Redis-buffer ACKs during the broker outage, the tripled buffer metric, the liveness restart during the pause and node CPU. Exits with code 1 if a check fails. See [methodology, *Chaos event evidence*](docs/metrics-methodology.md#chaos-event-evidence-chaos_evidence_bpy). |
 | [`recuperar_artillery.py`](recuperar_artillery.py) | Inventories the 42 Artillery reports in `data/A - SPETIEMBRE 5 RUNS` and `data/B - SEPTIEMBRE 5 RUNS V2`: windows, aggregate, p95, start/end in UTC, SHA-256. It copies the usable ones with an `A_`/`B_` prefix. See [methodology, *Artillery report inventory*](docs/metrics-methodology.md#artillery-report-inventory-recuperar_artillerypy). |
+| [`client_cpu.py`](client_cpu.py) | Client-machine CPU (whole PC, Artillery, DTU emulators) per ladder run and level, in the effective window. Writes `data/output/client-cpu-*.csv`. See [methodology, *Client CPU*](docs/metrics-methodology.md#client-cpu-client_cpupy). |
 | [`SHA256SUMS.artillery`](SHA256SUMS.artillery) | SHA-256 of those 42 reports, for `sha256sum -c`. |
 | [`reconstruir_data_zip.py`](reconstruir_data_zip.py) | Finds and verifies the PromQL queries that produced each `data.zip` CSV column. See [methodology §4](docs/metrics-methodology.md#4-the-datazip-export). |
 | [`reconstruccion-A/`](reconstruccion-A/), [`reconstruccion-B/`](reconstruccion-B/) | Output of `reconstruir_data_zip.py`: the reconstructed CSVs and, per CSV, a `.consultas.md` with the query chosen for each column and its match. |
@@ -49,6 +50,9 @@ python3 chaos_evidence_b.py verify \
   --series data/B-12h-0923-timeseries.csv \
   --saturation data/B-12h-0923-saturation.csv \
   --snapshots "data/B - SEPTIEMBRE 5 RUNS V2/chaos"
+python3 client_cpu.py --sistema A "data/A - SPETIEMBRE 5 RUNS" \
+  --sistema B "data/B - SEPTIEMBRE 5 RUNS V2" --out data/output
+git diff --exit-code data/output
 ```
 
-Expected: 42 `OK` lines, `42 JSON checked, 42 USABLE, 0 partial or unusable.`, then 9 `[OK]` lines and `All checks passed.`
+Expected: 42 `OK` lines, `42 JSON checked, 42 USABLE, 0 partial or unusable.`, then 9 `[OK]` lines and `All checks passed.`, then the client CPU table and no diff in `data/output`.
