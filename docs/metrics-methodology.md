@@ -97,7 +97,7 @@ powershell.exe -Command "Get-Process python,node -EA SilentlyContinue | Stop-Pro
 
 ### Ladder (Phase 1): `run-all.sh`
 
-4 levels × 5 runs = 20 runs per system, about 3 h 30 min in total. Each run lasts 10 min (3 of warm-up and 7 of measurement), followed by a 30 s pause. Before each run, `reset-state.sh` runs `FLUSHDB` on Redis and `TRUNCATE TABLE alerts` on the early-warning MySQL. It then runs `artillery run --output results/<SYSTEM>/vu-<level>-r<N>.json` and samples client CPU into `vu-<level>-r<N>.client-cpu.csv`.
+4 levels × 5 runs = 20 runs per system, about 3 h 30 min in total. Each run lasts 10 min (3 of warm-up and 7 of measurement), followed by a 30 s pause. Before each run, `reset-state.sh` runs `FLUSHDB` on Redis and `TRUNCATE TABLE alerts` on the early-warning MySQL. It then runs `artillery run --output results/<SYSTEM>/vu-<level>-r<N>.json` and samples client CPU into `vu-<level>-r<N>.client-cpu.csv` (see [*Client CPU*](#client-cpu-client_cpupy)).
 
 ```bash
 # A (block A active in .env), 17/09/2026
@@ -111,7 +111,7 @@ VU_LEVELS="001 010 050 100" REPEATS=5 \
   ./load-tests/run-all.sh
 ```
 
-Only levels up to 100 are used: above that, the ceiling comes from the load generator, not the server. `SUSTAINED_RATE` is the last level that does not break the failure criterion in `plan-pruebas.md` §1.3: 100.
+Only levels up to 100 are used. In the July 2026 ladder, the `vu-150` runs failed with `pool_dispatch_failed`, which is a generator error, not a server error (see the header of `load-tests/lib/client-cpu.sh`). 100 frames/s is therefore the highest rate tested. The study did not determine the maximum rate the generator can sustain. During the September ladder the client did not saturate at any level ([*Client CPU*](#client-cpu-client_cpupy)). `SUSTAINED_RATE` is the last level that does not break the failure criterion in `plan-pruebas.md` §1.3: 100.
 
 ### 12 h endurance with chaos (Phase 2)
 
@@ -184,6 +184,62 @@ Expected output: `42 JSON checked, 42 USABLE, 0 partial or unusable.`
 These are the 12 h times in section 1. Both runs last 43,381 s: the 180 s ramp plus 43,200 s sustained. Each chaos injection (pre snapshots above) comes 48–60 s after its nominal t + 2, 6 or 10 h.
 
 `generar_resultados.py` takes B's start from `--inicio-12h-b`, which defaults to `2026-09-23T12:30:00`, 80 s before the first request. It only sets the zero of Figure 5's time axis, so the figure is shifted by 0.02 h.
+
+### Client CPU (`client_cpu.py`)
+
+[`client_cpu.py`](../client_cpu.py) measures the load on the client machine during the ladder. It supports two statements in the article:
+
+- Section 5.3: the client did not limit the measurement at 100 frames/s.
+- Section 3.4 (reviewer item R3-09): A and B ran on different dates (17/09 and 23/09), and the client behaved the same on both dates, so it does not explain the A/B difference.
+
+#### How the CSVs were sampled
+
+The client was a Windows 11 PC (Ryzen 7 5700X, 16 logical processors). It ran Artillery (Node.js) and the DTU emulators (Python). `run-all.sh` sources `load-tests/lib/client-cpu.sh` (in `go-tesis-infra`) and starts its sampler for each run. The sampler reads two WMI performance classes through `powershell.exe`, every `CLIENT_CPU_INTERVAL` = 5 s. With the PowerShell call, samples are about 6 s apart, about 100 per run. Columns of `vu-<level>-r<N>.client-cpu.csv`:
+
+| column | source | unit |
+|---|---|---|
+| `unix_ts` | `date +%s` on the client | s |
+| `cpu_percent` | `Win32_PerfFormattedData_PerfOS_Processor`, instance `_Total`, `PercentProcessorTime` | % of the whole machine, 0–100 |
+| `node_percent` | `Win32_PerfFormattedData_PerfProc_Process`, sum of `PercentProcessorTime` over processes named `node*` | % of one logical processor (100 = one saturated core) |
+| `python_percent` | same class, processes named `python*` or `py*` | % of one logical processor |
+
+The sampler casts every value to an integer. The per-process values can exceed 100: 170 % is 1.7 of the 16 logical processors, 10.6 % of the machine.
+
+#### What the script does
+
+For each run in each folder:
+
+1. It takes the start of the run from the Artillery report: the earliest `period` in `intermediate`, not the first CSV row. The CSV starts between −3 and +7 s from that point.
+2. It keeps the samples from start + 180 s to start + 600 s, which is the article's effective window (section 6). That gives 69–71 samples per run, with at most one gap longer than 8 s.
+3. For each column, it computes the median, mean and max of the run in that window.
+4. Per system and level, it takes the median of the five run medians and the range between runs.
+
+It uses only the Python standard library.
+
+```bash
+python3 client_cpu.py \
+  --sistema A "data/A - SPETIEMBRE 5 RUNS" \
+  --sistema B "data/B - SEPTIEMBRE 5 RUNS V2" \
+  --out data/output
+```
+
+`--calentamiento` (180) and `--duracion` (600) set the window in seconds; the defaults are the article's values. Output files: `client-cpu-por-corrida.csv` (40 rows: offset between CSV and JSON, samples in the window, gaps, and median/mean/max of each column) and `client-cpu-resumen.csv` (8 rows, the table below). The script also prints the table. The two files in `data/output/` were written by this command, and a new run reproduces them byte for byte.
+
+#### Result
+
+Median of the five run medians in the effective window:
+
+| frames/s | Artillery (`node_percent`), A / B | whole PC (`cpu_percent`), A / B |
+|---|---|---|
+| 1 | 0 / 0 % | 14 / 18 % |
+| 10 | 19 / 17 % | 12 / 11 % |
+| 50 | 78.5 / 82 % | 10 / 11 % |
+| 100 | 170.5 / 166 % | 14 / 13 % |
+
+- The PC never saturated (at most 18 % as a median), and the client behaved the same in A and B. The client did not limit the measurement and does not explain the A/B difference.
+- This does not show that 100 frames/s is Artillery's maximum. The article says 100 frames/s is the highest rate tested.
+- `python_percent` has a median of 0 at every level: one DTU emulator costs little, and the counter moves in steps of about 5 %. Its mean grows with the load, to 1.9–5.4 % per run at 100 frames/s, which is consistent with section 5.2 of the article.
+- With other windows, and with means instead of medians, the values change by 4 points at most. An earlier version that took the warm-up from the first CSV row gave 21 and 165 instead of 19 and 166 at 10 and 100 frames/s; the Artillery start replaced it.
 
 ### Table 10 verification
 
@@ -504,6 +560,7 @@ Output files: `tabla7_tabla8.csv`, `tabla9.csv`, `valores_por_corrida.csv` and `
 ## 8. Documentation status
 
 - [x] **Artillery reports.** All 42 inventoried and hashed in `SHA256SUMS.artillery` by `recuperar_artillery.py` (section 3).
+- [x] **Client CPU.** Sampler identified (`load-tests/lib/client-cpu.sh`), and `client_cpu.py` reproduces `data/output/client-cpu-*.csv` from the archived ladder (section 3).
 - [x] **Queries behind `data.zip`.** Identified and verified against the archived data (section 4).
 - [x] **Table 10.** All three rows verified value by value. The raw samples are in `tabla10/` (section 3).
 - [x] **Chaos event evidence.** Exported from B's Prometheus on 23/10/2026 and checked offline by `chaos_evidence_b.py` (section 3).
