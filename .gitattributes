@@ -2,3 +2,4 @@
 # never convert line endings.
 data/** -text
 SHA256SUMS.artillery -text
+tabla10/** -text

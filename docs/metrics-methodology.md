@@ -35,7 +35,13 @@ Services: `data-receiving`, `data-management`, `early-warning`, `data-analysis`,
 
 ### What is in this repo
 
-`data/` holds the Artillery reports (`A - SPETIEMBRE 5 RUNS/`, `B - SEPTIEMBRE 5 RUNS V2/`) and `B-12h-0923-{saturation,timeseries}.csv`. It also holds the inputs of `chaos_evidence_b.py` (section 3). The ladder CSVs and the `nivel1/` files are not in this repo: get them from `data.zip` (section 4) and the queries in section 5.
+`data/` holds every input of `generar_resultados.py`:
+
+- the Artillery reports (`A - SPETIEMBRE 5 RUNS/`, `B - SEPTIEMBRE 5 RUNS V2/`)
+- `A-ladder-0917-timeseries.csv`, `B-ladder-0923-timeseries.csv` and `B-12h-0923-{saturation,timeseries}.csv`, copied unchanged from `data.zip` (SHA-256 in section 4)
+- `nivel1/`, with the four 1 frame/s extractions (SHA-256 in section 5)
+
+It also holds the inputs of `chaos_evidence_b.py` (section 3). A's two 12 h CSVs, `resources-summary.json` and `RESUMEN.md` stay only in `data.zip`, because no script reads them.
 
 ## 3. Load tests (Artillery) and chaos
 
@@ -527,15 +533,28 @@ scp concurso@204.168.203.32:~/A_nivel1_*.json nivel1/
 scp gotesis@178.105.104.95:~/B_nivel1_*.json nivel1/
 ```
 
+The four files used in the article are archived in [`data/nivel1/`](../data/nivel1/). Each one has 54 samples, and each one starts at its system's `start`. B's Prometheus no longer holds this window (section 8), so for B these copies and the TSDB backup are the only sources.
+
+| File | SHA-256 |
+|---|---|
+| `A_nivel1_cpu.json` | `45cd4a36145a120353da3373b0dd4712734a0ab58c9281b73cdf4b20f57dd6bc` |
+| `A_nivel1_mem.json` | `4a629a272a6b68af1b2e3769cb6aec823c94b7059a8598c67efc5185436eefb1` |
+| `B_nivel1_cpu.json` | `b11b20b5bb187360e824c9b8dbad56277c06db301b17154f84bed305875db046` |
+| `B_nivel1_mem.json` | `d06842f3c080aaa2479debaa8739952f16792457d6f368abe600e3df7594862c` |
+
 ## 6. Windows and aggregation
 
 The script derives the windows from the Artillery JSON files, with no extra input:
 
-1. Each run is split into 10 s periods. The first 18 (3 min of warm-up) are discarded and the next 42 form the **effective window**.
-2. Latency: each run's value is the median of its 42 periods.
-3. Resources: each run's value is the median of the Prometheus samples whose `time` falls inside that run's effective window.
-4. Each level's value is the median of its five runs.
-5. A vs. B test: exact permutation Mann-Whitney (5 vs. 5) with Bonferroni over 4 levels (α = 0.0125), Cliff's delta, and a 95 % CI by hierarchical bootstrap (B = 10,000, seed 7).
+1. Each run is split into 10 s periods. Periods with no measurements are dropped first. Of the rest, the first 18 (3 min of warm-up) are discarded and the next 42 form the **effective window**.
+2. Latency (`--estimando agregado`, the default and the article's method): each run's p50, p95 and p99 come from `aggregate.summaries`, the histogram over the whole run. Artillery gives no percentiles over a subset of periods, so the latency does not discard the warm-up. `calentamiento_cola.csv` shows how much of the tail comes from the warm-up: the share of periods whose p95 exceeds the run's aggregate p95, in the warm-up and in the effective window.
+3. With `--estimando ventanas`, each run's latency is the median of the percentiles of its 42 effective periods instead. This is the method of the earlier V3 of the article, kept to check its Table 7.
+4. Resources and throughput: each run's value is the median over its effective window. For resources, these are the Prometheus samples whose `time` falls inside the window, with either estimand.
+5. Each level's value is the median of its five runs.
+6. A vs. B test: exact permutation Mann-Whitney (5 vs. 5) with Bonferroni over 4 levels (α = 0.0125), and Cliff's delta. The 95 % CI of the difference in medians resamples the runs (20,000 replicates, seed 7). With `--estimando ventanas`, the CI is hierarchical instead, resampling runs and then periods (10,000 replicates, seed 7).
+7. Drift: `deriva_spearman.csv` gives Spearman's ρ between execution order and run p95, per system and level.
+
+The script checks its inputs as it reads them. Each run's aggregate count must equal the sum over its periods and `dtu_tcp.frames_acked`, it must match the level (600, 6000, 30,000 or 60,000), and each system must have 20 runs. It stops with an `AssertionError` otherwise.
 
 ## 7. Running the script
 
@@ -543,24 +562,51 @@ The script derives the windows from the Artillery JSON files, with no extra inpu
 python3 generar_resultados.py \
   --escalera-a "data/A - SPETIEMBRE 5 RUNS" \
   --escalera-b "data/B - SEPTIEMBRE 5 RUNS V2" \
-  --prom-a A-ladder-0917-timeseries.csv \
-  --prom-b B-ladder-0923-timeseries.csv \
-  --nivel1-dir nivel1 \
+  --prom-a data/A-ladder-0917-timeseries.csv \
+  --prom-b data/B-ladder-0923-timeseries.csv \
+  --nivel1-dir data/nivel1 \
   --sat-b data/B-12h-0923-saturation.csv \
   --serie-b data/B-12h-0923-timeseries.csv \
-  --salida salida
+  --salida data/output
+git diff --exit-code data/output
 ```
 
-`--prom-a`, `--prom-b` and `--nivel1-dir` point to files that are not in this repo (section 2).
+All inputs are in this repo (section 2). The script needs NumPy, SciPy and Matplotlib, pinned in [`requirements.txt`](../requirements.txt):
+
+```bash
+python3 -m venv venv && . venv/bin/activate      # Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+The committed `data/output/` was written with Python 3.13.15 and those versions. With them, a new run reproduces every file byte for byte, PNGs included, and `git diff` prints nothing. With other Matplotlib versions, the PNGs may differ in their bytes while the CSVs stay the same.
 
 In Windows `cmd`, replace `\` with `^`. In PowerShell, use the backtick.
 
-Output files: `tabla7_tabla8.csv`, `tabla9.csv`, `valores_por_corrida.csv` and `figura{2,3,4,5}_*.png`.
+Output files:
+
+| file | content |
+|---|---|
+| `tabla7_tabla8.csv` | Tables 7 and 8: p50/p95/p99 per level, and the p95 contrast (difference, CI, Cliff's delta, exact p) |
+| `contraste_p99_100.csv` | The same contrast for p99 at 100 frames/s |
+| `tabla9.csv` | Table 9: node CPU and memory per level |
+| `valores_por_corrida.csv` | Per run: measurements, percentiles over the effective window, acknowledged frames, failures, throughput |
+| `latencia_por_corrida.csv` | Per run, in execution order: start, aggregate percentiles, median p95 of the effective window, counts |
+| `deriva_spearman.csv` | Drift with execution order (section 6) |
+| `calentamiento_cola.csv` | Warm-up share of the tail (section 6) |
+| `resistencia_12h.csv` | 12 h runs: acknowledged frames, failures, aggregate p95, periods with p95 above 1 s |
+| `figura{2,3,4,5}_*.png` | Figures 2 to 5 |
+
+[`test_generar_resultados.py`](../test_generar_resultados.py) checks the script against the published values. It runs the script with `--estimando ventanas` and compares Table 7 with V3. It then runs it with the default estimand, compares Tables 7, 8 and 9 with the current article, and checks that two runs give identical files. It prints `OK`, or stops at the first value that differs:
+
+```bash
+python3 test_generar_resultados.py
+```
 
 ## 8. Documentation status
 
 - [x] **Artillery reports.** All 42 inventoried and hashed in `SHA256SUMS.artillery` by `recuperar_artillery.py` (section 3).
 - [x] **Client CPU.** Sampler identified (`load-tests/lib/client-cpu.sh`), and `client_cpu.py` reproduces `data/output/client-cpu-*.csv` from the archived ladder (section 3).
+- [x] **Figures 2–5 and Tables 7–9.** `generar_resultados.py` and all its inputs are in this repo. It reproduces `data/output/` byte for byte, and `test_generar_resultados.py` checks it against the published values (section 7).
 - [x] **Queries behind `data.zip`.** Identified and verified against the archived data (section 4).
 - [x] **Table 10.** All three rows verified value by value. The raw samples are in `tabla10/` (section 3).
 - [x] **Chaos event evidence.** Exported from B's Prometheus on 23/10/2026 and checked offline by `chaos_evidence_b.py` (section 3).
