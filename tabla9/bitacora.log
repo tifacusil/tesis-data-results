@@ -1,0 +1,80 @@
+2026-11-03T01:03:22Z  end=2026-11-03T01:03:24Z  exit=0  cwd=/c/Users/adria/Escritorio/TESIS/respaldo-prometheus
+    $ cd /c/Users/adria/Escritorio/TESIS/respaldo-prometheus && sha256sum A-prometheus-tsdb-20261014.tar.gz B-prometheus-tsdb-20261014.tar.gz
+2026-11-03T01:03:47Z  end=2026-11-03T01:04:03Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ scripts/restore_backups.sh /c/Users/adria/Escritorio/TESIS/respaldo-prometheus /c/Users/adria/prom-restore-v6 9092 9091
+2026-11-03T01:04:20Z  end=2026-11-03T01:04:21Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ scripts/export_prometheus.sh http://localhost:9092 '100 * (1 - avg(rate(node_cpu_seconds_total{mode="idle"}[1m])))' 1789658040 1789661220 60s prometheus/A_nivel1_cpu.json
+2026-11-03T01:04:21Z  end=2026-11-03T01:04:21Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ scripts/export_prometheus.sh http://localhost:9092 '(node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / 1048576' 1789658040 1789661220 60s prometheus/A_nivel1_mem.json
+2026-11-03T01:04:21Z  end=2026-11-03T01:04:21Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ scripts/export_prometheus.sh http://localhost:9091 '100 * (1 - avg(rate(node_cpu_seconds_total{mode="idle"}[1m])))' 1790140980 1790144200 60s prometheus/B_nivel1_cpu.json
+2026-11-03T01:04:21Z  end=2026-11-03T01:04:21Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ scripts/export_prometheus.sh http://localhost:9091 '(node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes) / 1048576' 1790140980 1790144200 60s prometheus/B_nivel1_mem.json
+2026-11-03T01:04:21Z  end=2026-11-03T01:04:21Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ cd prometheus && sha256sum *_nivel1_*.json && cd /c/Users/adria/Escritorio/TESIS/tesis-data-results/data/nivel1 && sha256sum *.json
+2026-11-03T01:04:46Z  end=2026-11-03T01:04:46Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ scripts/export_prometheus.sh http://localhost:9092 '100 * (1 - avg(rate(node_cpu_seconds_total{mode="idle"}[1m])))' 2026-09-17T16:00:00Z 2026-09-17T19:00:00Z 60s prometheus/A_ladder_cpu.json
+2026-11-03T01:04:46Z  end=2026-11-03T01:04:47Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ scripts/export_prometheus.sh http://localhost:9092 '(sum(node_memory_MemTotal_bytes) - sum(node_memory_MemAvailable_bytes)) / 1048576' 2026-09-17T16:00:00Z 2026-09-17T19:00:00Z 60s prometheus/A_ladder_mem.json
+2026-11-03T01:04:47Z  end=2026-11-03T01:04:47Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ scripts/export_prometheus.sh http://localhost:9091 '100 * (1 - avg(rate(node_cpu_seconds_total{mode="idle"}[1m])))' 2026-09-23T06:10:00Z 2026-09-23T09:10:00Z 60s prometheus/B_ladder_cpu.json
+2026-11-03T01:04:47Z  end=2026-11-03T01:04:47Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ scripts/export_prometheus.sh http://localhost:9091 '(sum(node_memory_MemTotal_bytes) - sum(node_memory_MemAvailable_bytes)) / 1048576' 2026-09-23T06:10:00Z 2026-09-23T09:10:00Z 60s prometheus/B_ladder_mem.json
+2026-11-03T01:04:47Z  end=2026-11-03T01:04:55Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ /c/Users/adria/Escritorio/TESIS/resultados/venv/Scripts/python.exe -I scripts/build_tabla9.py --repo /c/Users/adria/Escritorio/TESIS/tesis-data-results --prom-dir prometheus --out resultados
+2026-11-03T01:04:55Z  end=2026-11-03T01:04:55Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ diff resultados/tabla9.csv /c/Users/adria/Escritorio/TESIS/tesis-data-results/data/output/tabla9.csv && echo IDENTICAL
+2026-11-03T01:05:31Z  end=2026-11-03T01:05:32Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ scripts/collect_versions.sh /c/Users/adria/Escritorio/TESIS/resultados/venv/Scripts/python.exe /c/Users/adria/Escritorio/TESIS/tesis-data-results http://localhost:9092 http://localhost:9091 > versions.txt
+2026-11-03T01:05:32Z  end=2026-11-03T01:05:32Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ sha256sum prometheus/*.json resultados/*.csv versions.txt > SHA256SUMS
+2026-11-03T01:05:39Z  end=2026-11-03T01:05:42Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ scripts/run_all.sh /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/replica-v6 /c/Users/adria/Escritorio/TESIS/tesis-data-results /c/Users/adria/Escritorio/TESIS/resultados/venv/Scripts/python.exe http://localhost:9092 http://localhost:9091 > /dev/null
+2026-11-03T01:05:42Z  end=2026-11-03T01:05:42Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ cd /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/replica-v6 && sha256sum -c ~/evidencia-v6/SHA256SUMS && diff -r /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/replica-v6 ~/evidencia-v6 --exclude=scripts --exclude=bitacora.log --exclude=SHA256SUMS && echo TREES-EQUAL
+2026-11-03T01:05:52Z  end=2026-11-03T01:05:52Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ cmp /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/replica-v6/SHA256SUMS SHA256SUMS && echo SUMS-EQUAL
+2026-11-03T01:05:52Z  end=2026-11-03T01:05:53Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ scripts/export_prometheus.sh http://localhost:9091 'up{job="nope"}' 2026-09-23T06:10:00Z 2026-09-23T06:20:00Z 60s /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/neg1.json; test ! -e /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/neg1.json
+2026-11-03T01:05:53Z  end=2026-11-03T01:05:55Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ scripts/export_prometheus.sh http://localhost:9999 up 0 60 60s /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/neg2.json; test ! -e /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/neg2.json
+2026-11-03T01:05:55Z  end=2026-11-03T01:05:55Z  exit=22  cwd=/c/Users/adria/evidencia-v6
+    $ scripts/export_prometheus.sh http://localhost:9091 'sum(' 0 60 60s /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/neg3.json
+2026-11-03T01:05:55Z  end=2026-11-03T01:05:55Z  exit=1  cwd=/c/Users/adria/evidencia-v6
+    $ /c/Users/adria/Escritorio/TESIS/resultados/venv/Scripts/python.exe -I -c "
+import csv, json
+for s, f in (('A','A-ladder-0917-timeseries.csv'), ('B','B-ladder-0923-timeseries.csv')):
+    rows = list(csv.DictReader(open('/c/Users/adria/Escritorio/TESIS/tesis-data-results/data/'+f)))
+    for k, col, nd in (('cpu','node_cpu_pct',2), ('mem','node_mem_used_mib',1)):
+        v = json.load(open(f'prometheus/{s}_ladder_{k}.json'))['data']['result'][0]['values']
+        assert len(v) == len(rows) == 181, (s, k, len(v), len(rows))
+        bad = sum(abs(round(float(x), nd) - float(r[col])) > 10**-nd/2 for (t, x), r in zip(v, rows))
+        print(s, col, len(v), 'rows, mismatches:', bad); assert bad == 0
+"
+2026-11-03T01:06:03Z  end=2026-11-03T01:06:04Z  exit=1  cwd=/c/Users/adria/evidencia-v6
+    $ scripts/export_prometheus.sh http://localhost:9091 'up{job="nope"}' 2026-09-23T06:10:00Z 2026-09-23T06:20:00Z 60s /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/neg1.json
+2026-11-03T01:06:04Z  end=2026-11-03T01:06:06Z  exit=7  cwd=/c/Users/adria/evidencia-v6
+    $ scripts/export_prometheus.sh http://localhost:9999 up 0 60 60s /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/neg2.json
+2026-11-03T01:06:06Z  end=2026-11-03T01:06:06Z  exit=0  cwd=/c/Users/adria/evidencia-v6
+    $ /c/Users/adria/Escritorio/TESIS/resultados/venv/Scripts/python.exe -I -c "
+import csv, json
+for s, f in (('A','A-ladder-0917-timeseries.csv'), ('B','B-ladder-0923-timeseries.csv')):
+    rows = list(csv.DictReader(open('C:/Users/adria/Escritorio/TESIS/tesis-data-results/data/'+f)))
+    for k, col, nd in (('cpu','node_cpu_pct',2), ('mem','node_mem_used_mib',1)):
+        v = json.load(open(f'prometheus/{s}_ladder_{k}.json'))['data']['result'][0]['values']
+        assert len(v) == len(rows) == 181, (s, k, len(v), len(rows))
+        bad = sum(abs(round(float(x), nd) - float(r[col])) > 10**-nd/2 for (t, x), r in zip(v, rows))
+        print(s, col, len(v), 'rows, mismatches:', bad); assert bad == 0
+"
+2026-11-03T01:14:06Z  end=2026-11-03T01:14:06Z  exit=0  cwd=/c/Users/adria/Escritorio/TESIS/tesis-data-results
+    $ EV=~/evidencia-v6 && mkdir -p tabla9/prometheus scripts && cp $EV/prometheus/*.json tabla9/prometheus/ && cp $EV/resultados/*.csv $EV/versions.txt tabla9/ && cp $EV/scripts/*.sh scripts/ && cp $EV/scripts/build_tabla9.py . && cp $EV/REPLICAR.md docs/tabla9-replication.md && rm -rf __pycache__ && ls -R tabla9 scripts
+2026-11-03T01:14:55Z  end=2026-11-03T01:14:59Z  exit=0  cwd=/c/Users/adria/Escritorio/TESIS/tesis-data-results
+    $ sha256sum tabla9/prometheus/*.json tabla9/tabla9*.csv > /tmp/before.sha && scripts/run_all.sh tabla9 /c/Users/adria/Escritorio/TESIS/resultados/venv/Scripts/python.exe
+2026-11-03T01:14:59Z  end=2026-11-03T01:14:59Z  exit=0  cwd=/c/Users/adria/Escritorio/TESIS/tesis-data-results
+    $ cd tabla9 && sed 's# \*# *tabla9/#' SHA256SUMS | grep -v versions.txt | diff - /tmp/before.sha && echo DATA-UNCHANGED
+2026-11-03T01:14:59Z  end=2026-11-03T01:15:02Z  exit=0  cwd=/c/Users/adria/Escritorio/TESIS/tesis-data-results
+    $ scripts/run_all.sh /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/replica-repo /c/Users/adria/Escritorio/TESIS/resultados/venv/Scripts/python.exe > /dev/null && cmp /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/replica-repo/SHA256SUMS tabla9/SHA256SUMS && (cd /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/replica-repo && sha256sum -c /c/Users/adria/Escritorio/TESIS/tesis-data-results/tabla9/SHA256SUMS) && diff -r --exclude=bitacora.log /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/replica-repo tabla9 && echo REPLICA-EQUAL
+2026-11-03T01:15:02Z  end=2026-11-03T01:15:03Z  exit=0  cwd=/c/Users/adria/Escritorio/TESIS/tesis-data-results
+    $ diff tabla9/tabla9.csv data/output/tabla9.csv && cmp tabla9/prometheus/A_nivel1_cpu.json data/nivel1/A_nivel1_cpu.json && cmp tabla9/prometheus/A_nivel1_mem.json data/nivel1/A_nivel1_mem.json && cmp tabla9/prometheus/B_nivel1_cpu.json data/nivel1/B_nivel1_cpu.json && cmp tabla9/prometheus/B_nivel1_mem.json data/nivel1/B_nivel1_mem.json && echo MATCHES-PUBLISHED
+2026-11-03T01:17:35Z  end=2026-11-03T01:17:36Z  exit=0  cwd=/c/Users/adria/Escritorio/TESIS/tesis-data-results
+    $ for f in scripts/*.sh; do bash -n $f; done && (cd tabla9 && sha256sum -c --quiet SHA256SUMS) && /c/Users/adria/Escritorio/TESIS/resultados/venv/Scripts/python.exe -I build_tabla9.py --out /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/ci-t9 && cmp /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/ci-t9/tabla9.csv data/output/tabla9.csv && cmp /c/Users/adria/AppData/Local/Temp/claude/C--Users-adria-Escritorio-TESIS/cec84ba8-c218-441f-a608-6c6489d31d01/scratchpad/ci-t9/tabla9_por_corrida.csv tabla9/tabla9_por_corrida.csv && for f in data/nivel1/*.json; do cmp $f tabla9/prometheus/$(basename $f); done && echo CI-STEPS-OK

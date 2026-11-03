@@ -643,6 +643,7 @@ python3 test_generar_resultados.py
   ```
   It is stored in the team's shared Google Drive folder. SHA-256: `898a017a30e597dcb368e1e326c1b6ed113e433254844c82081c26131848dbdb`. It was kept because B's Prometheus keeps 30 days and has no persistent volume: from 23/10, the raw September data survives only in this backup and in the 14/10 one below. A keeps 1 year.
 - [x] **TSDB backups of A and B, 14/10/2026.** Restored and checked on 25/10/2026 (section 9).
+- [x] **Table 9 from the raw backups.** Re-extracted on 03/11/2026 (UTC) into `tabla9/`, with scripts, a command log and a replicability check ([`tabla9-replication.md`](tabla9-replication.md)). The rebuilt table is byte-identical to the published one.
 
 ## 9. Restoring the Prometheus backups
 
@@ -688,5 +689,7 @@ Then point each extraction at `http://localhost:9091` (B) or `http://localhost:9
 | `data.zip` queries (`reconstruir_data_zip.py`) | 4 | 70/70 columns, reconstructed CSVs byte-identical |
 | Chaos event export (`chaos_evidence_b.py export`) | 3 | 17/17 CSVs byte-identical |
 | Table 10 raw samples | 3 | 21/21 files pass `tabla10/SHA256SUMS` |
+
+On 03/11/2026 (UTC), `scripts/restore_backups.sh` repeated this restore as a script, and `scripts/run_all.sh` re-extracted Table 9 from it: the four 1 frame/s files again byte-identical, and `build_tabla9.py` gave a `tabla9.csv` byte-identical to `data/output/tabla9.csv`. See [`tabla9-replication.md`](tabla9-replication.md).
 
 Stop and remove the containers afterwards with `docker rm -f prom-a prom-b`.

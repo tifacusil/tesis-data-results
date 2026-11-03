@@ -21,6 +21,7 @@ jobs:
         run: |
           sha256sum -c --quiet SHA256SUMS.artillery
           (cd tabla10 && sha256sum -c --quiet SHA256SUMS)
+          (cd tabla9 && sha256sum -c --quiet SHA256SUMS)
           echo "f3a6c99304e81d976a81977034b3db319108c59d08e1ced3e2263d278b903fbd  data/data.zip" | sha256sum -c --quiet
 
       - name: Artillery inventory
@@ -38,6 +39,13 @@ jobs:
 
       - name: Published values
         run: python test_generar_resultados.py
+
+      - name: Table 9 from the raw Prometheus exports
+        run: |
+          python build_tabla9.py --out "$RUNNER_TEMP/tabla9"
+          cmp "$RUNNER_TEMP/tabla9/tabla9.csv" data/output/tabla9.csv
+          cmp "$RUNNER_TEMP/tabla9/tabla9_por_corrida.csv" tabla9/tabla9_por_corrida.csv
+          for f in data/nivel1/*.json; do cmp "$f" "tabla9/prometheus/$(basename "$f")"; done
 
       - name: Regenerate data/output
         run: |

@@ -15,6 +15,7 @@ The systems' code lives in their own repos (A without a prefix, B with the
 |---|---|
 | [`docs/setup-guide.md`](docs/setup-guide.md) | Deploying System A and System B from scratch, as surveyed on the live servers: versions, ports, systemd units, MySQL/Redis/RabbitMQ/Consul setup, nginx + consul-template, k3s, image digests and A ↔ B version parity. |
 | [`docs/metrics-methodology.md`](docs/metrics-methodology.md) | How the metrics were obtained in the September 2026 campaign: environments, load tests and chaos, the `data.zip` export and its queries, the 1 frame/s level, windows and aggregation, how to run `generar_resultados.py`, how to check B's chaos events with `chaos_evidence_b.py`, the `go-tesis-infra` commits that ran the campaign, and how to restore the Prometheus backups. |
+| [`docs/tabla9-replication.md`](docs/tabla9-replication.md) | Step-by-step replication of Table 9 from the raw Prometheus backups: exact commands and PromQL (UTC start/end/step), how each run's window is derived, decisions, problems found, the replicability check, and what to change to run it on the live System A or B. |
 
 ## Contents
 
@@ -29,6 +30,9 @@ The systems' code lives in their own repos (A without a prefix, B with the
 | [`reconstruir_data_zip.py`](reconstruir_data_zip.py) | Finds and verifies the PromQL queries that produced each `data.zip` CSV column. See [methodology §4](docs/metrics-methodology.md#4-the-datazip-export). |
 | [`reconstruccion-A/`](reconstruccion-A/), [`reconstruccion-B/`](reconstruccion-B/) | Output of `reconstruir_data_zip.py`: the reconstructed CSVs and, per CSV, a `.consultas.md` with the query chosen for each column and its match. The reconstructed CSVs come from new queries and are not byte-identical to the `data.zip` originals: they are not script inputs. |
 | [`tabla10/`](tabla10/) | Raw Prometheus samples from B, with `SHA256SUMS`, that verify the three rows of Table 10 (broker kill, pause, delay towards data-analysis). See [methodology, *Table 10 verification*](docs/metrics-methodology.md#table-10-verification). |
+| [`build_tabla9.py`](build_tabla9.py) | Rebuilds Table 9 from raw Prometheus range queries (`tabla9/prometheus/`) and the Artillery run windows, reusing `generar_resultados.py`. Needs [`requirements.txt`](requirements.txt). See [Table 9 replication](docs/tabla9-replication.md). |
+| [`tabla9/`](tabla9/) | Table 9 evidence: the 8 raw Prometheus exports re-extracted from the 14/10 TSDB backups, the rebuilt `tabla9.csv` (byte-identical to `data/output/tabla9.csv`), one row per run with its UTC window, `versions.txt`, `SHA256SUMS`, and `bitacora.log` (every command run, with UTC time and exit code). |
+| [`scripts/`](scripts/) | Bash scripts behind `tabla9/`: `restore_backups.sh` (methodology §9 as a script), `export_prometheus.sh` (one range query to raw JSON), `collect_versions.sh`, `run_all.sh` (the whole chain into one folder) and `logrun.sh` (appends each command to `tabla9/bitacora.log`). Each prints its usage when run with no arguments. |
 | [`config/system-a/nginx/`](config/system-a/nginx/) | System A's nginx and consul-template configuration, copied from the server. Used by [setup guide §3.7](docs/setup-guide.md#37-nginx--consul-template-http-gateway-80-and-tcp-5100). |
 | [`data/`](data/) | Raw inputs: the Artillery reports of both systems with their chaos snapshots (`A - SPETIEMBRE 5 RUNS/`, `B - SEPTIEMBRE 5 RUNS V2/`), `data.zip` (`data/data.zip`), the two ladder CSVs and B's two 12 h CSVs extracted from it, the 1 frame/s extractions (`nivel1/`), the frozen chaos-event export (`evidencia-b-0923/`) and the data-receiving logs. The methodology says where each one comes from and gives their SHA-256. `data/output/` holds the figures and tables written by `generar_resultados.py`. |
 
@@ -44,6 +48,7 @@ From the root of this repo, with Python 3.11 or later (standard library only; on
 ```bash
 sha256sum -c SHA256SUMS.artillery
 (cd tabla10 && sha256sum -c SHA256SUMS)
+(cd tabla9 && sha256sum -c SHA256SUMS)
 python3 recuperar_artillery.py
 python3 chaos_evidence_b.py verify \
   --evidence data/evidencia-b-0923 \
@@ -57,7 +62,7 @@ python3 client_cpu.py --sistema A "data/A - SPETIEMBRE 5 RUNS" \
 git diff --exit-code data/output
 ```
 
-Expected: 42 `OK` lines, then 21 more for `tabla10/`, `42 JSON checked, 42 USABLE, 0 partial or unusable.`, then 9 `[OK]` lines and `All checks passed.`, then the client CPU table and no diff in `data/output`.
+Expected: 42 `OK` lines, then 21 more for `tabla10/` and 11 for `tabla9/`, `42 JSON checked, 42 USABLE, 0 partial or unusable.`, then 9 `[OK]` lines and `All checks passed.`, then the client CPU table and no diff in `data/output`.
 
 ## Full regeneration
 
@@ -69,6 +74,20 @@ pip install -r requirements.txt
 python3 test_generar_resultados.py
 python3 generar_resultados.py   --escalera-a "data/A - SPETIEMBRE 5 RUNS" --escalera-b "data/B - SEPTIEMBRE 5 RUNS V2"   --prom-a data/A-ladder-0917-timeseries.csv --prom-b data/B-ladder-0923-timeseries.csv   --nivel1-dir data/nivel1   --sat-b data/B-12h-0923-saturation.csv --serie-b data/B-12h-0923-timeseries.csv   --salida data/output
 git diff --exit-code data/output
+python3 build_tabla9.py --out /tmp/t9 && cmp /tmp/t9/tabla9.csv data/output/tabla9.csv && cmp /tmp/t9/tabla9_por_corrida.csv tabla9/tabla9_por_corrida.csv
 ```
 
-Expected: `OK` from the test, then no diff in `data/output` (on Linux, only the PNG files show as changed). The [`reproduce`](.github/workflows/reproduce.yml) workflow runs this and the quick check on every push and pull request. See [methodology §6–7](docs/metrics-methodology.md#6-windows-and-aggregation).
+Expected: `OK` from the test, then no diff in `data/output` (on Linux, only the PNG files show as changed), then Table 9 rebuilt from the raw Prometheus exports in `tabla9/` with no `cmp` output. The [`reproduce`](.github/workflows/reproduce.yml) workflow runs this and the quick check on every push and pull request. See [methodology §6–7](docs/metrics-methodology.md#6-windows-and-aggregation).
+
+## Table 9 from the Prometheus backups
+
+`tabla9/` was re-extracted from the TSDB backups, which are not in this repo (methodology §9). With the backups at hand and Docker running, from the root of this repo (`PY` = a Python with `requirements.txt`):
+
+```bash
+scripts/restore_backups.sh <backup_dir> <work_dir>          # prom-a on :9092, prom-b on :9091
+scripts/run_all.sh <empty_temp_dir> "$PY"                   # 8 exports, Table 9, versions, SHA256SUMS
+(cd <empty_temp_dir> && sha256sum -c "$OLDPWD/tabla9/SHA256SUMS")
+docker rm -f prom-a prom-b
+```
+
+Expected: `Prometheus Server is Ready.` twice, then 11 `OK` lines. `versions.txt` can fail on another machine, because it records that machine's tool versions. The other 10 files must match. The full procedure, with every query, window and check, is in [`docs/tabla9-replication.md`](docs/tabla9-replication.md).

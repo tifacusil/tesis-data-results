@@ -3,3 +3,6 @@
 data/** -text
 SHA256SUMS.artillery -text
 tabla10/** -text
+tabla9/** -text
+# Bash scripts must keep LF, or bash fails on CR (core.autocrlf=true on the Windows PC).
+*.sh text eol=lf
