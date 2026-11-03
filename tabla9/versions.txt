@@ -1,0 +1,17 @@
+os: MINGW64_NT-10.0-26300 3.6.9-b4195d69.x86_64 x86_64
+bash: 5.3.15(1)-release
+curl: curl 8.21.0 (x86_64-w64-mingw32) libcurl/8.21.0 Schannel zlib/1.3.2 brotli/1.2.0 zstd/1.5.7 libidn2/2.3.8 libpsl/0.21.5 libssh2/1.11.1 WinLDAP
+coreutils sha256sum: sha256sum (GNU coreutils) 8.32
+docker client/server: 29.8.0 / 29.8.0
+prometheus image: prom/prometheus@sha256:a75c5a35bc21d7afe69551eefa3cb1e1fb1775fe759408007a66b54ec3de1f29
+python: 3.13.15
+numpy: 2.5.3
+scipy: 1.18.1
+matplotlib: 3.11.2
+jq: absent (not needed)
+promtool: absent (not needed)
+kubectl: Client Version: v1.36.1 (not used by the scripts)
+script sha256: d3ba6098c5378b3f90cc9e47da843bfa695897ca153474bbf45ca132dda24fd8 *generar_resultados.py
+script sha256: e3fb3e219366a3aebef4e3a29b30c1def19e27d63b8fb089cac39ae174211797 *build_tabla9.py
+prometheus http://localhost:9092 buildinfo: {"status":"success","data":{"version":"3.5.4","revision":"9e1e3b5104fff654a84131b9854be18862569bb7","branch":"HEAD","buildUser":"root@dc5fbd8f9a0f","buildDate":"20260617-14:17:38","goVersion":"go1.25.11"}}
+prometheus http://localhost:9091 buildinfo: {"status":"success","data":{"version":"3.5.4","revision":"9e1e3b5104fff654a84131b9854be18862569bb7","branch":"HEAD","buildUser":"root@dc5fbd8f9a0f","buildDate":"20260617-14:17:38","goVersion":"go1.25.11"}}
