@@ -1,0 +1,87 @@
+# Read-only access to System B's cluster for the thesis reviewers (applied by setup_reviewer_k8s.sh).
+# - ClusterRole "view" (built into Kubernetes): reads everything in the namespace except Secrets;
+#   no exec, no port-forward, no changes.
+# - revisor-cluster-read: cluster-scoped resources "view" leaves out (nodes, PVs, storage, RBAC).
+# - revisor-prometheus-proxy: GET (only GET) on Prometheus's Service through the API server, so the
+#   UI/API can be queried while its POST endpoints (/-/quit, /-/reload) stay out of reach.
+# The token comes from `kubectl create token revisor --duration=...` and expires on its own.
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: revisor
+  labels:
+    app: revisor
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: revisor-view
+  labels:
+    app: revisor
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: view
+subjects:
+  - kind: ServiceAccount
+    name: revisor
+    namespace: landslide
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: revisor-cluster-read
+  labels:
+    app: revisor
+rules:
+  - apiGroups: [""]
+    resources: [nodes, persistentvolumes, namespaces]
+    verbs: [get, list, watch]
+  - apiGroups: [storage.k8s.io]
+    resources: [storageclasses]
+    verbs: [get, list, watch]
+  - apiGroups: [rbac.authorization.k8s.io]
+    resources: [clusterroles, clusterrolebindings, roles, rolebindings]
+    verbs: [get, list, watch]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: revisor-cluster-read
+  labels:
+    app: revisor
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: revisor-cluster-read
+subjects:
+  - kind: ServiceAccount
+    name: revisor
+    namespace: landslide
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: revisor-prometheus-proxy
+  labels:
+    app: revisor
+rules:
+  - apiGroups: [""]
+    resources: [services/proxy]
+    resourceNames: [prometheus, "prometheus:9090"]
+    verbs: [get]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: revisor-prometheus-proxy
+  labels:
+    app: revisor
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: revisor-prometheus-proxy
+subjects:
+  - kind: ServiceAccount
+    name: revisor
+    namespace: landslide
