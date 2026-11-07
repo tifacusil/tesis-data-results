@@ -627,6 +627,17 @@ Output files:
 python3 test_generar_resultados.py
 ```
 
+### All of `data/output/` in one command (`generar_graficas.py`)
+
+[`generar_graficas.py`](../generar_graficas.py) runs [`client_cpu.py`](#client-cpu-client_cpupy) and then `generar_resultados.py` with the arguments above. Together they write the 14 files in `data/output/`: the table above plus `client-cpu-por-corrida.csv` and `client-cpu-resumen.csv`.
+
+```bash
+python3 generar_graficas.py                          # data/ -> data/output/
+python3 generar_graficas.py --datos data --salida /tmp/salida
+```
+
+It prints `[<script>] ok (<seconds> s)` for each script and finishes with `Listo. Salida en: <folder>`. If a script fails, it prints `[<script>] FALLÓ`, runs the rest, and exits with code 1. The usage, the options and the expected console output are in the [README](../README.md#figures-and-tables-in-one-command).
+
 ## 8. Documentation status
 
 - [x] **Artillery reports.** All 42 inventoried and hashed in `SHA256SUMS.artillery` by `recuperar_artillery.py` (section 3).

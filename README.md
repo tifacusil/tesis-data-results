@@ -23,6 +23,7 @@ The systems' code lives in their own repos (A without a prefix, B with the
 | path | what it is |
 |---|---|
 | [`generar_resultados.py`](generar_resultados.py) | Regenerates Figures 2–5, Tables 7–9 and the other files in `data/output/` from the inputs in `data/`. Needs [`requirements.txt`](requirements.txt). Usage: [methodology §7](docs/metrics-methodology.md#7-running-the-script). |
+| [`generar_graficas.py`](generar_graficas.py) | Runs `client_cpu.py` and `generar_resultados.py` in one go with the inputs in `data/`, writing every figure and table to `data/output/` (or `--salida`). Needs [`requirements.txt`](requirements.txt). |
 | [`test_generar_resultados.py`](test_generar_resultados.py) | Runs `generar_resultados.py` and checks Tables 7, 8 and 9 against the published values, and that two runs give identical files. Prints `OK`. |
 | [`chaos_evidence_b.py`](chaos_evidence_b.py) | Checks, offline and from frozen files, what B did during its three chaos events on 23/09/2026: Redis-buffer ACKs during the broker outage, the tripled buffer metric, the liveness restart during the pause and node CPU. Exits with code 1 if a check fails. See [methodology, *Chaos event evidence*](docs/metrics-methodology.md#chaos-event-evidence-chaos_evidence_bpy). |
 | [`recuperar_artillery.py`](recuperar_artillery.py) | Inventories the 42 Artillery reports in `data/A - SPETIEMBRE 5 RUNS` and `data/B - SEPTIEMBRE 5 RUNS V2`: windows, aggregate, p95, start/end in UTC, SHA-256. It copies the usable ones with an `A_`/`B_` prefix. See [methodology, *Artillery report inventory*](docs/metrics-methodology.md#artillery-report-inventory-recuperar_artillerypy). |
@@ -80,6 +81,40 @@ python3 build_tabla9.py --out /tmp/t9 && cmp /tmp/t9/tabla9.csv data/output/tabl
 ```
 
 Expected: `OK` from the test, then no diff in `data/output` (on Linux, only the PNG files show as changed), then Table 9 rebuilt from the raw Prometheus exports in `tabla9/` with no `cmp` output. The [`reproduce`](.github/workflows/reproduce.yml) workflow runs this and the quick check on every push and pull request. See [methodology §6–7](docs/metrics-methodology.md#6-windows-and-aggregation).
+
+## Figures and tables in one command
+
+`generar_graficas.py` runs `client_cpu.py` and then `generar_resultados.py` with the inputs in `data/`, the same as the *Regenerate data/output* step of the CI workflow. From any folder, with the virtual environment from *Full regeneration* active:
+
+```bash
+python3 generar_graficas.py                          # reads data/, writes data/output/
+python3 generar_graficas.py --salida /tmp/salida     # writes somewhere else, leaving data/output/ untouched
+git diff --exit-code data/output                     # only after the default run
+```
+
+| option | default | meaning |
+|---|---|---|
+| `--datos` | `data/` next to the script | folder with the inputs, laid out as in `data/` |
+| `--salida` | `<datos>/output` | folder for the figures and tables; created if missing |
+
+It takes under a minute. The console shows each script as it starts and finishes (the messages are in Spanish). Between them is each script's own output, such as the client CPU table from `client_cpu.py`:
+
+```
+[client_cpu.py] ejecutando…
+Ventana: inicio de Artillery + 180 s hasta + 600 s; ...
+Tramas/s Sist           Máquina %    Artillery % lógico   Python % lógico
+       1    A          14 [12–14]               0 [0–0]           0 [0–0]
+...
+[client_cpu.py] ok (0.5 s)
+[generar_resultados.py] ejecutando…
+Listo: calentamiento_cola.csv, client-cpu-por-corrida.csv, ..., valores_por_corrida.csv
+[generar_resultados.py] ok (8.0 s)
+Listo. Salida en: /path/to/data/output
+```
+
+The output folder then holds 14 files: `figura2_latencia.png`, `figura3_recursos.png`, `figura4_memoria_servicio.png` and `figura5_resistencia_B.png` (Figures 2–5), `tabla7_tabla8.csv` and `tabla9.csv` (Tables 7–9), `client-cpu-por-corrida.csv` and `client-cpu-resumen.csv`, and six supporting CSVs. [Methodology §7](docs/metrics-methodology.md#7-running-the-script) says what each one contains. With the pinned `requirements.txt`, they match the committed `data/output/` as described in *Full regeneration*: the CSVs byte for byte, and the PNGs pixel for pixel (byte for byte on Windows).
+
+If a script fails, its error is printed, followed by `[<script>] FALLÓ`. The runner still runs the remaining scripts, then exits with code 1 and `Fallaron N de 2 scripts: <names>`. `ModuleNotFoundError` means the requirements are not installed in the Python being used.
 
 ## Table 9 from the Prometheus backups
 
