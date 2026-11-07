@@ -1,61 +1,56 @@
 #!/usr/bin/env python3
 """
-generar_graficas.py — ejecuta, en orden, los scripts que generan las gráficas.
+generar_graficas.py — ejecuta, en orden, los scripts que regeneran data/output/
+(Figuras 2–5, Tablas 7–9 y las CSV de CPU del cliente), igual que el paso
+"Regenerate data/output" del workflow reproduce.
 
-Cada entrada de SCRIPTS indica el script y sus argumentos; las rutas se resuelven
-respecto a --datos (carpeta con los datos crudos, ver README §2 y §7).
-Para añadir otro script de gráficas, agregue una entrada a SCRIPTS.
+Para añadir otro script, agregue una entrada a SCRIPTS; {datos} y {salida}
+se sustituyen por los valores de --datos y --salida.
 
-Uso:
-  python3 generar_graficas.py --datos <carpeta_datos> --salida salida
+Uso (desde cualquier carpeta; necesita requirements.txt):
+  python3 generar_graficas.py                       # data/ -> data/output/
+  python3 generar_graficas.py --datos data --salida /tmp/salida
 """
 import argparse, os, subprocess, sys, time
 
 AQUI = os.path.dirname(os.path.abspath(__file__))
+ESC_A, ESC_B = "{datos}/A - SPETIEMBRE 5 RUNS", "{datos}/B - SEPTIEMBRE 5 RUNS V2"
 
-# (script, [(argumento, ruta relativa a --datos)])
 SCRIPTS = [
-    ("generar_resultados.py", [
-        ("--escalera-a", "A - SPETIEMBRE 5 RUNS"),
-        ("--escalera-b", "B - SEPTIEMBRE 5 RUNS V2"),
-        ("--prom-a", "A-ladder-0917-timeseries.csv"),
-        ("--prom-b", "B-ladder-0923-timeseries.csv"),
-        ("--nivel1-dir", "nivel1"),
-        ("--sat-b", "B-12h-0923-saturation.csv"),
-        ("--serie-b", "B-12h-0923-timeseries.csv"),
-    ]),
+    ["client_cpu.py", "--sistema", "A", ESC_A, "--sistema", "B", ESC_B, "--out", "{salida}"],
+    ["generar_resultados.py",
+     "--escalera-a", ESC_A, "--escalera-b", ESC_B,
+     "--prom-a", "{datos}/A-ladder-0917-timeseries.csv",
+     "--prom-b", "{datos}/B-ladder-0923-timeseries.csv",
+     "--nivel1-dir", "{datos}/nivel1",
+     "--sat-b", "{datos}/B-12h-0923-saturation.csv",
+     "--serie-b", "{datos}/B-12h-0923-timeseries.csv",
+     "--salida", "{salida}"],
 ]
 
 
 def main():
-    ap = argparse.ArgumentParser(description="Ejecuta todos los scripts que generan las gráficas.")
-    ap.add_argument("--datos", default=".", help="carpeta con los datos crudos (por defecto: .)")
-    ap.add_argument("--salida", default="salida", help="carpeta de salida (por defecto: salida)")
+    ap = argparse.ArgumentParser(description="Ejecuta los scripts que generan las gráficas y tablas.")
+    ap.add_argument("--datos", default=os.path.join(AQUI, "data"), help="carpeta de entradas (por defecto: data/)")
+    ap.add_argument("--salida", default=None, help="carpeta de salida (por defecto: <datos>/output)")
     a = ap.parse_args()
+    salida = a.salida or os.path.join(a.datos, "output")
+    os.makedirs(salida, exist_ok=True)
 
     fallidos = []
-    for script, entradas in SCRIPTS:
-        rutas = [(arg, os.path.join(a.datos, rel)) for arg, rel in entradas]
-        faltan = [r for _, r in rutas if not os.path.exists(r)]
-        if faltan:
-            print(f"[{script}] OMITIDO, faltan entradas:\n  " + "\n  ".join(faltan), file=sys.stderr)
-            fallidos.append(script)
-            continue
-        cmd = [sys.executable, os.path.join(AQUI, script)]
-        for arg, r in rutas:
-            cmd += [arg, r]
-        cmd += ["--salida", a.salida]
-        print(f"[{script}] ejecutando…")
+    for script, *args in SCRIPTS:
+        cmd = [sys.executable, os.path.join(AQUI, script)] + [x.format(datos=a.datos, salida=salida) for x in args]
+        print(f"[{script}] ejecutando…", flush=True)
         t0 = time.time()
         if subprocess.run(cmd).returncode != 0:
             print(f"[{script}] FALLÓ", file=sys.stderr)
             fallidos.append(script)
         else:
-            print(f"[{script}] ok ({time.time() - t0:.1f} s)")
+            print(f"[{script}] ok ({time.time() - t0:.1f} s)", flush=True)
 
     if fallidos:
         sys.exit(f"Fallaron {len(fallidos)} de {len(SCRIPTS)} scripts: {', '.join(fallidos)}")
-    print(f"Todas las gráficas generadas en: {os.path.abspath(a.salida)}")
+    print(f"Listo. Salida en: {os.path.abspath(salida)}")
 
 
 if __name__ == "__main__":

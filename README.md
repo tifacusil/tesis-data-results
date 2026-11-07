@@ -23,6 +23,7 @@ The systems' code lives in their own repos (A without a prefix, B with the
 | path | what it is |
 |---|---|
 | [`generar_resultados.py`](generar_resultados.py) | Regenerates Figures 2–5, Tables 7–9 and the other files in `data/output/` from the inputs in `data/`. Needs [`requirements.txt`](requirements.txt). Usage: [methodology §7](docs/metrics-methodology.md#7-running-the-script). |
+| [`generar_graficas.py`](generar_graficas.py) | Runs `client_cpu.py` and `generar_resultados.py` in one go with the inputs in `data/`, writing every figure and table to `data/output/` (or `--salida`). Needs [`requirements.txt`](requirements.txt). |
 | [`test_generar_resultados.py`](test_generar_resultados.py) | Runs `generar_resultados.py` and checks Tables 7, 8 and 9 against the published values, and that two runs give identical files. Prints `OK`. |
 | [`chaos_evidence_b.py`](chaos_evidence_b.py) | Checks, offline and from frozen files, what B did during its three chaos events on 23/09/2026: Redis-buffer ACKs during the broker outage, the tripled buffer metric, the liveness restart during the pause and node CPU. Exits with code 1 if a check fails. See [methodology, *Chaos event evidence*](docs/metrics-methodology.md#chaos-event-evidence-chaos_evidence_bpy). |
 | [`recuperar_artillery.py`](recuperar_artillery.py) | Inventories the 42 Artillery reports in `data/A - SPETIEMBRE 5 RUNS` and `data/B - SEPTIEMBRE 5 RUNS V2`: windows, aggregate, p95, start/end in UTC, SHA-256. It copies the usable ones with an `A_`/`B_` prefix. See [methodology, *Artillery report inventory*](docs/metrics-methodology.md#artillery-report-inventory-recuperar_artillerypy). |
@@ -76,6 +77,7 @@ pip install -r requirements.txt
 python3 test_generar_resultados.py
 python3 generar_resultados.py   --escalera-a "data/A - SPETIEMBRE 5 RUNS" --escalera-b "data/B - SEPTIEMBRE 5 RUNS V2"   --prom-a data/A-ladder-0917-timeseries.csv --prom-b data/B-ladder-0923-timeseries.csv   --nivel1-dir data/nivel1   --sat-b data/B-12h-0923-saturation.csv --serie-b data/B-12h-0923-timeseries.csv   --salida data/output
 git diff --exit-code data/output
+python3 generar_graficas.py      # client_cpu.py + generar_resultados.py in one command, into data/output
 python3 build_tabla9.py --out /tmp/t9 && cmp /tmp/t9/tabla9.csv data/output/tabla9.csv && cmp /tmp/t9/tabla9_por_corrida.csv tabla9/tabla9_por_corrida.csv
 ```
 
