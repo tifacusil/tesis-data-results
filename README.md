@@ -77,11 +77,44 @@ pip install -r requirements.txt
 python3 test_generar_resultados.py
 python3 generar_resultados.py   --escalera-a "data/A - SPETIEMBRE 5 RUNS" --escalera-b "data/B - SEPTIEMBRE 5 RUNS V2"   --prom-a data/A-ladder-0917-timeseries.csv --prom-b data/B-ladder-0923-timeseries.csv   --nivel1-dir data/nivel1   --sat-b data/B-12h-0923-saturation.csv --serie-b data/B-12h-0923-timeseries.csv   --salida data/output
 git diff --exit-code data/output
-python3 generar_graficas.py      # client_cpu.py + generar_resultados.py in one command, into data/output
 python3 build_tabla9.py --out /tmp/t9 && cmp /tmp/t9/tabla9.csv data/output/tabla9.csv && cmp /tmp/t9/tabla9_por_corrida.csv tabla9/tabla9_por_corrida.csv
 ```
 
 Expected: `OK` from the test, then no diff in `data/output` (on Linux, only the PNG files show as changed), then Table 9 rebuilt from the raw Prometheus exports in `tabla9/` with no `cmp` output. The [`reproduce`](.github/workflows/reproduce.yml) workflow runs this and the quick check on every push and pull request. See [methodology §6–7](docs/metrics-methodology.md#6-windows-and-aggregation).
+
+## Figures and tables in one command
+
+`generar_graficas.py` runs `client_cpu.py` and then `generar_resultados.py` with the inputs in `data/`, the same as the *Regenerate data/output* step of the CI workflow. From any folder, with the virtual environment from *Full regeneration* active:
+
+```bash
+python3 generar_graficas.py                          # reads data/, writes data/output/
+python3 generar_graficas.py --salida /tmp/salida     # writes somewhere else, leaving data/output/ untouched
+git diff --exit-code data/output                     # only after the default run
+```
+
+| option | default | meaning |
+|---|---|---|
+| `--datos` | `data/` next to the script | folder with the inputs, laid out as in `data/` |
+| `--salida` | `<datos>/output` | folder for the figures and tables; created if missing |
+
+It takes under a minute. The console shows each script as it starts and finishes (the messages are in Spanish). Between them is each script's own output, such as the client CPU table from `client_cpu.py`:
+
+```
+[client_cpu.py] ejecutando…
+Ventana: inicio de Artillery + 180 s hasta + 600 s; ...
+Tramas/s Sist           Máquina %    Artillery % lógico   Python % lógico
+       1    A          14 [12–14]               0 [0–0]           0 [0–0]
+...
+[client_cpu.py] ok (0.5 s)
+[generar_resultados.py] ejecutando…
+Listo: calentamiento_cola.csv, client-cpu-por-corrida.csv, ..., valores_por_corrida.csv
+[generar_resultados.py] ok (8.0 s)
+Listo. Salida en: /path/to/data/output
+```
+
+The output folder then holds 14 files: `figura2_latencia.png`, `figura3_recursos.png`, `figura4_memoria_servicio.png` and `figura5_resistencia_B.png` (Figures 2–5), `tabla7_tabla8.csv` and `tabla9.csv` (Tables 7–9), `client-cpu-por-corrida.csv` and `client-cpu-resumen.csv`, and six supporting CSVs. [Methodology §7](docs/metrics-methodology.md#7-running-the-script) says what each one contains. With the pinned `requirements.txt`, they match the committed `data/output/` as described in *Full regeneration*: the CSVs byte for byte, and the PNGs pixel for pixel (byte for byte on Windows).
+
+If a script fails, its error is printed, followed by `[<script>] FALLÓ`. The runner still runs the remaining scripts, then exits with code 1 and `Fallaron N de 2 scripts: <names>`. `ModuleNotFoundError` means the requirements are not installed in the Python being used.
 
 ## Table 9 from the Prometheus backups
 
