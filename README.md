@@ -14,7 +14,7 @@ The systems' code lives in their own repos (A without a prefix, B with the
 `generar_graficas.py` runs `client_cpu.py` and then `generar_resultados.py` with the inputs in `data/`, the same as the *Regenerate data/output* step of the CI workflow. From any folder, with the virtual environment from *Full regeneration* active:
 
 ```bash
-or (py)
+# or py
 python3 -m venv venv && . venv/bin/activate      # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 python3 generar_graficas.py                          # reads data/, writes data/output/
