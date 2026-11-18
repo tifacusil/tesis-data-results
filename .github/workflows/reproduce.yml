@@ -1,4 +1,4 @@
-name: reproduce
+name: reproduce (processing reproduction, not campaign replication)
 
 on:
   push:
@@ -23,6 +23,21 @@ jobs:
           (cd tabla10 && sha256sum -c --quiet SHA256SUMS)
           (cd tabla9 && sha256sum -c --quiet SHA256SUMS)
           echo "f3a6c99304e81d976a81977034b3db319108c59d08e1ced3e2263d278b903fbd  data/data.zip" | sha256sum -c --quiet
+
+      - name: Experiment manifest hashes
+        run: |
+          python - <<'EOF'
+          import hashlib, json
+          m = json.load(open("experiment-manifest.json", encoding="utf-8"))["datos"]["publicos_en_este_repositorio"]
+          sha = lambda f: hashlib.sha256(open(f, "rb").read()).hexdigest()
+          checks = [(m["exportacion_prometheus"]["archivo"], m["exportacion_prometheus"]["sha256"]),
+                    (m["evidencia_inyecciones_b"]["manifiesto"], m["evidencia_inyecciones_b"]["sha256"])]
+          checks += [(m[k]["lista_sha256"], m[k]["sha256_de_la_lista"])
+                     for k in ("reportes_artillery", "tabla9_consultas_crudas", "tabla10_exportaciones")]
+          for f, h in checks:
+              assert sha(f) == h, f"{f}: {sha(f)} != manifest {h}"
+              print(f"{f}: OK")
+          EOF
 
       - name: Artillery inventory
         run: python recuperar_artillery.py --out "$RUNNER_TEMP/inventory"
@@ -62,6 +77,7 @@ jobs:
       - name: Compare with the committed data/output
         run: |
           git diff --exit-code -- data/output ':(exclude)*.png'
+          (cd data/output && sha256sum -c --quiet SHA256SUMS)
           python - <<'EOF'
           import glob, io, subprocess
           import numpy as np
