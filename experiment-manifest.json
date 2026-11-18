@@ -1,0 +1,138 @@
+{
+  "tipo": "retrospectivo",
+  "nota": "Reconstruido el 2026-11-17 a partir de los artefactos de este repositorio, del historial de go-tesis-infra y de los servidores. No se generó antes de cada ensayo: para una campaña nueva, el manifiesto debe escribirse antes de cada corrida y anexarse a sus resultados. Cada valor indica su fuente; null indica que el dato no se registró durante la campaña.",
+  "alcance": "Campaña de septiembre de 2026: escalera, resistencia de 12 h, inyección de fallos y pruebas dirigidas. La CI de este repositorio reproduce el procesamiento (tablas y figuras a partir de los datos crudos); no replica la campaña experimental.",
+  "generador": {
+    "herramienta": "Artillery 2 con el motor dtu-tcp de go-tesis-infra (load-tests/artillery-engine-dtu-tcp) y procesos dtu-emulator en Python de conexión persistente",
+    "maquina_cliente": "AMD Ryzen 7 5700X, 16 procesadores lógicos, 32 GB",
+    "flota_sensores": 100,
+    "tipo_trama": "GNSS (contrato de ejemplo de dtu-emulator)",
+    "timeout_confirmacion_ms": 5000,
+    "reintentos_cliente": 0,
+    "semilla": null,
+    "semilla_nota": "Los escenarios no fijan el campo seed del motor; dtu-emulator genera cargas aleatorias, por lo que las tramas no son reproducibles bit a bit. Fuente: go-tesis-infra load-tests/scenarios/*.yml y README-engine.md en 3ea91e6.",
+    "fuente": "docs/metrics-methodology.md §3; go-tesis-infra load-tests/ en 3ea91e6 (idéntico en c6732b0)"
+  },
+  "etapas": {
+    "escalera": {
+      "tasas_tramas_s": [1, 10, 50, 100],
+      "corridas_por_nivel": 5,
+      "duracion_s": 600,
+      "calentamiento_s": 180,
+      "medicion_s": 420,
+      "pausa_entre_corridas_s": 30,
+      "reinicio_de_estado": "FLUSHDB en Redis y TRUNCATE TABLE alerts en early-warning antes de cada corrida (load-tests/reset-state.sh); la base de data-management no se vacía",
+      "fuente": "load-tests/scenarios/vu-0XX.yml, run-all.sh; inventario de recuperar_artillery.py"
+    },
+    "resistencia_12h": {
+      "tasa_tramas_s": 100,
+      "rampa_s": 180,
+      "sostenida_s": 43200,
+      "fuente": "load-tests/scenarios/vu-sustained-12h.yml"
+    }
+  },
+  "sistemas": {
+    "A": {
+      "descripcion": "Reimplementación de la arquitectura de referencia sin orquestación",
+      "servidor": "Hetzner Cloud CX23, 2 vCPU x86, 4 GB RAM, 40 GB SSD",
+      "region": "Helsinki (Finlandia)",
+      "sistema_operativo": "Ubuntu 24.04.4 LTS",
+      "despliegue": "systemd nativo",
+      "commit_go_tesis_infra": "3ea91e6",
+      "fechas_utc": {
+        "escalera": ["2026-09-17T15:14:08Z", "2026-09-17T18:47:45Z"],
+        "resistencia_12h": ["2026-09-18T05:17:31Z", "2026-09-18T17:20:32Z"],
+        "inyecciones": {
+          "terminacion_broker_sigkill": "2026-09-18T07:18:20Z",
+          "pausa_data_management_90s": "2026-09-18T11:18:19Z"
+        },
+        "prueba_dirigida_ap5": ["2026-09-30T01:59:53Z", "2026-09-30T02:03:45Z"]
+      },
+      "artefactos": {
+        "nota": "SHA-256 calculado el 2026-11-17 en el servidor. La fecha de modificación de cada artefacto es anterior a la campaña, de modo que coincide con lo medido.",
+        "data-receiving": {"ruta": "/opt/data-receiving/DataReceiving", "lenguaje": "C# (.NET autocontenido)", "sha256": "00c8e007e91c079e9fdb2d40d860d3637ba924d9f30cf96038858967f4baedda", "modificado_utc": "2026-07-15T04:31:34Z", "replicas": 3, "politica_reinicio": "Restart=on-failure"},
+        "data-management": {"ruta": "/opt/data-management/data-management.jar", "lenguaje": "Java", "sha256": "62322ad2713b6a1f70a48b6ac91cb933ab13b0523cd579bc13c71ab405e47a2b", "modificado_utc": "2026-08-02T18:08:53Z", "replicas": 2, "politica_reinicio": "Restart=always"},
+        "project-management": {"ruta": "/opt/project-management-service/project-management.jar", "lenguaje": "Java", "sha256": "d4561548dfddf5fdb081d5784c94bca2ddea2b86c21d33c6fb8552c182815541", "modificado_utc": "2026-08-02T18:09:38Z", "replicas": 1, "politica_reinicio": "Restart=always"},
+        "user-management": {"ruta": "/opt/user-management/user-management-1.0.0.jar", "lenguaje": "Java", "sha256": "c33b4db271dc1d5cc9bb0614596b50284751054822d7fd2c8f9e611eec378b33", "modificado_utc": "2026-08-02T18:10:14Z", "replicas": 1, "politica_reinicio": "Restart=on-failure"},
+        "data-analysis": {"ruta": "/opt/data-analysis-service", "lenguaje": "Python (gunicorn)", "sha256_fuentes_py": "c88563dd16c981b290b4737aa209266ca0d24b445cdc237162dc735d27e75997", "archivos_py": 48, "modificado_utc_max": "2026-08-02T18:20", "replicas": 2, "politica_reinicio": "Restart=on-failure"},
+        "early-warning": {"ruta": "/opt/early-warning-service", "lenguaje": "Python", "sha256_fuentes_py": "786158c10a254e0fd22fa6a2c0f6a7859b0be3b14e7348374e578f83e5bb092a", "archivos_py": 8, "modificado_utc_max": "2026-08-02T18:19", "replicas": 2, "politica_reinicio": "Restart=always"},
+        "sha256_fuentes_py_metodo": "sha256 de la lista ordenada (LC_ALL=C) de `sha256sum` de cada *.py fuera de venv/ y __pycache__/"
+      },
+      "dependencias": {"rabbitmq": "3.12.1", "redis": "7.0.15", "mysql": "8.0.46, cinco instancias", "prometheus": "3.5.4", "consul": "1.22.7", "nginx": "1.24.0"},
+      "resiliencia": {"circuit_breaker": "no existe en A", "reintentos_consumer": null, "nota": "Parámetros embebidos en el código heredado; no se registraron como configuración del experimento."},
+      "version_esquema": "sin migraciones versionadas: las sentencias de definición de esquema se ejecutan en la ruta de escritura (defecto AP8)"
+    },
+    "B": {
+      "descripcion": "Arquitectura de seis microservicios desplegada sobre k3s",
+      "servidor": "Hetzner Cloud CX23, 2 vCPU x86, 4 GB RAM, 40 GB SSD",
+      "region": "Falkenstein (Alemania)",
+      "sistema_operativo": "Ubuntu 24.04.4 LTS",
+      "despliegue": "k3s v1.35.5+k3s1 sobre containerd 2.2.3-k3s1, namespace landslide",
+      "commit_go_tesis_infra": "c6732b0 (mismo árbol que 4b44acd en main)",
+      "fechas_utc": {
+        "escalera": ["2026-09-23T05:23:18Z", "2026-09-23T08:59:23Z"],
+        "resistencia_12h": ["2026-09-23T12:31:20Z", "2026-09-24T00:34:21Z"],
+        "inyecciones": {
+          "eliminacion_pod_broker": "2026-09-23T14:32:15Z",
+          "pausa_data_management_90s": "2026-09-23T18:32:20Z",
+          "retardo_8000ms_hacia_data_analysis_180s": "2026-09-23T22:32:18Z"
+        },
+        "pruebas_dirigidas": {
+          "ap5": ["2026-09-29T22:24:07Z", "2026-09-29T22:43:38Z"],
+          "ap6": ["2026-09-29T22:51:08Z", "2026-09-29T22:53:55Z"],
+          "ap7": ["2026-09-30T03:23:01Z", "2026-09-30T03:26:16Z"],
+          "retardo_9000ms_hacia_user_management_240s": ["2026-09-30T03:32:03Z", "2026-09-30T03:54:28Z"]
+        }
+      },
+      "imagenes_campana": {
+        "fuente": "Tabla VI del artículo; contrastado el 2026-11-17 con el almacén de containerd del nodo (crictl inspecti), que conserva las imágenes y su fecha de construcción",
+        "data-receiving": {"imagen": "ghcr.io/tifacusil/go-data-receiving", "digest": "sha256:bb3d9f0260a7c2748d39ce5ffe828d9fcecd92598aae4f90fa60257fda3b5df7", "construida_utc": "2026-07-07T03:55:58Z", "replicas": 3},
+        "data-management": {"imagen": "ghcr.io/tifacusil/data-management", "digest": "sha256:3a85a9f9d7b329198737ea1fafdaf0e4b93d0cd27f125d07eddeee838379c710", "construida_utc": "2026-08-02T16:30:16Z", "replicas": 2},
+        "data-analysis": {"imagen": "ghcr.io/tifacusil/data-analysis", "digest": "sha256:b4bbf705e4a96c8dfd7d23f39937379694eed3e046401e530a1f498996e61d4f", "construida_utc": "2026-08-02T17:07:42Z", "replicas": 2},
+        "early-warning": {"imagen": "ghcr.io/tifacusil/early-warning", "digest": "sha256:94bdbcf8b255cae290d6897b213cd57e209a253af507d1e7a11ed1edf0bb48a2", "construida_utc": "2026-09-23T05:15:40Z", "replicas": 2, "nota": "Reconstruida 8 min antes de la primera corrida de B para exponer métricas adicionales, sin cambiar la lógica de evaluación"},
+        "user-management": {"imagen": "ghcr.io/tifacusil/user-management", "digest": "sha256:0cc0f2542ae8036248d362d3d60c3bc286b0162ebb23a01fb357495cbe73aba4", "construida_utc": "2026-08-02T16:32:12Z", "replicas": 1},
+        "project-management": {"imagen": "ghcr.io/tifacusil/project-management", "digest": "sha256:e1c708090fc36064b30d0cb396018a8eeeb71e83d73c1e35ad960912717a718a", "construida_utc": "2026-08-02T16:29:30Z", "replicas": 1}
+      },
+      "imagenes_pruebas_dirigidas": {
+        "early-warning": {"digest": "sha256:d5bae3eeaf58c5e0aaf962f00ce987e470bf12a91d85a19dfe1fd9d6d41026ad", "construida_utc": "2026-09-29T22:08:19Z", "fuente": "Tabla VI del artículo"},
+        "data-management": {"digest": null, "nota": "No registrado. La imagen sha256:2a1991e69e771f9ef92d4dd25667a2aa78346e4309e8e203ac9a893777ffab95 se construyó el 2026-09-29T22:03:56Z, 21 min antes de la primera prueba dirigida, y es la que corría el 2026-10-20 (docs/setup-guide.md §4.3); no consta si ya corría durante AP5 a AP7."}
+      },
+      "dependencias": {"rabbitmq": "rabbitmq:3.12.1-management-alpine", "redis": "redis:7.0.15-alpine", "mysql": "mysql:8.0.46, cuatro StatefulSets", "prometheus": "prom/prometheus:v3.5.4", "coredns": "1.14.3", "traefik": "3.6.13"},
+      "resiliencia": {
+        "fuente": "ConfigMaps y Deployments de k8s/base en c6732b0; valores compilados según el artículo, Sección IV-D",
+        "early-warning": {"timeout_data_analysis_ms": 5000, "timeout_user_management_ms": 5000, "circuit_breaker_fallos_para_abrir": 5, "circuit_breaker_abierto_ms": 30000, "intentos_por_invocacion": "3 (compilado)", "reintentos_consumer_antes_de_dlq": "3 (compilado)", "workers_consumer": 1, "idempotency_ttl": "1h", "prefetch": "compilado, no parametrizado"},
+        "data-receiving": {"timeout_confirmacion_broker_s": 5, "buffer_redis_ttl_h": 24, "reintento_buffer_cada_s": 30, "edad_minima_reintento_min": 2}
+      },
+      "politica_reinicio": "Deployments con restartPolicy Always; liveness y readiness probes HTTP en /health (data-receiving /health/), initialDelaySeconds 15 a 20 (liveness) y 10 (readiness)",
+      "version_esquema": null,
+      "version_esquema_nota": "Migraciones versionadas aplicadas al arrancar cada servicio (AP8); la versión aplicada durante la campaña no se registró."
+    }
+  },
+  "datos": {
+    "publicos_en_este_repositorio": {
+      "reportes_artillery": {"cantidad": 42, "lista_sha256": "SHA256SUMS.artillery", "sha256_de_la_lista": "feb264326a975428bc8b37dba19c29a6f3117fef9b9391d80a8ad6ed9513bee2"},
+      "exportacion_prometheus": {"archivo": "data/data.zip", "sha256": "f3a6c99304e81d976a81977034b3db319108c59d08e1ced3e2263d278b903fbd"},
+      "tabla9_consultas_crudas": {"lista_sha256": "tabla9/SHA256SUMS", "sha256_de_la_lista": "db1cd17343206fb7a19e61f7cd730cba47d96883277442c63e45d1bc3dbde71a"},
+      "tabla10_exportaciones": {"lista_sha256": "tabla10/SHA256SUMS", "sha256_de_la_lista": "30a865014f25a7a705005f7aedaf38940898089d8ce88c2a31062d384e18efd8"},
+      "evidencia_inyecciones_b": {"manifiesto": "data/evidencia-b-0923/manifiesto.json", "sha256": "247f6ddeb3252ab995b5f42e1d75d62ba7c069b28c7ba93b22cf53051362b032"},
+      "salidas": {"lista_sha256": "data/output/SHA256SUMS", "nota": "Solo CSV: los PNG se comparan píxel a píxel porque su compresión varía entre plataformas"}
+    },
+    "no_publicos": {
+      "tsdb_prometheus": {
+        "archivos": {
+          "respaldo-prometheus-20261014.zip": "a0ad114283c75ffe39a58ffa5a999065e632cdd8fc2ee21cbedde8b88afa2611",
+          "A-prometheus-tsdb-20261014.tar.gz": "157e6cf3636a804b59f06fb0443aaa4ba03538e405825aaa6da534ce8c808d66",
+          "B-prometheus-tsdb-20261014.tar.gz": "7425191c484406224e51d576e87df158cd4dca7b6dd535229b683012bc561877"
+        },
+        "motivo": "858 MB; se entregan a solicitud",
+        "restauracion": "docs/metrics-methodology.md §9"
+      },
+      "excluidos": ["credenciales", "datos de suscriptores", "salida de consola del retardo hacia data-analysis (no se conservó)"]
+    },
+    "procesamiento": {
+      "comando": "python3 generar_graficas.py",
+      "verificacion": ".github/workflows/reproduce.yml (reproducción del procesamiento)",
+      "requisitos": "requirements.txt, Python 3.13.15"
+    }
+  }
+}

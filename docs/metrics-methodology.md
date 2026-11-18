@@ -630,7 +630,7 @@ python3 test_generar_resultados.py
 
 ### All of `data/output/` in one command (`generar_graficas.py`)
 
-[`generar_graficas.py`](../generar_graficas.py) runs [`client_cpu.py`](#client-cpu-client_cpupy) and then `generar_resultados.py` with the arguments above. Together they write the 15 files in `data/output/`: the table above plus `client-cpu-por-corrida.csv` and `client-cpu-resumen.csv`.
+[`generar_graficas.py`](../generar_graficas.py) runs [`client_cpu.py`](#client-cpu-client_cpupy) and then `generar_resultados.py` with the arguments above. Together they write the 15 files in `data/output/`, whose CSVs are listed with their SHA-256 in `data/output/SHA256SUMS`: the table above plus `client-cpu-por-corrida.csv` and `client-cpu-resumen.csv`.
 
 ```bash
 python3 generar_graficas.py                          # data/ -> data/output/

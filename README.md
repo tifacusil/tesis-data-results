@@ -9,6 +9,24 @@ The systems' code lives in their own repos (A without a prefix, B with the
 `go-` prefix); the manifests and test tooling in
 [`tifacusil/go-tesis-infra`](https://github.com/tifacusil/go-tesis-infra).
 
+## Reproduction of the processing, not replication of the campaign
+
+This repo reproduces the **processing**: from the raw inputs below, the scripts regenerate the published tables and figures, and the CI workflow ([`reproduce.yml`](.github/workflows/reproduce.yml)) checks this on every push. It does **not** replicate the **experimental campaign**: running the load and fault injections again on new servers is a new campaign, with its own data, and its results must not be mixed with these.
+
+[`experiment-manifest.json`](experiment-manifest.json) records the conditions of the September 2026 campaign for each system and stage: region, UTC dates, artefacts by SHA-256 (A) and images by digest (B), machine, generator settings, rates, durations, retry and restart settings, schema version, and the hashes of the datasets. It is **retrospective**, rebuilt on 17/11/2026 from this repo, the `go-tesis-infra` history and the servers. Fields that were not recorded during the campaign are `null` and say why; in particular, the generator ran **without a fixed seed**, so the frames are not reproducible bit for bit. A new campaign should write the manifest before each run.
+
+| Input | Where | Integrity |
+|---|---|---|
+| 42 Artillery reports (ladder and 12 h) | `data/*/vu-*.json`, `sustained-12h.json` | [`SHA256SUMS.artillery`](SHA256SUMS.artillery) |
+| Prometheus export behind Tables 7–9 and Figures 3–5 | `data/data.zip` | SHA-256 in the CI workflow and the manifest |
+| Raw Prometheus range queries for Table 9 | `tabla9/` | [`tabla9/SHA256SUMS`](tabla9/SHA256SUMS) |
+| Fault-injection exports for Table 10 | `tabla10/` | [`tabla10/SHA256SUMS`](tabla10/SHA256SUMS) |
+| B's fault-injection series, logs and chaos snapshots | `data/evidencia-b-0923/`, `data/data-receiving-logs-2026-09-23/`, `data/*/chaos/` | `data/evidencia-b-0923/manifiesto.json` |
+| Published outputs | `data/output/` | [`data/output/SHA256SUMS`](data/output/SHA256SUMS) (CSVs; the PNGs are compared pixel by pixel) |
+| **Prometheus TSDB backups** (858 MB) | **not in this repo; available on request** | SHA-256 in [methodology §9](docs/metrics-methodology.md#9-restoring-the-prometheus-backups), which also explains how to restore them |
+
+Credentials and subscriber data are excluded. The console output of the delay injected towards data-analysis was not kept.
+
 ## HOW TO REPRODUCE "Figures and tables in one command"
 
 `generar_graficas.py` runs `client_cpu.py` and then `generar_resultados.py` with the inputs in `data/`, the same as the *Regenerate data/output* step of the CI workflow. From any folder, with the virtual environment from *Full regeneration* active:
