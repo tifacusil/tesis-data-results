@@ -25,6 +25,8 @@ Método (declarado en 3.3 y 5.3 del manuscrito):
     Bonferroni sobre cuatro niveles; delta de Cliff sobre corridas;
     IC 95 % de la diferencia de medianas por remuestreo de las corridas (agregado, 20 000 réplicas)
     o jerárquico, corridas y luego mediciones (ventanas, como en la V3).
+  - Sensibilidad al calentamiento (sensibilidad_calentamiento.csv, con cualquier estimando): el mismo
+    contraste con la mediana de los percentiles de la ventana efectiva e IC por remuestreo de corridas.
 
 Uso:
   python3 generar_resultados.py --escalera-a "A - SPETIEMBRE 5 RUNS" --escalera-b "B - SEPTIEMBRE 5 RUNS V2" \
@@ -145,9 +147,22 @@ def ic(EA, EB, nivel, k):
 
 def contraste(EA, EB, l, k):
     ra, rb = valores_corrida(EA, l, k), valores_corrida(EB, l, k)
-    lo, hi = ic(EA, EB, l, k); p = p_permutacion(ra, rb)
+    lo, hi = ic(EA, EB, l, k)
+    return resumen_contraste(ra, rb, lo, hi)
+
+
+def resumen_contraste(ra, rb, lo, hi):
+    p = p_permutacion(ra, rb)
     return [round(st.median(rb) - st.median(ra), 1), round(lo, 1), round(hi, 1),
             round(delta_cliff(rb, ra), 2), round(p, 4), p < 0.0125]
+
+
+def contraste_ventanas(EA, EB, l, k):
+    # Sensibilidad al calentamiento: mediana de los percentiles de las 42 ventanas efectivas,
+    # con el mismo procedimiento que el estimando primario (IC por remuestreo de corridas)
+    ra, rb = ([st.median(E[(l, r)][k]) for r in sorted(r for (ll, r) in E if ll == l)] for E in (EA, EB))
+    lo, hi = ic_corridas(ra, rb)
+    return resumen_contraste(ra, rb, lo, hi)
 
 
 # ---------------------------------------------------------------- recursos (Prometheus)
@@ -308,6 +323,17 @@ def main():
         w = csv.writer(f)
         w.writerow(["tramas_s", "dif_p99_B_menos_A", "ic95_inf", "ic95_sup", "delta_cliff", "p_exacto", "significativo_0.0125"])
         w.writerow([100] + contraste(EA, EB, 100, "p99"))
+
+    # Sensibilidad al calentamiento: contraste sobre la ventana efectiva, sin cambiar el estimando primario.
+    # "corridas_coincidentes" cuenta, de las 10 corridas del nivel, las que dan el mismo valor con ambos resúmenes.
+    with open(os.path.join(a.salida, "sensibilidad_calentamiento.csv"), "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f)
+        w.writerow(["percentil", "tramas_s", "dif_B_menos_A", "ic95_inf", "ic95_sup", "delta_cliff", "p_exacto",
+                    "significativo_0.0125", "corridas_coincidentes"])
+        for k, niveles in (("p95", NIVELES), ("p99", [100])):
+            for l in niveles:
+                iguales = sum(c["agregado"][k] == st.median(c[k]) for s in "AB" for (ll, r), c in E[s].items() if ll == l)
+                w.writerow([k, l] + contraste_ventanas(EA, EB, l, k) + [iguales])
 
     # Latencia por corrida, en orden real de ejecución (3.4 del manuscrito)
     orden = sorted(((c["inicio"], s, l, r) for s in "AB" for (l, r), c in E[s].items()))

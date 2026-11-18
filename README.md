@@ -42,7 +42,7 @@ Listo: calentamiento_cola.csv, client-cpu-por-corrida.csv, ..., valores_por_corr
 Listo. Salida en: /path/to/data/output
 ```
 
-The output folder then holds 14 files: `figura2_latencia.png`, `figura3_recursos.png`, `figura4_memoria_servicio.png` and `figura5_resistencia_B.png` (Figures 2–5), `tabla7_tabla8.csv` and `tabla9.csv` (Tables 7–9), `client-cpu-por-corrida.csv` and `client-cpu-resumen.csv`, and six supporting CSVs. [Methodology §7](docs/metrics-methodology.md#7-running-the-script) says what each one contains. With the pinned `requirements.txt`, they match the committed `data/output/` as described in *Full regeneration*: the CSVs byte for byte, and the PNGs pixel for pixel (byte for byte on Windows).
+The output folder then holds 15 files: `figura2_latencia.png`, `figura3_recursos.png`, `figura4_memoria_servicio.png` and `figura5_resistencia_B.png` (Figures 2–5), `tabla7_tabla8.csv` and `tabla9.csv` (Tables 7–9), `client-cpu-por-corrida.csv` and `client-cpu-resumen.csv`, and seven supporting CSVs. [Methodology §7](docs/metrics-methodology.md#7-running-the-script) says what each one contains. With the pinned `requirements.txt`, they match the committed `data/output/` as described in *Full regeneration*: the CSVs byte for byte, and the PNGs pixel for pixel (byte for byte on Windows).
 
 If a script fails, its error is printed, followed by `[<script>] FALLÓ`. The runner still runs the remaining scripts, then exits with code 1 and `Fallaron N de 2 scripts: <names>`. `ModuleNotFoundError` means the requirements are not installed in the Python being used.
 

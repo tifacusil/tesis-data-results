@@ -16,9 +16,17 @@ NUEVA = {1: (198.4, 190.6, 198.4, 194.4, 202.4, 198.4, -4.0, -8.0, -4.0, -1.0, 0
          50: (198.4, 186.8, 206.5, 198.4, 210.6, 206.5, -8.1, -12.1, -4.0, -1.0, 0.0079),
          100: (198.4, 186.8, 206.5, 206.5, 210.6, 232.8, 0.0, 0.0, 8.4, 0.4, 0.4444)}
 
+# Sensibilidad al calentamiento (sección III-C y VI-B del artículo): dif, IC, Cliff, p, corridas coincidentes
+SENSIBILIDAD = {("p95", 1): (-7.8, -7.8, -7.8, -1.0, 0.0079, 4), ("p95", 10): (-4.0, -7.8, -4.0, -1.0, 0.0079, 9),
+                ("p95", 50): (-4.0, -12.1, -4.0, -1.0, 0.0079, 9), ("p95", 100): (0.0, -4.1, 4.1, -0.2, 0.4444, 6),
+                ("p99", 100): (8.6, 4.3, 22.2, 1.0, 0.0079, 4)}
+
 # Tabla 9 con la ventana efectiva filtrada (sin ventanas vacías): CPU A/B %, memoria A/B MiB
 TABLA9 = {1: (5.7, 24.8, 3328.5, 2826.9), 10: (13.3, 35.3, 3334.1, 2832.9),
           50: (39.7, 61.3, 3338.3, 2864.4), 100: (68.0, 80.7, 3388.5, 2886.4)}
+
+
+NIVELES_SENS = (1, 10, 50, 100)
 
 
 def correr(salida, *extra):
@@ -39,6 +47,15 @@ with tempfile.TemporaryDirectory() as t:
 
     for r in csv.DictReader(open(os.path.join(t, "n1", "tabla9.csv"), encoding="utf-8")):
         assert tuple(float(r[k]) for k in ("cpu_A", "cpu_B", "mem_ocupada_A_MiB", "mem_ocupada_B_MiB")) == TABLA9[int(r["tramas_s"])], r
+
+    sens = {(r["percentil"], int(r["tramas_s"])): r
+            for r in csv.DictReader(open(os.path.join(t, "n1", "sensibilidad_calentamiento.csv"), encoding="utf-8"))}
+    assert set(sens) == set(SENSIBILIDAD), sorted(sens)
+    for clave, esperado in SENSIBILIDAD.items():
+        obtenido = tuple(float(sens[clave][k]) for k in ("dif_B_menos_A", "ic95_inf", "ic95_sup", "delta_cliff", "p_exacto")) \
+                + (int(sens[clave]["corridas_coincidentes"]),)
+        assert obtenido == esperado, (clave, sens[clave])
+    assert sum(int(sens[("p95", l)]["corridas_coincidentes"]) for l in NIVELES_SENS) == 28
 
     correr(os.path.join(t, "n2"))
     c = filecmp.dircmp(os.path.join(t, "n1"), os.path.join(t, "n2"))
