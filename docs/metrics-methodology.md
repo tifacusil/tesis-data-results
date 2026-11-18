@@ -572,7 +572,7 @@ On 25/10/2026, the four `curl` queries above, run against the restored 14/10 bac
 The script derives the windows from the Artillery JSON files, with no extra input:
 
 1. Each run is split into 10 s periods. Periods with no measurements are dropped first. Of the rest, the first 18 (3 min of warm-up) are discarded and the next 42 form the **effective window**.
-2. Latency (`--estimando agregado`, the default and the article's method): each run's p50, p95 and p99 come from `aggregate.summaries`, the histogram over the whole run. Artillery gives no percentiles over a subset of periods, so the latency does not discard the warm-up. `calentamiento_cola.csv` shows how much of the tail comes from the warm-up: the share of periods whose p95 exceeds the run's aggregate p95, in the warm-up and in the effective window.
+2. Latency (`--estimando agregado`, the default and the article's method): each run's p50, p95 and p99 come from `aggregate.summaries`, the histogram over the whole run. Artillery gives no percentiles over a subset of periods, so the latency does not discard the warm-up. `calentamiento_cola.csv` shows how much of the tail comes from the warm-up: the share of periods whose p95 exceeds the run's aggregate p95, in the warm-up and in the effective window. `sensibilidad_calentamiento.csv` checks the warm-up's effect on the contrast without changing the estimand: it repeats the p95 contrast per level, and the p99 contrast at 100 frames/s, with each run summarised by the median of its 42 effective periods, using the same procedure as the default estimand (run-resampling CI, exact p, Cliff's delta). Its last column counts, out of the level's 10 runs, those whose value is the same with both summaries (28 of 40 for p95).
 3. With `--estimando ventanas`, each run's latency is the median of the percentiles of its 42 effective periods instead. This is the method of the earlier V3 of the article, kept to check its Table 7.
 4. Resources and throughput: each run's value is the median over its effective window. For resources, these are the Prometheus samples whose `time` falls inside the window, with either estimand.
 5. Each level's value is the median of its five runs.
@@ -618,6 +618,7 @@ Output files:
 | `latencia_por_corrida.csv` | Per run, in execution order: start, aggregate percentiles, median p95 of the effective window, counts |
 | `deriva_spearman.csv` | Drift with execution order (section 6) |
 | `calentamiento_cola.csv` | Warm-up share of the tail (section 6) |
+| `sensibilidad_calentamiento.csv` | The p95 and p99 contrasts repeated over the effective window, and how many runs match the default estimand (section 6) |
 | `resistencia_12h.csv` | 12 h runs: acknowledged frames, failures, aggregate p95, periods with p95 above 1 s |
 | `figura{2,3,4,5}_*.png` | Figures 2 to 5 |
 
@@ -629,7 +630,7 @@ python3 test_generar_resultados.py
 
 ### All of `data/output/` in one command (`generar_graficas.py`)
 
-[`generar_graficas.py`](../generar_graficas.py) runs [`client_cpu.py`](#client-cpu-client_cpupy) and then `generar_resultados.py` with the arguments above. Together they write the 14 files in `data/output/`: the table above plus `client-cpu-por-corrida.csv` and `client-cpu-resumen.csv`.
+[`generar_graficas.py`](../generar_graficas.py) runs [`client_cpu.py`](#client-cpu-client_cpupy) and then `generar_resultados.py` with the arguments above. Together they write the 15 files in `data/output/`: the table above plus `client-cpu-por-corrida.csv` and `client-cpu-resumen.csv`.
 
 ```bash
 python3 generar_graficas.py                          # data/ -> data/output/

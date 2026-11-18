@@ -1,0 +1,6 @@
+percentil,tramas_s,dif_B_menos_A,ic95_inf,ic95_sup,delta_cliff,p_exacto,significativo_0.0125,corridas_coincidentes
+p95,1,-7.8,-7.8,-7.8,-1.0,0.0079,True,4
+p95,10,-4.0,-7.8,-4.0,-1.0,0.0079,True,9
+p95,50,-4.0,-12.1,-4.0,-1.0,0.0079,True,9
+p95,100,0.0,-4.1,4.1,-0.2,0.4444,False,6
+p99,100,8.6,4.3,22.2,1.0,0.0079,True,4
