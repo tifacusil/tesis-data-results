@@ -1,0 +1,325 @@
+{
+  "prometheus": {
+    "A": "http://localhost:9092",
+    "B": "http://localhost:9091"
+  },
+  "zona_horaria": "UTC",
+  "archivos": [
+    {
+      "consulta": "data_receiving_frames_total[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-18T17:25:33Z",
+      "archivo": "A__frames.json",
+      "sistema": "A",
+      "sha256": "40ab637be7a76fb82d54775034c139584d2a006af1cddf4e39bb95a75675aa15"
+    },
+    {
+      "consulta": "data_receiving_messages_published_total[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-18T17:25:33Z",
+      "archivo": "A__published.json",
+      "sistema": "A",
+      "sha256": "801e0abdb4f598703de0ffa9553dcca74b4f7712071fff40b098a178b04a4f46"
+    },
+    {
+      "consulta": "data_receiving_messages_dropped_total[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-18T17:25:33Z",
+      "archivo": "A__dr_dropped.json",
+      "sistema": "A",
+      "sha256": "95bd69c2097501d003399c20200127511048c3e194c5fc706f6d6d0c58681681"
+    },
+    {
+      "consulta": "dm_messages_processed_total[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-18T17:25:33Z",
+      "archivo": "A__dm_processed.json",
+      "sistema": "A",
+      "sha256": "d9911d4ee116093c9554241fcad4712c1f5f66f5cc70df9364544b2a73db4154"
+    },
+    {
+      "consulta": "rabbitmq_acknowledged_total{service=\"data-management\"}[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-18T17:25:33Z",
+      "archivo": "A__dm_rabbit_acked.json",
+      "sistema": "A",
+      "sha256": "99b2eafd9cec3fde1b1e385f19ed59d78a0a968cf8cc5485bd599433f0cb0495"
+    },
+    {
+      "consulta": "ew_messages_processed_total[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-18T17:25:33Z",
+      "archivo": "A__ew_processed.json",
+      "sistema": "A",
+      "sha256": "09bb993637cf58be953e6ea27bbed098561f8920cf7dbfdeeeb755a0503efbc3"
+    },
+    {
+      "consulta": "mysql_global_status_innodb_row_ops_total{operation=\"inserted\"}[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-18T17:25:33Z",
+      "archivo": "A__mysql_rows_inserted.json",
+      "sistema": "A",
+      "sha256": "eda0441290b805b102b50654648cf900d22db8005cf61161e2c96f019ec49e2d"
+    },
+    {
+      "consulta": "up{job=\"microservices\"}[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-18T17:25:33Z",
+      "archivo": "A__up.json",
+      "sistema": "A",
+      "sha256": "6bf7c54636381e74f728361704de18487d96b554badea026c073f03141ba2795"
+    },
+    {
+      "consulta": "process_start_time_seconds{job=\"microservices\"}[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-18T17:25:33Z",
+      "archivo": "A__process_start.json",
+      "sistema": "A",
+      "sha256": "d3cc342711e5b7193e882ac23ad5a8dd3eafc86c1614de2cac59d69ff24b0387"
+    },
+    {
+      "consulta": "rabbitmq_connections{service=\"data-management\"}[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-18T17:25:33Z",
+      "archivo": "A__dm_rabbit_connections.json",
+      "sistema": "A",
+      "sha256": "fcbf119102e4e784ac4a4fb4f77aacd46c785bb24538f925993119d3029ad4e7"
+    },
+    {
+      "consulta": "system_net_sockets_outgoing_connections_established{service=\"data-receiving\"}[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-18T17:25:33Z",
+      "archivo": "A__dr_outgoing_connections.json",
+      "sistema": "A",
+      "sha256": "87a084753c49cb7c687068ca00f2d92a378d8bcb8d9ce7f1f462aeb0aea615f0"
+    },
+    {
+      "consulta": "redis_up[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-18T17:25:33Z",
+      "archivo": "A__redis_up.json",
+      "sistema": "A",
+      "sha256": "03309d3bc248858308a4796f28bc9a66d0057478e6d2f5ec254e3a3af574e7af"
+    },
+    {
+      "consulta": "node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes",
+      "api": "/api/v1/query_range",
+      "start": "2026-09-18T05:12:31Z",
+      "end": "2026-09-18T17:25:33Z",
+      "step": "60s",
+      "archivo": "A__mem_node.json",
+      "sistema": "A",
+      "sha256": "b53a1076a77d12270db9b7cb31b273863005078670b87ece63703a7b8f2d9f1c"
+    },
+    {
+      "consulta": "sum by (service) (process_resident_memory_bytes{service!=\"\"})",
+      "api": "/api/v1/query_range",
+      "start": "2026-09-18T05:12:31Z",
+      "end": "2026-09-18T17:25:33Z",
+      "step": "60s",
+      "archivo": "A__mem_rss_service.json",
+      "sistema": "A",
+      "sha256": "3e4a5e02bb22b71edb1f4aa6cfaa63c8381ad3ccf9e75b90aac5bb118d655433"
+    },
+    {
+      "consulta": "sum by (service) (jvm_memory_used_bytes{service!=\"\"})",
+      "api": "/api/v1/query_range",
+      "start": "2026-09-18T05:12:31Z",
+      "end": "2026-09-18T17:25:33Z",
+      "step": "60s",
+      "archivo": "A__mem_jvm_service.json",
+      "sistema": "A",
+      "sha256": "291922a37f9f5b82c4f990cce9ab89179a9eaedf63fc99f5a33bca430ca44744"
+    },
+    {
+      "consulta": "data_receiving_frames_total[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__frames.json",
+      "sistema": "B",
+      "sha256": "07706af45278742a434bb774b4ea44798e9e4bf4c69340fdd323c1d1548dee71"
+    },
+    {
+      "consulta": "data_receiving_messages_published_total[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__published.json",
+      "sistema": "B",
+      "sha256": "b45c1d0ac68dfe50c7b9756c5efbf4bce1438c21293d15055c70144d464ba057"
+    },
+    {
+      "consulta": "data_receiving_messages_dropped_total[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__dr_dropped.json",
+      "sistema": "B",
+      "sha256": "8ccdc42dcedf4d9b26c41cc80fea3f3a907a0cc1ed1867a3ae0ef2b1a5c41ca0"
+    },
+    {
+      "consulta": "data_receiving_redis_buffer_pending[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__buffer.json",
+      "sistema": "B",
+      "sha256": "a9b1dccca123aa5186844f004be3360d979bc45b7fdb6e89a9271e16a09bfead"
+    },
+    {
+      "consulta": "dm_messages_processed_total[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__dm_processed.json",
+      "sistema": "B",
+      "sha256": "75b4410f3b0d58394039f30b548b76a211a1920c23a447116f8557d0470eb05e"
+    },
+    {
+      "consulta": "dm_messages_dlq_total[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__dm_dlq.json",
+      "sistema": "B",
+      "sha256": "908f5779235b8460b2133ad203c076db790a0af2fcef2f803f885cbcf9764aaa"
+    },
+    {
+      "consulta": "dm_messages_retried_total[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__dm_retried.json",
+      "sistema": "B",
+      "sha256": "c5d9f928b3aaa18fb7654f561458a17d228fd35d0f30bed77ad8cdccedc00f07"
+    },
+    {
+      "consulta": "dm_messages_invalid_total[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__dm_invalid.json",
+      "sistema": "B",
+      "sha256": "cd8778b646b1584c1226e023aa703f1d24c5cb7a06892dcbce45204677950879"
+    },
+    {
+      "consulta": "ew_messages_dropped_total[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__ew_dropped.json",
+      "sistema": "B",
+      "sha256": "1e73de01fe08fd9e5f12024ca5dfa3e3083c609d9e2f34f20403fd788ff4b7dd"
+    },
+    {
+      "consulta": "ew_messages_consumed_total[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__ew_consumed.json",
+      "sistema": "B",
+      "sha256": "15927519c72106835b50b962c3ec26db44d8ae04d4ce84a8fdb618f0a593a187"
+    },
+    {
+      "consulta": "ew_alerts_published_total[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__ew_alerts.json",
+      "sistema": "B",
+      "sha256": "8e1ec7671e26e86b9d0f05f20565e3255fd0c00614094b5c4f3f1e576ac3aa65"
+    },
+    {
+      "consulta": "ew_duplicates_skipped_total[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__ew_duplicates.json",
+      "sistema": "B",
+      "sha256": "76bd50f132ce91fba4b45af940e7799ab3832faa2ffb70753aa4058f2f2d4cca"
+    },
+    {
+      "consulta": "ew_alert_delivery_latency_seconds_count[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__ew_alert_delivery_count.json",
+      "sistema": "B",
+      "sha256": "554d05b91f91f04726d3af89e4e9e2a5ab943baae094df29b00de74858b5dc58"
+    },
+    {
+      "consulta": "mysql_global_status_innodb_row_ops_total{instance=\"mysqld-exporter-data-management:9104\",operation=\"inserted\"}[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__mysql_rows_inserted.json",
+      "sistema": "B",
+      "sha256": "c0a549aebf431f6d72e2a91054b616431ea74fbd29ffeadf6bb56faad578bd77"
+    },
+    {
+      "consulta": "mysql_global_status_commands_total{instance=\"mysqld-exporter-data-management:9104\",command=\"insert\"}[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__mysql_insert_cmds.json",
+      "sistema": "B",
+      "sha256": "94d847bb0ca0394e93da8d800728fafcf124da0c7b5c0c0eecf84c107ab97896"
+    },
+    {
+      "consulta": "rabbitmq_queue_messages{queue=~\"data_management.persist|early_warning.evaluate|sensors.dead_letter\"}[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__queues.json",
+      "sistema": "B",
+      "sha256": "5d3d02ce21b0119f49a974f11baa8084af239dbfd890d9b94574596395f9d471"
+    },
+    {
+      "consulta": "rabbitmq_queue_messages_published_total{queue=~\"data_management.persist|early_warning.evaluate|sensors.dead_letter\"}[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__queue_published.json",
+      "sistema": "B",
+      "sha256": "5a4f8fe5953cb91b2fd25b0cd59404f40fe5dd2346c62242bbac99cf5fc30af6"
+    },
+    {
+      "consulta": "rabbitmq_up[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__rabbit_up.json",
+      "sistema": "B",
+      "sha256": "f07c1618d8bb3171c69aa48a863fe9bdbaf5349fbe996924dd95aaed15835cad"
+    },
+    {
+      "consulta": "kube_pod_container_status_restarts_total{namespace=\"landslide\"}[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__restarts.json",
+      "sistema": "B",
+      "sha256": "1a70f6a1590c3b150f0651b18f590a90e01407de273e19b167ad9c23518cad76"
+    },
+    {
+      "consulta": "kube_pod_container_status_ready{namespace=\"landslide\"}[43982s]",
+      "api": "/api/v1/query",
+      "time": "2026-09-24T00:39:22Z",
+      "archivo": "B__ready.json",
+      "sistema": "B",
+      "sha256": "cfe2c91ac0b54e7b20ab728dec29bb76068e73549ec53f52ac72a14b37428fa5"
+    },
+    {
+      "consulta": "node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes",
+      "api": "/api/v1/query_range",
+      "start": "2026-09-23T12:26:20Z",
+      "end": "2026-09-24T00:39:22Z",
+      "step": "60s",
+      "archivo": "B__mem_node.json",
+      "sistema": "B",
+      "sha256": "e9ab81a00b95bf44f5ff7131ec43d1345dbf147a7bc914360be0b97f4e211cf4"
+    },
+    {
+      "consulta": "sum by (app) (process_resident_memory_bytes{app!=\"\"})",
+      "api": "/api/v1/query_range",
+      "start": "2026-09-23T12:26:20Z",
+      "end": "2026-09-24T00:39:22Z",
+      "step": "60s",
+      "archivo": "B__mem_rss_app.json",
+      "sistema": "B",
+      "sha256": "edadf47c57bd846b81fb3a166e32bbeead632169222dde36bad24142e2677a10"
+    },
+    {
+      "consulta": "process_resident_memory_bytes{app!=\"\"}",
+      "api": "/api/v1/query_range",
+      "start": "2026-09-23T12:26:20Z",
+      "end": "2026-09-24T00:39:22Z",
+      "step": "60s",
+      "archivo": "B__mem_rss_instance.json",
+      "sistema": "B",
+      "sha256": "d60312270dc6ab84a6147acacb801bcbb191dc5f53bb25f012d6c87dfa39a7e6"
+    }
+  ]
+}

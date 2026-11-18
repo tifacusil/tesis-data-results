@@ -1,0 +1,968 @@
+{
+ "zona_horaria": "UTC",
+ "artillery_A": {
+  "archivo": "data/A - SPETIEMBRE 5 RUNS/sustained-12h.json",
+  "inicio": "2026-09-18T05:17:31Z",
+  "fin": "2026-09-18T17:20:32Z",
+  "inicio_epoch": 1789708651.024,
+  "fin_epoch": 1789752032.403,
+  "contadores": {
+   "vusers.created_by_name.Ingest GNSS frame (TCP)": 4329095,
+   "vusers.created": 4329095,
+   "dtu_tcp.frames_acked": 4329095,
+   "vusers.failed": 0,
+   "vusers.completed": 4329095
+  },
+  "emitidas": 4329095,
+  "confirmadas": 4329095,
+  "fallidas": 0,
+  "cuadra": true,
+  "no_confirmadas_pct": 0.0,
+  "p95_agregado": 202.4,
+  "periodos_con_fallos": []
+ },
+ "artillery_B": {
+  "archivo": "data/B - SEPTIEMBRE 5 RUNS V2/sustained-12h.json",
+  "inicio": "2026-09-23T12:31:20Z",
+  "fin": "2026-09-24T00:34:21Z",
+  "inicio_epoch": 1790166680.398,
+  "fin_epoch": 1790210061.989,
+  "contadores": {
+   "vusers.created_by_name.Ingest GNSS frame (TCP)": 4329095,
+   "vusers.created": 4329095,
+   "dtu_tcp.frames_acked": 4328780,
+   "vusers.failed": 315,
+   "vusers.completed": 4328780,
+   "errors.emulator_error": 315
+  },
+  "emitidas": 4329095,
+  "confirmadas": 4328780,
+  "fallidas": 315,
+  "cuadra": true,
+  "no_confirmadas_pct": 0.0072763475968995826,
+  "p95_agregado": 242.3,
+  "periodos_con_fallos": [
+   {
+    "periodo": "2026-09-23T14:33:00Z",
+    "fallidas": 210,
+    "errores": {
+     "errors.emulator_error": 210
+    }
+   },
+   {
+    "periodo": "2026-09-23T14:33:10Z",
+    "fallidas": 105,
+    "errores": {
+     "errors.emulator_error": 105
+    }
+   }
+  ]
+ },
+ "incidencias": {
+  "A": {
+   "eventos": [
+    {
+     "evento": "caida_broker",
+     "inicio": "2026-09-18T07:18:20Z",
+     "fin": "2026-09-18T07:19:10Z",
+     "primer_periodo_con_fallo": null,
+     "ultimo_periodo_con_fallo": null,
+     "fallos": 0,
+     "p95_mayor_1s": [],
+     "reinicios_process_start": [],
+     "up_0": [],
+     "dm_rabbitmq_connections": [
+      {
+       "serie": "component=microservice,instance=localhost:8082,name=rabbit,service=data-management",
+       "cambios": [
+        {
+         "antes": "2026-09-18T07:18:17Z",
+         "despues": "2026-09-18T07:18:32Z",
+         "de": 1.0,
+         "a": 0.0
+        },
+        {
+         "antes": "2026-09-18T07:18:47Z",
+         "despues": "2026-09-18T07:19:02Z",
+         "de": 0.0,
+         "a": 1.0
+        }
+       ]
+      },
+      {
+       "serie": "component=microservice,instance=localhost:8086,name=rabbit,service=data-management",
+       "cambios": [
+        {
+         "antes": "2026-09-18T07:18:14Z",
+         "despues": "2026-09-18T07:18:29Z",
+         "de": 1.0,
+         "a": 0.0
+        },
+        {
+         "antes": "2026-09-18T07:18:44Z",
+         "despues": "2026-09-18T07:18:59Z",
+         "de": 0.0,
+         "a": 1.0
+        }
+       ]
+      }
+     ],
+     "dr_outgoing_connections": [
+      {
+       "serie": "component=microservice,instance=localhost:8081,service=data-receiving",
+       "cambios": [
+        {
+         "antes": "2026-09-18T07:18:49Z",
+         "despues": "2026-09-18T07:19:04Z",
+         "de": 4.0,
+         "a": 5.0
+        }
+       ]
+      },
+      {
+       "serie": "component=microservice,instance=localhost:8087,service=data-receiving",
+       "cambios": [
+        {
+         "antes": "2026-09-18T07:18:39Z",
+         "despues": "2026-09-18T07:18:54Z",
+         "de": 4.0,
+         "a": 5.0
+        }
+       ]
+      },
+      {
+       "serie": "component=microservice,instance=localhost:8089,service=data-receiving",
+       "cambios": [
+        {
+         "antes": "2026-09-18T07:18:48Z",
+         "despues": "2026-09-18T07:19:03Z",
+         "de": 4.0,
+         "a": 5.0
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "evento": "pausa_dm",
+     "inicio": "2026-09-18T11:18:19Z",
+     "fin": "2026-09-18T11:20:01Z",
+     "primer_periodo_con_fallo": null,
+     "ultimo_periodo_con_fallo": null,
+     "fallos": 0,
+     "p95_mayor_1s": [],
+     "reinicios_process_start": [],
+     "up_0": [
+      {
+       "serie": "component=microservice,instance=localhost:8082,service=data-management",
+       "up_0_desde": "2026-09-18T11:18:32Z",
+       "up_0_hasta": "2026-09-18T11:19:32Z",
+       "muestras": 5
+      }
+     ],
+     "dm_rabbitmq_connections": [],
+     "dr_outgoing_connections": []
+    }
+   ],
+   "todos_los_periodos_p95_mayor_1s": []
+  },
+  "B": {
+   "eventos": [
+    {
+     "evento": "caida_broker",
+     "inicio": "2026-09-23T14:32:23Z",
+     "fin": "2026-09-23T14:33:00Z",
+     "primer_periodo_con_fallo": "2026-09-23T14:33:00Z",
+     "ultimo_periodo_con_fallo": "2026-09-23T14:33:10Z",
+     "fallos": 315,
+     "p95_mayor_1s": [
+      {
+       "desde": "2026-09-23T14:34:50Z",
+       "hasta": "2026-09-23T14:36:00Z",
+       "p95_max_ms": 2059.5
+      }
+     ],
+     "reinicios": [
+      {
+       "pod": "data-receiving-d9f59874f-69b4v",
+       "container": "data-receiving",
+       "entre": [
+        "2026-09-23T14:33:00Z",
+        "2026-09-23T14:33:15Z"
+       ],
+       "de": 1097.0,
+       "a": 1098.0
+      },
+      {
+       "pod": "data-receiving-d9f59874f-7rpf9",
+       "container": "data-receiving",
+       "entre": [
+        "2026-09-23T14:33:00Z",
+        "2026-09-23T14:33:15Z"
+       ],
+       "de": 1097.0,
+       "a": 1098.0
+      },
+      {
+       "pod": "data-receiving-d9f59874f-8fgq2",
+       "container": "data-receiving",
+       "entre": [
+        "2026-09-23T14:33:00Z",
+        "2026-09-23T14:33:15Z"
+       ],
+       "de": 1096.0,
+       "a": 1097.0
+      }
+     ],
+     "ready_0": [
+      {
+       "pod": "rabbitmq-0",
+       "container": "rabbitmq",
+       "ready_0_desde": "2026-09-23T14:32:30Z",
+       "ready_0_hasta": "2026-09-23T14:32:45Z",
+       "muestras_0": 2
+      }
+     ]
+    },
+    {
+     "evento": "pausa_dm",
+     "inicio": "2026-09-23T18:32:29Z",
+     "fin": "2026-09-23T18:33:59Z",
+     "primer_periodo_con_fallo": null,
+     "ultimo_periodo_con_fallo": null,
+     "fallos": 0,
+     "p95_mayor_1s": [
+      {
+       "desde": "2026-09-23T18:32:10Z",
+       "hasta": "2026-09-23T18:32:30Z",
+       "p95_max_ms": 2231
+      }
+     ],
+     "reinicios": [
+      {
+       "pod": "data-management-5c98d7c987-zmctz",
+       "container": "data-management",
+       "entre": [
+        "2026-09-23T18:33:30Z",
+        "2026-09-23T18:33:45Z"
+       ],
+       "de": 4.0,
+       "a": 5.0
+      }
+     ],
+     "ready_0": [
+      {
+       "pod": "data-management-5c98d7c987-zmctz",
+       "container": "data-management",
+       "ready_0_desde": "2026-09-23T18:33:00Z",
+       "ready_0_hasta": "2026-09-23T18:33:45Z",
+       "muestras_0": 4
+      }
+     ]
+    },
+    {
+     "evento": "netem_da",
+     "inicio": "2026-09-23T22:32:28Z",
+     "fin": "2026-09-23T22:35:37Z",
+     "primer_periodo_con_fallo": null,
+     "ultimo_periodo_con_fallo": null,
+     "fallos": 0,
+     "p95_mayor_1s": [
+      {
+       "desde": "2026-09-23T22:34:10Z",
+       "hasta": "2026-09-23T22:34:30Z",
+       "p95_max_ms": 1200.1
+      },
+      {
+       "desde": "2026-09-23T22:35:00Z",
+       "hasta": "2026-09-23T22:35:20Z",
+       "p95_max_ms": 1326.4
+      },
+      {
+       "desde": "2026-09-23T22:35:30Z",
+       "hasta": "2026-09-23T22:35:50Z",
+       "p95_max_ms": 1863.5
+      },
+      {
+       "desde": "2026-09-23T22:36:00Z",
+       "hasta": "2026-09-23T22:39:20Z",
+       "p95_max_ms": 2101.1
+      }
+     ],
+     "reinicios": [],
+     "ready_0": []
+    }
+   ],
+   "todos_los_periodos_p95_mayor_1s": [
+    {
+     "desde": "2026-09-23T14:34:50Z",
+     "hasta": "2026-09-23T14:36:00Z",
+     "p95_max_ms": 2059.5
+    },
+    {
+     "desde": "2026-09-23T16:55:30Z",
+     "hasta": "2026-09-23T16:56:00Z",
+     "p95_max_ms": 1587.9
+    },
+    {
+     "desde": "2026-09-23T17:00:00Z",
+     "hasta": "2026-09-23T17:00:10Z",
+     "p95_max_ms": 1085.9
+    },
+    {
+     "desde": "2026-09-23T18:32:10Z",
+     "hasta": "2026-09-23T18:32:30Z",
+     "p95_max_ms": 2231
+    },
+    {
+     "desde": "2026-09-23T19:31:20Z",
+     "hasta": "2026-09-23T19:31:30Z",
+     "p95_max_ms": 1620
+    },
+    {
+     "desde": "2026-09-23T22:34:10Z",
+     "hasta": "2026-09-23T22:34:30Z",
+     "p95_max_ms": 1200.1
+    },
+    {
+     "desde": "2026-09-23T22:35:00Z",
+     "hasta": "2026-09-23T22:35:20Z",
+     "p95_max_ms": 1326.4
+    },
+    {
+     "desde": "2026-09-23T22:35:30Z",
+     "hasta": "2026-09-23T22:35:50Z",
+     "p95_max_ms": 1863.5
+    },
+    {
+     "desde": "2026-09-23T22:36:00Z",
+     "hasta": "2026-09-23T22:39:20Z",
+     "p95_max_ms": 2101.1
+    },
+    {
+     "desde": "2026-09-24T00:00:00Z",
+     "hasta": "2026-09-24T00:00:10Z",
+     "p95_max_ms": 1224.4
+    }
+   ]
+  }
+ },
+ "reinicios_B_corrida": [
+  {
+   "pod": "data-receiving-d9f59874f-69b4v",
+   "container": "data-receiving",
+   "entre": [
+    "2026-09-23T14:33:00Z",
+    "2026-09-23T14:33:15Z"
+   ],
+   "de": 1097.0,
+   "a": 1098.0
+  },
+  {
+   "pod": "data-receiving-d9f59874f-7rpf9",
+   "container": "data-receiving",
+   "entre": [
+    "2026-09-23T14:33:00Z",
+    "2026-09-23T14:33:15Z"
+   ],
+   "de": 1097.0,
+   "a": 1098.0
+  },
+  {
+   "pod": "data-receiving-d9f59874f-8fgq2",
+   "container": "data-receiving",
+   "entre": [
+    "2026-09-23T14:33:00Z",
+    "2026-09-23T14:33:15Z"
+   ],
+   "de": 1096.0,
+   "a": 1097.0
+  },
+  {
+   "pod": "data-management-5c98d7c987-zmctz",
+   "container": "data-management",
+   "entre": [
+    "2026-09-23T18:33:30Z",
+    "2026-09-23T18:33:45Z"
+   ],
+   "de": 4.0,
+   "a": 5.0
+  }
+ ],
+ "reinicios_A_corrida": [],
+ "durabilidad": {
+  "A": {
+   "ventana": [
+    "2026-09-18T05:17:31Z",
+    "2026-09-18T17:25:32Z"
+   ],
+   "trafico_previo_frames": {
+    "ventana": [
+     "2026-09-18T05:12:31Z",
+     "2026-09-18T05:17:31Z"
+    ],
+    "frames": 1666.0
+   },
+   "frames_ok": 4329095.0,
+   "frames_no_ok": 0,
+   "published": 4329095.0,
+   "dm_processed": 4332014.0,
+   "mysql_rows_inserted": 0.0,
+   "resets": {
+    "frames": [],
+    "published": [],
+    "dm_processed": [],
+    "mysql_rows_inserted": []
+   },
+   "dr_dropped": [
+    {
+     "serie": "component=microservice,instance=localhost:8081,service=data-receiving",
+     "min": 0.0,
+     "max": 0.0,
+     "muestras": 2912
+    },
+    {
+     "serie": "component=microservice,instance=localhost:8087,service=data-receiving",
+     "min": 0.0,
+     "max": 0.0,
+     "muestras": 2912
+    },
+    {
+     "serie": "component=microservice,instance=localhost:8089,service=data-receiving",
+     "min": 0.0,
+     "max": 0.0,
+     "muestras": 2912
+    }
+   ],
+   "dm_rabbit_acked": 4332014.0,
+   "ew_processed": 2166025.0,
+   "dm_menos_frames_por_ventana": [
+    {
+     "desde": "2026-09-18T05:17:31Z",
+     "hasta": "2026-09-18T07:18:00Z",
+     "frames": 712993.0,
+     "dm_processed": 713265.0,
+     "dm_menos_frames": 272.0
+    },
+    {
+     "desde": "2026-09-18T07:18:00Z",
+     "hasta": "2026-09-18T07:30:00Z",
+     "frames": 72000.0,
+     "dm_processed": 74918.0,
+     "dm_menos_frames": 2918.0
+    },
+    {
+     "desde": "2026-09-18T07:30:00Z",
+     "hasta": "2026-09-18T11:18:00Z",
+     "frames": 1367989.0,
+     "dm_processed": 1367992.0,
+     "dm_menos_frames": 3.0
+    },
+    {
+     "desde": "2026-09-18T11:18:00Z",
+     "hasta": "2026-09-18T11:30:00Z",
+     "frames": 72004.0,
+     "dm_processed": 72000.0,
+     "dm_menos_frames": -4.0
+    },
+    {
+     "desde": "2026-09-18T11:30:00Z",
+     "hasta": "2026-09-18T17:25:32Z",
+     "frames": 2104109.0,
+     "dm_processed": 2103839.0,
+     "dm_menos_frames": -270.0
+    }
+   ],
+   "redis_up": [
+    {
+     "serie": "instance=localhost:9121",
+     "min": 0.0,
+     "max": 0.0,
+     "muestras": 2912
+    }
+   ],
+   "dif_dm_processed_vs_confirmadas": {
+    "abs": 2919.0,
+    "pct": 0.0674
+   },
+   "dif_frames_ok_vs_confirmadas": {
+    "abs": 0.0,
+    "pct": 0.0
+   }
+  },
+  "B": {
+   "ventana": [
+    "2026-09-23T12:31:20Z",
+    "2026-09-24T00:39:21Z"
+   ],
+   "trafico_previo_frames": {
+    "ventana": [
+     "2026-09-23T12:26:20Z",
+     "2026-09-23T12:31:20Z"
+    ],
+    "frames": 4024.0
+   },
+   "frames_ok": 4328151.0,
+   "frames_no_ok": 0,
+   "published": 4328151.0,
+   "dm_processed": 4333397.0,
+   "mysql_rows_inserted": 4328780.0,
+   "resets": {
+    "frames": [
+     {
+      "serie": "app=data-receiving,instance=10.42.0.90:8080,result=ok,sensor_type=gnss",
+      "resets": [
+       [
+        "2026-09-23T14:33:20Z",
+        451968.0,
+        97.0
+       ]
+      ]
+     },
+     {
+      "serie": "app=data-receiving,instance=10.42.0.91:8080,result=ok,sensor_type=gnss",
+      "resets": [
+       [
+        "2026-09-23T14:33:26Z",
+        371279.0,
+        1998.0
+       ]
+      ]
+     }
+    ],
+    "published": [
+     {
+      "serie": "app=data-receiving,instance=10.42.0.90:8080",
+      "resets": [
+       [
+        "2026-09-23T14:33:05Z",
+        451968.0,
+        0.0
+       ]
+      ]
+     },
+     {
+      "serie": "app=data-receiving,instance=10.42.0.91:8080",
+      "resets": [
+       [
+        "2026-09-23T14:33:11Z",
+        371279.0,
+        0.0
+       ]
+      ]
+     },
+     {
+      "serie": "app=data-receiving,instance=10.42.0.92:8080",
+      "resets": [
+       [
+        "2026-09-23T14:33:15Z",
+        384167.0,
+        0.0
+       ]
+      ]
+     }
+    ],
+    "dm_processed": [
+     {
+      "serie": "app=data-management,instance=10.42.0.88:8080",
+      "resets": [
+       [
+        "2026-09-23T18:33:45Z",
+        2152206.0,
+        418.0
+       ]
+      ]
+     }
+    ],
+    "mysql_rows_inserted": []
+   },
+   "mysql_insert_cmds": 4334122.0,
+   "ew_consumed": 4334129.0,
+   "ew_duplicates": 5349.0,
+   "ew_alerts": 3414.0,
+   "ew_alert_delivery_count": 3416.0,
+   "queue_published": {
+    "data_management.persist": 4333427.0,
+    "early_warning.evaluate": 4333427.0,
+    "sensors.dead_letter": 0.0
+   },
+   "contadores_cero": {
+    "dr_dropped": [
+     {
+      "serie": "app=data-receiving,instance=10.42.0.90:8080",
+      "min": 0.0,
+      "max": 0.0,
+      "muestras": 2913
+     },
+     {
+      "serie": "app=data-receiving,instance=10.42.0.91:8080",
+      "min": 0.0,
+      "max": 0.0,
+      "muestras": 2912
+     },
+     {
+      "serie": "app=data-receiving,instance=10.42.0.92:8080",
+      "min": 0.0,
+      "max": 0.0,
+      "muestras": 2912
+     }
+    ],
+    "dm_dlq": [
+     {
+      "serie": "app=data-management,instance=10.42.0.88:8080",
+      "min": 0.0,
+      "max": 0.0,
+      "muestras": 2907
+     },
+     {
+      "serie": "app=data-management,instance=10.42.0.89:8080",
+      "min": 0.0,
+      "max": 0.0,
+      "muestras": 2913
+     }
+    ],
+    "dm_retried": [
+     {
+      "serie": "app=data-management,instance=10.42.0.88:8080",
+      "min": 0.0,
+      "max": 0.0,
+      "muestras": 2907
+     },
+     {
+      "serie": "app=data-management,instance=10.42.0.89:8080",
+      "min": 0.0,
+      "max": 0.0,
+      "muestras": 2913
+     }
+    ],
+    "dm_invalid": [
+     {
+      "serie": "app=data-management,instance=10.42.0.88:8080",
+      "min": 0.0,
+      "max": 0.0,
+      "muestras": 2907
+     },
+     {
+      "serie": "app=data-management,instance=10.42.0.89:8080",
+      "min": 0.0,
+      "max": 0.0,
+      "muestras": 2913
+     }
+    ],
+    "ew_dropped": [
+     {
+      "serie": "app=early-warning,instance=10.42.0.118:8080,service=early-warning",
+      "min": 0.0,
+      "max": 0.0,
+      "muestras": 2912
+     },
+     {
+      "serie": "app=early-warning,instance=10.42.0.119:8080,service=early-warning",
+      "min": 0.0,
+      "max": 0.0,
+      "muestras": 2912
+     }
+    ]
+   },
+   "dead_letter_queue": [
+    {
+     "serie": "cluster=rabbit@rabbitmq-0.rabbitmq.landslide.svc.cluster.local,durable=true,instance=rabbitmq-exporter:9419,queue=sensors.dead_letter,self=1,vhost=/",
+     "min": 0.0,
+     "max": 0.0,
+     "muestras": 2911
+    }
+   ],
+   "buffer_caida_broker": {
+    "agregacion": "max() entre replicas, muestras agrupadas en intervalos de 15 s",
+    "max": 3752.0,
+    "max_t": "2026-09-23T14:33:45Z",
+    "linea_base_20min_previos": 5.0,
+    "vuelve_a_linea_base": "2026-09-23T14:36:45Z",
+    "vuelve_a_0": "2026-09-23T14:51:45Z",
+    "muestras_14_32_30_a_14_36_30": [
+     [
+      "2026-09-23T14:32:30Z",
+      3.0
+     ],
+     [
+      "2026-09-23T14:32:45Z",
+      764.0
+     ],
+     [
+      "2026-09-23T14:33:00Z",
+      764.0
+     ],
+     [
+      "2026-09-23T14:33:15Z",
+      0.0
+     ],
+     [
+      "2026-09-23T14:33:30Z",
+      0.0
+     ],
+     [
+      "2026-09-23T14:33:45Z",
+      3752.0
+     ],
+     [
+      "2026-09-23T14:34:00Z",
+      3752.0
+     ],
+     [
+      "2026-09-23T14:34:15Z",
+      3742.0
+     ],
+     [
+      "2026-09-23T14:34:30Z",
+      3742.0
+     ],
+     [
+      "2026-09-23T14:34:45Z",
+      3741.0
+     ],
+     [
+      "2026-09-23T14:35:00Z",
+      3741.0
+     ],
+     [
+      "2026-09-23T14:35:15Z",
+      3741.0
+     ],
+     [
+      "2026-09-23T14:35:30Z",
+      3741.0
+     ],
+     [
+      "2026-09-23T14:35:45Z",
+      3741.0
+     ],
+     [
+      "2026-09-23T14:36:00Z",
+      3741.0
+     ],
+     [
+      "2026-09-23T14:36:15Z",
+      3741.0
+     ],
+     [
+      "2026-09-23T14:36:30Z",
+      3741.0
+     ]
+    ],
+    "por_replica_max": [
+     {
+      "serie": "app=data-receiving,instance=10.42.0.90:8080",
+      "max": 3752.0,
+      "primera_muestra_con_max": "2026-09-23T14:33:50Z"
+     },
+     {
+      "serie": "app=data-receiving,instance=10.42.0.91:8080",
+      "max": 3743.0,
+      "primera_muestra_con_max": "2026-09-23T14:33:56Z"
+     },
+     {
+      "serie": "app=data-receiving,instance=10.42.0.92:8080",
+      "max": 3750.0,
+      "primera_muestra_con_max": "2026-09-23T14:33:45Z"
+     }
+    ]
+   },
+   "buffer_corrida_max": [
+    "2026-09-23T14:33:45Z",
+    3752.0
+   ],
+   "dif_mysql_rows_inserted_vs_confirmadas": {
+    "abs": 0.0,
+    "pct": 0.0
+   },
+   "dif_dm_processed_vs_confirmadas": {
+    "abs": 4617.0,
+    "pct": 0.1067
+   },
+   "dif_frames_ok_vs_confirmadas": {
+    "abs": -629.0,
+    "pct": -0.0145
+   }
+  }
+ },
+ "logs_b": {
+  "publish_failed_con_retry_succeeded": 3740,
+  "publish_failed_sin_retry_succeeded": 0,
+  "retry_succeeded_sin_publish_failed": 0,
+  "sink_write_failed_con_retry_succeeded": 0,
+  "sink_write_failed_con_publish_failed": 0,
+  "retry_succeeded_lineas_por_id": {
+   "3": 1597,
+   "2": 2143
+  },
+  "retry_succeeded_primera": "2026-09-23T14:34:45.634242395Z",
+  "retry_succeeded_ultima": "2026-09-23T14:36:25.197762244Z"
+ },
+ "memoria_nodo": {
+  "A": {
+   "consulta": "node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes",
+   "paso": "60s",
+   "ventana": [
+    "2026-09-18T05:20:31Z",
+    "2026-09-18T17:20:32Z"
+   ],
+   "exclusion": "[inicio, fin + 600 s] de cada inyeccion",
+   "todo": {
+    "muestras": 720,
+    "inicial_MiB": 3404.3,
+    "inicial_t": "2026-09-18T05:21:31Z",
+    "final_MiB": 3459.4,
+    "final_t": "2026-09-18T17:20:31Z",
+    "min_MiB": 3400.7,
+    "min_t": "2026-09-18T05:23:31Z",
+    "max_MiB": 3532.1,
+    "max_t": "2026-09-18T17:01:31Z",
+    "pendiente_MiB_h": 4.0
+   },
+   "sin_inyecciones": {
+    "muestras": 697,
+    "inicial_MiB": 3404.3,
+    "inicial_t": "2026-09-18T05:21:31Z",
+    "final_MiB": 3459.4,
+    "final_t": "2026-09-18T17:20:31Z",
+    "min_MiB": 3400.7,
+    "min_t": "2026-09-18T05:23:31Z",
+    "max_MiB": 3532.1,
+    "max_t": "2026-09-18T17:01:31Z",
+    "pendiente_MiB_h": 4.02
+   },
+   "ventanas_inyeccion": {
+    "caida_broker": {
+     "desde": "2026-09-18T07:18:20Z",
+     "hasta": "2026-09-18T07:29:10Z",
+     "muestras": 11,
+     "min_MiB": 3422.6,
+     "max_MiB": 3448.5
+    },
+    "pausa_dm": {
+     "desde": "2026-09-18T11:18:19Z",
+     "hasta": "2026-09-18T11:30:01Z",
+     "muestras": 12,
+     "min_MiB": 3446.1,
+     "max_MiB": 3476.2
+    }
+   }
+  },
+  "B": {
+   "consulta": "node_memory_MemTotal_bytes - node_memory_MemAvailable_bytes",
+   "paso": "60s",
+   "ventana": [
+    "2026-09-23T12:34:20Z",
+    "2026-09-24T00:34:21Z"
+   ],
+   "exclusion": "[inicio, fin + 600 s] de cada inyeccion",
+   "todo": {
+    "muestras": 720,
+    "inicial_MiB": 2871.9,
+    "inicial_t": "2026-09-23T12:35:20Z",
+    "final_MiB": 2941.2,
+    "final_t": "2026-09-24T00:34:20Z",
+    "min_MiB": 2871.9,
+    "min_t": "2026-09-23T12:35:20Z",
+    "max_MiB": 3038.1,
+    "max_t": "2026-09-23T17:00:20Z",
+    "pendiente_MiB_h": 2.17
+   },
+   "sin_inyecciones": {
+    "muestras": 686,
+    "inicial_MiB": 2871.9,
+    "inicial_t": "2026-09-23T12:35:20Z",
+    "final_MiB": 2941.2,
+    "final_t": "2026-09-24T00:34:20Z",
+    "min_MiB": 2871.9,
+    "min_t": "2026-09-23T12:35:20Z",
+    "max_MiB": 3038.1,
+    "max_t": "2026-09-23T17:00:20Z",
+    "pendiente_MiB_h": 2.25
+   },
+   "ventanas_inyeccion": {
+    "caida_broker": {
+     "desde": "2026-09-23T14:32:23Z",
+     "hasta": "2026-09-23T14:43:00Z",
+     "muestras": 10,
+     "min_MiB": 2924.5,
+     "max_MiB": 2984.5
+    },
+    "pausa_dm": {
+     "desde": "2026-09-23T18:32:29Z",
+     "hasta": "2026-09-23T18:43:59Z",
+     "muestras": 11,
+     "min_MiB": 2962.7,
+     "max_MiB": 2991.9
+    },
+    "netem_da": {
+     "desde": "2026-09-23T22:32:28Z",
+     "hasta": "2026-09-23T22:45:37Z",
+     "muestras": 13,
+     "min_MiB": 2918.8,
+     "max_MiB": 2991.9
+    }
+   }
+  }
+ },
+ "memoria_servicio_B": {
+  "consulta": "sum by (app) (process_resident_memory_bytes{app!=\"\"})",
+  "paso": "60s",
+  "servicios": {
+   "data-analysis": {
+    "inicial_MiB": 260.6,
+    "final_MiB": 279.8,
+    "min_MiB": 255.2,
+    "max_MiB": 284.4,
+    "pendiente_sin_inyecciones_MiB_h": 1.7,
+    "pendiente_todo_MiB_h": 1.74,
+    "muestras": 720
+   },
+   "data-management": {
+    "inicial_MiB": 40.4,
+    "final_MiB": 41.5,
+    "min_MiB": 19.3,
+    "max_MiB": 42.3,
+    "pendiente_sin_inyecciones_MiB_h": -0.02,
+    "pendiente_todo_MiB_h": -0.01,
+    "muestras": 720
+   },
+   "data-receiving": {
+    "inicial_MiB": 42.5,
+    "final_MiB": 44.1,
+    "min_MiB": 39.8,
+    "max_MiB": 51.9,
+    "pendiente_sin_inyecciones_MiB_h": -0.19,
+    "pendiente_todo_MiB_h": -0.2,
+    "muestras": 720
+   },
+   "early-warning": {
+    "inicial_MiB": 79.3,
+    "final_MiB": 54.2,
+    "min_MiB": 48.9,
+    "max_MiB": 82.9,
+    "pendiente_sin_inyecciones_MiB_h": -2.93,
+    "pendiente_todo_MiB_h": -2.93,
+    "muestras": 720
+   },
+   "project-management": {
+    "inicial_MiB": 14.2,
+    "final_MiB": 13.9,
+    "min_MiB": 13.3,
+    "max_MiB": 15.4,
+    "pendiente_sin_inyecciones_MiB_h": -0.07,
+    "pendiente_todo_MiB_h": -0.07,
+    "muestras": 720
+   },
+   "user-management": {
+    "inicial_MiB": 18.8,
+    "final_MiB": 16.9,
+    "min_MiB": 16.4,
+    "max_MiB": 20.2,
+    "pendiente_sin_inyecciones_MiB_h": -0.19,
+    "pendiente_todo_MiB_h": -0.2,
+    "muestras": 720
+   }
+  }
+ }
+}
