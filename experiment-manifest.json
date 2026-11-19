@@ -115,7 +115,7 @@
       "tabla9_consultas_crudas": {"lista_sha256": "tabla9/SHA256SUMS", "sha256_de_la_lista": "db1cd17343206fb7a19e61f7cd730cba47d96883277442c63e45d1bc3dbde71a"},
       "tabla10_exportaciones": {"lista_sha256": "tabla10/SHA256SUMS", "sha256_de_la_lista": "30a865014f25a7a705005f7aedaf38940898089d8ce88c2a31062d384e18efd8"},
       "evidencia_inyecciones_b": {"manifiesto": "data/evidencia-b-0923/manifiesto.json", "sha256": "247f6ddeb3252ab995b5f42e1d75d62ba7c069b28c7ba93b22cf53051362b032"},
-      "salidas": {"lista_sha256": "data/output/SHA256SUMS", "nota": "Solo CSV: los PNG se comparan píxel a píxel porque su compresión varía entre plataformas"}
+      "salidas": {"lista_sha256": "data/output/SHA256SUMS", "sha256_de_la_lista": "f90e9c3b37edd5afb0e21c33777f6267b5f713e2d0e21704eec55a6b3fef5d46", "nota": "Solo CSV: los PNG se comparan píxel a píxel porque su compresión varía entre plataformas"}
     },
     "no_publicos": {
       "tsdb_prometheus": {
