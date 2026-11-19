@@ -33,7 +33,7 @@ jobs:
           checks = [(m["exportacion_prometheus"]["archivo"], m["exportacion_prometheus"]["sha256"]),
                     (m["evidencia_inyecciones_b"]["manifiesto"], m["evidencia_inyecciones_b"]["sha256"])]
           checks += [(m[k]["lista_sha256"], m[k]["sha256_de_la_lista"])
-                     for k in ("reportes_artillery", "tabla9_consultas_crudas", "tabla10_exportaciones")]
+                     for k in ("reportes_artillery", "tabla9_consultas_crudas", "tabla10_exportaciones", "salidas")]
           for f, h in checks:
               assert sha(f) == h, f"{f}: {sha(f)} != manifest {h}"
               print(f"{f}: OK")
