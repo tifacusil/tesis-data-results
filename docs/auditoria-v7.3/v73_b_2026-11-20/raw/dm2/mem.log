@@ -1,0 +1,298 @@
+15:16:46Z pre tramo=1 anon=166Mi current=290Mi
+15:16:46Z tramo=1 anon=167Mi current=298Mi
+15:16:48Z tramo=1 anon=167Mi current=318Mi
+15:16:51Z tramo=1 anon=167Mi current=318Mi
+15:16:53Z tramo=1 anon=167Mi current=318Mi
+15:16:56Z tramo=1 anon=167Mi current=317Mi
+15:16:58Z tramo=1 anon=167Mi current=317Mi
+15:17:01Z tramo=1 anon=167Mi current=317Mi
+tramo=1 rc=0 2026-09-23 16:31:20 2026-09-23 16:46:20
+15:17:03Z pre tramo=2 anon=166Mi current=296Mi
+15:17:04Z tramo=2 anon=166Mi current=296Mi
+15:17:06Z tramo=2 anon=167Mi current=318Mi
+15:17:09Z tramo=2 anon=167Mi current=317Mi
+15:17:11Z tramo=2 anon=167Mi current=317Mi
+15:17:14Z tramo=2 anon=167Mi current=318Mi
+15:17:16Z tramo=2 anon=168Mi current=319Mi
+15:17:19Z tramo=2 anon=168Mi current=318Mi
+tramo=2 rc=0 2026-09-23 16:46:20 2026-09-23 17:01:20
+15:17:21Z pre tramo=3 anon=166Mi current=296Mi
+15:17:22Z tramo=3 anon=169Mi current=299Mi
+15:17:24Z tramo=3 anon=168Mi current=316Mi
+15:17:27Z tramo=3 anon=168Mi current=319Mi
+15:17:29Z tramo=3 anon=168Mi current=318Mi
+15:17:31Z tramo=3 anon=168Mi current=318Mi
+15:17:34Z tramo=3 anon=168Mi current=318Mi
+15:17:36Z tramo=3 anon=168Mi current=318Mi
+tramo=3 rc=0 2026-09-23 17:01:20 2026-09-23 17:16:20
+15:17:39Z pre tramo=4 anon=166Mi current=296Mi
+15:17:39Z tramo=4 anon=168Mi current=299Mi
+15:17:41Z tramo=4 anon=168Mi current=319Mi
+15:17:44Z tramo=4 anon=168Mi current=317Mi
+15:17:46Z tramo=4 anon=168Mi current=319Mi
+15:17:49Z tramo=4 anon=168Mi current=317Mi
+15:17:51Z tramo=4 anon=168Mi current=319Mi
+15:17:54Z tramo=4 anon=168Mi current=319Mi
+tramo=4 rc=0 2026-09-23 17:16:20 2026-09-23 17:31:20
+15:17:56Z pre tramo=5 anon=167Mi current=296Mi
+15:17:57Z tramo=5 anon=168Mi current=298Mi
+15:17:59Z tramo=5 anon=168Mi current=319Mi
+15:18:02Z tramo=5 anon=168Mi current=318Mi
+15:18:04Z tramo=5 anon=168Mi current=317Mi
+15:18:07Z tramo=5 anon=168Mi current=317Mi
+15:18:09Z tramo=5 anon=168Mi current=317Mi
+15:18:12Z tramo=5 anon=168Mi current=318Mi
+tramo=5 rc=0 2026-09-23 17:31:20 2026-09-23 17:46:20
+15:18:14Z pre tramo=6 anon=167Mi current=296Mi
+15:18:15Z tramo=6 anon=167Mi current=296Mi
+15:18:17Z tramo=6 anon=168Mi current=319Mi
+15:18:20Z tramo=6 anon=168Mi current=318Mi
+15:18:22Z tramo=6 anon=168Mi current=317Mi
+15:18:25Z tramo=6 anon=168Mi current=319Mi
+15:18:27Z tramo=6 anon=168Mi current=318Mi
+15:18:29Z tramo=6 anon=168Mi current=317Mi
+tramo=6 rc=0 2026-09-23 17:46:20 2026-09-23 18:01:20
+15:18:32Z pre tramo=7 anon=167Mi current=296Mi
+15:18:32Z tramo=7 anon=167Mi current=296Mi
+15:18:35Z tramo=7 anon=168Mi current=317Mi
+15:18:37Z tramo=7 anon=168Mi current=319Mi
+15:18:40Z tramo=7 anon=168Mi current=318Mi
+15:18:42Z tramo=7 anon=168Mi current=318Mi
+15:18:45Z tramo=7 anon=168Mi current=318Mi
+15:18:47Z tramo=7 anon=168Mi current=317Mi
+tramo=7 rc=0 2026-09-23 18:01:20 2026-09-23 18:16:20
+15:18:50Z pre tramo=8 anon=167Mi current=295Mi
+15:18:50Z tramo=8 anon=167Mi current=295Mi
+15:18:53Z tramo=8 anon=168Mi current=319Mi
+15:18:55Z tramo=8 anon=168Mi current=318Mi
+15:18:57Z tramo=8 anon=168Mi current=317Mi
+15:19:00Z tramo=8 anon=168Mi current=318Mi
+15:19:02Z tramo=8 anon=168Mi current=319Mi
+15:19:05Z tramo=8 anon=168Mi current=318Mi
+tramo=8 rc=0 2026-09-23 18:16:20 2026-09-23 18:31:20
+15:19:07Z pre tramo=9 anon=167Mi current=296Mi
+15:19:08Z tramo=9 anon=167Mi current=296Mi
+15:19:10Z tramo=9 anon=168Mi current=318Mi
+15:19:12Z tramo=9 anon=168Mi current=318Mi
+15:19:15Z tramo=9 anon=168Mi current=317Mi
+15:19:17Z tramo=9 anon=168Mi current=319Mi
+15:19:20Z tramo=9 anon=168Mi current=317Mi
+15:19:22Z tramo=9 anon=168Mi current=317Mi
+tramo=9 rc=0 2026-09-23 18:31:20 2026-09-23 18:46:20
+15:19:24Z pre tramo=10 anon=167Mi current=296Mi
+15:19:25Z tramo=10 anon=168Mi current=307Mi
+15:19:27Z tramo=10 anon=168Mi current=319Mi
+15:19:30Z tramo=10 anon=168Mi current=318Mi
+15:19:32Z tramo=10 anon=168Mi current=318Mi
+15:19:35Z tramo=10 anon=168Mi current=318Mi
+15:19:37Z tramo=10 anon=168Mi current=316Mi
+15:19:39Z tramo=10 anon=168Mi current=318Mi
+tramo=10 rc=0 2026-09-23 18:46:20 2026-09-23 19:01:20
+15:19:42Z pre tramo=11 anon=167Mi current=296Mi
+15:19:42Z tramo=11 anon=167Mi current=296Mi
+15:19:45Z tramo=11 anon=168Mi current=318Mi
+15:19:47Z tramo=11 anon=168Mi current=318Mi
+15:19:50Z tramo=11 anon=168Mi current=318Mi
+15:19:52Z tramo=11 anon=168Mi current=317Mi
+15:19:54Z tramo=11 anon=168Mi current=317Mi
+15:19:57Z tramo=11 anon=168Mi current=317Mi
+tramo=11 rc=0 2026-09-23 19:01:20 2026-09-23 19:16:20
+15:19:59Z pre tramo=12 anon=167Mi current=296Mi
+15:20:00Z tramo=12 anon=167Mi current=296Mi
+15:20:02Z tramo=12 anon=168Mi current=318Mi
+15:20:05Z tramo=12 anon=168Mi current=318Mi
+15:20:08Z tramo=12 anon=168Mi current=319Mi
+15:20:10Z tramo=12 anon=169Mi current=318Mi
+15:20:13Z tramo=12 anon=169Mi current=318Mi
+15:20:15Z tramo=12 anon=169Mi current=319Mi
+tramo=12 rc=0 2026-09-23 19:16:20 2026-09-23 19:31:20
+15:20:17Z pre tramo=13 anon=167Mi current=296Mi
+15:20:18Z tramo=13 anon=169Mi current=301Mi
+15:20:20Z tramo=13 anon=169Mi current=317Mi
+15:20:23Z tramo=13 anon=169Mi current=317Mi
+15:20:25Z tramo=13 anon=169Mi current=318Mi
+15:20:27Z tramo=13 anon=169Mi current=319Mi
+15:20:30Z tramo=13 anon=169Mi current=319Mi
+15:20:33Z tramo=13 anon=169Mi current=319Mi
+tramo=13 rc=0 2026-09-23 19:31:20 2026-09-23 19:46:20
+15:20:35Z pre tramo=14 anon=167Mi current=296Mi
+15:20:35Z tramo=14 anon=167Mi current=296Mi
+15:20:38Z tramo=14 anon=169Mi current=317Mi
+15:20:40Z tramo=14 anon=169Mi current=317Mi
+15:20:43Z tramo=14 anon=169Mi current=319Mi
+15:20:45Z tramo=14 anon=169Mi current=318Mi
+15:20:47Z tramo=14 anon=169Mi current=318Mi
+15:20:50Z tramo=14 anon=169Mi current=318Mi
+tramo=14 rc=0 2026-09-23 19:46:20 2026-09-23 20:01:20
+15:20:52Z pre tramo=15 anon=167Mi current=296Mi
+15:20:53Z tramo=15 anon=169Mi current=301Mi
+15:20:55Z tramo=15 anon=169Mi current=318Mi
+15:20:58Z tramo=15 anon=169Mi current=317Mi
+15:21:00Z tramo=15 anon=169Mi current=317Mi
+15:21:03Z tramo=15 anon=169Mi current=318Mi
+15:21:05Z tramo=15 anon=169Mi current=318Mi
+15:21:08Z tramo=15 anon=169Mi current=318Mi
+tramo=15 rc=0 2026-09-23 20:01:20 2026-09-23 20:16:20
+15:21:10Z pre tramo=16 anon=167Mi current=295Mi
+15:21:11Z tramo=16 anon=169Mi current=307Mi
+15:21:13Z tramo=16 anon=169Mi current=319Mi
+15:21:16Z tramo=16 anon=169Mi current=317Mi
+15:21:18Z tramo=16 anon=169Mi current=318Mi
+15:21:21Z tramo=16 anon=169Mi current=318Mi
+15:21:23Z tramo=16 anon=169Mi current=317Mi
+15:21:26Z tramo=16 anon=169Mi current=317Mi
+tramo=16 rc=0 2026-09-23 20:16:20 2026-09-23 20:31:20
+15:21:28Z pre tramo=17 anon=167Mi current=295Mi
+15:21:29Z tramo=17 anon=169Mi current=300Mi
+15:21:31Z tramo=17 anon=169Mi current=318Mi
+15:21:34Z tramo=17 anon=169Mi current=318Mi
+15:21:36Z tramo=17 anon=169Mi current=318Mi
+15:21:39Z tramo=17 anon=169Mi current=318Mi
+15:21:41Z tramo=17 anon=169Mi current=319Mi
+15:21:44Z tramo=17 anon=169Mi current=319Mi
+tramo=17 rc=0 2026-09-23 20:31:20 2026-09-23 20:46:20
+15:21:46Z pre tramo=18 anon=167Mi current=296Mi
+15:21:47Z tramo=18 anon=168Mi current=296Mi
+15:21:49Z tramo=18 anon=169Mi current=317Mi
+15:21:52Z tramo=18 anon=169Mi current=318Mi
+15:21:54Z tramo=18 anon=169Mi current=318Mi
+15:21:57Z tramo=18 anon=169Mi current=317Mi
+15:21:59Z tramo=18 anon=169Mi current=318Mi
+15:22:02Z tramo=18 anon=169Mi current=318Mi
+15:22:04Z tramo=18 anon=167Mi current=296Mi
+tramo=18 rc=0 2026-09-23 20:46:20 2026-09-23 21:01:20
+15:22:07Z pre tramo=19 anon=167Mi current=296Mi
+15:22:07Z tramo=19 anon=167Mi current=296Mi
+15:22:10Z tramo=19 anon=169Mi current=319Mi
+15:22:12Z tramo=19 anon=169Mi current=317Mi
+15:22:15Z tramo=19 anon=169Mi current=319Mi
+15:22:17Z tramo=19 anon=169Mi current=318Mi
+15:22:20Z tramo=19 anon=169Mi current=318Mi
+15:22:22Z tramo=19 anon=169Mi current=318Mi
+tramo=19 rc=0 2026-09-23 21:01:20 2026-09-23 21:16:20
+15:22:25Z pre tramo=20 anon=167Mi current=296Mi
+15:22:25Z tramo=20 anon=167Mi current=295Mi
+15:22:28Z tramo=20 anon=169Mi current=318Mi
+15:22:30Z tramo=20 anon=169Mi current=318Mi
+15:22:32Z tramo=20 anon=169Mi current=318Mi
+15:22:35Z tramo=20 anon=169Mi current=318Mi
+15:22:37Z tramo=20 anon=169Mi current=319Mi
+15:22:40Z tramo=20 anon=169Mi current=317Mi
+tramo=20 rc=0 2026-09-23 21:16:20 2026-09-23 21:31:20
+15:22:42Z pre tramo=21 anon=167Mi current=296Mi
+15:22:43Z tramo=21 anon=167Mi current=296Mi
+15:22:45Z tramo=21 anon=169Mi current=318Mi
+15:22:48Z tramo=21 anon=169Mi current=318Mi
+15:22:50Z tramo=21 anon=169Mi current=317Mi
+15:22:53Z tramo=21 anon=169Mi current=318Mi
+15:22:55Z tramo=21 anon=169Mi current=318Mi
+15:22:57Z tramo=21 anon=169Mi current=318Mi
+tramo=21 rc=0 2026-09-23 21:31:20 2026-09-23 21:46:20
+15:23:00Z pre tramo=22 anon=167Mi current=296Mi
+15:23:00Z tramo=22 anon=170Mi current=300Mi
+15:23:03Z tramo=22 anon=169Mi current=318Mi
+15:23:05Z tramo=22 anon=169Mi current=318Mi
+15:23:08Z tramo=22 anon=169Mi current=317Mi
+15:23:10Z tramo=22 anon=169Mi current=318Mi
+15:23:13Z tramo=22 anon=169Mi current=317Mi
+15:23:15Z tramo=22 anon=169Mi current=317Mi
+15:23:18Z tramo=22 anon=167Mi current=295Mi
+tramo=22 rc=0 2026-09-23 21:46:20 2026-09-23 22:01:20
+15:23:20Z pre tramo=23 anon=167Mi current=295Mi
+15:23:21Z tramo=23 anon=167Mi current=296Mi
+15:23:23Z tramo=23 anon=169Mi current=318Mi
+15:23:26Z tramo=23 anon=169Mi current=318Mi
+15:23:28Z tramo=23 anon=169Mi current=318Mi
+15:23:30Z tramo=23 anon=169Mi current=319Mi
+15:23:33Z tramo=23 anon=169Mi current=318Mi
+15:23:35Z tramo=23 anon=169Mi current=318Mi
+tramo=23 rc=0 2026-09-23 22:01:20 2026-09-23 22:16:20
+15:23:38Z pre tramo=24 anon=167Mi current=296Mi
+15:23:38Z tramo=24 anon=170Mi current=296Mi
+15:23:41Z tramo=24 anon=169Mi current=319Mi
+15:23:43Z tramo=24 anon=169Mi current=318Mi
+15:23:46Z tramo=24 anon=169Mi current=318Mi
+15:23:48Z tramo=24 anon=169Mi current=318Mi
+15:23:51Z tramo=24 anon=169Mi current=317Mi
+15:23:53Z tramo=24 anon=169Mi current=317Mi
+tramo=24 rc=0 2026-09-23 22:16:20 2026-09-23 22:31:20
+15:23:56Z pre tramo=25 anon=168Mi current=295Mi
+15:23:56Z tramo=25 anon=169Mi current=305Mi
+15:23:59Z tramo=25 anon=169Mi current=318Mi
+15:24:01Z tramo=25 anon=169Mi current=319Mi
+15:24:03Z tramo=25 anon=169Mi current=318Mi
+15:24:06Z tramo=25 anon=169Mi current=319Mi
+15:24:09Z tramo=25 anon=169Mi current=317Mi
+15:24:11Z tramo=25 anon=169Mi current=316Mi
+tramo=25 rc=0 2026-09-23 22:31:20 2026-09-23 22:46:20
+15:24:13Z pre tramo=26 anon=168Mi current=296Mi
+15:24:14Z tramo=26 anon=168Mi current=297Mi
+15:24:16Z tramo=26 anon=169Mi current=319Mi
+15:24:19Z tramo=26 anon=169Mi current=317Mi
+15:24:21Z tramo=26 anon=169Mi current=317Mi
+15:24:24Z tramo=26 anon=169Mi current=318Mi
+15:24:26Z tramo=26 anon=169Mi current=317Mi
+15:24:29Z tramo=26 anon=169Mi current=318Mi
+tramo=26 rc=0 2026-09-23 22:46:20 2026-09-23 23:01:20
+15:24:31Z pre tramo=27 anon=168Mi current=296Mi
+15:24:31Z tramo=27 anon=169Mi current=299Mi
+15:24:34Z tramo=27 anon=169Mi current=318Mi
+15:24:37Z tramo=27 anon=169Mi current=317Mi
+15:24:39Z tramo=27 anon=169Mi current=317Mi
+15:24:42Z tramo=27 anon=169Mi current=318Mi
+15:24:44Z tramo=27 anon=169Mi current=318Mi
+15:24:46Z tramo=27 anon=169Mi current=318Mi
+tramo=27 rc=0 2026-09-23 23:01:20 2026-09-23 23:16:20
+15:24:49Z pre tramo=28 anon=168Mi current=295Mi
+15:24:49Z tramo=28 anon=168Mi current=296Mi
+15:24:52Z tramo=28 anon=169Mi current=318Mi
+15:24:55Z tramo=28 anon=169Mi current=318Mi
+15:24:57Z tramo=28 anon=169Mi current=319Mi
+15:25:00Z tramo=28 anon=169Mi current=317Mi
+15:25:02Z tramo=28 anon=169Mi current=319Mi
+15:25:05Z tramo=28 anon=169Mi current=319Mi
+tramo=28 rc=0 2026-09-23 23:16:20 2026-09-23 23:31:20
+15:25:07Z pre tramo=29 anon=168Mi current=295Mi
+15:25:07Z tramo=29 anon=169Mi current=299Mi
+15:25:10Z tramo=29 anon=169Mi current=318Mi
+15:25:12Z tramo=29 anon=169Mi current=318Mi
+15:25:15Z tramo=29 anon=169Mi current=318Mi
+15:25:17Z tramo=29 anon=169Mi current=317Mi
+15:25:20Z tramo=29 anon=169Mi current=319Mi
+15:25:22Z tramo=29 anon=169Mi current=318Mi
+tramo=29 rc=0 2026-09-23 23:31:20 2026-09-23 23:46:20
+15:25:25Z pre tramo=30 anon=168Mi current=296Mi
+15:25:25Z tramo=30 anon=170Mi current=298Mi
+15:25:27Z tramo=30 anon=169Mi current=319Mi
+15:25:30Z tramo=30 anon=169Mi current=319Mi
+15:25:32Z tramo=30 anon=169Mi current=317Mi
+15:25:35Z tramo=30 anon=169Mi current=318Mi
+15:25:37Z tramo=30 anon=169Mi current=319Mi
+15:25:39Z tramo=30 anon=169Mi current=318Mi
+tramo=30 rc=0 2026-09-23 23:46:20 2026-09-24 00:01:20
+15:25:42Z pre tramo=31 anon=168Mi current=296Mi
+15:25:42Z tramo=31 anon=168Mi current=296Mi
+15:25:45Z tramo=31 anon=169Mi current=318Mi
+15:25:47Z tramo=31 anon=169Mi current=318Mi
+15:25:49Z tramo=31 anon=169Mi current=319Mi
+15:25:52Z tramo=31 anon=169Mi current=318Mi
+15:25:54Z tramo=31 anon=169Mi current=317Mi
+15:25:57Z tramo=31 anon=169Mi current=318Mi
+tramo=31 rc=0 2026-09-24 00:01:20 2026-09-24 00:16:20
+15:25:59Z pre tramo=32 anon=168Mi current=296Mi
+15:26:00Z tramo=32 anon=168Mi current=297Mi
+15:26:03Z tramo=32 anon=169Mi current=317Mi
+15:26:05Z tramo=32 anon=169Mi current=318Mi
+15:26:08Z tramo=32 anon=169Mi current=318Mi
+15:26:10Z tramo=32 anon=169Mi current=318Mi
+15:26:13Z tramo=32 anon=169Mi current=317Mi
+15:26:15Z tramo=32 anon=168Mi current=296Mi
+tramo=32 rc=0 2026-09-24 00:16:20 2026-09-24 00:31:20
+15:26:17Z pre tramo=33 anon=168Mi current=295Mi
+15:26:18Z tramo=33 anon=169Mi current=297Mi
+15:26:20Z tramo=33 anon=169Mi current=318Mi
+15:26:23Z tramo=33 anon=169Mi current=317Mi
+15:26:25Z tramo=33 anon=169Mi current=318Mi
+15:26:28Z tramo=33 anon=169Mi current=319Mi
+15:26:31Z tramo=33 anon=169Mi current=318Mi
+tramo=33 rc=0 2026-09-24 00:31:20 2026-09-24 00:39:21

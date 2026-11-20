@@ -1,0 +1,25 @@
+corrida,instance,pod,metrica,outcome,muestra_inicio_utc,valor_inicio,muestra_fin_utc,valor_fin,delta,serie_nace_en_ventana,delta_contando_desde_0_o_transiciones
+1,10.42.0.123:8080,cgprm,ew_circuit_breaker_state,,,,,,,,03:32:24=0 03:35:09=1 03:37:39=0
+1,10.42.0.122:8080,chqw5,ew_circuit_breaker_state,,,,,,,,03:32:21=0 03:35:06=1 03:37:36=0
+1,10.42.0.123:8080,cgprm,ew_outbound_calls_total,circuit_open,03:35:09,40,03:37:24,92,52,True,92
+1,10.42.0.123:8080,cgprm,ew_outbound_calls_total,ok,03:33:09,39,03:37:24,45,6,False,6
+1,10.42.0.123:8080,cgprm,ew_outbound_calls_total,timeout,03:33:54,1,03:37:24,7,6,True,7
+1,10.42.0.122:8080,chqw5,ew_outbound_calls_total,circuit_open,03:35:06,17,03:37:21,98,81,True,98
+1,10.42.0.122:8080,chqw5,ew_outbound_calls_total,ok,03:33:06,34,03:37:21,38,4,False,4
+1,10.42.0.122:8080,chqw5,ew_outbound_calls_total,timeout,03:33:51,1,03:37:21,7,6,True,7
+2,10.42.0.123:8080,cgprm,ew_circuit_breaker_state,,,,,,,,03:40:39=0 03:43:39=1 03:45:54=0
+2,10.42.0.122:8080,chqw5,ew_circuit_breaker_state,,,,,,,,03:40:36=0 03:43:36=1 03:45:51=0
+2,10.42.0.123:8080,cgprm,ew_outbound_calls_total,circuit_open,03:41:24,92,03:45:54,180,88,False,88
+2,10.42.0.123:8080,cgprm,ew_outbound_calls_total,ok,03:41:24,69,03:45:54,84,15,False,15
+2,10.42.0.123:8080,cgprm,ew_outbound_calls_total,timeout,03:41:24,7,03:45:54,14,7,False,7
+2,10.42.0.122:8080,chqw5,ew_outbound_calls_total,circuit_open,03:41:21,98,03:45:51,184,86,False,86
+2,10.42.0.122:8080,chqw5,ew_outbound_calls_total,ok,03:41:21,74,03:45:51,85,11,False,11
+2,10.42.0.122:8080,chqw5,ew_outbound_calls_total,timeout,03:41:21,7,03:45:51,14,7,False,7
+3,10.42.0.123:8080,cgprm,ew_circuit_breaker_state,,,,,,,,03:48:54=0 03:51:54=1 03:54:09=0
+3,10.42.0.122:8080,chqw5,ew_circuit_breaker_state,,,,,,,,03:49:06=0 03:51:51=1 03:54:21=0
+3,10.42.0.123:8080,cgprm,ew_outbound_calls_total,circuit_open,03:49:39,180,03:54:09,277,97,False,97
+3,10.42.0.123:8080,cgprm,ew_outbound_calls_total,ok,03:49:39,111,03:54:09,127,16,False,16
+3,10.42.0.123:8080,cgprm,ew_outbound_calls_total,timeout,03:49:39,14,03:54:09,21,7,False,7
+3,10.42.0.122:8080,chqw5,ew_outbound_calls_total,circuit_open,03:49:51,184,03:54:06,270,86,False,86
+3,10.42.0.122:8080,chqw5,ew_outbound_calls_total,ok,03:49:51,111,03:54:06,113,2,False,2
+3,10.42.0.122:8080,chqw5,ew_outbound_calls_total,timeout,03:49:51,14,03:54:06,21,7,False,7

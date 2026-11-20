@@ -1,0 +1,2 @@
+CURRENT_USER(),@@version,@@hostname,@@system_time_zone,@@tmp_table_size,@@max_heap_table_size,started_utc
+root@localhost,8.0.46,mysql-data-management-0,UTC,16777216,16777216,2026-11-20 15:08:31

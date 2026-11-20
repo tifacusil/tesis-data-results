@@ -1,0 +1,118 @@
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+SELECT CURRENT_USER(), @@version, @@hostname, @@system_time_zone, @@tmp_table_size, @@max_heap_table_size, UTC_TIMESTAMP() AS started_utc
+--------------
+
++----------------+-----------+-------------------------+--------------------+------------------+-----------------------+---------------------+
+| CURRENT_USER() | @@version | @@hostname              | @@system_time_zone | @@tmp_table_size | @@max_heap_table_size | started_utc         |
++----------------+-----------+-------------------------+--------------------+------------------+-----------------------+---------------------+
+| root@localhost | 8.0.46    | mysql-data-management-0 | UTC                |         16777216 |              16777216 | 2026-11-20 15:08:31 |
++----------------+-----------+-------------------------+--------------------+------------------+-----------------------+---------------------+
+1 row in set (0.00 sec)
+
+--------------
+SHOW CREATE TABLE gnss_readings
+--------------
+
+*************************** 1. row ***************************
+       Table: gnss_readings
+Create Table: CREATE TABLE `gnss_readings` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `message_id` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `project_id` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sensor_id` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timestamp` datetime NOT NULL,
+  `received_at` datetime NOT NULL,
+  `displacement_x_mm` double DEFAULT NULL,
+  `displacement_y_mm` double DEFAULT NULL,
+  `displacement_z_mm` double DEFAULT NULL,
+  `displacement_horizontal_mm` double DEFAULT NULL,
+  `cumulative_displacement_mm` double DEFAULT NULL,
+  `fix_quality` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`,`timestamp`),
+  UNIQUE KEY `uk_gnss_message` (`message_id`,`timestamp`),
+  KEY `idx_gnss_sensor_ts` (`sensor_id`,`timestamp`),
+  KEY `idx_gnss_project_ts` (`project_id`,`timestamp`)
+) ENGINE=InnoDB AUTO_INCREMENT=9149207 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+/*!50100 PARTITION BY RANGE (year(`timestamp`))
+(PARTITION p2024 VALUES LESS THAN (2025) ENGINE = InnoDB,
+ PARTITION p2025 VALUES LESS THAN (2026) ENGINE = InnoDB,
+ PARTITION p2026 VALUES LESS THAN (2027) ENGINE = InnoDB,
+ PARTITION p2027 VALUES LESS THAN (2028) ENGINE = InnoDB,
+ PARTITION pmax VALUES LESS THAN MAXVALUE ENGINE = InnoDB) */
+1 row in set (0.05 sec)
+
+--------------
+SET @t0 = '2026-09-23 12:31:20', @t1 = '2026-09-24 00:39:21'
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT COUNT(*) AS filas FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= @t0 AND received_at < @t1
+--------------
+
++---------+
+| filas   |
++---------+
+| 4328780 |
++---------+
+1 row in set (20.31 sec)
+
+--------------
+SELECT '2026-09-23 12:31:20' AS desde, '2026-09-23 13:31:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 12:31:20' AND received_at < '2026-09-23 13:31:20'
+--------------
+
++---------------------+---------------------+--------+--------+---------------------+
+| desde               | hasta               | filas  | ids    | fin_utc             |
++---------------------+---------------------+--------+--------+---------------------+
+| 2026-09-23 12:31:20 | 2026-09-23 13:31:20 | 350847 | 350847 | 2026-11-20 15:08:51 |
++---------------------+---------------------+--------+--------+---------------------+
+1 row in set (18.40 sec)
+
+--------------
+SELECT '2026-09-23 13:31:20' AS desde, '2026-09-23 14:31:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 13:31:20' AND received_at < '2026-09-23 14:31:20'
+--------------
+
++---------------------+---------------------+--------+--------+---------------------+
+| desde               | hasta               | filas  | ids    | fin_utc             |
++---------------------+---------------------+--------+--------+---------------------+
+| 2026-09-23 13:31:20 | 2026-09-23 14:31:20 | 359998 | 359998 | 2026-11-20 15:09:10 |
++---------------------+---------------------+--------+--------+---------------------+
+1 row in set (16.96 sec)
+
+--------------
+SELECT '2026-09-23 14:31:20' AS desde, '2026-09-23 15:31:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 14:31:20' AND received_at < '2026-09-23 15:31:20'
+--------------
+
++---------------------+---------------------+--------+--------+---------------------+
+| desde               | hasta               | filas  | ids    | fin_utc             |
++---------------------+---------------------+--------+--------+---------------------+
+| 2026-09-23 14:31:20 | 2026-09-23 15:31:20 | 359680 | 359680 | 2026-11-20 15:09:27 |
++---------------------+---------------------+--------+--------+---------------------+
+1 row in set (16.45 sec)
+
+--------------
+SELECT '2026-09-23 15:31:20' AS desde, '2026-09-23 16:31:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 15:31:20' AND received_at < '2026-09-23 16:31:20'
+--------------
+
++---------------------+---------------------+--------+--------+---------------------+
+| desde               | hasta               | filas  | ids    | fin_utc             |
++---------------------+---------------------+--------+--------+---------------------+
+| 2026-09-23 15:31:20 | 2026-09-23 16:31:20 | 359997 | 359997 | 2026-11-20 15:09:43 |
++---------------------+---------------------+--------+--------+---------------------+
+1 row in set (16.46 sec)
+
+--------------
+SELECT '2026-09-23 16:31:20' AS desde, '2026-09-23 17:31:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 16:31:20' AND received_at < '2026-09-23 17:31:20'
+--------------
+
+Bye
+ERROR 1317 (70100) at line 11: Query execution was interrupted
+command terminated with exit code 1

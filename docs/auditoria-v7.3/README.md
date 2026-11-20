@@ -68,6 +68,7 @@ No se midió el desfase entre el reloj del PC cliente y el del servidor durante 
 - [Bloque 2 — 105 «sink write failed» y 315 tramas sin ACK (C01)](bloque2.md)
 - [Bloque 3 — alertas 3414 / 3416 (C03)](bloque3.md)
 - [Bloque 4 — evaluaciones, buffer y circuit breaker](bloque4.md)
+- [Pedido 2 — consultas en B del 20/11 15:08–15:39 UTC, PromQL con `increase()`, cronología del breaker por réplica](pedido2.md): actualiza las filas de cierre, llamadas rechazadas y alertas sin push de la tabla de abajo, y cierra los pendientes 1, 2 y 5 y la parte del 30/09 del 4 (los logs de early-warning del 23/09 son NO DISPONIBLE)
 
 Consultas: `sql/` (texto exacto ejecutado, copiado de `fuente/`; `sql/pendiente_v7.3.sql` no se ejecutó) y `promql/consultas.md`.
 

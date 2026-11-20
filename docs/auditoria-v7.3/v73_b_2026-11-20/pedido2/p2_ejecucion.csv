@@ -1,0 +1,3 @@
+script,inicio_utc,fin_utc,rc,restartCount_antes,restartCount_despues,anon_mib_antes,anon_mib_despues
+p2_explain,2026-11-20T15:37:13Z,2026-11-20T15:37:16Z,0,1,1,168,168
+p2_dm,2026-11-20T15:37:27Z,2026-11-20T15:38:02Z,0,1,1,168,168

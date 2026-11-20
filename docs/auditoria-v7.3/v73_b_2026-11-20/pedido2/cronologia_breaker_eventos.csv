@@ -1,0 +1,821 @@
+corrida,pod,hora_log_utc,s_desde_inyeccion,evento,lectura,estado_tras_evento,err
+1,cgprm,2026-09-30T03:32:24.945Z,-47.1,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:25.141Z,-46.9,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:25.315Z,-46.7,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:29.991Z,-42.0,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:30.158Z,-41.8,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:30.325Z,-41.7,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:35.141Z,-36.9,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:35.316Z,-36.7,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:35.487Z,-36.5,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:40.271Z,-31.7,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:40.432Z,-31.6,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:40.603Z,-31.4,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:45.429Z,-26.6,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:45.615Z,-26.4,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:45.775Z,-26.2,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:50.538Z,-21.5,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:50.683Z,-21.3,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:50.843Z,-21.2,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:55.674Z,-16.3,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:55.831Z,-16.2,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:32:55.991Z,-16.0,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:33:00.909Z,-11.1,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:33:01.110Z,-10.9,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:33:01.275Z,-10.7,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:33:05.977Z,-6.0,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:33:06.154Z,-5.8,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:33:06.323Z,-5.7,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:33:11.109Z,-0.9,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:33:11.270Z,-0.7,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:33:11.424Z,-0.6,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:33:16.245Z,4.2,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:33:16.417Z,4.4,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:33:16.583Z,4.6,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:33:42.213Z,30.2,invocacion_agotada,fallo 1,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+1,cgprm,2026-09-30T03:34:03.225Z,51.2,invocacion_agotada,fallo 2,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+1,cgprm,2026-09-30T03:34:24.242Z,72.2,invocacion_agotada,fallo 3,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+1,cgprm,2026-09-30T03:34:45.256Z,93.3,invocacion_agotada,fallo 4,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+1,cgprm,2026-09-30T03:35:06.275Z,114.3,invocacion_agotada,fallo 5: abre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+1,cgprm,2026-09-30T03:35:06.300Z,114.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.308Z,114.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.324Z,114.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.335Z,114.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.343Z,114.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.359Z,114.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.368Z,114.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.376Z,114.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.396Z,114.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.408Z,114.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.425Z,114.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.451Z,114.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.461Z,114.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.472Z,114.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.498Z,114.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.526Z,114.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.536Z,114.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.563Z,114.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.576Z,114.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.609Z,114.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.620Z,114.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.632Z,114.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.640Z,114.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.669Z,114.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.681Z,114.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.689Z,114.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.700Z,114.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.714Z,114.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.722Z,114.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.733Z,114.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.741Z,114.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.754Z,114.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.759Z,114.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.765Z,114.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.772Z,114.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.782Z,114.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.793Z,114.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:06.804Z,114.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:08.974Z,117.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:08.995Z,117.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:14.134Z,122.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:14.199Z,122.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:19.318Z,127.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:19.368Z,127.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:24.479Z,132.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:24.518Z,132.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:29.636Z,137.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:29.665Z,137.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:34.771Z,142.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:35:34.796Z,142.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:00.906Z,168.9,invocacion_agotada,sonda semiabierta fallida: reabre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+1,cgprm,2026-09-30T03:36:00.918Z,168.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:00.936Z,168.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:00.945Z,168.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:05.546Z,173.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:05.594Z,173.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:05.623Z,173.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:10.737Z,178.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:10.763Z,178.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:10.786Z,178.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:15.879Z,183.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:15.914Z,183.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:15.940Z,183.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:21.029Z,189.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:21.057Z,189.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:21.085Z,189.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:26.172Z,194.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:26.202Z,194.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:26.227Z,194.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:52.315Z,220.3,invocacion_agotada,sonda semiabierta fallida: reabre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+1,cgprm,2026-09-30T03:36:52.332Z,220.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:52.344Z,220.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:52.360Z,220.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:52.370Z,220.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:52.381Z,220.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:52.403Z,220.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:52.412Z,220.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:52.420Z,220.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:52.430Z,220.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:52.441Z,220.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:52.451Z,220.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:52.462Z,220.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:52.471Z,220.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:52.478Z,220.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:56.968Z,225.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:36:56.990Z,225.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:37:02.102Z,230.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:37:02.129Z,230.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:37:07.259Z,235.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:37:07.289Z,235.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:37:12.413Z,240.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:37:12.453Z,240.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:37:17.583Z,245.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:37:17.618Z,245.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,cgprm,2026-09-30T03:37:28.999Z,257.0,invocacion_ok,cierra,closed,
+1,cgprm,2026-09-30T03:37:29.212Z,257.2,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:37:33.252Z,261.3,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:37:33.447Z,261.4,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:37:38.411Z,266.4,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:37:38.592Z,266.6,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:37:43.541Z,271.5,invocacion_ok,ok,closed,
+1,cgprm,2026-09-30T03:37:43.701Z,271.7,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:32:24.972Z,-47.0,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:32:25.145Z,-46.9,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:32:29.985Z,-42.0,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:32:30.161Z,-41.8,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:32:35.155Z,-36.8,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:32:35.351Z,-36.6,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:32:40.294Z,-31.7,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:32:40.465Z,-31.5,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:32:45.414Z,-26.6,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:32:45.601Z,-26.4,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:32:50.567Z,-21.4,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:32:50.735Z,-21.3,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:32:55.702Z,-16.3,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:32:55.889Z,-16.1,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:33:00.915Z,-11.1,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:33:01.123Z,-10.9,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:33:05.996Z,-6.0,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:33:06.165Z,-5.8,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:33:11.112Z,-0.9,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:33:11.267Z,-0.7,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:33:16.236Z,4.2,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:33:16.432Z,4.4,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:33:42.231Z,30.2,invocacion_agotada,fallo 1,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+1,chqw5,2026-09-30T03:34:03.246Z,51.2,invocacion_agotada,fallo 2,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+1,chqw5,2026-09-30T03:34:24.286Z,72.3,invocacion_agotada,fallo 3,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+1,chqw5,2026-09-30T03:34:45.308Z,93.3,invocacion_agotada,fallo 4,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+1,chqw5,2026-09-30T03:35:06.321Z,114.3,invocacion_agotada,fallo 5: abre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+1,chqw5,2026-09-30T03:35:06.332Z,114.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.340Z,114.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.351Z,114.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.365Z,114.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.372Z,114.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.393Z,114.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.402Z,114.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.426Z,114.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.441Z,114.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.451Z,114.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.464Z,114.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.473Z,114.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.485Z,114.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.498Z,114.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.514Z,114.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.529Z,114.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.538Z,114.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.554Z,114.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.575Z,114.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.582Z,114.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.601Z,114.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.616Z,114.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.623Z,114.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.633Z,114.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.643Z,114.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.656Z,114.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.676Z,114.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.684Z,114.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.693Z,114.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.703Z,114.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.713Z,114.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.721Z,114.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.731Z,114.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.742Z,114.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.750Z,114.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.762Z,114.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.774Z,114.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:06.785Z,114.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:08.949Z,116.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:08.982Z,117.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:09.005Z,117.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:14.103Z,122.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:14.160Z,122.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:14.205Z,122.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:19.279Z,127.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:19.336Z,127.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:19.382Z,127.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:24.456Z,132.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:24.492Z,132.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:24.535Z,132.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:29.617Z,137.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:29.653Z,137.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:29.681Z,137.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:34.757Z,142.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:34.783Z,142.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:35:34.813Z,142.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:00.892Z,168.9,invocacion_agotada,sonda semiabierta fallida: reabre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+1,chqw5,2026-09-30T03:36:00.914Z,168.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:00.923Z,168.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:00.938Z,168.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:00.947Z,168.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:00.954Z,169.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:00.964Z,169.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:00.973Z,169.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:00.981Z,169.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:00.994Z,169.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:01.000Z,169.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:01.006Z,169.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:01.015Z,169.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:01.021Z,169.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:01.027Z,169.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:05.569Z,173.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:05.611Z,173.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:10.752Z,178.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:10.772Z,178.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:15.903Z,183.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:15.926Z,183.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:21.046Z,189.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:21.072Z,189.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:26.191Z,194.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:26.215Z,194.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:52.329Z,220.3,invocacion_agotada,sonda semiabierta fallida: reabre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+1,chqw5,2026-09-30T03:36:52.340Z,220.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:52.362Z,220.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:52.373Z,220.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:56.954Z,225.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:56.979Z,225.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:36:57.002Z,225.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:37:02.078Z,230.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:37:02.116Z,230.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:37:02.142Z,230.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:37:07.235Z,235.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:37:07.276Z,235.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:37:07.304Z,235.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:37:12.394Z,240.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:37:12.436Z,240.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:37:12.472Z,240.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:37:17.559Z,245.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:37:17.599Z,245.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:37:17.635Z,245.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+1,chqw5,2026-09-30T03:37:28.984Z,257.0,invocacion_ok,cierra,closed,
+1,chqw5,2026-09-30T03:37:29.175Z,257.2,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:37:29.332Z,257.3,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:37:29.505Z,257.5,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:37:29.682Z,257.7,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:37:29.844Z,257.8,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:37:33.231Z,261.2,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:37:33.396Z,261.4,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:37:33.566Z,261.6,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:37:38.391Z,266.4,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:37:38.545Z,266.5,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:37:38.727Z,266.7,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:37:43.528Z,271.5,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:37:43.693Z,271.7,invocacion_ok,ok,closed,
+1,chqw5,2026-09-30T03:37:43.847Z,271.8,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:40:44.257Z,-47.7,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:40:44.431Z,-47.6,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:40:49.406Z,-42.6,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:40:49.579Z,-42.4,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:40:59.413Z,-32.6,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:40:59.585Z,-32.4,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:41:04.347Z,-27.7,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:41:04.508Z,-27.5,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:41:04.829Z,-27.2,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:41:07.381Z,-24.6,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:41:09.950Z,-22.0,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:41:10.136Z,-21.9,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:41:15.134Z,-16.9,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:41:15.299Z,-16.7,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:41:20.245Z,-11.8,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:41:20.397Z,-11.6,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:41:25.358Z,-6.6,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:41:25.539Z,-6.5,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:41:30.487Z,-1.5,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:41:30.656Z,-1.3,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:41:35.629Z,3.6,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:41:35.797Z,3.8,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:42:01.626Z,29.6,invocacion_agotada,fallo 1,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2,cgprm,2026-09-30T03:42:22.642Z,50.6,invocacion_agotada,fallo 2,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2,cgprm,2026-09-30T03:42:43.707Z,71.7,invocacion_agotada,fallo 3,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2,cgprm,2026-09-30T03:43:04.738Z,92.7,invocacion_agotada,fallo 4,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2,cgprm,2026-09-30T03:43:25.750Z,113.8,invocacion_agotada,fallo 5: abre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2,cgprm,2026-09-30T03:43:25.760Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.768Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.780Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.801Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.812Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.822Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.835Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.851Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.861Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.872Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.881Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.892Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.901Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.909Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.917Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.938Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.947Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.961Z,114.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.970Z,114.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.977Z,114.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:25.994Z,114.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:26.007Z,114.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:26.023Z,114.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:26.032Z,114.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:26.043Z,114.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:26.056Z,114.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:26.065Z,114.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:26.078Z,114.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:26.093Z,114.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:26.102Z,114.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:26.112Z,114.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:26.133Z,114.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:26.150Z,114.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:26.169Z,114.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:28.510Z,116.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:28.538Z,116.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:33.655Z,121.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:33.682Z,121.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:38.816Z,126.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:38.847Z,126.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:43.946Z,131.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:43.971Z,132.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:49.106Z,137.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:49.126Z,137.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:54.234Z,142.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:43:54.257Z,142.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:20.369Z,168.4,invocacion_agotada,sonda semiabierta fallida: reabre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2,cgprm,2026-09-30T03:44:20.378Z,168.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:20.410Z,168.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:20.420Z,168.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:20.439Z,168.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:20.447Z,168.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:20.466Z,168.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:20.472Z,168.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:20.480Z,168.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:25.043Z,173.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:25.074Z,173.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:25.103Z,173.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:30.165Z,178.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:30.200Z,178.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:30.225Z,178.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:35.321Z,183.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:35.359Z,183.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:35.391Z,183.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:40.461Z,188.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:40.489Z,188.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:40.520Z,188.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:45.608Z,193.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:45.640Z,193.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:44:45.683Z,193.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:11.828Z,219.8,invocacion_agotada,sonda semiabierta fallida: reabre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2,cgprm,2026-09-30T03:45:11.845Z,219.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:11.853Z,219.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:11.893Z,219.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:11.903Z,219.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:16.535Z,224.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:16.566Z,224.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:16.606Z,224.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:21.693Z,229.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:21.736Z,229.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:21.761Z,229.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:26.849Z,234.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:26.898Z,234.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:26.975Z,235.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:32.068Z,240.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:32.099Z,240.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:32.126Z,240.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:37.212Z,245.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:37.237Z,245.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:37.258Z,245.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,cgprm,2026-09-30T03:45:48.641Z,256.6,invocacion_ok,cierra,closed,
+2,cgprm,2026-09-30T03:45:48.876Z,256.9,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:45:49.063Z,257.1,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:45:49.246Z,257.2,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:45:49.432Z,257.4,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:45:49.610Z,257.6,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:45:52.895Z,260.9,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:45:53.094Z,261.1,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:45:53.280Z,261.3,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:45:58.018Z,266.0,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:45:58.216Z,266.2,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:45:58.418Z,266.4,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:46:03.187Z,271.2,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:46:03.376Z,271.4,invocacion_ok,ok,closed,
+2,cgprm,2026-09-30T03:46:03.554Z,271.6,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:40:44.266Z,-47.7,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:40:44.452Z,-47.5,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:40:44.627Z,-47.4,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:40:49.387Z,-42.6,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:40:49.562Z,-42.4,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:40:49.757Z,-42.2,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:40:54.538Z,-37.5,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:40:54.717Z,-37.3,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:40:54.906Z,-37.1,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:04.858Z,-27.1,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:05.029Z,-27.0,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:05.219Z,-26.8,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:09.941Z,-22.1,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:10.140Z,-21.9,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:10.295Z,-21.7,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:15.083Z,-16.9,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:15.262Z,-16.7,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:15.445Z,-16.6,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:20.225Z,-11.8,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:20.415Z,-11.6,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:20.601Z,-11.4,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:25.366Z,-6.6,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:25.551Z,-6.4,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:25.722Z,-6.3,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:30.509Z,-1.5,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:30.686Z,-1.3,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:30.866Z,-1.1,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:35.627Z,3.6,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:35.796Z,3.8,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:41:35.969Z,4.0,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:42:01.614Z,29.6,invocacion_agotada,fallo 1,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2,chqw5,2026-09-30T03:42:22.632Z,50.6,invocacion_agotada,fallo 2,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2,chqw5,2026-09-30T03:42:43.653Z,71.7,invocacion_agotada,fallo 3,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2,chqw5,2026-09-30T03:43:04.678Z,92.7,invocacion_agotada,fallo 4,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2,chqw5,2026-09-30T03:43:25.688Z,113.7,invocacion_agotada,fallo 5: abre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2,chqw5,2026-09-30T03:43:25.700Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.710Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.718Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.725Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.733Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.740Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.747Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.756Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.766Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.793Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.801Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.809Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.821Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.830Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.849Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.859Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.870Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.887Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.897Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.905Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.918Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.934Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.941Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.954Z,114.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.965Z,114.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.977Z,114.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:25.989Z,114.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:26.006Z,114.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:26.027Z,114.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:26.053Z,114.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:26.068Z,114.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:26.096Z,114.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:26.107Z,114.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:26.144Z,114.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:26.166Z,114.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:26.177Z,114.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:28.496Z,116.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:28.523Z,116.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:28.553Z,116.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:33.641Z,121.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:33.671Z,121.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:33.694Z,121.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:38.793Z,126.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:38.830Z,126.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:38.865Z,126.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:43.934Z,131.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:43.958Z,132.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:43.991Z,132.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:49.089Z,137.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:49.116Z,137.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:49.140Z,137.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:54.219Z,142.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:54.246Z,142.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:43:54.271Z,142.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:44:20.356Z,168.4,invocacion_agotada,sonda semiabierta fallida: reabre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2,chqw5,2026-09-30T03:44:20.367Z,168.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:44:20.374Z,168.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:44:20.399Z,168.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:44:20.414Z,168.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:44:25.059Z,173.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:44:25.085Z,173.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:44:30.179Z,178.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:44:30.211Z,178.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:44:35.343Z,183.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:44:35.375Z,183.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:44:40.475Z,188.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:44:40.506Z,188.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:44:45.624Z,193.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:44:45.664Z,193.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:11.857Z,219.9,invocacion_agotada,sonda semiabierta fallida: reabre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+2,chqw5,2026-09-30T03:45:11.868Z,219.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:11.879Z,219.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:11.888Z,219.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:11.900Z,219.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:11.910Z,219.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:11.926Z,219.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:11.933Z,219.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:11.942Z,219.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:16.553Z,224.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:16.588Z,224.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:21.714Z,229.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:21.749Z,229.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:26.871Z,234.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:26.930Z,234.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:32.081Z,240.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:32.114Z,240.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:37.224Z,245.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:37.246Z,245.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+2,chqw5,2026-09-30T03:45:48.634Z,256.6,invocacion_ok,cierra,closed,
+2,chqw5,2026-09-30T03:45:48.881Z,256.9,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:45:52.907Z,260.9,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:45:53.085Z,261.1,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:45:58.037Z,266.0,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:45:58.213Z,266.2,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:46:03.184Z,271.2,invocacion_ok,ok,closed,
+2,chqw5,2026-09-30T03:46:03.378Z,271.4,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:04.918Z,-48.1,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:05.105Z,-47.9,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:05.287Z,-47.7,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:09.993Z,-43.0,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:10.154Z,-42.8,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:10.334Z,-42.7,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:15.140Z,-37.9,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:15.315Z,-37.7,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:15.495Z,-37.5,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:20.277Z,-32.7,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:20.443Z,-32.6,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:20.598Z,-32.4,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:25.422Z,-27.6,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:25.586Z,-27.4,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:25.745Z,-27.3,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:30.563Z,-22.4,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:30.725Z,-22.3,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:30.901Z,-22.1,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:35.716Z,-17.3,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:35.886Z,-17.1,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:36.055Z,-16.9,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:40.839Z,-12.2,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:41.023Z,-12.0,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:41.197Z,-11.8,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:45.981Z,-7.0,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:46.148Z,-6.9,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:46.327Z,-6.7,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:51.104Z,-1.9,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:51.279Z,-1.7,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:51.445Z,-1.6,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:56.254Z,3.3,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:56.442Z,3.4,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:49:56.627Z,3.6,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:50:22.275Z,29.3,invocacion_agotada,fallo 1,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+3,cgprm,2026-09-30T03:50:43.296Z,50.3,invocacion_agotada,fallo 2,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+3,cgprm,2026-09-30T03:51:04.308Z,71.3,invocacion_agotada,fallo 3,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+3,cgprm,2026-09-30T03:51:25.322Z,92.3,invocacion_agotada,fallo 4,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+3,cgprm,2026-09-30T03:51:46.335Z,113.3,invocacion_agotada,fallo 5: abre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+3,cgprm,2026-09-30T03:51:46.350Z,113.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.362Z,113.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.371Z,113.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.391Z,113.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.435Z,113.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.451Z,113.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.465Z,113.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.485Z,113.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.496Z,113.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.505Z,113.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.526Z,113.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.568Z,113.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.581Z,113.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.594Z,113.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.605Z,113.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.614Z,113.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.640Z,113.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.649Z,113.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.657Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.669Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.686Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.698Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.714Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.720Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.730Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.757Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.777Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.798Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.811Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.828Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.839Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.860Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:46.869Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:49.104Z,116.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:49.126Z,116.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:54.243Z,121.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:54.271Z,121.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:59.392Z,126.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:51:59.419Z,126.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:04.549Z,131.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:04.592Z,131.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:09.747Z,136.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:09.780Z,136.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:14.908Z,141.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:14.934Z,141.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:41.087Z,168.1,invocacion_agotada,sonda semiabierta fallida: reabre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+3,cgprm,2026-09-30T03:52:41.103Z,168.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:41.113Z,168.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:41.119Z,168.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:41.128Z,168.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:41.134Z,168.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:41.143Z,168.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:41.150Z,168.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:41.161Z,168.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:45.711Z,172.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:45.741Z,172.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:45.769Z,172.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:50.843Z,177.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:50.871Z,177.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:50.918Z,177.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:55.990Z,183.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:56.012Z,183.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:52:56.033Z,183.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:01.093Z,188.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:01.124Z,188.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:01.156Z,188.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:06.249Z,193.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:06.284Z,193.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:06.305Z,193.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:32.400Z,219.4,invocacion_agotada,sonda semiabierta fallida: reabre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+3,cgprm,2026-09-30T03:53:32.417Z,219.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:32.430Z,219.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:32.450Z,219.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:32.458Z,219.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:32.465Z,219.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:32.480Z,219.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:32.489Z,219.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:32.500Z,219.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:32.511Z,219.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:32.518Z,219.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:32.524Z,219.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:32.532Z,219.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:32.539Z,219.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:32.545Z,219.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:37.055Z,224.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:37.074Z,224.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:37.094Z,224.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:42.161Z,229.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:42.195Z,229.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:42.222Z,229.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:47.304Z,234.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:47.344Z,234.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:47.384Z,234.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:52.486Z,239.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:52.517Z,239.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:52.560Z,239.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:57.640Z,244.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:57.691Z,244.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:53:57.736Z,244.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,cgprm,2026-09-30T03:54:09.055Z,256.1,invocacion_ok,cierra,closed,
+3,cgprm,2026-09-30T03:54:09.249Z,256.2,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:54:09.439Z,256.4,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:54:09.638Z,256.6,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:54:09.832Z,256.8,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:54:10.010Z,257.0,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:54:13.277Z,260.3,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:54:13.453Z,260.5,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:54:13.619Z,260.6,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:54:18.430Z,265.4,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:54:18.601Z,265.6,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:54:18.789Z,265.8,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:54:23.548Z,270.5,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:54:23.748Z,270.7,invocacion_ok,ok,closed,
+3,cgprm,2026-09-30T03:54:23.935Z,270.9,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:04.907Z,-48.1,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:05.086Z,-47.9,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:10.012Z,-43.0,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:10.187Z,-42.8,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:15.162Z,-37.8,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:15.352Z,-37.6,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:20.302Z,-32.7,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:20.480Z,-32.5,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:25.437Z,-27.6,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:25.624Z,-27.4,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:30.610Z,-22.4,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:30.789Z,-22.2,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:35.743Z,-17.3,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:35.914Z,-17.1,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:40.907Z,-12.1,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:41.097Z,-11.9,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:45.986Z,-7.0,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:46.166Z,-6.8,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:51.120Z,-1.9,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:51.280Z,-1.7,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:56.260Z,3.3,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:49:56.449Z,3.4,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:50:22.286Z,29.3,invocacion_agotada,fallo 1,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+3,chqw5,2026-09-30T03:50:43.307Z,50.3,invocacion_agotada,fallo 2,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+3,chqw5,2026-09-30T03:51:04.349Z,71.3,invocacion_agotada,fallo 3,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+3,chqw5,2026-09-30T03:51:25.375Z,92.4,invocacion_agotada,fallo 4,closed,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+3,chqw5,2026-09-30T03:51:46.396Z,113.4,invocacion_agotada,fallo 5: abre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+3,chqw5,2026-09-30T03:51:46.421Z,113.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.444Z,113.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.458Z,113.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.492Z,113.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.499Z,113.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.508Z,113.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.514Z,113.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.572Z,113.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.587Z,113.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.600Z,113.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.609Z,113.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.616Z,113.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.632Z,113.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.642Z,113.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.654Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.661Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.667Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.678Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.691Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.700Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.710Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.716Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.723Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.733Z,113.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.752Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.763Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.777Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.786Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.798Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.815Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.824Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.841Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.848Z,113.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.864Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.872Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.880Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.886Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.896Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:46.902Z,113.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:49.092Z,116.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:49.115Z,116.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:49.137Z,116.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:54.221Z,121.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:54.259Z,121.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:54.285Z,121.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:59.371Z,126.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:59.408Z,126.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:51:59.438Z,126.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:04.508Z,131.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:04.567Z,131.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:04.612Z,131.6,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:09.736Z,136.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:09.763Z,136.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:09.795Z,136.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:14.893Z,141.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:14.921Z,141.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:14.947Z,141.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:41.069Z,168.1,invocacion_agotada,sonda semiabierta fallida: reabre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+3,chqw5,2026-09-30T03:52:41.081Z,168.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:41.094Z,168.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:41.130Z,168.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:41.135Z,168.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:45.726Z,172.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:45.756Z,172.8,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:50.857Z,177.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:50.896Z,177.9,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:56.002Z,183.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:52:56.023Z,183.0,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:01.107Z,188.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:01.137Z,188.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:06.266Z,193.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:06.295Z,193.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:32.419Z,219.4,invocacion_agotada,sonda semiabierta fallida: reabre,open,rpc error: code = DeadlineExceeded desc = context deadline exceeded
+3,chqw5,2026-09-30T03:53:32.433Z,219.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:32.453Z,219.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:32.460Z,219.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:32.489Z,219.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:32.499Z,219.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:37.066Z,224.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:37.083Z,224.1,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:42.185Z,229.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:42.209Z,229.2,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:47.322Z,234.3,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:47.362Z,234.4,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:52.502Z,239.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:52.544Z,239.5,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:57.660Z,244.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:53:57.719Z,244.7,rechazada_circuit_open,rechazada,open,grpcx: circuit open
+3,chqw5,2026-09-30T03:54:09.062Z,256.1,invocacion_ok,cierra,closed,
+3,chqw5,2026-09-30T03:54:09.258Z,256.3,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:54:13.299Z,260.3,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:54:13.473Z,260.5,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:54:18.441Z,265.4,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:54:18.626Z,265.6,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:54:23.565Z,270.6,invocacion_ok,ok,closed,
+3,chqw5,2026-09-30T03:54:23.745Z,270.7,invocacion_ok,ok,closed,

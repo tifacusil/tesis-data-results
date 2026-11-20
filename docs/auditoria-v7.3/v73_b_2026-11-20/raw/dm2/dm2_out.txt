@@ -1,0 +1,1221 @@
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 16:31:20' AS desde, '2026-09-23 16:46:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 16:31:20' AND received_at < '2026-09-23 16:46:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 16:31:20 | 2026-09-23 16:46:20 | 90000 | 90000 | 2026-11-20 15:16:46 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.14 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 16:46:20' AS desde, '2026-09-23 17:01:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 16:46:20' AND received_at < '2026-09-23 17:01:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 16:46:20 | 2026-09-23 17:01:20 | 89998 | 89998 | 2026-11-20 15:17:04 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.00 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 17:01:20' AS desde, '2026-09-23 17:16:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 17:01:20' AND received_at < '2026-09-23 17:16:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 17:01:20 | 2026-09-23 17:16:20 | 90000 | 90000 | 2026-11-20 15:17:22 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (15.22 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+SELECT '2026-09-23 17:16:20' AS desde, '2026-09-23 17:31:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 17:16:20' AND received_at < '2026-09-23 17:31:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 17:16:20 | 2026-09-23 17:31:20 | 89999 | 89999 | 2026-11-20 15:17:39 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.00 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 17:31:20' AS desde, '2026-09-23 17:46:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 17:31:20' AND received_at < '2026-09-23 17:46:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 17:31:20 | 2026-09-23 17:46:20 | 90001 | 90001 | 2026-11-20 15:17:57 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.11 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 17:46:20' AS desde, '2026-09-23 18:01:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 17:46:20' AND received_at < '2026-09-23 18:01:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 17:46:20 | 2026-09-23 18:01:20 | 89999 | 89999 | 2026-11-20 15:18:15 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.29 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 18:01:20' AS desde, '2026-09-23 18:16:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 18:01:20' AND received_at < '2026-09-23 18:16:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 18:01:20 | 2026-09-23 18:16:20 | 89999 | 89999 | 2026-11-20 15:18:32 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (15.75 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 18:16:20' AS desde, '2026-09-23 18:31:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 18:16:20' AND received_at < '2026-09-23 18:31:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 18:16:20 | 2026-09-23 18:31:20 | 89999 | 89999 | 2026-11-20 15:18:50 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (15.87 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 18:31:20' AS desde, '2026-09-23 18:46:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 18:31:20' AND received_at < '2026-09-23 18:46:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 18:31:20 | 2026-09-23 18:46:20 | 90000 | 90000 | 2026-11-20 15:19:08 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (15.11 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 18:46:20' AS desde, '2026-09-23 19:01:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 18:46:20' AND received_at < '2026-09-23 19:01:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 18:46:20 | 2026-09-23 19:01:20 | 90000 | 90000 | 2026-11-20 15:19:25 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (15.72 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 19:01:20' AS desde, '2026-09-23 19:16:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 19:01:20' AND received_at < '2026-09-23 19:16:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 19:01:20 | 2026-09-23 19:16:20 | 89999 | 89999 | 2026-11-20 15:19:42 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.10 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 19:16:20' AS desde, '2026-09-23 19:31:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 19:16:20' AND received_at < '2026-09-23 19:31:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 19:16:20 | 2026-09-23 19:31:20 | 89999 | 89999 | 2026-11-20 15:20:00 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.48 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 19:31:20' AS desde, '2026-09-23 19:46:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 19:31:20' AND received_at < '2026-09-23 19:46:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 19:31:20 | 2026-09-23 19:46:20 | 89998 | 89998 | 2026-11-20 15:20:18 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.37 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 19:46:20' AS desde, '2026-09-23 20:01:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 19:46:20' AND received_at < '2026-09-23 20:01:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 19:46:20 | 2026-09-23 20:01:20 | 90000 | 90000 | 2026-11-20 15:20:35 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (15.87 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 20:01:20' AS desde, '2026-09-23 20:16:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 20:01:20' AND received_at < '2026-09-23 20:16:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 20:01:20 | 2026-09-23 20:16:20 | 89998 | 89998 | 2026-11-20 15:20:53 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.66 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 20:16:20' AS desde, '2026-09-23 20:31:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 20:16:20' AND received_at < '2026-09-23 20:31:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 20:16:20 | 2026-09-23 20:31:20 | 90000 | 90000 | 2026-11-20 15:21:11 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.70 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 20:31:20' AS desde, '2026-09-23 20:46:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 20:31:20' AND received_at < '2026-09-23 20:46:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 20:31:20 | 2026-09-23 20:46:20 | 90000 | 90000 | 2026-11-20 15:21:29 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.58 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 20:46:20' AS desde, '2026-09-23 21:01:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 20:46:20' AND received_at < '2026-09-23 21:01:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 20:46:20 | 2026-09-23 21:01:20 | 90000 | 90000 | 2026-11-20 15:21:47 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (17.23 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 21:01:20' AS desde, '2026-09-23 21:16:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 21:01:20' AND received_at < '2026-09-23 21:16:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 21:01:20 | 2026-09-23 21:16:20 | 89998 | 89998 | 2026-11-20 15:22:07 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.52 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 21:16:20' AS desde, '2026-09-23 21:31:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 21:16:20' AND received_at < '2026-09-23 21:31:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 21:16:20 | 2026-09-23 21:31:20 | 90000 | 90000 | 2026-11-20 15:22:25 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (15.76 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 21:31:20' AS desde, '2026-09-23 21:46:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 21:31:20' AND received_at < '2026-09-23 21:46:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 21:31:20 | 2026-09-23 21:46:20 | 89999 | 89999 | 2026-11-20 15:22:43 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (15.87 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.01 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 21:46:20' AS desde, '2026-09-23 22:01:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 21:46:20' AND received_at < '2026-09-23 22:01:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 21:46:20 | 2026-09-23 22:01:20 | 90000 | 90000 | 2026-11-20 15:23:00 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.97 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 22:01:20' AS desde, '2026-09-23 22:16:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 22:01:20' AND received_at < '2026-09-23 22:16:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 22:01:20 | 2026-09-23 22:16:20 | 90000 | 90000 | 2026-11-20 15:23:21 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.00 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 22:16:20' AS desde, '2026-09-23 22:31:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 22:16:20' AND received_at < '2026-09-23 22:31:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 22:16:20 | 2026-09-23 22:31:20 | 90000 | 90000 | 2026-11-20 15:23:38 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.11 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 22:31:20' AS desde, '2026-09-23 22:46:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 22:31:20' AND received_at < '2026-09-23 22:46:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 22:31:20 | 2026-09-23 22:46:20 | 90000 | 90000 | 2026-11-20 15:23:56 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.43 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 22:46:20' AS desde, '2026-09-23 23:01:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 22:46:20' AND received_at < '2026-09-23 23:01:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 22:46:20 | 2026-09-23 23:01:20 | 89999 | 89999 | 2026-11-20 15:24:14 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.14 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 23:01:20' AS desde, '2026-09-23 23:16:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 23:01:20' AND received_at < '2026-09-23 23:16:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 23:01:20 | 2026-09-23 23:16:20 | 90000 | 90000 | 2026-11-20 15:24:31 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.20 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 23:16:20' AS desde, '2026-09-23 23:31:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 23:16:20' AND received_at < '2026-09-23 23:31:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 23:16:20 | 2026-09-23 23:31:20 | 89999 | 89999 | 2026-11-20 15:24:49 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.35 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 23:31:20' AS desde, '2026-09-23 23:46:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 23:31:20' AND received_at < '2026-09-23 23:46:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 23:31:20 | 2026-09-23 23:46:20 | 90000 | 90000 | 2026-11-20 15:25:07 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (16.28 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-23 23:46:20' AS desde, '2026-09-24 00:01:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-23 23:46:20' AND received_at < '2026-09-24 00:01:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-23 23:46:20 | 2026-09-24 00:01:20 | 89999 | 89999 | 2026-11-20 15:25:25 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (15.78 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-24 00:01:20' AS desde, '2026-09-24 00:16:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-24 00:01:20' AND received_at < '2026-09-24 00:16:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-24 00:01:20 | 2026-09-24 00:16:20 | 90000 | 90000 | 2026-11-20 15:25:42 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (14.93 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-24 00:16:20' AS desde, '2026-09-24 00:31:20' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-24 00:16:20' AND received_at < '2026-09-24 00:31:20'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-24 00:16:20 | 2026-09-24 00:31:20 | 89997 | 89997 | 2026-11-20 15:26:00 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (14.48 sec)
+
+Bye
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION internal_tmp_mem_storage_engine = MEMORY
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION tmp_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SET SESSION max_heap_table_size = 4194304
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT '2026-09-24 00:31:20' AS desde, '2026-09-24 00:39:21' AS hasta, COUNT(*) AS filas, COUNT(DISTINCT message_id) AS ids, UTC_TIMESTAMP() AS fin_utc FROM gnss_readings IGNORE INDEX (idx_gnss_sensor_ts, idx_gnss_project_ts, uk_gnss_message) WHERE received_at >= '2026-09-24 00:31:20' AND received_at < '2026-09-24 00:39:21'
+--------------
+
++---------------------+---------------------+-------+-------+---------------------+
+| desde               | hasta               | filas | ids   | fin_utc             |
++---------------------+---------------------+-------+-------+---------------------+
+| 2026-09-24 00:31:20 | 2026-09-24 00:39:21 | 18278 | 18278 | 2026-11-20 15:26:18 |
++---------------------+---------------------+-------+-------+---------------------+
+1 row in set (14.51 sec)
+
+Bye
