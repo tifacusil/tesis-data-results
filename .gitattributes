@@ -6,3 +6,4 @@ tabla10/** -text
 tabla9/** -text
 # Bash scripts must keep LF, or bash fails on CR (core.autocrlf=true on the Windows PC).
 *.sh text eol=lf
+docs/auditoria-v7.3/** -text

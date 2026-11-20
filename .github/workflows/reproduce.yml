@@ -22,6 +22,7 @@ jobs:
           sha256sum -c --quiet SHA256SUMS.artillery
           (cd tabla10 && sha256sum -c --quiet SHA256SUMS)
           (cd tabla9 && sha256sum -c --quiet SHA256SUMS)
+          (cd docs/auditoria-v7.3 && sha256sum -c --quiet SHA256SUMS)
           echo "f3a6c99304e81d976a81977034b3db319108c59d08e1ced3e2263d278b903fbd  data/data.zip" | sha256sum -c --quiet
 
       - name: Experiment manifest hashes
@@ -33,7 +34,8 @@ jobs:
           checks = [(m["exportacion_prometheus"]["archivo"], m["exportacion_prometheus"]["sha256"]),
                     (m["evidencia_inyecciones_b"]["manifiesto"], m["evidencia_inyecciones_b"]["sha256"])]
           checks += [(m[k]["lista_sha256"], m[k]["sha256_de_la_lista"])
-                     for k in ("reportes_artillery", "tabla9_consultas_crudas", "tabla10_exportaciones", "salidas")]
+                     for k in ("reportes_artillery", "tabla9_consultas_crudas", "tabla10_exportaciones", "salidas",
+                               "auditoria_v7_3")]
           for f, h in checks:
               assert sha(f) == h, f"{f}: {sha(f)} != manifest {h}"
               print(f"{f}: OK")
@@ -51,6 +53,11 @@ jobs:
             --series data/B-12h-0923-timeseries.csv \
             --saturation data/B-12h-0923-saturation.csv \
             --snapshots "data/B - SEPTIEMBRE 5 RUNS V2/chaos"
+
+      - name: V7.3 audit outputs from the repository files
+        run: |
+          python -I docs/auditoria-v7.3/derivar.py
+          git diff --exit-code -- docs/auditoria-v7.3/outputs
 
       - name: Published values
         run: python test_generar_resultados.py
