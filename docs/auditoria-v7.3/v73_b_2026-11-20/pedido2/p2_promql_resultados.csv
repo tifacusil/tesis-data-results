@@ -1,0 +1,67 @@
+tipo,query,time,ejecutado_utc,instance,pod,level_outcome_o_pod_ip,valor
+increase,sum (increase(ew_alerts_published_total[43681s])),2026-09-24T00:39:21Z,2026-11-20T15:39:41.524294Z,,,,3415.2455056949757
+increase,sum by (instance) (increase(ew_alerts_published_total[43681s])),2026-09-24T00:39:21Z,2026-11-20T15:39:41.560751Z,10.42.0.118:8080,,,1661.5621331820867
+increase,sum by (instance) (increase(ew_alerts_published_total[43681s])),2026-09-24T00:39:21Z,2026-11-20T15:39:41.560751Z,10.42.0.119:8080,,,1753.683372512889
+resets,sum by (instance) (resets(ew_alerts_published_total[43681s])),2026-09-24T00:39:21Z,2026-11-20T15:39:41.580618Z,10.42.0.118:8080,,,0
+resets,sum by (instance) (resets(ew_alerts_published_total[43681s])),2026-09-24T00:39:21Z,2026-11-20T15:39:41.580618Z,10.42.0.119:8080,,,0
+crudo_t0,ew_alerts_published_total,2026-09-23T12:31:20Z,2026-11-20T15:39:41.584037Z,10.42.0.118:8080,,blue,22
+crudo_t0,ew_alerts_published_total,2026-09-23T12:31:20Z,2026-11-20T15:39:41.584037Z,10.42.0.118:8080,,red,170
+crudo_t0,ew_alerts_published_total,2026-09-23T12:31:20Z,2026-11-20T15:39:41.584037Z,10.42.0.119:8080,,blue,27
+crudo_t0,ew_alerts_published_total,2026-09-23T12:31:20Z,2026-11-20T15:39:41.584037Z,10.42.0.119:8080,,red,168
+crudo_t1,ew_alerts_published_total,2026-09-24T00:39:21Z,2026-11-20T15:39:41.610760Z,10.42.0.118:8080,,blue,498
+crudo_t1,ew_alerts_published_total,2026-09-24T00:39:21Z,2026-11-20T15:39:41.610760Z,10.42.0.118:8080,,orange,333
+crudo_t1,ew_alerts_published_total,2026-09-24T00:39:21Z,2026-11-20T15:39:41.610760Z,10.42.0.118:8080,,red,1023
+crudo_t1,ew_alerts_published_total,2026-09-24T00:39:21Z,2026-11-20T15:39:41.610760Z,10.42.0.119:8080,,blue,535
+crudo_t1,ew_alerts_published_total,2026-09-24T00:39:21Z,2026-11-20T15:39:41.610760Z,10.42.0.119:8080,,orange,322
+crudo_t1,ew_alerts_published_total,2026-09-24T00:39:21Z,2026-11-20T15:39:41.610760Z,10.42.0.119:8080,,red,1092
+increase,sum (increase(ew_alert_delivery_latency_seconds_count[43681s])),2026-09-24T00:39:21Z,2026-11-20T15:39:41.640743Z,,,,3417.251711897401
+increase,sum by (instance) (increase(ew_alert_delivery_latency_seconds_count[43681s])),2026-09-24T00:39:21Z,2026-11-20T15:39:41.644023Z,10.42.0.118:8080,,,1662.6090003435247
+increase,sum by (instance) (increase(ew_alert_delivery_latency_seconds_count[43681s])),2026-09-24T00:39:21Z,2026-11-20T15:39:41.644023Z,10.42.0.119:8080,,,1754.6427115538763
+resets,sum by (instance) (resets(ew_alert_delivery_latency_seconds_count[43681s])),2026-09-24T00:39:21Z,2026-11-20T15:39:41.658486Z,10.42.0.118:8080,,,0
+resets,sum by (instance) (resets(ew_alert_delivery_latency_seconds_count[43681s])),2026-09-24T00:39:21Z,2026-11-20T15:39:41.658486Z,10.42.0.119:8080,,,0
+crudo_t0,ew_alert_delivery_latency_seconds_count,2026-09-23T12:31:20Z,2026-11-20T15:39:41.661535Z,10.42.0.118:8080,,,192
+crudo_t0,ew_alert_delivery_latency_seconds_count,2026-09-23T12:31:20Z,2026-11-20T15:39:41.661535Z,10.42.0.119:8080,,,195
+crudo_t1,ew_alert_delivery_latency_seconds_count,2026-09-24T00:39:21Z,2026-11-20T15:39:41.663794Z,10.42.0.118:8080,,,1854
+crudo_t1,ew_alert_delivery_latency_seconds_count,2026-09-24T00:39:21Z,2026-11-20T15:39:41.663794Z,10.42.0.119:8080,,,1949
+increase,"sum (increase(ew_evaluations_total{result=""alert""}[43681s]))",2026-09-24T00:39:21Z,2026-11-20T15:39:41.671985Z,,,,sin series
+increase,"sum by (instance) (increase(ew_evaluations_total{result=""alert""}[43681s]))",2026-09-24T00:39:21Z,2026-11-20T15:39:41.674189Z,,,,sin series
+resets,"sum by (instance) (resets(ew_evaluations_total{result=""alert""}[43681s]))",2026-09-24T00:39:21Z,2026-11-20T15:39:41.676322Z,,,,sin series
+crudo_t0,"ew_evaluations_total{result=""alert""}",2026-09-23T12:31:20Z,2026-11-20T15:39:41.689570Z,,,,sin series
+crudo_t1,"ew_evaluations_total{result=""alert""}",2026-09-24T00:39:21Z,2026-11-20T15:39:41.691615Z,,,,sin series
+increase,"sum (increase(ew_evaluations_total{outcome=""alert""}[43681s]))",2026-09-24T00:39:21Z,2026-11-20T15:39:41.695660Z,,,,3417.251711897401
+increase,"sum by (instance) (increase(ew_evaluations_total{outcome=""alert""}[43681s]))",2026-09-24T00:39:21Z,2026-11-20T15:39:41.699272Z,10.42.0.118:8080,,,1662.6090003435247
+increase,"sum by (instance) (increase(ew_evaluations_total{outcome=""alert""}[43681s]))",2026-09-24T00:39:21Z,2026-11-20T15:39:41.699272Z,10.42.0.119:8080,,,1754.6427115538763
+resets,"sum by (instance) (resets(ew_evaluations_total{outcome=""alert""}[43681s]))",2026-09-24T00:39:21Z,2026-11-20T15:39:41.701841Z,10.42.0.118:8080,,,0
+resets,"sum by (instance) (resets(ew_evaluations_total{outcome=""alert""}[43681s]))",2026-09-24T00:39:21Z,2026-11-20T15:39:41.701841Z,10.42.0.119:8080,,,0
+crudo_t0,"ew_evaluations_total{outcome=""alert""}",2026-09-23T12:31:20Z,2026-11-20T15:39:41.704228Z,10.42.0.118:8080,,alert,192
+crudo_t0,"ew_evaluations_total{outcome=""alert""}",2026-09-23T12:31:20Z,2026-11-20T15:39:41.704228Z,10.42.0.119:8080,,alert,195
+crudo_t1,"ew_evaluations_total{outcome=""alert""}",2026-09-24T00:39:21Z,2026-11-20T15:39:41.721094Z,10.42.0.118:8080,,alert,1854
+crudo_t1,"ew_evaluations_total{outcome=""alert""}",2026-09-24T00:39:21Z,2026-11-20T15:39:41.721094Z,10.42.0.119:8080,,alert,1949
+increase,"sum by (instance, level) (increase(ew_alerts_published_total[43681s]))",2026-09-24T00:39:21Z,2026-11-20T15:39:41.742430Z,10.42.0.118:8080,,blue,476.1744188709493
+increase,"sum by (instance, level) (increase(ew_alerts_published_total[43681s]))",2026-09-24T00:39:21Z,2026-11-20T15:39:41.742430Z,10.42.0.118:8080,,orange,332.07515276298665
+increase,"sum by (instance, level) (increase(ew_alerts_published_total[43681s]))",2026-09-24T00:39:21Z,2026-11-20T15:39:41.742430Z,10.42.0.118:8080,,red,853.3125615481508
+increase,"sum by (instance, level) (increase(ew_alerts_published_total[43681s]))",2026-09-24T00:39:21Z,2026-11-20T15:39:41.742430Z,10.42.0.119:8080,,blue,508.18614450933245
+increase,"sum by (instance, level) (increase(ew_alerts_published_total[43681s]))",2026-09-24T00:39:21Z,2026-11-20T15:39:41.742430Z,10.42.0.119:8080,,orange,321.1586501952432
+increase,"sum by (instance, level) (increase(ew_alerts_published_total[43681s]))",2026-09-24T00:39:21Z,2026-11-20T15:39:41.742430Z,10.42.0.119:8080,,red,924.3385778083134
+increase,sum by (outcome) (increase(ew_evaluations_total[43681s])),2026-09-24T00:39:21Z,2026-11-20T15:39:41.752689Z,,,alert,3417.251711897401
+increase,sum by (outcome) (increase(ew_evaluations_total[43681s])),2026-09-24T00:39:21Z,2026-11-20T15:39:41.752689Z,,,fix_quality_not_rtk_fixed,432391.38149547693
+increase,sum by (outcome) (increase(ew_evaluations_total[43681s])),2026-09-24T00:39:21Z,2026-11-20T15:39:41.752689Z,,,gap_too_large_reset,81.02968052215735
+increase,sum by (outcome) (increase(ew_evaluations_total[43681s])),2026-09-24T00:39:21Z,2026-11-20T15:39:41.752689Z,,,none,299420.6753921906
+increase,sum by (outcome) (increase(ew_evaluations_total[43681s])),2026-09-24T00:39:21Z,2026-11-20T15:39:41.752689Z,,,previous_none,96.03517691514944
+increase,sum by (outcome) (increase(ew_evaluations_total[43681s])),2026-09-24T00:39:21Z,2026-11-20T15:39:41.752689Z,,,stale_reading_baseline_kept,3594932.7950532464
+etiquetas,"count by (outcome, instance) (ew_evaluations_total)",2026-09-24T00:39:21Z,2026-11-20T15:39:41.758012Z,10.42.0.118:8080,,alert,1
+etiquetas,"count by (outcome, instance) (ew_evaluations_total)",2026-09-24T00:39:21Z,2026-11-20T15:39:41.758012Z,10.42.0.118:8080,,fix_quality_not_rtk_fixed,1
+etiquetas,"count by (outcome, instance) (ew_evaluations_total)",2026-09-24T00:39:21Z,2026-11-20T15:39:41.758012Z,10.42.0.118:8080,,gap_too_large_reset,1
+etiquetas,"count by (outcome, instance) (ew_evaluations_total)",2026-09-24T00:39:21Z,2026-11-20T15:39:41.758012Z,10.42.0.118:8080,,none,1
+etiquetas,"count by (outcome, instance) (ew_evaluations_total)",2026-09-24T00:39:21Z,2026-11-20T15:39:41.758012Z,10.42.0.118:8080,,previous_none,1
+etiquetas,"count by (outcome, instance) (ew_evaluations_total)",2026-09-24T00:39:21Z,2026-11-20T15:39:41.758012Z,10.42.0.118:8080,,stale_reading_baseline_kept,1
+etiquetas,"count by (outcome, instance) (ew_evaluations_total)",2026-09-24T00:39:21Z,2026-11-20T15:39:41.758012Z,10.42.0.119:8080,,alert,1
+etiquetas,"count by (outcome, instance) (ew_evaluations_total)",2026-09-24T00:39:21Z,2026-11-20T15:39:41.758012Z,10.42.0.119:8080,,fix_quality_not_rtk_fixed,1
+etiquetas,"count by (outcome, instance) (ew_evaluations_total)",2026-09-24T00:39:21Z,2026-11-20T15:39:41.758012Z,10.42.0.119:8080,,gap_too_large_reset,1
+etiquetas,"count by (outcome, instance) (ew_evaluations_total)",2026-09-24T00:39:21Z,2026-11-20T15:39:41.758012Z,10.42.0.119:8080,,none,1
+etiquetas,"count by (outcome, instance) (ew_evaluations_total)",2026-09-24T00:39:21Z,2026-11-20T15:39:41.758012Z,10.42.0.119:8080,,previous_none,1
+etiquetas,"count by (outcome, instance) (ew_evaluations_total)",2026-09-24T00:39:21Z,2026-11-20T15:39:41.758012Z,10.42.0.119:8080,,stale_reading_baseline_kept,1
+pod_ip,"kube_pod_info{namespace=""landslide"", pod=~""early-warning.*""}",2026-09-23T18:00:00Z,2026-11-20T15:39:41.760257Z,kube-state-metrics:8080,early-warning-697ddb9db5-zjxkk,10.42.0.118,1
+pod_ip,"kube_pod_info{namespace=""landslide"", pod=~""early-warning.*""}",2026-09-23T18:00:00Z,2026-11-20T15:39:41.760257Z,kube-state-metrics:8080,early-warning-697ddb9db5-zvxgk,10.42.0.119,1
+pod_ip,"kube_pod_info{namespace=""landslide"", pod=~""early-warning.*""}",2026-09-30T03:45:00Z,2026-11-20T15:39:41.763451Z,kube-state-metrics:8080,early-warning-55859f5589-cgprm,10.42.0.123,1
+pod_ip,"kube_pod_info{namespace=""landslide"", pod=~""early-warning.*""}",2026-09-30T03:45:00Z,2026-11-20T15:39:41.763451Z,kube-state-metrics:8080,early-warning-55859f5589-chqw5,10.42.0.122,1

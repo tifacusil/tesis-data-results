@@ -1,0 +1,85 @@
+mysql: [Warning] Using a password on the command line interface can be insecure.
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT CURRENT_USER(), @@version, @@hostname, @@system_time_zone, UTC_TIMESTAMP() AS started_utc
+--------------
+
++----------------+-----------+-----------------------+--------------------+---------------------+
+| CURRENT_USER() | @@version | @@hostname            | @@system_time_zone | started_utc         |
++----------------+-----------+-----------------------+--------------------+---------------------+
+| root@localhost | 8.0.46    | mysql-early-warning-0 | UTC                | 2026-11-20 15:11:46 |
++----------------+-----------+-----------------------+--------------------+---------------------+
+1 row in set (0.00 sec)
+
+--------------
+SHOW CREATE TABLE alerts
+--------------
+
+*************************** 1. row ***************************
+       Table: alerts
+Create Table: CREATE TABLE `alerts` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `created_at` datetime NOT NULL,
+  `message_id` varchar(64) DEFAULT NULL,
+  `project_id` varchar(64) NOT NULL,
+  `sensor_id` varchar(64) NOT NULL,
+  `alert_level` enum('blue','orange','red') NOT NULL,
+  `deformation_speed_mm_day` double DEFAULT NULL,
+  `threshold_mm_day` double DEFAULT NULL,
+  `alert_timestamp` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_alert_message` (`message_id`),
+  KEY `idx_alerts_project_ts` (`project_id`,`alert_timestamp`)
+) ENGINE=InnoDB AUTO_INCREMENT=4253 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+1 row in set (0.00 sec)
+
+--------------
+SET @t0 = '2026-09-23 12:31:20', @t1 = '2026-09-24 00:39:21'
+--------------
+
+Query OK, 0 rows affected (0.00 sec)
+
+--------------
+SELECT COUNT(*) alertas, COUNT(DISTINCT sensor_id, alert_timestamp) lecturas_distintas FROM alerts WHERE created_at >= @t0 AND created_at < @t1
+--------------
+
++---------+--------------------+
+| alertas | lecturas_distintas |
++---------+--------------------+
+|    3416 |               3414 |
++---------+--------------------+
+1 row in set (0.02 sec)
+
+--------------
+SELECT sensor_id, alert_timestamp, COUNT(*) n,
+       GROUP_CONCAT(CONCAT(id, '|', alert_level, '|', created_at, '|', message_id) ORDER BY id SEPARATOR ' ; ') filas
+FROM alerts
+WHERE created_at >= @t0 AND created_at < @t1
+GROUP BY sensor_id, alert_timestamp HAVING n > 1
+--------------
+
++------------+---------------------+---+-----------------------------------------------------------------------------------------------------------------------------------------+
+| sensor_id  | alert_timestamp     | n | filas                                                                                                                                   |
++------------+---------------------+---+-----------------------------------------------------------------------------------------------------------------------------------------+
+| GXZM-DB050 | 2019-07-17 01:57:18 | 2 | 535|red|2026-09-23 14:33:27|777a378d-ef96-426f-9746-b861173e9fab ; 536|red|2026-09-23 14:33:27|d34afd7d-fedc-4774-8284-d529f2233d8e     |
+| GXZM-DB086 | 2019-09-03 13:33:47 | 2 | 1840|blue|2026-09-23 19:10:21|4e7ef7ef-054d-4777-a381-f4d8d491dfd4 ; 1841|blue|2026-09-23 19:10:22|f8b1e81c-56cd-435f-8d8f-a89b37f6b672 |
++------------+---------------------+---+-----------------------------------------------------------------------------------------------------------------------------------------+
+2 rows in set (0.04 sec)
+
+--------------
+SELECT UTC_TIMESTAMP() AS finished_utc
+--------------
+
++---------------------+
+| finished_utc        |
++---------------------+
+| 2026-11-20 15:11:46 |
++---------------------+
+1 row in set (0.00 sec)
+
+Bye

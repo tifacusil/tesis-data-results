@@ -1,0 +1,9 @@
+metrica,instance,level,primera_muestra_tsdb_utc,valor_primera_muestra,muestra_inicio_utc,valor_inicio,muestra_fin_utc,valor_fin,nace_en_ventana,incremento,incremento_con_nacimiento,reinicios
+ew_alerts_published_total,10.42.0.118:8080,blue,2026-09-23T12:26:33.935Z,22,2026-09-23T12:31:18.935Z,22,2026-09-24T00:39:18.935Z,498,False,476,476,0
+ew_alerts_published_total,10.42.0.118:8080,orange,2026-09-23T12:55:03.935Z,1,2026-09-23T12:55:03.935Z,1,2026-09-24T00:39:18.935Z,333,True,332,333,0
+ew_alerts_published_total,10.42.0.118:8080,red,2026-09-23T12:26:33.935Z,170,2026-09-23T12:31:18.935Z,170,2026-09-24T00:39:18.935Z,1023,False,853,853,0
+ew_alerts_published_total,10.42.0.119:8080,blue,2026-09-23T12:26:22.616Z,27,2026-09-23T12:31:07.616Z,27,2026-09-24T00:39:07.616Z,535,False,508,508,0
+ew_alerts_published_total,10.42.0.119:8080,orange,2026-09-23T12:54:52.616Z,1,2026-09-23T12:54:52.616Z,1,2026-09-24T00:39:07.616Z,322,True,321,322,0
+ew_alerts_published_total,10.42.0.119:8080,red,2026-09-23T12:26:22.616Z,168,2026-09-23T12:31:07.616Z,168,2026-09-24T00:39:07.616Z,1092,False,924,924,0
+ew_alert_delivery_latency_seconds_count,10.42.0.118:8080,,2026-09-23T12:26:33.935Z,192,2026-09-23T12:31:18.935Z,192,2026-09-24T00:39:18.935Z,1854,False,1662,1662,0
+ew_alert_delivery_latency_seconds_count,10.42.0.119:8080,,2026-09-23T12:26:22.616Z,195,2026-09-23T12:31:07.616Z,195,2026-09-24T00:39:07.616Z,1949,False,1754,1754,0

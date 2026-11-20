@@ -1,0 +1,4 @@
+fail_start_utc,breaker_opened_after_s,recovery_s,primera_muestra_abierto_utc,ultima_muestra_abierto_utc,breaker_state_por_muestra,calls_circuit_open_primera_muestra,primera_muestra_no_nan_utc,calls_circuit_open_primera_no_nan,calls_circuit_open_ultima,delta_calls_circuit_open_desde_primera_no_nan,calls_circuit_open_summary,delta_alerts_published_ventana_muestreo,alerts_while_open_summary,degraded_alerts_summary,samples_csv
+2026-09-30T03:33:12Z,116,0,2026-09-30T03:35:07Z,2026-09-30T03:37:36Z,00000001111111111,NaN,2026-09-30T03:35:07Z,57,190,133,190,229,117,191,netem-delay-ew-um-samples-1790739192.csv
+2026-09-30T03:41:32Z,131,0,2026-09-30T03:43:43Z,2026-09-30T03:45:39Z,00000000111111110,190,2026-09-30T03:41:31Z,190,364,174,364,205,94,171,netem-delay-ew-um-samples-1790739691.csv
+2026-09-30T03:49:53Z,123,0,2026-09-30T03:52:04Z,2026-09-30T03:54:16Z,00000000111111111,364,2026-09-30T03:49:52Z,364,547,183,547,211,104,181,netem-delay-ew-um-samples-1790740192.csv

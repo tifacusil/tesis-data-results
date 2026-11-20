@@ -1,0 +1,4 @@
+instance,pod,max_data_receiving_redis_buffer_pending_1430_1500,primera_muestra_con_max_utc
+10.42.0.90:8080,,3752,2026-09-23T14:33:50.624Z
+10.42.0.91:8080,,3743,2026-09-23T14:33:56.258Z
+10.42.0.92:8080,,3750,2026-09-23T14:33:45.971Z

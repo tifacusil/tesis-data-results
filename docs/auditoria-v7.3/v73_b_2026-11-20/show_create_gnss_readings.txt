@@ -1,0 +1,27 @@
+*************************** 1. row ***************************
+       Table: gnss_readings
+Create Table: CREATE TABLE `gnss_readings` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `message_id` varchar(64) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `project_id` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `sensor_id` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `timestamp` datetime NOT NULL,
+  `received_at` datetime NOT NULL,
+  `displacement_x_mm` double DEFAULT NULL,
+  `displacement_y_mm` double DEFAULT NULL,
+  `displacement_z_mm` double DEFAULT NULL,
+  `displacement_horizontal_mm` double DEFAULT NULL,
+  `cumulative_displacement_mm` double DEFAULT NULL,
+  `fix_quality` varchar(16) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`,`timestamp`),
+  UNIQUE KEY `uk_gnss_message` (`message_id`,`timestamp`),
+  KEY `idx_gnss_sensor_ts` (`sensor_id`,`timestamp`),
+  KEY `idx_gnss_project_ts` (`project_id`,`timestamp`)
+) ENGINE=InnoDB AUTO_INCREMENT=9149207 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+/*!50100 PARTITION BY RANGE (year(`timestamp`))
+(PARTITION p2024 VALUES LESS THAN (2025) ENGINE = InnoDB,
+ PARTITION p2025 VALUES LESS THAN (2026) ENGINE = InnoDB,
+ PARTITION p2026 VALUES LESS THAN (2027) ENGINE = InnoDB,
+ PARTITION p2027 VALUES LESS THAN (2028) ENGINE = InnoDB,
+ PARTITION pmax VALUES LESS THAN MAXVALUE ENGINE = InnoDB) */
+1 row in set (0.05 sec)

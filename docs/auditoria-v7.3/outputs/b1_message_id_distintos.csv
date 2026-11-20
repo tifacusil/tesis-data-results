@@ -1,0 +1,2 @@
+archivo,sha256_gz,sha256_tsv_descomprimido,filas,message_id_distintos,message_id_repetidos,ejecutado_utc
+auditoria_db_b_2026-11-20/raw/export.tsv.gz (fuera del repo),28cee4f9eb7450af162cd4cd80e53369a5268c03df1c20a5a11a40439fed0f05,faf0f99ee8cdc71d22dec2c448703632e0e924d379025a40fb7a05f354b4d4a3,4328780,4328780,0,2026-11-20T14:59:32Z

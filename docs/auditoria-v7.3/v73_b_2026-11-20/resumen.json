@@ -1,0 +1,28 @@
+{
+  "dm": {
+    "filas_ventana": 4328780,
+    "tramos_completos": 4,
+    "tramos_interrumpidos": 1,
+    "filas_en_tramos_completos": 1430522,
+    "ids_en_tramos_completos": 1430522,
+    "errores": [
+      "ERROR 1317 (70100) at line 11: Query execution was interrupted"
+    ],
+    "abortos_memoria": [
+      "ABORT mem=295Mi"
+    ],
+    "completo": {
+      "tramos": 37,
+      "contiguo_t0_t1": true,
+      "filas": 4328780,
+      "ids_sumados": 4328780,
+      "tramos_con_ids_distinto_de_filas": 0,
+      "anon_max_mib_segunda_corrida": 170
+    }
+  },
+  "ew": {
+    "alertas": 3416,
+    "lecturas_distintas": 3414,
+    "filas_duplicadas": 4
+  }
+}

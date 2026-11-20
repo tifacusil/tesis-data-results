@@ -1,0 +1,2 @@
+instance,operation,muestra_t0_utc,valor_t0,muestra_t1_utc,valor_t1,incremento,reinicios,muestras
+mysqld-exporter-data-management:9104,inserted,2026-09-23T12:31:11.237Z,4815603,2026-09-24T00:39:11.237Z,9144383,4328780,0,2913

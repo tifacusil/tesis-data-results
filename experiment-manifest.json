@@ -115,8 +115,25 @@
       "tabla9_consultas_crudas": {"lista_sha256": "tabla9/SHA256SUMS", "sha256_de_la_lista": "db1cd17343206fb7a19e61f7cd730cba47d96883277442c63e45d1bc3dbde71a"},
       "tabla10_exportaciones": {"lista_sha256": "tabla10/SHA256SUMS", "sha256_de_la_lista": "30a865014f25a7a705005f7aedaf38940898089d8ce88c2a31062d384e18efd8"},
       "evidencia_inyecciones_b": {"manifiesto": "data/evidencia-b-0923/manifiesto.json", "sha256": "247f6ddeb3252ab995b5f42e1d75d62ba7c069b28c7ba93b22cf53051362b032"},
-      "salidas": {"lista_sha256": "data/output/SHA256SUMS", "sha256_de_la_lista": "f90e9c3b37edd5afb0e21c33777f6267b5f713e2d0e21704eec55a6b3fef5d46", "nota": "Solo CSV: los PNG se comparan píxel a píxel porque su compresión varía entre plataformas"}
+      "salidas": {"lista_sha256": "data/output/SHA256SUMS", "sha256_de_la_lista": "f90e9c3b37edd5afb0e21c33777f6267b5f713e2d0e21704eec55a6b3fef5d46", "nota": "Solo CSV: los PNG se comparan píxel a píxel porque su compresión varía entre plataformas"},
+      "auditoria_v7_3": {"lista_sha256": "docs/auditoria-v7.3/SHA256SUMS", "sha256_de_la_lista": "876b1544aac454f3175a90d7b8139733726168272b33723d7d0f53db7d62a992"}
     },
+    "auditorias_post_hoc": [
+      {
+        "fecha_utc": "2026-11-20",
+        "documento": "docs/auditoria-v7.3/README.md",
+        "alcance": "Resistencia de 12 h de B (2026-09-23T12:31:20Z – 2026-09-24T00:39:21Z) y retardo de 9000 ms hacia user-management (2026-09-30)",
+        "fuentes": [
+          {"tipo": "instancia viva", "destino": "mysql-data-management-0, base data_management (MySQL 8.0.46, servidor de B)", "sesion": "root@localhost con transaction_read_only = ON, aprobada por el propietario", "ejecucion_utc": ["2026-11-20T02:18:32Z", "2026-11-20T03:12:31Z"], "incidente": "la consulta con funciones de ventana del paso 2 provocó OOMKilled del pod (límite 320 MiB) a las 03:07:42; reinicio 0→1"},
+          {"tipo": "instancia viva", "destino": "mysql-early-warning-0, base early_warning (MySQL 8.0.46, servidor de B)", "sesion": "root@localhost con transaction_read_only = ON, aprobada por el propietario", "ejecucion_utc": ["2026-11-20T02:29:57Z", "2026-11-20T03:46:36Z"]},
+          {"tipo": "respaldo restaurado", "destino": "B-prometheus-tsdb-20261014.tar.gz en Prometheus 3.5.4 local (Docker, :9091)", "ejecucion_utc": ["2026-11-20T03:39:24Z", "2026-11-20T03:40:02Z"]},
+          {"tipo": "archivos del repositorio", "destino": "results/auditoria_resistencia/, data/, docs/auditoria-v7.3/fuente/", "ejecucion_utc": ["2026-11-20"], "script": "docs/auditoria-v7.3/derivar.py"},
+          {"tipo": "instancia viva", "destino": "mysql-data-management-0 y mysql-early-warning-0 (servidor de B), tramos de 1 h y 15 min, consultas del pedido 2", "sesion": "root@localhost con transaction_read_only = ON, vía kubectl exec como gotesis; guardia de memoria anon del cgroup", "ejecucion_utc": ["2026-11-20T15:08:31Z", "2026-11-20T15:38:02Z"], "incidente": "a las 15:10:15 el guardia hizo KILL QUERY del tramo 16:31:20–17:31:20 (kubectl top 295 MiB); sin reinicio (restartCount 1 antes y después)", "documento": "docs/auditoria-v7.3/pedido2.md"},
+          {"tipo": "respaldo restaurado", "destino": "B-prometheus-tsdb-20261014.tar.gz en Prometheus 3.5.4 local (Docker, :9091)", "ejecucion_utc": ["2026-11-20T15:39:41Z"], "registro": "docs/auditoria-v7.3/v73_b_2026-11-20/pedido2/raw/promql/api_log.json"},
+          {"tipo": "respaldo de logs", "destino": "respaldo-logs-20261103/B-go-tesis-logs-20261103.tar.gz, logs de early-warning-55859f5589-{cgprm,chqw5} del 29–30/09", "ejecucion_utc": ["2026-11-20"]}
+        ]
+      }
+    ],
     "no_publicos": {
       "tsdb_prometheus": {
         "archivos": {
@@ -126,6 +143,13 @@
         },
         "motivo": "858 MB; se entregan a solicitud",
         "restauracion": "docs/metrics-methodology.md §9"
+      },
+      "exportacion_gnss_readings_20261120": {
+        "archivo": "auditoria_db_b_2026-11-20/raw/export.tsv.gz",
+        "sha256": "28cee4f9eb7450af162cd4cd80e53369a5268c03df1c20a5a11a40439fed0f05",
+        "sha256_tsv_descomprimido": "faf0f99ee8cdc71d22dec2c448703632e0e924d379025a40fb7a05f354b4d4a3",
+        "motivo": "122 MB, supera el límite de GitHub; se entrega a solicitud",
+        "uso": "docs/auditoria-v7.3/contar_message_id.py"
       },
       "excluidos": ["credenciales", "datos de suscriptores", "salida de consola del retardo hacia data-analysis (no se conservó)"]
     },

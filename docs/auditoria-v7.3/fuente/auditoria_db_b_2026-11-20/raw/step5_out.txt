@@ -1,0 +1,126 @@
+--------------
+SET SESSION transaction_read_only = ON
+--------------
+
+Query OK, 0 rows affected
+
+--------------
+SELECT CURRENT_USER(), @@version, @@hostname, UTC_TIMESTAMP()
+--------------
+
++----------------+-----------+-----------------------+---------------------+
+| CURRENT_USER() | @@version | @@hostname            | UTC_TIMESTAMP()     |
++----------------+-----------+-----------------------+---------------------+
+| root@localhost | 8.0.46    | mysql-early-warning-0 | 2026-11-20 02:30:14 |
++----------------+-----------+-----------------------+---------------------+
+1 row in set
+
+--------------
+SHOW CREATE TABLE alerts
+--------------
+
+*************************** 1. row ***************************
+       Table: alerts
+Create Table: CREATE TABLE `alerts` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `created_at` datetime NOT NULL,
+  `message_id` varchar(64) DEFAULT NULL,
+  `project_id` varchar(64) NOT NULL,
+  `sensor_id` varchar(64) NOT NULL,
+  `alert_level` enum('blue','orange','red') NOT NULL,
+  `deformation_speed_mm_day` double DEFAULT NULL,
+  `threshold_mm_day` double DEFAULT NULL,
+  `alert_timestamp` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uk_alert_message` (`message_id`),
+  KEY `idx_alerts_project_ts` (`project_id`,`alert_timestamp`)
+) ENGINE=InnoDB AUTO_INCREMENT=4253 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+1 row in set
+
+--------------
+SELECT COUNT(*), MIN(created_at), MAX(created_at) FROM alerts
+--------------
+
++----------+---------------------+---------------------+
+| COUNT(*) | MIN(created_at)     | MAX(created_at)     |
++----------+---------------------+---------------------+
+|     4252 | 2026-09-23 12:37:08 | 2026-09-30 03:54:24 |
++----------+---------------------+---------------------+
+1 row in set
+
+--------------
+SELECT COUNT(*), COUNT(DISTINCT message_id), SUM(message_id IS NULL), MIN(created_at), MAX(created_at)
+  FROM alerts WHERE created_at BETWEEN '2026-09-23 12:31:20' AND '2026-09-24 00:39:21'
+--------------
+
++----------+----------------------------+-------------------------+---------------------+---------------------+
+| COUNT(*) | COUNT(DISTINCT message_id) | SUM(message_id IS NULL) | MIN(created_at)     | MAX(created_at)     |
++----------+----------------------------+-------------------------+---------------------+---------------------+
+|     3416 |                       3416 |                       0 | 2026-09-23 12:37:08 | 2026-09-24 00:34:07 |
++----------+----------------------------+-------------------------+---------------------+---------------------+
+1 row in set
+
+--------------
+SELECT alert_level, COUNT(*) FROM alerts
+  WHERE created_at BETWEEN '2026-09-23 12:31:20' AND '2026-09-24 00:39:21' GROUP BY alert_level
+--------------
+
++-------------+----------+
+| alert_level | COUNT(*) |
++-------------+----------+
+| red         |     1777 |
+| blue        |      984 |
+| orange      |      655 |
++-------------+----------+
+3 rows in set
+
+--------------
+SELECT COUNT(*) FROM alerts WHERE created_at BETWEEN '2026-09-23 14:32:00' AND '2026-09-23 14:37:00'
+--------------
+
++----------+
+| COUNT(*) |
++----------+
+|       28 |
++----------+
+1 row in set
+
+--------------
+SELECT DATE_FORMAT(created_at,'%Y-%m-%d %H:00') h, COUNT(*) FROM alerts
+  WHERE created_at BETWEEN '2026-09-23 12:31:20' AND '2026-09-24 00:39:21' GROUP BY h ORDER BY h
+--------------
+
++------------------+----------+
+| h                | COUNT(*) |
++------------------+----------+
+| 2026-09-23 12:00 |       80 |
+| 2026-09-23 13:00 |      325 |
+| 2026-09-23 14:00 |      293 |
+| 2026-09-23 15:00 |      171 |
+| 2026-09-23 16:00 |      338 |
+| 2026-09-23 17:00 |      356 |
+| 2026-09-23 18:00 |      218 |
+| 2026-09-23 19:00 |      341 |
+| 2026-09-23 20:00 |      308 |
+| 2026-09-23 21:00 |      248 |
+| 2026-09-23 22:00 |      209 |
+| 2026-09-23 23:00 |      316 |
+| 2026-09-24 00:00 |      213 |
++------------------+----------+
+13 rows in set
+
+--------------
+SELECT DATE(created_at) d, COUNT(*) FROM alerts GROUP BY d ORDER BY d
+--------------
+
++------------+----------+
+| d          | COUNT(*) |
++------------+----------+
+| 2026-09-23 |     3203 |
+| 2026-09-24 |      213 |
+| 2026-09-29 |        7 |
+| 2026-09-30 |      829 |
++------------+----------+
+4 rows in set
+
+Bye
