@@ -106,13 +106,15 @@ Las **177 «otras»** = `gap_too_large_reset` 81 + `previous_none` 96. La **dife
 
 Archivos: `pedido2/cronologia_breaker_eventos.csv` (cada evento por réplica), `cronologia_breaker_resumen.csv`, `breaker_tsdb_por_instancia.csv`, `alertas_breaker_por_push_path.csv`.
 
-Invocaciones agotadas, en segundos desde la inyección (iguales en las dos réplicas ± 0,1 s):
+Invocaciones agotadas, en segundos desde la inyección (fallos 1–4 y sondas: iguales en las dos réplicas ± 0,1 s; la apertura se da por réplica):
 
-| corrida | fallos 1–5 (el 5.º abre) | sondas semiabiertas fallidas | primer OK tras el retiro (cierre) |
-|---|---|---|---|
-| 1 (inyección 03:33:12, retiro 03:37:16) | 30,2 / 51,2 / 72,2 / 93,3 / **114,3** | 168,9 / 220,3 | 03:37:29,0 (**13,0 s** tras el retiro) |
-| 2 (03:41:32, retiro 03:45:35) | 29,6 / 50,6 / 71,7 / 92,7 / **113,8** | 168,4 / 219,8 | 03:45:48,6 (**13,6 s**) |
-| 3 (03:49:53, retiro 03:53:56) | 29,3 / 50,3 / 71,3 / 92,3 / **113,3** | 168,1 / 219,4 | 03:54:09,1 (**13,1 s**) |
+| corrida | fallos 1–4 | 5.º fallo = apertura (cgprm / chqw5) | sondas semiabiertas fallidas | primer OK tras el retiro (cierre) |
+|---|---|---|---|---|
+| 1 (inyección 03:33:12, retiro 03:37:16) | 30,2 / 51,2 / 72,2 / 93,3 | **114,275 / 114,322** | 168,9 / 220,3 | 03:37:29,0 (**13,0 s** tras el retiro) |
+| 2 (03:41:32, retiro 03:45:35) | 29,6 / 50,6 / 71,7 / 92,7 | **113,751 / 113,689** | 168,4 / 219,8 | 03:45:48,6 (**13,6 s**) |
+| 3 (03:49:53, retiro 03:53:56) | 29,3 / 50,3 / 71,3 / 92,3 | **113,335 / 113,397** | 168,1 / 219,4 | 03:54:09,1 (**13,1 s**) |
+
+La «Apertura» de la tabla de definiciones y del artículo (114,3 / 113,8 / 113,4 s) es la de la **segunda réplica en abrir**, es decir, el instante desde el que el circuito está abierto en las dos (máximo de las dos columnas, redondeado a 0,1 s). La cifra 113,3 s de la repetición 3 es la de la primera réplica (cgprm); las dos son correctas.
 
 - Primera apertura de cada réplica: en el 5.º fallo, 113,3–114,3 s tras la inyección; las dos réplicas a la vez (cgprm = 10.42.0.123, chqw5 = 10.42.0.122). Apertura sostenida: cada sonda se lanza a los ≈ 30 s de reabrir, falla ≈ 21 s después y vuelve a abrir. La primera sonda tras el retiro (≈ 250 s) sale bien y cierra.
 - **«14 invocaciones agotadas»**: cada corrida tiene 7 por réplica, 14 en total = 10 de apertura (5 por réplica) + 4 sondas semiabiertas (2 por réplica). La apertura ocurre **después de las 10 primeras y antes de las 4 sondas**, no después de las 14. El log `run` ve `breaker=1` a los 116 s con `timeouts=9` porque las métricas llegan con el retraso del scrape (15 s).
@@ -146,7 +148,7 @@ Definiciones y valores:
 | 177 otras | ídem | 81 + 96 | sí |
 | 979 | ídem | 4 328 780 − 4 327 801, alineación de muestras | sí, explicada |
 | 3740 / 3752 / 9077 | `bloque4.md` §4.2 | 3 740 / 3 752 / 9 077 | sí |
-| Apertura 116 / 131 / 123 s | `pedido2/cronologia_breaker_resumen.csv` | sondeo: 116 / 131 / 123; real: 114,3 / 113,8 / 113,4 | el valor sí; **no** es el instante real de apertura |
+| Apertura 116 / 131 / 123 s | `pedido2/cronologia_breaker_resumen.csv` | sondeo: 116 / 131 / 123; real (segunda réplica en abrir): 114,3 / 113,8 / 113,4 | el valor sí; **no** es el instante real de apertura |
 | Cierre 17–29 s | `pedido2/cronologia_breaker_resumen.csv`, `breaker_tsdb_por_instancia.csv`, `raw/servidor/breaker_recuperacion.json` | 13–14 s (logs); 13–25 s (TSDB); 14–26 s (`query_range` 1 s) | **no** |
 | Llamadas rechazadas 133 / 174 / 183 | `pedido2/breaker_tsdb_por_instancia.csv` | 190 / 174 / 183 | **no** en la corrida 1 |
 | Alertas publicadas 229 / 205 / 211 | `outputs/b4_circuit_breaker_por_corrida.csv` | 229 / 205 / 211 (logs: 222 / 206 / 215) | sí con esa métrica |

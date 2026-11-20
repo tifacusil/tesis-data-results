@@ -12,6 +12,8 @@ Todas las horas están en **UTC** salvo que se indique otra cosa.
 | `fuente/auditoria_ew_b_2026-11-20/` | Auditoría 2: `ew_evaluations_total` sobre la **TSDB restaurada** `B-prometheus-tsdb-20261014.tar.gz` (Prometheus 3.5.4 en Docker, puerto 9091), más un paso SQL sobre `mysql-early-warning-0` vivo. Copia byte a byte. | 2026-11-20 03:39–03:46 UTC |
 | `outputs/` | Derivado en esta sesión (V7.3) de archivos del repositorio con `derivar.py`. `b1_message_id_distintos.csv` y `b4_ids_de_logs_en_gnss_readings.csv` salen de `contar_message_id.py` sobre la exportación no publicada (abajo). | 2026-11-20, sesión V7.3 |
 
+**`restartCount` de `mysql-data-management-0` = 1.** Ese único reinicio es el `OOMKilled` de la auditoría 1 (paso 2, 2026-11-20 03:07:42 UTC). Las consultas posteriores (15:08–15:38 UTC, `pedido2.md`) lo registraron antes y después de cada script y no lo cambiaron: 1 → 1.
+
 Las dos auditorías usaron `root@localhost` con `SET SESSION transaction_read_only = ON`, con aprobación del propietario (el usuario `revisor` no tenía contraseña disponible). La consulta del paso 2 de la auditoría 1 agotó la memoria del pod MySQL (límite 320 MiB, `OOMKilled`, reinicio 0→1 a las 03:07:42). Los pasos 1–3 se recalcularon después sobre una exportación de la ventana.
 
 Archivo no publicado: `auditoria_db_b_2026-11-20/raw/export.tsv.gz` (exportación de `message_id, sensor_id, timestamp, received_at` de la ventana; 4 328 780 filas). SHA-256 del `.gz`: `28cee4f9eb7450af162cd4cd80e53369a5268c03df1c20a5a11a40439fed0f05`; del TSV descomprimido: `faf0f99ee8cdc71d22dec2c448703632e0e924d379025a40fb7a05f354b4d4a3` (igual al que registra `fuente/auditoria_db_b_2026-11-20/report.md`). Supera el límite de 100 MB de GitHub; se entrega a solicitud, como los respaldos de la TSDB.
@@ -68,6 +70,7 @@ No se midió el desfase entre el reloj del PC cliente y el del servidor durante 
 - [Bloque 2 — 105 «sink write failed» y 315 tramas sin ACK (C01)](bloque2.md)
 - [Bloque 3 — alertas 3414 / 3416 (C03)](bloque3.md)
 - [Bloque 4 — evaluaciones, buffer y circuit breaker](bloque4.md)
+- [Pedido 3 — alertas sin push por estado del breaker, apertura de la repetición 3, commit de early-warning](pedido3.md)
 - [Pedido 2 — consultas en B del 20/11 15:08–15:39 UTC, PromQL con `increase()`, cronología del breaker por réplica](pedido2.md): actualiza las filas de cierre, llamadas rechazadas y alertas sin push de la tabla de abajo, y cierra los pendientes 1, 2 y 5 y la parte del 30/09 del 4 (los logs de early-warning del 23/09 son NO DISPONIBLE)
 
 Consultas: `sql/` (texto exacto ejecutado, copiado de `fuente/`; `sql/pendiente_v7.3.sql` no se ejecutó) y `promql/consultas.md`.
