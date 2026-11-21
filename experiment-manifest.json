@@ -116,7 +116,7 @@
       "tabla10_exportaciones": {"lista_sha256": "tabla10/SHA256SUMS", "sha256_de_la_lista": "30a865014f25a7a705005f7aedaf38940898089d8ce88c2a31062d384e18efd8"},
       "evidencia_inyecciones_b": {"manifiesto": "data/evidencia-b-0923/manifiesto.json", "sha256": "247f6ddeb3252ab995b5f42e1d75d62ba7c069b28c7ba93b22cf53051362b032"},
       "salidas": {"lista_sha256": "data/output/SHA256SUMS", "sha256_de_la_lista": "f90e9c3b37edd5afb0e21c33777f6267b5f713e2d0e21704eec55a6b3fef5d46", "nota": "Solo CSV: los PNG se comparan píxel a píxel porque su compresión varía entre plataformas"},
-      "auditoria_v7_3": {"lista_sha256": "docs/auditoria-v7.3/SHA256SUMS", "sha256_de_la_lista": "15d41643a83b5bf141308379be374c6e96bb9d34f31da0c5787270fd0f88b4e8"}
+      "auditoria_v7_3": {"lista_sha256": "docs/auditoria-v7.3/SHA256SUMS", "sha256_de_la_lista": "e8a8336165c7b501124d71f32ae275da6ac0175209432a10272cd71ec610e462"}
     },
     "auditorias_post_hoc": [
       {

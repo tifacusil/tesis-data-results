@@ -16,7 +16,7 @@ Source: containerd log of the node of B (`/var/lib/rancher/k3s/agent/containerd/
 - `94bdbcf8…` is no longer in the node's store: containerd logged `ImageDelete` for it on 2026-11-20 02:57:50 (line 169737). Its log lines from 23/09 are the remaining evidence.
 - **`d5bae3ee…` was built from `fd5a866`.** The CD workflow builds with `VERSION=<commit verified by CI>` and links it into `main.version` (`go-early-warning@fd5a866` `.github/workflows/cd.yml:47-58`, `Dockerfile:14-16`); the two pods that run `d5bae3ee…` log `version=fd5a866db21bfcb08066ded89b5ad51ab3b82b22` at start-up (`v73_b_2026-11-20/pedido2/raw/logs_ew/…/0.log`, first line). Commit 22:02:40Z, image 22:08:19Z, pull 22:08:53Z.
 - **Commit of `94bdbcf8…`: not recorded.** The logs of the 23/09 pods are not kept and the image is gone. The only merge to `main` between `d734f7f` (2026-09-15T15:21:31Z) and `fd5a866` is `e31b2b8` (2026-09-23T05:09:10Z); the image was built at 05:15:40Z. Candidate, not verified.
-- **Registry: private.** The Deployment pulls with `imagePullSecrets: ghcr`. On 2026-11-21, without credentials, GHCR refused an anonymous pull token for all six images of B (`UNAUTHORIZED: authentication required`), and both early-warning digests returned `403`. Controls: a public image (`github/super-linter`) got a token; a nonexistent name under the same account got `DENIED`, so `UNAUTHORIZED` means the images exist and are private. A digest is a content hash: it does not name the account and does not resolve without credentials; the image reference `ghcr.io/<account>/…` does name it. If the packages are made public, repeat this check before publishing a digest.
+- **Registry: private.** The Deployment pulls with `imagePullSecrets: ghcr`. On 2026-11-21, without credentials, GHCR refused an anonymous pull token for all six images of B (`UNAUTHORIZED: authentication required`), and both early-warning digests returned `403`. Controls: a public image (`github/super-linter`) got a token; a nonexistent name under the same account got `DENIED`, so `UNAUTHORIZED` means the images exist and are private. A digest is a content hash: it does not name the account and does not resolve without credentials; the image reference `ghcr.io/<account>/…` does name it. Repeated at 2026-11-21 06:54 with the same result. If the packages are made public, repeat this check before publishing a digest.
 
 ## Persistence of the 3740 buffered frames
 
@@ -67,6 +67,16 @@ The ≈264 s Prometheus window ends after closure, so it includes the 5 rejectio
 | 3 | 03:54:09.055–03:54:23.940 (14.9 s) | 23 (15 + 8) | 23 | 0 |
 
 No `db_record_failed` in those windows.
+
+**The 5 rejections between removal and closure are 5 alerts without push.** Each run, driver round 58 (sensors s0–s4) arrived 1.2–1.7 s after removal, while the circuit was still open (it stays open until the next half-open probe, which succeeded and closed it 13–14 s after removal). Each rejected `trace_id` has its own `alert_emitted` with `push_path=resolve_failed`, and there is no other alert in that interval (columns `alertas_retiro_cierre`, `sin_push_retiro_cierre`, `primera_alerta_retiro_cierre_utc`, `ultima_alerta_retiro_cierre_utc`; asserts in `calcular_v74.py`).
+
+| run | alerts without push, removal → closure | first – last (2026-09-30) | all alerts without push in the run |
+|---|---|---|---|
+| 1 | 5 (cgprm 2, chqw5 3) | 03:37:17.569–03:37:17.644 | 199 + 5 = **204** |
+| 2 | 5 (cgprm 3, chqw5 2) | 03:45:37.219–03:45:37.261 | 183 + 5 = **188** |
+| 3 | 5 (cgprm 3, chqw5 2) | 03:53:57.656–03:53:57.747 | 192 + 5 = **197** |
+
+204 / 188 / 197 are also the log counts in the sampling window of `pedido2.md` (= Δ `dispatch_degraded_count` of the CSV).
 
 ## A09. 191 / 171 / 181 (Table 6 of V6) against 199 / 183 / 192
 

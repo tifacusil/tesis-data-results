@@ -75,6 +75,12 @@ for run in (1, 2, 3):
         co = [x[2] for x in e if x[3] == "push_flow_failed" and x[4].get("err") == "grpcx: circuit open"]
         after = [x for x in e if x[3] == "alert_emitted" and close <= x[2] <= end]
         pp = Counter(x[4].get("push_path") for x in after)
+        # Removal to closure: each `circuit open` rejection belongs to one alert stored without push.
+        gap = [x for x in e if x[3] == "alert_emitted" and ret < x[2] <= close]
+        rej_traces = [x[4]["trace_id"] for x in e if x[3] == "push_flow_failed"
+                      and x[4].get("err") == "grpcx: circuit open" and ret < x[2] <= close]
+        gap_rf = {x[4]["trace_id"] for x in gap if x[4].get("push_path") == "resolve_failed"}
+        assert all(t in gap_rf for t in rej_traces), (run, pod)
         rows.append({
             "corrida": run, "pod": pod,
             "inyeccion_utc": r["inyeccion_utc"], "retiro_utc": r["retiro_utc"],
@@ -82,6 +88,10 @@ for run in (1, 2, 3):
             "rechazos_inyeccion_retiro": sum(inj <= t <= ret for t in co),
             "rechazos_retiro_cierre": sum(ret < t <= close for t in co),
             "rechazos_total_corrida": len(co),
+            "alertas_retiro_cierre": len(gap),
+            "sin_push_retiro_cierre": len(gap_rf),
+            "primera_alerta_retiro_cierre_utc": iso(min(x[2] for x in gap)) if gap else "",
+            "ultima_alerta_retiro_cierre_utc": iso(max(x[2] for x in gap)) if gap else "",
             "cierre_utc": iso(close), "fin_registro_utc": iso(end),
             "ventana_cierre_fin_s": round(end - close, 3),
             "alertas_registradas_tras_cierre": len(after),
@@ -124,4 +134,11 @@ assert win == {1: 185, 2: 169, 3: 178}, win
 assert [a["degraded_alerts_env"] for a in a09] == ["191", "171", "181"]
 assert [a["delta_prometheus"] for a in a09] == ["191", "171", "181"]
 assert [a["logs_sin_push_inyeccion_retiro"] for a in a09] == [199, 183, 192]
+gap = {k: sum(r["sin_push_retiro_cierre"] for r in rows if r["corrida"] == k) for k in (1, 2, 3)}
+assert gap == {1: 5, 2: 5, 3: 5}, gap
+assert all(r["alertas_retiro_cierre"] == r["sin_push_retiro_cierre"] for r in rows)
+# Every alert without push of the run = injection-removal + removal-closure (pedido2.md: 204 / 188 / 197).
+allrf = {k: sum(1 for x in ev if x[0] == k and x[3] == "alert_emitted" and x[4].get("push_path") == "resolve_failed")
+         for k in (1, 2, 3)}
+assert allrf == {1: 204, 2: 188, 3: 197}, allrf
 print("ok")
