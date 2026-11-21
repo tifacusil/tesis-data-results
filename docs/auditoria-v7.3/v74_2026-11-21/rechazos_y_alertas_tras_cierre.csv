@@ -1,0 +1,7 @@
+corrida,pod,inyeccion_utc,retiro_utc,ventana_inyeccion_retiro_s,rechazos_inyeccion_retiro,rechazos_retiro_cierre,rechazos_total_corrida,cierre_utc,fin_registro_utc,ventana_cierre_fin_s,alertas_registradas_tras_cierre,notificadas_delivered,sin_push_resolve_failed,otro_push_path,db_record_failed_tras_cierre
+1,cgprm,2026-09-30T03:33:12Z,2026-09-30T03:37:16Z,244.0,90,2,92,2026-09-30T03:37:28.999Z,2026-09-30T03:37:43.854Z,14.855,8,8,0,0,0
+1,chqw5,2026-09-30T03:33:12Z,2026-09-30T03:37:16Z,244.0,95,3,98,2026-09-30T03:37:28.984Z,2026-09-30T03:37:43.854Z,14.87,15,15,0,0,0
+2,cgprm,2026-09-30T03:41:32Z,2026-09-30T03:45:35Z,243.0,85,3,88,2026-09-30T03:45:48.641Z,2026-09-30T03:46:03.561Z,14.92,15,15,0,0,0
+2,chqw5,2026-09-30T03:41:32Z,2026-09-30T03:45:35Z,243.0,84,2,86,2026-09-30T03:45:48.634Z,2026-09-30T03:46:03.561Z,14.927,8,8,0,0,0
+3,cgprm,2026-09-30T03:49:53Z,2026-09-30T03:53:56Z,243.0,94,3,97,2026-09-30T03:54:09.055Z,2026-09-30T03:54:23.940Z,14.885,15,15,0,0,0
+3,chqw5,2026-09-30T03:49:53Z,2026-09-30T03:53:56Z,243.0,84,2,86,2026-09-30T03:54:09.062Z,2026-09-30T03:54:23.940Z,14.878,8,8,0,0,0
