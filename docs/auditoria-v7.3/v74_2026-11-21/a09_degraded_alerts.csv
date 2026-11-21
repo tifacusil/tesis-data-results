@@ -1,0 +1,4 @@
+corrida,fail_start_utc,retiro_utc,primera_muestra_utc,ultima_muestra_utc,dispatch_degraded_count_primera,dispatch_degraded_count_ultima,delta_prometheus,degraded_alerts_env,logs_sin_push_inyeccion_retiro,logs_sin_push_inyeccion_ultima_muestra,logs_sin_push_ultima_muestra_retiro
+1,2026-09-30T03:33:12Z,2026-09-30T03:37:16.000Z,2026-09-30T03:33:12Z,2026-09-30T03:37:03Z,0,191,191,191,199,189,10
+2,2026-09-30T03:41:32Z,2026-09-30T03:45:35.000Z,2026-09-30T03:41:48Z,2026-09-30T03:45:22Z,204,375,171,171,183,173,10
+3,2026-09-30T03:49:53Z,2026-09-30T03:53:56.000Z,2026-09-30T03:50:09Z,2026-09-30T03:53:43Z,392,573,181,181,192,182,10

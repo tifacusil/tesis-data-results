@@ -89,12 +89,12 @@
         "data-receiving": {"imagen": "ghcr.io/tifacusil/go-data-receiving", "digest": "sha256:bb3d9f0260a7c2748d39ce5ffe828d9fcecd92598aae4f90fa60257fda3b5df7", "construida_utc": "2026-07-07T03:55:58Z", "replicas": 3},
         "data-management": {"imagen": "ghcr.io/tifacusil/data-management", "digest": "sha256:3a85a9f9d7b329198737ea1fafdaf0e4b93d0cd27f125d07eddeee838379c710", "construida_utc": "2026-08-02T16:30:16Z", "replicas": 2},
         "data-analysis": {"imagen": "ghcr.io/tifacusil/data-analysis", "digest": "sha256:b4bbf705e4a96c8dfd7d23f39937379694eed3e046401e530a1f498996e61d4f", "construida_utc": "2026-08-02T17:07:42Z", "replicas": 2},
-        "early-warning": {"imagen": "ghcr.io/tifacusil/early-warning", "digest": "sha256:94bdbcf8b255cae290d6897b213cd57e209a253af507d1e7a11ed1edf0bb48a2", "construida_utc": "2026-09-23T05:15:40Z", "replicas": 2, "nota": "Reconstruida 8 min antes de la primera corrida de B para exponer métricas adicionales, sin cambiar la lógica de evaluación"},
+        "early-warning": {"imagen": "ghcr.io/tifacusil/early-warning", "digest": "sha256:94bdbcf8b255cae290d6897b213cd57e209a253af507d1e7a11ed1edf0bb48a2", "construida_utc": "2026-09-23T05:15:40Z", "replicas": 2, "nota": "Reconstruida 8 min antes de la primera corrida de B para exponer métricas adicionales, sin cambiar la lógica de evaluación", "verificacion": "containerd del nodo: early-warning-697ddb9db5-zjxkk y -zvxgk la descargaron el 2026-09-23 a las 05:17:54 y 05:18:07 (image id sha256:1fdabdb3ce8362b6431e8adee337ff2f844f6cdabd92f430fdbeec1a9a227a31); borrada del almacén el 2026-11-20T02:57:50Z. Commit no registrado (candidato e31b2b8). docs/auditoria-v7.3/pedido4.md §1"},
         "user-management": {"imagen": "ghcr.io/tifacusil/user-management", "digest": "sha256:0cc0f2542ae8036248d362d3d60c3bc286b0162ebb23a01fb357495cbe73aba4", "construida_utc": "2026-08-02T16:32:12Z", "replicas": 1},
         "project-management": {"imagen": "ghcr.io/tifacusil/project-management", "digest": "sha256:e1c708090fc36064b30d0cb396018a8eeeb71e83d73c1e35ad960912717a718a", "construida_utc": "2026-08-02T16:29:30Z", "replicas": 1}
       },
       "imagenes_pruebas_dirigidas": {
-        "early-warning": {"digest": "sha256:d5bae3eeaf58c5e0aaf962f00ce987e470bf12a91d85a19dfe1fd9d6d41026ad", "construida_utc": "2026-09-29T22:08:19Z", "fuente": "Tabla VI del artículo"},
+        "early-warning": {"digest": "sha256:d5bae3eeaf58c5e0aaf962f00ce987e470bf12a91d85a19dfe1fd9d6d41026ad", "construida_utc": "2026-09-29T22:08:19Z", "commit_go_early_warning": "fd5a866db21bfcb08066ded89b5ad51ab3b82b22", "fuente": "containerd del nodo (early-warning-55859f5589-chqw5 y -cgprm la descargaron el 2026-09-29 a las 22:08:53 y 22:09:09; kubectl imageID el 2026-11-21) y campo version de los logs de esos pods; docs/auditoria-v7.3/pedido4.md §1"},
         "data-management": {"digest": null, "nota": "No registrado. La imagen sha256:2a1991e69e771f9ef92d4dd25667a2aa78346e4309e8e203ac9a893777ffab95 se construyó el 2026-09-29T22:03:56Z, 21 min antes de la primera prueba dirigida, y es la que corría el 2026-10-20 (docs/setup-guide.md §4.3); no consta si ya corría durante AP5 a AP7."}
       },
       "dependencias": {"rabbitmq": "rabbitmq:3.12.1-management-alpine", "redis": "redis:7.0.15-alpine", "mysql": "mysql:8.0.46, cuatro StatefulSets", "prometheus": "prom/prometheus:v3.5.4", "coredns": "1.14.3", "traefik": "3.6.13"},
@@ -116,7 +116,7 @@
       "tabla10_exportaciones": {"lista_sha256": "tabla10/SHA256SUMS", "sha256_de_la_lista": "30a865014f25a7a705005f7aedaf38940898089d8ce88c2a31062d384e18efd8"},
       "evidencia_inyecciones_b": {"manifiesto": "data/evidencia-b-0923/manifiesto.json", "sha256": "247f6ddeb3252ab995b5f42e1d75d62ba7c069b28c7ba93b22cf53051362b032"},
       "salidas": {"lista_sha256": "data/output/SHA256SUMS", "sha256_de_la_lista": "f90e9c3b37edd5afb0e21c33777f6267b5f713e2d0e21704eec55a6b3fef5d46", "nota": "Solo CSV: los PNG se comparan píxel a píxel porque su compresión varía entre plataformas"},
-      "auditoria_v7_3": {"lista_sha256": "docs/auditoria-v7.3/SHA256SUMS", "sha256_de_la_lista": "876b1544aac454f3175a90d7b8139733726168272b33723d7d0f53db7d62a992"}
+      "auditoria_v7_3": {"lista_sha256": "docs/auditoria-v7.3/SHA256SUMS", "sha256_de_la_lista": "e8a8336165c7b501124d71f32ae275da6ac0175209432a10272cd71ec610e462"}
     },
     "auditorias_post_hoc": [
       {
@@ -131,6 +131,15 @@
           {"tipo": "instancia viva", "destino": "mysql-data-management-0 y mysql-early-warning-0 (servidor de B), tramos de 1 h y 15 min, consultas del pedido 2", "sesion": "root@localhost con transaction_read_only = ON, vía kubectl exec como gotesis; guardia de memoria anon del cgroup", "ejecucion_utc": ["2026-11-20T15:08:31Z", "2026-11-20T15:38:02Z"], "incidente": "a las 15:10:15 el guardia hizo KILL QUERY del tramo 16:31:20–17:31:20 (kubectl top 295 MiB); sin reinicio (restartCount 1 antes y después)", "documento": "docs/auditoria-v7.3/pedido2.md"},
           {"tipo": "respaldo restaurado", "destino": "B-prometheus-tsdb-20261014.tar.gz en Prometheus 3.5.4 local (Docker, :9091)", "ejecucion_utc": ["2026-11-20T15:39:41Z"], "registro": "docs/auditoria-v7.3/v73_b_2026-11-20/pedido2/raw/promql/api_log.json"},
           {"tipo": "respaldo de logs", "destino": "respaldo-logs-20261103/B-go-tesis-logs-20261103.tar.gz, logs de early-warning-55859f5589-{cgprm,chqw5} del 29–30/09", "ejecucion_utc": ["2026-11-20"]}
+        ]
+      },
+      {
+        "fecha_utc": "2026-11-21",
+        "documento": "docs/auditoria-v7.3/pedido4.md",
+        "alcance": "Marcas [FALTA] de V7.4: digests de early-warning, fuente de E4, duplicados, valores iniciales, rechazos del breaker y alertas tras el cierre (2026-09-30), ventana de las 191 / 171 / 181 de V6",
+        "fuentes": [
+          {"tipo": "nodo de B, solo lectura", "destino": "kubectl get pods/rs (namespace landslide), crictl inspecti y containerd.log de k3s", "ejecucion_utc": ["2026-11-21T05:47:05Z", "2026-11-21T05:49:03Z"], "registro": "docs/auditoria-v7.3/v74_2026-11-21/raw/servidor/"},
+          {"tipo": "archivos del repositorio", "destino": "logs de early-warning del pedido 2 y data/B - SEPTIEMBRE 5 RUNS V2/chaos/netem-delay-ew-um-*", "ejecucion_utc": ["2026-11-21"], "script": "docs/auditoria-v7.3/v74_2026-11-21/calcular_v74.py"}
         ]
       }
     ],
