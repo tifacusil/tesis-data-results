@@ -1,0 +1,24 @@
+item,valor,fuente
+1 primer evento del generador (firstCounterAt),2026-09-23 12:31:20.398,sustained-12h.json aggregate
+"1 ultimo evento del generador (lastCounterAt, ultimo ACK)",2026-09-24 00:34:21.989,sustained-12h.json aggregate
+1 duracion primer-ultimo evento (s),43381.591,calculo
+1 fin nominal de la rampa,2026-09-23 12:34:20.398,first + 180 s
+1 fin nominal de la fase de 12 h,2026-09-24 00:34:20.398,first + 180 s + 43200 s
+1 tramas creadas en el ultimo periodo (desde 00:34:20.000),134,intermediate[-1]
+2 tramos,37,dm_tramos_completo.csv
+2 predicado de cada tramo,"received_at >= desde AND received_at < hasta (semiabierto, contiguos)","raw/dm.sql, raw/dm2/dm2.sql"
+2 filas en los 37 tramos,4328780,dm_tramos_completo.csv
+6 tramas creadas,4329095,aggregate.counters
+6 tramas en periodos de la rampa (12:31:20-12:34:20),8952,intermediate
+6 tramas en periodos de la fase de 12 h (12:34:20-00:34:21.989),4320143,intermediate
+6 excedente sobre 4320000,9095,calculo
+6 periodos completos de la fase de 12 h: min / max por 10 s,997 / 1003 (4319 periodos),intermediate
+5 informes Artillery de B dentro de la ventana (sin contar E4),0,ventana_e4_corridas_b.csv
+5 archivos de caos de B dentro de la ventana,kill-rabbitmq-post-1790174006.snapshot; kill-rabbitmq-pre-1790173935.snapshot; netem-delay-ew-da-post-1790202967.snapshot; netem-delay-ew-da-pre-1790202738.snapshot; pause-data-management-post-1790188444.snapshot; pause-data-management-pre-1790188340.snapshot,ventana_e4_corridas_b.csv
+4 MIN(received_at) / MAX(received_at),2026-09-23 12:31:21 / 2026-09-24 00:34:23,export.tsv.gz
+4 filas con received_at < 12:31:20 (antes del primer envio),0,export.tsv.gz
+4 filas con received_at > 00:34:21 (segundo del ultimo evento del cliente),78,export.tsv.gz
+4 filas en el margen de vaciado 00:34:24-00:39:21,0,export.tsv.gz
+5 filas = ids distintos = ACK de Artillery,4328780 = 4328780 = 4328780,"export.tsv.gz, aggregate"
+5 filas con sensor_id fuera de GXZM-DB000..999,0,export.tsv.gz
+5 sensores distintos en la ventana,100,export.tsv.gz

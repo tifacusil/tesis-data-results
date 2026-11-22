@@ -59,6 +59,12 @@ jobs:
           python -I docs/auditoria-v7.3/derivar.py
           git diff --exit-code -- docs/auditoria-v7.3/outputs
 
+      # Without the unpublished export it rewrites only the phase, chunk and run files.
+      - name: V7.5 E4 window outputs from the repository files
+        run: |
+          python -I docs/auditoria-v7.3/v75_2026-11-21/ventana_e4.py
+          git diff --exit-code -- docs/auditoria-v7.3/v75_2026-11-21
+
       - name: Published values
         run: python test_generar_resultados.py
 

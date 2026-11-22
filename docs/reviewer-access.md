@@ -1,5 +1,7 @@
 # Read-only access for reviewers
 
+> **Anonymized copy.** In the copy served for double-blind review, identifying terms were replaced with anonymous.4open.science's term list. The affected files therefore do not match their entries in the `SHA256SUMS` lists. The original repository will be provided after acceptance.
+
 Reviewers can log in to both servers to check how System A and System B are configured
 and what data they hold, without being able to change anything. Access is through the
 Linux user `revisor` with an SSH key handed over by the author, and it expires on

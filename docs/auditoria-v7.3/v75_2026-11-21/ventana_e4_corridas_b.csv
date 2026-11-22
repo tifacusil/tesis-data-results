@@ -1,0 +1,96 @@
+archivo,tipo,inicio_utc,fin_utc,fuente_del_tiempo,dentro_de_la_ventana
+sustained-12h.json,Artillery,2026-09-23 12:31:20.398,2026-09-24 00:34:21.989,aggregate.firstMetricAt / lastMetricAt,generador de E4
+vu-001-r1.json,Artillery,2026-09-23 05:23:18.737,2026-09-23 05:33:17.916,aggregate.firstMetricAt / lastMetricAt,no
+vu-001-r2.json,Artillery,2026-09-23 05:34:06.258,2026-09-23 05:44:05.451,aggregate.firstMetricAt / lastMetricAt,no
+vu-001-r3.json,Artillery,2026-09-23 05:44:55.128,2026-09-23 05:54:54.323,aggregate.firstMetricAt / lastMetricAt,no
+vu-001-r4.json,Artillery,2026-09-23 05:55:48.650,2026-09-23 06:05:47.836,aggregate.firstMetricAt / lastMetricAt,no
+vu-001-r5.json,Artillery,2026-09-23 06:06:36.301,2026-09-23 06:16:35.481,aggregate.firstMetricAt / lastMetricAt,no
+vu-010-r1.json,Artillery,2026-09-23 06:17:25.647,2026-09-23 06:27:25.411,aggregate.firstMetricAt / lastMetricAt,no
+vu-010-r2.json,Artillery,2026-09-23 06:28:19.428,2026-09-23 06:38:19.178,aggregate.firstMetricAt / lastMetricAt,no
+vu-010-r3.json,Artillery,2026-09-23 06:39:09.519,2026-09-23 06:49:09.275,aggregate.firstMetricAt / lastMetricAt,no
+vu-010-r4.json,Artillery,2026-09-23 06:49:59.352,2026-09-23 06:59:59.117,aggregate.firstMetricAt / lastMetricAt,no
+vu-010-r5.json,Artillery,2026-09-23 07:00:53.527,2026-09-23 07:10:53.280,aggregate.firstMetricAt / lastMetricAt,no
+vu-050-r1.json,Artillery,2026-09-23 07:11:42.119,2026-09-23 07:21:42.941,aggregate.firstMetricAt / lastMetricAt,no
+vu-050-r2.json,Artillery,2026-09-23 07:22:32.270,2026-09-23 07:32:33.094,aggregate.firstMetricAt / lastMetricAt,no
+vu-050-r3.json,Artillery,2026-09-23 07:33:27.404,2026-09-23 07:43:28.232,aggregate.firstMetricAt / lastMetricAt,no
+vu-050-r4.json,Artillery,2026-09-23 07:44:16.970,2026-09-23 07:54:17.796,aggregate.firstMetricAt / lastMetricAt,no
+vu-050-r5.json,Artillery,2026-09-23 07:55:06.096,2026-09-23 08:05:06.924,aggregate.firstMetricAt / lastMetricAt,no
+vu-100-r1.json,Artillery,2026-09-23 08:06:00.879,2026-09-23 08:16:01.834,aggregate.firstMetricAt / lastMetricAt,no
+vu-100-r2.json,Artillery,2026-09-23 08:16:50.089,2026-09-23 08:26:51.025,aggregate.firstMetricAt / lastMetricAt,no
+vu-100-r3.json,Artillery,2026-09-23 08:27:39.820,2026-09-23 08:37:40.786,aggregate.firstMetricAt / lastMetricAt,no
+vu-100-r4.json,Artillery,2026-09-23 08:38:33.873,2026-09-23 08:48:34.794,aggregate.firstMetricAt / lastMetricAt,no
+vu-100-r5.json,Artillery,2026-09-23 08:49:23.052,2026-09-23 08:59:23.985,aggregate.firstMetricAt / lastMetricAt,no
+chaos/ap5-B-1790720647.log,ap5-B,2026-09-29 22:24:07.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790720742.log,ap5-B,2026-09-29 22:25:42.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721564-evento.agg,ap5-B,2026-09-29 22:39:24.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721564-evento.pcap,ap5-B,2026-09-29 22:39:24.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721564-evento.txt,ap5-B,2026-09-29 22:39:24.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721564-reposo.agg,ap5-B,2026-09-29 22:39:24.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721564-reposo.pcap,ap5-B,2026-09-29 22:39:24.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721564-reposo.txt,ap5-B,2026-09-29 22:39:24.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721564-summary.env,ap5-B,2026-09-29 22:39:24.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721564.log,ap5-B,2026-09-29 22:39:24.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721691-evento.agg,ap5-B,2026-09-29 22:41:31.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721691-evento.pcap,ap5-B,2026-09-29 22:41:31.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721691-evento.txt,ap5-B,2026-09-29 22:41:31.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721691-reposo.agg,ap5-B,2026-09-29 22:41:31.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721691-reposo.pcap,ap5-B,2026-09-29 22:41:31.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721691-reposo.txt,ap5-B,2026-09-29 22:41:31.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721691-summary.env,ap5-B,2026-09-29 22:41:31.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721691.log,ap5-B,2026-09-29 22:41:31.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721818-evento.agg,ap5-B,2026-09-29 22:43:38.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721818-evento.pcap,ap5-B,2026-09-29 22:43:38.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721818-evento.txt,ap5-B,2026-09-29 22:43:38.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721818-reposo.agg,ap5-B,2026-09-29 22:43:38.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721818-reposo.pcap,ap5-B,2026-09-29 22:43:38.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721818-reposo.txt,ap5-B,2026-09-29 22:43:38.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721818-summary.env,ap5-B,2026-09-29 22:43:38.000,,epoch del nombre del archivo,no
+chaos/ap5-B-1790721818.log,ap5-B,2026-09-29 22:43:38.000,,epoch del nombre del archivo,no
+chaos/ap6-1790722268-dm.log,ap6,2026-09-29 22:51:08.000,,epoch del nombre del archivo,no
+chaos/ap6-1790722268-envelope.json,ap6,2026-09-29 22:51:08.000,,epoch del nombre del archivo,no
+chaos/ap6-1790722268-ew.log,ap6,2026-09-29 22:51:08.000,,epoch del nombre del archivo,no
+chaos/ap6-1790722268-summary.env,ap6,2026-09-29 22:51:08.000,,epoch del nombre del archivo,no
+chaos/ap6-1790722268.log,ap6,2026-09-29 22:51:08.000,,epoch del nombre del archivo,no
+chaos/ap6-1790722352-dm.log,ap6,2026-09-29 22:52:32.000,,epoch del nombre del archivo,no
+chaos/ap6-1790722352-envelope.json,ap6,2026-09-29 22:52:32.000,,epoch del nombre del archivo,no
+chaos/ap6-1790722352-ew.log,ap6,2026-09-29 22:52:32.000,,epoch del nombre del archivo,no
+chaos/ap6-1790722352-summary.env,ap6,2026-09-29 22:52:32.000,,epoch del nombre del archivo,no
+chaos/ap6-1790722352.log,ap6,2026-09-29 22:52:32.000,,epoch del nombre del archivo,no
+chaos/ap6-1790722435-dm.log,ap6,2026-09-29 22:53:55.000,,epoch del nombre del archivo,no
+chaos/ap6-1790722435-envelope.json,ap6,2026-09-29 22:53:55.000,,epoch del nombre del archivo,no
+chaos/ap6-1790722435-ew.log,ap6,2026-09-29 22:53:55.000,,epoch del nombre del archivo,no
+chaos/ap6-1790722435-summary.env,ap6,2026-09-29 22:53:55.000,,epoch del nombre del archivo,no
+chaos/ap6-1790722435.log,ap6,2026-09-29 22:53:55.000,,epoch del nombre del archivo,no
+chaos/ap7-1790738581-ew.log,ap7,2026-09-30 03:23:01.000,,epoch del nombre del archivo,no
+chaos/ap7-1790738581-summary.env,ap7,2026-09-30 03:23:01.000,,epoch del nombre del archivo,no
+chaos/ap7-1790738581.log,ap7,2026-09-30 03:23:01.000,,epoch del nombre del archivo,no
+chaos/ap7-1790738688-ew.log,ap7,2026-09-30 03:24:48.000,,epoch del nombre del archivo,no
+chaos/ap7-1790738688-summary.env,ap7,2026-09-30 03:24:48.000,,epoch del nombre del archivo,no
+chaos/ap7-1790738688.log,ap7,2026-09-30 03:24:48.000,,epoch del nombre del archivo,no
+chaos/ap7-1790738776-ew.log,ap7,2026-09-30 03:26:16.000,,epoch del nombre del archivo,no
+chaos/ap7-1790738776-summary.env,ap7,2026-09-30 03:26:16.000,,epoch del nombre del archivo,no
+chaos/ap7-1790738776.log,ap7,2026-09-30 03:26:16.000,,epoch del nombre del archivo,no
+chaos/kill-rabbitmq-post-1790174006.snapshot,kill-rabbitmq-post,2026-09-23 14:33:26.000,,epoch del nombre del archivo,si
+chaos/kill-rabbitmq-pre-1790173935.snapshot,kill-rabbitmq-pre,2026-09-23 14:32:15.000,,epoch del nombre del archivo,si
+chaos/netem-delay-ew-da-post-1790202967.snapshot,netem-delay-ew-da-post,2026-09-23 22:36:07.000,,epoch del nombre del archivo,si
+chaos/netem-delay-ew-da-pre-1790202738.snapshot,netem-delay-ew-da-pre,2026-09-23 22:32:18.000,,epoch del nombre del archivo,si
+chaos/netem-delay-ew-um-driver-1790739123.log,netem-delay-ew-um-driver,2026-09-30 03:32:03.000,,epoch del nombre del archivo,no
+chaos/netem-delay-ew-um-driver-1790739623.log,netem-delay-ew-um-driver,2026-09-30 03:40:23.000,,epoch del nombre del archivo,no
+chaos/netem-delay-ew-um-driver-1790740124.log,netem-delay-ew-um-driver,2026-09-30 03:48:44.000,,epoch del nombre del archivo,no
+chaos/netem-delay-ew-um-post-1790739467.snapshot,netem-delay-ew-um-post,2026-09-30 03:37:47.000,,epoch del nombre del archivo,no
+chaos/netem-delay-ew-um-post-1790739967.snapshot,netem-delay-ew-um-post,2026-09-30 03:46:07.000,,epoch del nombre del archivo,no
+chaos/netem-delay-ew-um-post-1790740468.snapshot,netem-delay-ew-um-post,2026-09-30 03:54:28.000,,epoch del nombre del archivo,no
+chaos/netem-delay-ew-um-pre-1790739187.snapshot,netem-delay-ew-um-pre,2026-09-30 03:33:07.000,,epoch del nombre del archivo,no
+chaos/netem-delay-ew-um-pre-1790739686.snapshot,netem-delay-ew-um-pre,2026-09-30 03:41:26.000,,epoch del nombre del archivo,no
+chaos/netem-delay-ew-um-pre-1790740187.snapshot,netem-delay-ew-um-pre,2026-09-30 03:49:47.000,,epoch del nombre del archivo,no
+chaos/netem-delay-ew-um-run-1790739123.log,netem-delay-ew-um-run,2026-09-30 03:32:03.000,,epoch del nombre del archivo,no
+chaos/netem-delay-ew-um-run-1790739623.log,netem-delay-ew-um-run,2026-09-30 03:40:23.000,,epoch del nombre del archivo,no
+chaos/netem-delay-ew-um-run-1790740124.log,netem-delay-ew-um-run,2026-09-30 03:48:44.000,,epoch del nombre del archivo,no
+chaos/netem-delay-ew-um-samples-1790739192.csv,netem-delay-ew-um-samples,2026-09-30 03:33:12.000,,epoch del nombre del archivo,no
+chaos/netem-delay-ew-um-samples-1790739691.csv,netem-delay-ew-um-samples,2026-09-30 03:41:31.000,,epoch del nombre del archivo,no
+chaos/netem-delay-ew-um-samples-1790740192.csv,netem-delay-ew-um-samples,2026-09-30 03:49:52.000,,epoch del nombre del archivo,no
+chaos/netem-delay-ew-um-summary-1790739192.env,netem-delay-ew-um-summary,2026-09-30 03:33:12.000,,epoch del nombre del archivo,no
+chaos/netem-delay-ew-um-summary-1790739692.env,netem-delay-ew-um-summary,2026-09-30 03:41:32.000,,epoch del nombre del archivo,no
+chaos/netem-delay-ew-um-summary-1790740193.env,netem-delay-ew-um-summary,2026-09-30 03:49:53.000,,epoch del nombre del archivo,no
+chaos/pause-data-management-post-1790188444.snapshot,pause-data-management-post,2026-09-23 18:34:04.000,,epoch del nombre del archivo,si
+chaos/pause-data-management-pre-1790188340.snapshot,pause-data-management-pre,2026-09-23 18:32:20.000,,epoch del nombre del archivo,si

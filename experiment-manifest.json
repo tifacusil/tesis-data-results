@@ -116,7 +116,7 @@
       "tabla10_exportaciones": {"lista_sha256": "tabla10/SHA256SUMS", "sha256_de_la_lista": "30a865014f25a7a705005f7aedaf38940898089d8ce88c2a31062d384e18efd8"},
       "evidencia_inyecciones_b": {"manifiesto": "data/evidencia-b-0923/manifiesto.json", "sha256": "247f6ddeb3252ab995b5f42e1d75d62ba7c069b28c7ba93b22cf53051362b032"},
       "salidas": {"lista_sha256": "data/output/SHA256SUMS", "sha256_de_la_lista": "f90e9c3b37edd5afb0e21c33777f6267b5f713e2d0e21704eec55a6b3fef5d46", "nota": "Solo CSV: los PNG se comparan píxel a píxel porque su compresión varía entre plataformas"},
-      "auditoria_v7_3": {"lista_sha256": "docs/auditoria-v7.3/SHA256SUMS", "sha256_de_la_lista": "e8a8336165c7b501124d71f32ae275da6ac0175209432a10272cd71ec610e462"}
+      "auditoria_v7_3": {"lista_sha256": "docs/auditoria-v7.3/SHA256SUMS", "sha256_de_la_lista": "cc337fae0dac35a9b9f80d65203e65ba4dc64fc1f9088c40bdef9339cdea1f2f"}
     },
     "auditorias_post_hoc": [
       {
@@ -140,6 +140,14 @@
         "fuentes": [
           {"tipo": "nodo de B, solo lectura", "destino": "kubectl get pods/rs (namespace landslide), crictl inspecti y containerd.log de k3s", "ejecucion_utc": ["2026-11-21T05:47:05Z", "2026-11-21T05:49:03Z"], "registro": "docs/auditoria-v7.3/v74_2026-11-21/raw/servidor/"},
           {"tipo": "archivos del repositorio", "destino": "logs de early-warning del pedido 2 y data/B - SEPTIEMBRE 5 RUNS V2/chaos/netem-delay-ew-um-*", "ejecucion_utc": ["2026-11-21"], "script": "docs/auditoria-v7.3/v74_2026-11-21/calcular_v74.py"}
+        ]
+      },
+      {
+        "fecha_utc": "2026-11-21",
+        "documento": "docs/auditoria-v7.3/pedido5.md",
+        "alcance": "Ventana SQL de E4 frente al intervalo del generador: fases de Artillery, los 37 tramos, filas en los bordes, otro tráfico y los 9 095 envíos sobre 4 320 000",
+        "fuentes": [
+          {"tipo": "archivos del repositorio y exportación no publicada", "destino": "data/B - SEPTIEMBRE 5 RUNS V2/sustained-12h.json y chaos/, docs/auditoria-v7.3/v73_b_2026-11-20/, auditoria_db_b_2026-11-20/raw/export.tsv.gz", "ejecucion_utc": ["2026-11-21"], "script": "docs/auditoria-v7.3/v75_2026-11-21/ventana_e4.py"}
         ]
       }
     ],
