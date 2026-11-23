@@ -2,7 +2,7 @@
     event_id:   ap7-1790738776   (sensor_id del evento)
     message_id: ap7-1790738776-b   (el que debe terminar en la DLQ)
     Reintentos: CONSUMER_MAX_RETRIES=3
-    Evidencia:  /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738776*
+    Evidencia:  ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738776*
     Consumo EW: 0.08888888888888888 msg/s -> en reposo: no
     AVISO: con carga de fondo el delta de sensors.dead_letter es solo informativo.
 
@@ -52,7 +52,7 @@ Observaciones (no son criterio de AP7, pero son evidencia del mecanismo):
   Otros mensajes derivados a la DLX durante la prueba: 0
 
 Veredicto AP7: CUMPLE
-Evidencia: /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738776.log, /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738776-ew.log, /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738776-summary.env
+Evidencia: ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738776.log, ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738776-ew.log, ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738776-summary.env
 
 --- Limpieza: trigger y cola sonda ---
     Trigger ap7_block_1790738776 eliminado.

@@ -1,11 +1,11 @@
 === AP6 — idempotencia (Sistema B) ===
     event_id:   ap6-1790722268   (sensor_id del evento)
     message_id: ap6-1790722268-b   (el que se reinyecta)
-    Evidencia:  /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap6-1790722268*
+    Evidencia:  ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap6-1790722268*
     Consumo EW: 0 msg/s -> en reposo: si
 
 --- 1. Inyección del evento ---
-    Publicado a las 2026-09-29T22:51:32Z. Envelope reinyectable -> /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap6-1790722268-envelope.json
+    Publicado a las 2026-09-29T22:51:32Z. Envelope reinyectable -> ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap6-1790722268-envelope.json
 --- 2. Esperando alerta en EW y persistencia en DM (máx 60s) ---
     OK: alerta emitida y lectura persistida.
 --- 3. Esperando 5s (la marca de idempotencia se escribe tras procesar) ---
@@ -25,4 +25,4 @@
   PASS  ew_alerts_published_total (delta)                    esperado=0   observado=0
 
 Veredicto AP6: CUMPLE
-Evidencia: /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap6-1790722268.log, /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap6-1790722268-ew.log, /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap6-1790722268-dm.log, /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap6-1790722268-envelope.json, /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap6-1790722268-summary.env
+Evidencia: ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap6-1790722268.log, ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap6-1790722268-ew.log, ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap6-1790722268-dm.log, ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap6-1790722268-envelope.json, ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap6-1790722268-summary.env
