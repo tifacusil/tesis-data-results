@@ -26,7 +26,7 @@ Literal output (`raw/step0_output.txt`):
 ```
 # executed 2026-11-20T03:40:02Z against http://localhost:9091 (local restore)
 ## sha256sum B-prometheus-tsdb-20261014.tar.gz
-7425191c484406224e51d576e87df158cd4dca7b6dd535229b683012bc561877 */c/Users/adria/Escritorio/TESIS/respaldo-prometheus/B-prometheus-tsdb-20261014.tar.gz
+7425191c484406224e51d576e87df158cd4dca7b6dd535229b683012bc561877 *~/Escritorio/TESIS/respaldo-prometheus/B-prometheus-tsdb-20261014.tar.gz
 ## GET /api/v1/status/buildinfo
 {"status":"success","data":{"version":"3.5.4","revision":"9e1e3b5104fff654a84131b9854be18862569bb7","branch":"HEAD","buildUser":"root@dc5fbd8f9a0f","buildDate":"20260617-14:17:38","goVersion":"go1.25.11"}}
 ## docker image
