@@ -14,5 +14,5 @@ log=${BITACORA:-$(cd "$(dirname "$0")/.." && pwd)/tabla9/bitacora.log}
 start=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 bash -o pipefail -c "$1"
 rc=$?
-printf '%s  end=%s  exit=%d  cwd=%s\n    $ %s\n' "$start" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$rc" "$PWD" "$1" >> "$log"
+printf '%s  end=%s  exit=%d  cwd=%s\n    $ %s\n' "$start" "$(date -u +%Y-%m-%dT%H:%M:%SZ)" "$rc" "${PWD/#$HOME/\~}" "${1//$HOME/\~}" >> "$log"   # home as ~: keeps the user name out of the log
 exit $rc

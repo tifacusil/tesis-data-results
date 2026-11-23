@@ -2,7 +2,7 @@
     event_id:   ap7-1790738581   (sensor_id del evento)
     message_id: ap7-1790738581-b   (el que debe terminar en la DLQ)
     Reintentos: CONSUMER_MAX_RETRIES=3
-    Evidencia:  /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738581*
+    Evidencia:  ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738581*
     Consumo EW: 0 msg/s -> en reposo: si
 
 --- 1. Trigger de fallo sobre early_warning.alerts (solo sensor_id=ap7-1790738581) ---
@@ -57,7 +57,7 @@ Observaciones (no son criterio de AP7, pero son evidencia del mecanismo):
   Otros mensajes derivados a la DLX durante la prueba: 0
 
 Veredicto AP7: CUMPLE
-Evidencia: /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738581.log, /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738581-ew.log, /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738581-summary.env
+Evidencia: ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738581.log, ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738581-ew.log, ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap7-1790738581-summary.env
 
 --- Limpieza: trigger y cola sonda ---
     Trigger ap7_block_1790738581 eliminado.

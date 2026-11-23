@@ -3,7 +3,7 @@
     Filtro:     tcp and (port 5672 or port 3306 or port 6379 or port 9090 or port 50051)
     Ventanas:   reposo 30s + evento 30s
     Evento:     ap5-b-1790721818 (lectura base + lectura que alerta, project=shangtan)
-    Evidencia:  /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap5-B-1790721818*
+    Evidencia:  ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap5-B-1790721818*
     Colas: 0 listos, publicación 0.0 msg/s -> en reposo: si
 
 --- Captura: reposo (30s) ---
@@ -30,5 +30,5 @@
   Escrituras cliente->servidor netas (proxy de llamadas): 50
   Servidores con tráfico neto > 0 (saltos): 6
 
-Evidencia: /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap5-B-1790721818-{reposo,evento}.{pcap,txt,agg}, /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap5-B-1790721818.log, /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/ap5-B-1790721818-summary.env
+Evidencia: ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap5-B-1790721818-{reposo,evento}.{pcap,txt,agg}, ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap5-B-1790721818.log, ~/Escritorio/TESIS/go-tesis-infra/chaos/results/ap5-B-1790721818-summary.env
 Declarar al reportar: evento elegido, sistema en reposo (si), duración (30s x 2).

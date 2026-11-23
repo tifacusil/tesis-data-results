@@ -4,7 +4,7 @@
 
 **Result:** the rebuilt [`tabla9/tabla9.csv`](../tabla9/tabla9.csv) is byte-identical to the published [`data/output/tabla9.csv`](../data/output/tabla9.csv). The four 1 frame/s exports are byte-identical to [`data/nivel1/`](../data/nivel1/). A clean run of the scripts in an empty folder reproduces all 11 files in `tabla9/SHA256SUMS` (step 10).
 
-History: the package was first built on 2026-11-03, between 01:03 and 01:06 UTC, in a stand-alone folder (`~/evidencia-v6`). It was moved into this repo at 01:14 UTC and regenerated in place. All commands from both phases are in [`tabla9/bitacora.log`](../tabla9/bitacora.log), unedited, so its first entries show the old paths.
+History: the package was first built on 2026-11-03, between 01:03 and 01:06 UTC, in a stand-alone folder (`~/evidencia-v6`). It was moved into this repo at 01:14 UTC and regenerated in place. All commands from both phases are in [`tabla9/bitacora.log`](../tabla9/bitacora.log). The log is unedited except that the Windows home folder is written as `~` and the session scratch folder as `/tmp/scratchpad`; its first entries show the old paths.
 
 Scope: Table 9 and the versions only. Tables 7, 8 and 10 and Figures 2–5 have their own checks (README, *Quick check* and *Full regeneration*).
 
@@ -64,9 +64,9 @@ python3 build_tabla9.py --out /tmp/t9 && cmp /tmp/t9/tabla9.csv data/output/tabl
 From the root of this repo. Set these variables once, and change the paths for another machine:
 
 ```bash
-BACKUPS=/c/Users/adria/Escritorio/TESIS/respaldo-prometheus   # folder with the two .tar.gz and SHA256SUMS.txt
-WORK=/c/Users/adria/prom-restore-v6                            # disposable, 2.2 GB
-PY=/c/Users/adria/Escritorio/TESIS/resultados/venv/Scripts/python.exe   # any python with requirements.txt
+BACKUPS=~/Escritorio/TESIS/respaldo-prometheus   # folder with the two .tar.gz and SHA256SUMS.txt
+WORK=~/prom-restore-v6                            # disposable, 2.2 GB
+PY=~/Escritorio/TESIS/resultados/venv/Scripts/python.exe   # any python with requirements.txt
 L=scripts/logrun.sh
 ```
 

@@ -1,4 +1,4 @@
-    (log de la corrida -> /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-run-1790740124.log)
+    (log de la corrida -> ~/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-run-1790740124.log)
 === Escenario: netem delay 9000ms en user-management (Sistema B / k3s) ===
     Servidor:      gotesis@178.105.104.95 (namespace landslide)
     Delay:         9000ms  (timeout por llamada: 5000ms => cada intento corta)
@@ -23,7 +23,7 @@ consumed_ew=1382
 consumed_dm=1390
 dropped=3
 redis_buffer_pending=0
-    Muestreo continuo -> /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-samples-1790740192.csv
+    Muestreo continuo -> ~/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-samples-1790740192.csv
 
 --- Inyectando latencia (tc netem delay 9000ms, scope=grpc) en 1 pod(s) ---
     Delay aplicado. Verificando qdisc:
@@ -91,9 +91,9 @@ Latencia de despacho (umbral cruzado -> alerta registrada):
   degradada, todo el fallo:          1.632s  (181 alertas sin push)
   p95 maximo en la ventana (1m):     29.5s
 Continuidad operativa:        verificada (104 alertas registradas con el breaker abierto)
-Serie temporal completa:      /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-samples-1790740192.csv
-Snapshots:                    /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-pre-1790740187.snapshot / /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-post-1790740468.snapshot
-Resumen por corrida:          /c/Users/adria/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-summary-1790740193.env
+Serie temporal completa:      ~/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-samples-1790740192.csv
+Snapshots:                    ~/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-pre-1790740187.snapshot / ~/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-post-1790740468.snapshot
+Resumen por corrida:          ~/Escritorio/TESIS/go-tesis-infra/chaos/results/netem-delay-ew-um-summary-1790740193.env
 
 === Linea de tiempo (sistema-B) ===
 Snapshot pre-fallo:         2026-09-29 22:49:47 HPS  (UTC 03:49:47)
